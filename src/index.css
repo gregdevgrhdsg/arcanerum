@@ -25,9 +25,7 @@ body {
   position: relative;
   will-change: transform;
 }
-canvas {
-  touch-action: none;
-}
+
 
 .screen-max-width {
   margin-inline-start: auto;
