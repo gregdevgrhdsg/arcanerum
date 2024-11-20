@@ -7,7 +7,7 @@ import Highlights from "./components/Highlights";
 import HighlightsB from "./components/HighlightsB";
 import HighlightsC from "./components/HighlightsC";
 import CanvaContainers from "./components/canvaContainers";
-import Junglebackground from "./components/junglebackground";
+import Junglebackground from "./components/Junglebackground";
 
 const App = () => {
   const [isModelReady, setIsModelReady] = useState(false);
