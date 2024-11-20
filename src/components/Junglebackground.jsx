@@ -15,9 +15,9 @@ const Junglebackground = () => {
           opacity: 1,
           scale: 1,
           y: 0,
-          duration: 1.5,
-          ease: "power4.out",
-          stagger: 0.3, // Décalage progressif entre les calques
+          duration: 1,
+          ease: "power2.out",
+          stagger: 0.2, // Décalage progressif entre les calques
         }
       );
     };
