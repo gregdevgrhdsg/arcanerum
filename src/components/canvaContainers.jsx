@@ -11,26 +11,39 @@ const CanvaContainer = ({ onModelReady }) => {
   const modelRef = useRef(null);
   const cameraRef = useRef(null);
   const [isModelLoaded, setIsModelLoaded] = useState(false);
+  const [isMobile, setIsMobile] = useState(false); // Track if the user is on mobile
 
+  // Mobile detection
   useEffect(() => {
-    // Vérification si le modèle ou la caméra sont indisponibles
+    const handleResize = () => {
+      setIsMobile(window.innerWidth <= 900); // Adjust the threshold as needed
+    };
+
+    window.addEventListener("resize", handleResize);
+    handleResize(); // Check initially
+
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  // Model loading check
+  useEffect(() => {
     if (!modelRef.current || !cameraRef.current) {
       if (!isModelLoaded) console.warn("Modèle ou caméra non disponible, en attente...");
       return;
     }
 
-    console.log("Modèle et caméra prêts, initialisation des animations...");
-    setIsModelLoaded(true); // Marquer le modèle comme chargé
-    if (onModelReady) onModelReady();
+    setIsModelLoaded(true); // Mark model as ready
+    if (onModelReady) onModelReady(); // Notify parent that the model is ready
   }, [isModelLoaded, onModelReady]);
 
+  // Main animations when the model is loaded
   useEffect(() => {
     if (!isModelLoaded) return;
 
-    // Nettoyer les anciens triggers
+    // Clear previous scroll triggers
     ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
 
-    // **Zone 1 : Animation initiale**
+    // ** Animation for desktop **: Adjust rotation and position
     const tl1 = gsap.timeline({
       scrollTrigger: {
         trigger: ".zone-1",
@@ -40,13 +53,35 @@ const CanvaContainer = ({ onModelReady }) => {
       },
     });
 
-    tl1
-      .to(modelRef.current.rotation, { z: 0 }, 0)
+    tl1.to(modelRef.current.rotation, { z: 0 }, 0)
       .to(modelRef.current.rotation, { y: 1 }, 0)
       .to(cameraRef.current.position, { z: 3.8 }, 0)
       .to(modelRef.current.position, { x: -1 }, 0);
 
-    // **Zone 2 : Ajustement de la caméra**
+    // Adjustments for mobile
+    if (isMobile) {
+      gsap.to(cameraRef.current, {
+        fov: 75, // Change field of view for mobile
+        scrollTrigger: {
+          trigger: ".zone-1",
+          start: "top top",
+          end: "bottom top",
+          scrub: true,
+        },
+      });
+
+      gsap.to(modelRef.current.position, {
+        x: 0, // Adjust model position for mobile
+        y: 0, // Elevate model on mobile
+        z: 0, // Bring model closer on mobile
+        duration: 1,
+      });
+      tl1.to(modelRef.current.rotation, { z: 0 }, 0)
+      .to(modelRef.current.rotation, { y: 5 }, 0)
+      .to(cameraRef.current.position, { z: 7 }, 0)
+    }
+
+    // ** Desktop-only animation **
     const tl2 = gsap.timeline({
       scrollTrigger: {
         trigger: ".zone-2",
@@ -56,15 +91,12 @@ const CanvaContainer = ({ onModelReady }) => {
       },
     });
 
-    tl2
-      .to(modelRef.current.rotation, { y: -0.7 }, 0)
+    tl2.to(modelRef.current.rotation, { y: -0.7 }, 0)
       .to(modelRef.current.rotation, { z: 0.5 }, 0)
       .to(modelRef.current.position, { x: 1 }, 0)
       .to(cameraRef.current.fov, { value: 50 }, 0);
 
-
-
-    // **Zone 3 : Zoom caméra + rotation modèle**
+    // ** Zoom & rotation (for desktop) **
     const tl3 = gsap.timeline({
       scrollTrigger: {
         trigger: ".zone-3",
@@ -74,18 +106,16 @@ const CanvaContainer = ({ onModelReady }) => {
       },
     });
 
-    tl3
-      .to(modelRef.current.rotation, { y: 0.6 }, 0)
+    tl3.to(modelRef.current.rotation, { y: 0.6 }, 0)
       .to(modelRef.current.rotation, { x: 0 }, 0)
       .to(modelRef.current.rotation, { z: 0 }, 0)
-      .to(modelRef.current.position, { x: -1 }, 0)
-   
+      .to(modelRef.current.position, { x: -1 }, 0);
 
-    cameraRef.current.updateProjectionMatrix(); // Mettre à jour la caméra pour les changements de fov
+    cameraRef.current.updateProjectionMatrix(); // Update camera for changes in fov
 
-    ScrollTrigger.refresh(); // Rafraîchir GSAP
-  }, [isModelLoaded]);
+    ScrollTrigger.refresh(); // Refresh GSAP triggers
 
+  }, [isModelLoaded, isMobile]);
 
   return (
     <div className="relative h-[100vh]">
