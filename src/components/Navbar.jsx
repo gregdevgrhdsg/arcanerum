@@ -20,9 +20,9 @@ const Navbar = () => {
 
   return (
     <header
-      className={`fixed w-full top-0 z-50 transition-all duration-300 ${
+      className={`fixed w-full top-0 z-50 transition-all duration-800 ${
         scrolled
-          ? "bg-gradient-to-b from-black to-transparent"
+          ? "bg-gradient-to-b from-black to-transparent "
           : "bg-transparent"
       }`}
     >
@@ -49,7 +49,7 @@ const Navbar = () => {
           {navLists.slice(2).map((nav, index) => (
             <div
               key={index}
-              className="text-2xl font-yana text-gold text-sm cursor-pointer hover:text-white transition-all duration-300"
+              className="text-2xl font-yana text-gold text-sm cursor-pointer hover:text-white transition-all duration-600"
             >
               {nav}
             </div>

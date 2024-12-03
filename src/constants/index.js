@@ -1,4 +1,4 @@
-export const navLists = ["OUR RUMS", "COCKTAILS", "DISCOVER", "CONTACT"];
+export const navLists = ["DISCOVER", "OUR RUMS", "COCKTAILS", "CONTACT"];
 
 
 export const models = [

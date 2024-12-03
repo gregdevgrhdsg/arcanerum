@@ -45,6 +45,11 @@ export default {
         center: true, // Centrer les conteneurs par défaut
         padding: "2rem", // Padding interne des conteneurs
       },
+      zIndex: {
+        background: '10',   // Pour les éléments d'arrière-plan
+        content: '20',      // Pour le contenu principal
+        foreground: '50',   // Pour les éléments de la jungle en premier plan
+      },
     },
   },
   plugins: [],

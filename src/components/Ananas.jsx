@@ -1,9 +1,8 @@
 import React from "react";
 import { useGLTF } from "@react-three/drei";
 
-
-export const RumA = React.forwardRef((props, ref) => {
-  const { scene } = useGLTF("/models/ArcaneExtraroma.glb");
+export const RumB = React.forwardRef((props, ref) => {
+  const { scene } = useGLTF("/models/ArcaneAnanas.glb");
 
   return (
     <primitive
