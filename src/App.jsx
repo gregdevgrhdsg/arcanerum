@@ -42,17 +42,17 @@ const App = () => {
       <Navbar className="z-40" />
 
       {/* Jungle en arrière-plan */}
-      <div className=" inset-0 pointer-events-none top-0 left-0 w-full h-screen z-0">
+      <div className=" inset-0 top-0 left-0 w-full h-screen z-0">
         <Jungle isModelReady={isModelReady} />
       </div>
 
       {/* Canvas avec modèle 3D au milieu */}
-      <div id="smooth-wrapper" className="fixed inset-0 pointer-events-none top-0 left-0 w-full h-screen z-20">
+      <div id="smooth-wrapper" className="fixed inset-0 top-0 left-0 w-full h-screen z-20">
         <CanvaContainers onModelReady={handleModelReady} selectedBottle={selectedBottle} />
       </div>
 
       {/* Sections de contenu au premier plan */}
-      <div className="relative inset-0 pointer-events-auto z-30">
+      <div className="relative inset-0 z-30">
         <Home isModelReady={isModelReady} selectedBottle={selectedBottle} onBottleChange={handleBottleChange} />
       </div>
     </div>

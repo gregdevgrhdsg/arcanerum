@@ -149,7 +149,7 @@ const CanvaContainer = ({ selectedBottle, onModelReady }) => {
     <div className="relative h-[100vh]">
       {!isModelLoaded && <div className="absolute inset-0 flex items-center justify-center text-white">Chargement...</div>}
       <Canvas
-        className="sticky inset-0 top-0 h-screen pointer-events-none"
+        className="sticky inset-0 top-0 h-screen"
         camera={{ position: [0, 0, 5], fov: 25 }}
         onCreated={({ camera }) => {
           cameraRef.current = camera;
