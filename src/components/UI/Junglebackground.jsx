@@ -8,7 +8,6 @@ import { section } from "framer-motion/client";
 gsap.registerPlugin(ScrollTrigger);
 
 const Jungle = ({ isModelLoaded, position = "background" }) => {
-  const { modelRef, modelPosition } = useModel(); // Utilisez le contexte pour récupérer modelRef
 
 
 
