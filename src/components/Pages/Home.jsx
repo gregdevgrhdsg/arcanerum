@@ -130,7 +130,7 @@ const Home = ({ isModelLoaded }) => {
           <div className="text-right max-w-[30vw]">
             <h2 className="highlight-title font-yana text-gold text-4xl mb-4">OUR COCKTAILS</h2>
             <p className="highlight-description text-gold text-xl font-yana leading-relaxed mb-6">
-            Immerse yourself in the art of cocktails with Arcane RUM. Be adventurous with our creations, bold with our signature shots, and timeless with revisited classics. From the first sip to the final flourish, each drink is a journey of flavor, aroma, and craftsmanship—an invitation to savor and explore.            </p>
+            Immerse yourself in the art of cocktails with Arcane RUM. Be adventurous with our creations, bold with our signature shots, and timeless with revisited classics. From the first sip to the final flourish, each drink is a journey of flavor, aroma, and craftsmanship—an invitation to savor and explore </p>
             <button className="highlight-button btn-animated">
               UNVEIL OUR SECRETS
             </button>
