@@ -39,7 +39,10 @@ export default {
         "2xl": "2rem",
       },
       screens: {
-        xs: "920px", // Point de rupture supplémentaire
+        sm: '480px',
+        md: '768px',
+        lg: '976px',
+        xl: '1440px',
       },
       container: {
         center: true, // Centrer les conteneurs par défaut
