@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { logoArcane } from "../../utils/index";
-import { navLists } from "../../Constants";
+import { navLists } from "../../Constants/index";
 
 const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
