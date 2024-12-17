@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { logoArcane } from "../../Utils";
+import { logoArcane } from "../../utils/index";
 import { navLists } from "../../Constants";
 
 const Navbar = () => {
