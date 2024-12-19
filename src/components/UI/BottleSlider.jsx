@@ -66,11 +66,11 @@ const BottleSlider = ({ bottles, onBottleChange, selectedBottle, onBuy }) => {
   return (
     <div className="relative flex w-full h-screen" ref={sliderContainerRef}>
       {/* Texte et Flèches */}
-      <div className="relative z-10 flex flex-col text-center justify-center pl-12 w-1/2 text-white">
-        {/* Contenu du slide actif */}
+      <div className="relative z-10 flex flex-col text-center justify-center pl-4 sm:pl-6 md:pl-12 w-full md:w-1/2 text-white">
+      {/* Contenu du slide actif */}
         <div className="slider-content">
-          <h2 className="text-5xl font-yana text-gold mb-4">{bottles[currentSlide].name}</h2>
-          <p className="text-lg mb-2">{bottles[currentSlide].description}</p>
+          <h2 className="lg:text-5xl sm:text-1xl font-yana text-gold mb-4">{bottles[currentSlide].name}</h2>
+          <p className="lg:text-1xl sm:text-1xl mb-2">{bottles[currentSlide].description}</p>
           <p className="text-2xl font-bold mb-6">{bottles[currentSlide].prix}</p>
           <button
             className="btn-animated"
@@ -117,26 +117,27 @@ const BottleSlider = ({ bottles, onBottleChange, selectedBottle, onBuy }) => {
 
 
       {/* Thumbnails */}
-      <div className="absolute bottom-10 left-12 flex space-x-4 z-10">
-        {bottles.map((bottle, index) => (
-          <div
-            key={bottle.id}
-            className={`w-24 h-40 rounded-lg  cursor-pointer transition-transform ${
-              currentSlide === index ? "border-2 border-gold scale-110" : "opacity-50"
-            }`}
-            style={{
-              backgroundImage: `url(${bottle.thumbnail || ""})`,
-              backgroundSize: "contain", // Affiche la photo en entier
-              backgroundPosition: "center",
-              backgroundRepeat: "no-repeat", // Empêche la répétition de l'image
-            }}
-            onClick={() => handleSlideChange(index)}
-            // Effet au survol
-            onMouseEnter={(e) => gsap.to(e.currentTarget, { scale: 1.2, duration: 0.3 })}
-            onMouseLeave={(e) => gsap.to(e.currentTarget, { scale: 1, duration: 0.3 })}
-          />
-        ))}
-      </div>
+      <div className="absolute bottom-10 left-0 flex flex-wrap justify-start items-center space-x-4 sm:space-x-2 md:space-x-4 z-10 w-full">
+  {bottles.map((bottle, index) => (
+    <div
+      key={bottle.id}
+      className={`cursor-pointer transition-transform rounded-lg ${
+        currentSlide === index ? "border-2 border-gold scale-110" : "opacity-50"
+      }`}
+      style={{
+        backgroundImage: `url(${bottle.thumbnail || ""})`,
+        backgroundSize: "contain",
+        backgroundPosition: "center",
+        backgroundRepeat: "no-repeat",
+        width: "clamp(50px, 8vw, 100px)", // Ajuste automatiquement la taille
+        height: "clamp(100px, 12vw, 200px)", // Ajuste automatiquement la hauteur
+      }}
+      onClick={() => handleSlideChange(index)}
+      onMouseEnter={(e) => gsap.to(e.currentTarget, { scale: 1.2, duration: 0.3 })}
+      onMouseLeave={(e) => gsap.to(e.currentTarget, { scale: 1, duration: 0.3 })}
+    />
+  ))}
+</div>
     </div>
   );
 };

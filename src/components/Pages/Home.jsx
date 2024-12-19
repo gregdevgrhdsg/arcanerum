@@ -82,27 +82,22 @@ const Home = ({ isModelLoaded }) => {
       {/* Sections de Contenu */}
       <div className="content-container">
         {/* Zone 2 */}
-        <section className="zone-2 h-screen flex flex-col items-end justify-center pr-[5vw] bg-transparent">
-          <div className="text-center max-w-[30vw]">
-            <h2 className="highlight-title font-yana text-gold text-4xl mb-4">ESCAPE THE EXPECTED</h2>
-            <p className="highlight-description text-gold text-xl font-yana leading-relaxed mb-6">
-            Every adventure begins with the desire to explore the unknown. Today, we invite you to journey into the heart of the extraordinary – through the senses, through flavors, and through the rich stories embedded in every drop of Arcane Rum. 
-            </p>
+        <section className="zone-2 h-screen flex flex-col items-end justify-center bg-transparent">
+          <div className="text-right xl:max-w-[40vw] md:max-w-[40vw] sm:max-w-[50vw] xl:pr-20 md:pr-20 sm:pr-5">
+            <h2 className="highlight-title font-yana text-gold mb-5 xl:text-3xl lg:text-lg md:text-3xl sm:text-2xl">ESCAPE THE EXPECTED</h2>
+            <p className="highlight-description font-yana text-gold xl:text-1xl lg:text-1xl md:1xl sm:text-1xl mb-6">
+            Every adventure begins with the desire to explore the unknown. Today, we invite you to journey into the heart of the extraordinary – through the senses, through flavors, and through the rich stories embedded in every drop of Arcane Rum.</p>
             <Link to="/Our-Universe">
-            <button className="highlight-button btn-animated">
-              DISCOVER MORE
-            </button>
+              <button className="highlight-button btn-animated">DISCOVER MORE</button>
             </Link>
           </div>
         </section>
 
         {/* Zone 3 */}
-        <section className="zone-3 h-screen flex flex-col items-start justify-center pl-[5vw] bg-transparent">
-          <div className="text-center max-w-[30vw]">
-            <h2 className="highlight-title font-yana text-gold text-4xl mb-4">
-              KNOW HOW : <br /> FROM CANE TO GOLD
-            </h2>
-            <p className="highlight-description text-gold text-xl font-yana leading-relaxed mb-6">
+        <section className="zone-3 h-screen flex flex-col items-start justify-center bg-transparent">
+          <div className="text-left xl:max-w-[40vw] md:max-w-[40vw] sm:max-w-[50vw] xl:pl-20 md:pl-20 sm:pl-5">
+            <h2 className="highlight-title font-yana text-gold mb-5 xl:text-3xl lg:text-3xl md:text-3xl sm:text-2xl">KNOW HOW : <br /> FROM CANE TO GOLD</h2>
+            <p className="highlight-description font-yana text-gold xl:text-1xl lg:text-1xl md:1xl sm:text-1xl mb-6">
             At Arcane Rum, our savoir-faire is a tribute to the rich heritage of Mauritius. From the cultivation of pure sugarcane to the mastery of distillation, every step is guided by a deep respect for tradition and innovation. Our master blenders transform nature’s finest ingredients into an elixir bursting with tropical aromas and smooth complexity. Explore the secrets of our craft and uncover the essence of Mauritian excellence in every sip.             </p>
             <Link to="/Know-How">
             <button className="highlight-button btn-animated">UNVEIL OUR SECRETS</button>
@@ -126,10 +121,10 @@ const Home = ({ isModelLoaded }) => {
         </section>
 
         {/* Zone 5 */}
-        <section className="zone-5 h-screen flex flex-col items-end justify-center pr-[5vw] bg-transparent">
-          <div className="text-right max-w-[30vw]">
-            <h2 className="highlight-title font-yana text-gold text-4xl mb-4">OUR COCKTAILS</h2>
-            <p className="highlight-description text-gold text-xl font-yana leading-relaxed mb-6">
+        <section className="zone-5 h-screen flex flex-col items-end justify-center pl-[5vw] bg-transparent">
+        <div className="text-right xl:max-w-[40vw] md:max-w-[40vw] sm:max-w-[50vw] xl:pr-20 md:pr-20 sm:pr-5">
+        <h2 className="highlight-title font-yana text-gold mb-5 xl:text-3xl lg:text-3xl md:text-3xl sm:text-2xl">OUR COCKTAILS</h2>
+            <p className="highlight-description font-yana text-gold xl:text-1xl lg:text-1xl md:1xl sm:text-1xl mb-6">
             Immerse yourself in the art of cocktails with Arcane RUM. Be adventurous with our creations, bold with our signature shots, and timeless with revisited classics. From the first sip to the final flourish, each drink is a journey of flavor, aroma, and craftsmanship—an invitation to savor and explore </p>
             <button className="highlight-button btn-animated">
               UNVEIL OUR SECRETS

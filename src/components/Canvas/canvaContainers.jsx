@@ -2,7 +2,7 @@ import React, { useEffect, useState, useRef } from "react";
 import { Canvas } from "@react-three/fiber";
 import * as THREE from "three";
 import { bottlesConfig } from "../bottleConfig";
-import { setupModelAnimations, rotateBottle, transitionToDetailView } from "../Animations/ModelAnimations";
+import { setupModelAnimations, rotateBottle } from "../Animations/ModelAnimations";
 import { useModel } from "../Context/ModelContext";
 
 const CanvasContainer = ({ selectedBottle }) => {
@@ -11,96 +11,159 @@ const CanvasContainer = ({ selectedBottle }) => {
     cameraRef,
     setIsModelLoaded,
     isModelLoaded,
-    isDetailView,
     setRotationGroupRef,
   } = useModel();
 
-  const [currentBottle, setCurrentBottle] = useState(selectedBottle);
+  const [currentBottle, setCurrentBottle] = useState(selectedBottle || 0);
   const rotationGroupRef = useRef();
+  const [screenSize, setScreenSize] = useState("desktop");
 
-  /**
-   * Fonction pour appliquer les positions et rotations initiales
-   * définies dans bottlesConfig.
-   */
-  const applyInitialTransformations = (bottleConfig) => {
-    if (rotationGroupRef.current) {
-      // Appliquer la position initiale
-      rotationGroupRef.current.position.set(
-        bottleConfig.position.x || 0,
-        bottleConfig.position.y || 0,
-        bottleConfig.position.z || 0,
-      );
-      // Appliquer la rotation initiale
-      rotationGroupRef.current.rotation.set(
-        bottleConfig.rotation.x || 0,
-        bottleConfig.rotation.y || 0,
-        bottleConfig.rotation.z || 0,
-      );
-      console.log(`Position initiale appliquée :`, rotationGroupRef.current.position);
-      console.log(`Rotation initiale appliquée :`, rotationGroupRef.current.rotation);
+  // Détection de la taille d'écran
+  const detectScreenSize = () => {
+    const width = window.innerWidth;
+    if (width < 640) {
+      setScreenSize("mobile");
+    } else if (width < 1024) {
+      setScreenSize("tablet");
+    } else {
+      setScreenSize("desktop");
     }
   };
 
-  /**
-   * Chargement du modèle et initialisation des animations.
-   */
+  useEffect(() => {
+    window.addEventListener("resize", detectScreenSize);
+    detectScreenSize(); // Initialisation au chargement
+    return () => window.removeEventListener("resize", detectScreenSize);
+  }, []);
+
+  // Récupérer la configuration actuelle de la bouteille
+  const getBottleConfig = () => {
+    const bottleConfig = bottlesConfig[currentBottle];
+    if (!bottleConfig) {
+      console.error(`Bouteille introuvable pour l'ID : ${currentBottle}`);
+      return null;
+    }
+
+    // Gestion des positions responsives
+    const position = bottleConfig.responsivePositions?.[screenSize] || {
+      x: 0,
+      y: 0,
+      z: 0,
+    };
+
+    return {
+      ...bottleConfig,
+      position,
+    };
+  };
+
+  // Appliquer les transformations initiales
+  const applyInitialTransformations = (bottleConfig) => {
+    if (!bottleConfig || !rotationGroupRef.current) return;
+
+    const { position, rotation, scale } = bottleConfig;
+
+    // Mettre à jour la position
+    rotationGroupRef.current.position.set(
+      position.x || 0,
+      position.y || 0,
+      position.z || 0
+    );
+
+    // Mettre à jour la rotation
+    rotationGroupRef.current.rotation.set(
+      rotation?.x || 0,
+      rotation?.y || 0,
+      rotation?.z || 0
+    );
+
+    // Mettre à jour l'échelle
+    if (modelRef.current) {
+      modelRef.current.scale.set(
+        scale?.x || 1,
+        scale?.y || 1,
+        scale?.z || 1
+      );
+      console.log("Échelle appliquée :", scale); // Trace l'échelle
+    }
+  };
+
+  // Charger le modèle et initialiser les animations
   const handleModelLoad = () => {
     if (!isModelLoaded) {
       console.log("Modèle chargé.");
       setIsModelLoaded(true);
 
-      // Appliquer les transformations initiales de la bouteille actuelle
-      const bottle = bottlesConfig[selectedBottle];
-      applyInitialTransformations(bottle);
-
-      // Configurer les animations pour `rotationGroupRef`
-      setupModelAnimations(rotationGroupRef, cameraRef);
+      const bottleConfig = getBottleConfig();
+      if (bottleConfig) {
+        applyInitialTransformations(bottleConfig);
+        setupModelAnimations(rotationGroupRef, cameraRef);
+      }
     }
   };
 
-  /**
-   * Gérer le changement de bouteille.
-   */
+  // Gérer les changements de bouteille
   useEffect(() => {
     if (selectedBottle !== currentBottle) {
-      console.log(`Changement de bouteille détecté : ${selectedBottle}`);
+      setCurrentBottle(selectedBottle);
 
-      // Appliquer une rotation supplémentaire (si nécessaire)
       if (rotationGroupRef.current) {
         rotateBottle(rotationGroupRef);
       }
-      setCurrentBottle(selectedBottle);
     }
-  }, [selectedBottle, currentBottle]);
+  }, [selectedBottle]);
 
-  /**
-   * Gérer la transition vers la vue détaillée.
-   */
+  // Appliquer les transformations lors du changement de taille d'écran
   useEffect(() => {
-    if (isDetailView && rotationGroupRef.current && cameraRef.current) {
-      console.log("Transition vers la vue détaillée...");
-      transitionToDetailView(cameraRef, rotationGroupRef, () => {
-        console.log("Transition terminée.");
-      });
-    }
-  }, [isDetailView]);
+    const bottleConfig = getBottleConfig();
+    if (bottleConfig) {
+      applyInitialTransformations(bottleConfig);
 
-  /**
-   * Rendu du modèle.
-   */
+      // Forcer une mise à jour
+      if (rotationGroupRef.current) {
+        rotationGroupRef.current.updateMatrixWorld(true);
+      }
+    }
+  }, [screenSize]);
+
+  // Ajuster la caméra en fonction de l'écran
+  useEffect(() => {
+    if (!cameraRef.current) return;
+
+    switch (screenSize) {
+      case "mobile":
+        cameraRef.current.fov = 30;
+        cameraRef.current.position.set(0, 0, 8);
+        break;
+      case "tablet":
+        cameraRef.current.fov = 30;
+        cameraRef.current.position.set(0, 0, 6);
+        break;
+      case "desktop":
+      default:
+        cameraRef.current.fov = 25;
+        cameraRef.current.position.set(0, 0, 5);
+        break;
+    }
+    cameraRef.current.updateProjectionMatrix();
+  }, [screenSize]);
+
+  // Rendre le modèle
   const renderModel = () => {
-    const bottle = bottlesConfig[currentBottle] || { component: DefaultComponent };
-    const BottleComponent = bottle.component;
+    const bottleConfig = getBottleConfig();
+    if (!bottleConfig) return null;
+
+    const BottleComponent = bottleConfig.component;
 
     return (
       <BottleComponent
         ref={modelRef}
-        scale={[bottle.scale?.x || 1, bottle.scale?.y || 1, bottle.scale?.z || 1]}
-        onLoad={() => {
-          if (modelRef.current) {
-            handleModelLoad();
-          }
-        }}
+        scale={[
+          bottleConfig.scale?.x || 1,
+          bottleConfig.scale?.y || 1,
+          bottleConfig.scale?.z || 1,
+        ]}
+        onLoad={handleModelLoad}
       />
     );
   };
@@ -124,16 +187,12 @@ const CanvasContainer = ({ selectedBottle }) => {
             rotationGroupRef.current = group;
             setRotationGroupRef(group);
           }
-          camera.updateProjectionMatrix(); // Assure que la caméra est bien synchronisée
         }}
         style={{ width: "100vw", height: "100vh" }}
       >
         <ambientLight intensity={2} />
         <directionalLight position={[5, 8, 5]} intensity={3} />
-        <group ref={rotationGroupRef}>
-          <axesHelper args={[2]} /> {/* Helper pour visualiser le pivot */}
-          {renderModel()}
-        </group>
+        <group ref={rotationGroupRef}>{renderModel()}</group>
       </Canvas>
     </div>
   );

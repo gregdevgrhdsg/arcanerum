@@ -3,87 +3,159 @@ import * as THREE from "three";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 gsap.registerPlugin(ScrollTrigger);
+// Détection de la taille d'écran
+const getScreenSize = () => {
+  const width = window.innerWidth;
+  if (width < 640) return "mobile";
+  if (width < 1024) return "tablet";
+  return "desktop";
+};
 
-// Configuration centralisée pour les zones
+// Configuration centralisée pour les zones avec animations responsives
 const zoneConfigurations = {
   zone1: {
     trigger: ".zone-1",
     animations: {
-      position: { x: -0.1, y:-1, duration: 2, ease: "power5.inOut" },
-      rotation: { y: 0.8, z: 0.2, duration: 2, ease: "power5.inOut" },
-      camera: { z: 3.6, duration: 2, ease: "power5.inOut" },
+      desktop: {
+        position: { x: -0.1, y: -1, duration: 2, ease: "power5.inOut" },
+        rotation: { y: 0.8, z: 0.2, duration: 2, ease: "power5.inOut" },
+        camera: { fov: 25, z: 3.6, duration: 2, ease: "power5.inOut" },
+      },
+      tablet: {
+        position: { x: 0, y: 0, duration: 2, ease: "power5.inOut" },
+        rotation: { y: 0.6, z: 0.1, duration: 2, ease: "power5.inOut" },
+        camera: { fov: 25, z: 4.5, duration: 2, ease: "power5.inOut" },
+      },
+      mobile: {
+        position: { x: 0, y: -0.5, duration: 2, ease: "power5.inOut" },
+        rotation: { y: 0.4, z: 0, duration: 2, ease: "power5.inOut" },
+        camera: {fov: 25, z: 5.5, duration: 2, ease: "power5.inOut" },
+      },
     },
   },
   zone2: {
     trigger: ".zone-2",
     animations: {
-      position: { x: 0, y:-1, z:0, duration: 2, ease: "power5.inOut" },
-      rotation: { x: 0, y: -0.2, z:-0.2, duration: 2, ease: "power5.inOut" },
-      camera: { z: 3.5, duration: 2, ease: "power5.inOut" },
+      desktop: {
+        position: { x: 0, y: -1, z: 0, duration: 2, ease: "power5.inOut" },
+        rotation: { x: 0, y: -0.2, z: -0.2, duration: 2, ease: "power5.inOut" },
+        camera: { z: 3.5, duration: 2, ease: "power5.inOut" },
+      },
+      tablet: {
+        position: { x: 0, y: -0.8, z: 0, duration: 2, ease: "power5.inOut" },
+        rotation: { x: 0, y: -0.1, z: -0.1, duration: 2, ease: "power5.inOut" },
+        camera: { z: 4.5, duration: 2, ease: "power5.inOut" },
+      },
+      mobile: {
+        position: { x: 0.1, y: -0.5, z: 0, duration: 2, ease: "power5.inOut" },
+        rotation: { x: 0, y: 0, z: 0, duration: 2, ease: "power5.inOut" },
+        camera: {fov: 75, z: 5.5, duration: 2, ease: "power5.inOut" },
+      },
     },
   },
   zone3: {
     trigger: ".zone-3",
     animations: {
-      position: { x: 0.8, y: -0.9, z:0, duration: 1.5, ease: "power2.inOut" },
-      rotation: { x:0, y:0, z: 0, duration: 1.5, ease: "power2.inOut" },
-      camera: { z: 4.8, duration: 1.5, ease: "power2.inOut" },
+      desktop: {
+        position: { x: 0.8, y: -0.9, z:0, duration: 1.5, ease: "power2.inOut" },
+        rotation: { x:0, y:0, z: 0, duration: 1.5, ease: "power2.inOut" },
+        camera: {  fov: 25, z: 4.8, duration: 1.5, ease: "power2.inOut" },  
+      },
+      tablet: {
+        position: { x: 0, y: -0.8, z: 0, duration: 2, ease: "power5.inOut" },
+        rotation: { x: 0, y: -0.1, z: -0.1, duration: 2, ease: "power5.inOut" },
+        camera: { fov: 35, z: 4.5, duration: 2, ease: "power5.inOut" },
+      },
+      mobile: {
+        position: { x: 0.1, y: -0.5, z: 0, duration: 2, ease: "power5.inOut" },
+        rotation: { x: 0, y: 0, z: 0, duration: 2, ease: "power5.inOut" },
+        camera: { fov: 45, z: 5.5, duration: 2, ease: "power5.inOut" },
+      },
     },
   },
   zone4: {
     trigger: ".zone-4",
     animations: {
-      position: { x: 0, y: -0.8, z:0, duration: 1.5, ease: "power2.inOut" },
-      rotation: { y: 0, z: 0, duration: 1.5, ease: "power2.inOut" },
-      camera: { z: 5, duration: 1.5, ease: "power2.inOut" },
+      desktop: {
+        position: { x: 0, y: -0.8, z:0, duration: 1.5, ease: "power2.inOut" },
+        rotation: { y: 0, z: 0, duration: 1.5, ease: "power2.inOut" },
+        camera: { z: 5, duration: 1.5, ease: "power2.inOut" },
+      },
+      tablet: {
+        position: { x: 0, y: -0.8, z: 0, duration: 2, ease: "power5.inOut" },
+        rotation: { x: 0, y: -0.1, z: -0.1, duration: 2, ease: "power5.inOut" },
+        camera: { z: 4.5, duration: 2, ease: "power5.inOut" },
+      },
+      mobile: {
+        position: { x: 0.1, y: -0.5, z: 0, duration: 2, ease: "power5.inOut" },
+        rotation: { x: 0, y: 0, z: 0, duration: 2, ease: "power5.inOut" },
+        camera: { z: 5.5, duration: 2, ease: "power5.inOut" },
+      },
     },
   },
 };
 
 // Fonction pour créer une animation pour une zone
-const createZoneAnimation = (modelRef, cameraRef, zoneConfig) => {
+// Crée une animation pour une zone
+// Fonction pour créer une animation pour une zone
+const createZoneAnimation = (modelRef, cameraRef, animationConfig) => {
   const timeline = gsap.timeline({
     scrollTrigger: {
-      trigger: zoneConfig.trigger,
+      trigger: animationConfig.trigger,
       start: "top top",
       end: "bottom top",
       scrub: true,
     },
   });
 
-  if (zoneConfig.animations.position) {
-    timeline.to(modelRef.current.position, zoneConfig.animations.position);
+  if (animationConfig.animations.position) {
+    timeline.to(modelRef.current.position, animationConfig.animations.position);
   }
 
-  if (zoneConfig.animations.rotation) {
-    timeline.to(modelRef.current.rotation, zoneConfig.animations.rotation, "<");
+  if (animationConfig.animations.rotation) {
+    timeline.to(modelRef.current.rotation, animationConfig.animations.rotation, "<");
   }
 
-  if (zoneConfig.animations.camera) {
-    timeline.to(cameraRef.current.position, zoneConfig.animations.camera, "<");
+  if (animationConfig.animations.camera) {
+    timeline.to(cameraRef.current.position, animationConfig.animations.camera, "<");
+    cameraRef.current.updateProjectionMatrix();
   }
-
-  cameraRef.current.updateProjectionMatrix();
 };
 
-// Configure toutes les animations des zones
+// Configure les animations pour une taille d'écran donnée
+const setupAnimationsForScreenSize = (modelRef, cameraRef) => {
+  if (!modelRef?.current || !cameraRef?.current) {
+    console.warn("Références manquantes pour le modèle ou la caméra.");
+    return;
+  }
+
+  const screenSize = getScreenSize();
+
+  // Supprime tous les triggers existants
+  ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
+
+  // Applique les configurations pour chaque zone
+  Object.values(zoneConfigurations).forEach((zoneConfig) => {
+    const animationConfig = zoneConfig.animations[screenSize];
+    if (animationConfig) {
+      createZoneAnimation(modelRef, cameraRef, { ...zoneConfig, animations: animationConfig });
+    } else {
+      console.warn(`Pas de configuration pour la taille d'écran ${screenSize} dans la zone ${zoneConfig.trigger}`);
+    }
+  });
+
+  ScrollTrigger.refresh();
+};
+
+// Fonction principale pour configurer toutes les animations des zones
 export const setupModelAnimations = (modelRef, cameraRef) => {
   if (!modelRef?.current || !cameraRef?.current) {
     console.warn("Références manquantes pour le modèle ou la caméra.");
     return;
   }
 
-  // Supprime les triggers existants
-
-  // Crée les animations pour chaque zone
-  Object.values(zoneConfigurations).forEach(zoneConfig => {
-    createZoneAnimation(modelRef, cameraRef, zoneConfig);
-  });
-
-  ScrollTrigger.refresh();
+  setupAnimationsForScreenSize(modelRef, cameraRef);
 };
-
-// Transition vers la vue détaillée
 // Transition vers la vue détaillée
 export const transitionToDetailView = (cameraRef, rotationGroupRef, onComplete) => {
   if (!cameraRef?.current || !rotationGroupRef?.current) {
@@ -157,25 +229,21 @@ export const killAllScrollTriggers = () => {
   ScrollTrigger.refresh();
 };
 
-// Animation pour les boutons
 // Animation pour les boutons sans défilement
 export const animateButtonsOnScroll = () => {
   gsap.utils.toArray(".btn-animated").forEach((button) => {
-    // Effet de reflet / brillance
-    const shine = gsap.fromTo(
-      button.querySelector("::before"),
-      { x: "-200%" },
+    gsap.fromTo(
+      button,
+      { backgroundPosition: "200% 0" },
       {
-        x: "200%",
-        duration: 1.5,
-        ease: "power2.inOut",
+        backgroundPosition: "-200% 0",
+        duration: 2,
+        ease: "linear",
         repeat: -1, // Répète continuellement
       }
     );
-    shine.play(); // L'effet de brillance démarre immédiatement
   });
 };
-
 // Animation d'entrée initiale
 export const setupInitialAnimation = (modelRef, cameraRef) => {
   if (!modelRef?.current || !cameraRef?.current) {
@@ -194,4 +262,11 @@ export const setupInitialAnimation = (modelRef, cameraRef) => {
     { z: 15 },
     { z: 5, duration: 1.5, ease: "power3.out" }
   );
+};
+
+// Gestion dynamique sur redimensionnement
+export const handleResize = (modelRef, cameraRef) => {
+  window.addEventListener("resize", () => {
+    setupAnimationsForScreenSize(modelRef, cameraRef);
+  });
 };

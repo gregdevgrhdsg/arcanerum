@@ -50,7 +50,7 @@ const LayoutWithCanvas = () => {
 
       {/* Affichage du décor de la jungle si on est sur la Home */}
       {isHome && (
-        <div  id="jungle-background" className="page-content relative left-0 z-0 w-full h-screen pointer-events-none">
+        <div  id="jungle-section" className="page-content relative left-0 z-0 w-full h-screen pointer-events-none">
           <Jungle isModelLoaded={isModelLoaded} position="background" />
         </div>
       )}
@@ -61,7 +61,7 @@ const LayoutWithCanvas = () => {
         </div>
       )} 
 
-        <div id="jungle-foreground" className="page-content absolute top-0 z-20 left-0 w-full h-screen pointer-events-none">
+        <div id="jungle-section" className="page-content absolute top-0 z-20 left-0 w-full h-screen pointer-events-none">
           <Jungle isModelLoaded={isModelLoaded} position="foreground" />
         </div>
 

@@ -17,17 +17,16 @@ const Jungle = ({ isModelLoaded, position = "background" }) => {
 
     const elementsToAnimate = position === "foreground"
     ? [
-        { selector: ".layer-feuilledroite", x: 200, y: 500, scale: 1.2, zIndex: 30 },
-        { selector: ".layer-feuilledroite2", x: 300, y: 400, scale: 0.7, zIndex: 30 },
+        { selector: ".layer-feuilledroite", x: 0, y: 350, scale: 0.7, zIndex: 30 },
+        { selector: ".layer-feuilledroite2", x: 0, y: 300, scale: 0.7, zIndex: 30 },
       ]
      :[ 
-        { selector: ".layer-dodo", x: 0, y: 1000, scale: 1.3, zIndex: 10 },
-        { selector: ".layer-ciel", x: 0, y: 1000, scale: 1, zIndex: 10 },
+        { selector: ".layer-dodo", x: 0, y: 1000, scale: 0.8, zIndex: 10 },
+        { selector: ".layer-ciel", x: 0, y: 900, scale: 1, zIndex: 30 },
         { selector: ".layer-plante1", x:0, y: 1000, scale: 1, zIndex: 15 },
-        { selector: ".layer-poisson", x: -6, y: 100, scale: 1.5, zIndex: 15 },
+        { selector: ".layer-poisson", x: 0, y: 100, scale: 1.5, zIndex: 15 },
         { selector: ".layer-feuilleGauche", x: -10, y: 1000, scale: 0.9, zIndex: 30 },
         { selector: ".layer-feuilleGauche2", x: -10, y: 1000, scale: 0.9, zIndex: 30 },
-        { selector: ".layer-JungleRightLarge", x: 300, y: 300, scale: 0.7, zIndex: 10 },
       ];
     elementsToAnimate.forEach(({ selector, x = 0, y = 0, scale = 1, zIndex = 0, }) => {
       const element = document.querySelector(selector);
@@ -43,7 +42,7 @@ const Jungle = ({ isModelLoaded, position = "background" }) => {
           x,
           y,
           scale,
-          ease: "power2.in",
+          ease: "power4.in",
           transformOrigin: "bottom left",
           scrollTrigger: {
             
@@ -58,8 +57,8 @@ const Jungle = ({ isModelLoaded, position = "background" }) => {
   }, [isModelLoaded]);
   
   return (
-    <section>
-    <div className={`zone-1 w-full h-screen absolute pointer-events-none ${position === "foreground" ? "z-30" : "z-0"}`}>
+    <section >
+    <div className={`zone-1 jungle-section w-full h-screen absolute ${position === "foreground" ? "z-30" : "z-0"}`}>
     {[
         // Background ou Foreground en fonction du props
         ...(position === "foreground"
@@ -67,8 +66,11 @@ const Jungle = ({ isModelLoaded, position = "background" }) => {
         src: "assets/jungle/layer-feuilledroite2.webp", 
         alt: "feuilleGauche2", 
         position: "absolute", 
-        className: "layer-feuilledroite2 z-30", 
-        style: { bottom: "0%", right: "0%" } 
+        className: "layer-feuilledroite2", 
+        
+        style: { bottom: "0vw", right: "0vw", transformOrigin: "top left",
+
+        }
       },
       { 
         src: "assets/jungle/layer-feuilledroite.webp", 
@@ -88,21 +90,20 @@ const Jungle = ({ isModelLoaded, position = "background" }) => {
           top: "56%", // Position en bas de la section
           left: "50%", // Centré horizontalement
           transform: "translateX(-50%)", // Ajustement centré
-          width: "1920px", // Largeur adaptative à l'écran
-          height: "1080px", // Garde le ratio de l'image
+          width: "100%", // Largeur adaptative à l'écran
+          maxHeight: "1080px",
           pointerEvents: "none", // Pas d'interaction
         } 
       },
-
       { 
         src: "assets/jungle/layer-fond.webp", 
         alt: "Fond Principal", 
-        className: "layer-fond", 
+        className: "layer-fond sm:bottom-100 md:bottom-100 lg:bottom-30", 
         style: { 
           position: "absolute", 
-          top: "-17%", 
-          width: "1920px", // Fixer une largeur en pixels
-          height: "1080px", // Fixer une hauteur en pixels
+          top: "0%", 
+          width: "100%", // Fixer une largeur en pixels
+          maxHeight: "1080px",
           transform: "translateX(-50%)", // Ajustement centré
           left: "50%", 
         }
@@ -112,15 +113,8 @@ const Jungle = ({ isModelLoaded, position = "background" }) => {
         src: "assets/jungle/layer-elephant.webp", 
         alt: "Éléphant", 
         className: "layer-elephant", 
-        style: { bottom: "40%", left: "25%" } 
-      },
-
-      { 
-        src: "assets/jungle/layer-rock.webp", 
-        alt: "layer-rock", 
-        className: "layer-rock", 
-        style: { bottom: "-10%", right: "0%", width: "800px", height: "auto", // Fixer une hauteur en pixels
-      } 
+        style: { bottom: "40%", left: "25%", width: "20%", // Fixer une largeur en pixels
+        } 
       },
       { 
         src: "assets/jungle/layer-plantFront.webp", 
@@ -134,25 +128,26 @@ const Jungle = ({ isModelLoaded, position = "background" }) => {
         className: "layer-blur", 
         style: { 
           position: "absolute", 
-          top: "80%", 
-          width: "1920px", // Fixer une largeur en pixels
-          height: "2000px", // Fixer une hauteur en pixels
+          top: "70%", 
+          width: "100vw", // Fixer une largeur en pixels
           transform: "translateX(-50%)", // Ajustement centré
           left: "50%", 
         }
       },
-   
       { 
         src: "assets/jungle/layer-ciel.webp", 
         alt: "Ciel", 
         className: "layer-ciel", 
-        style: { top: "-50px", left: "0", transform: "translateY(-10%)" } 
+        style: {  width:"100vw", top: "0", left: "0%", transform: "translateY(-10%)" } 
       },
+   
       { 
         src: "assets/jungle/layer-dodo.png", 
         alt: "dodo", 
         className: "layer-dodo", 
-        style: { bottom: "29%", left: "0%" } 
+        style: { bottom: "20%", left: "0%", // Ajuste sur mobile
+        } 
+        
       },
       { 
         src: "assets/jungle/layer-feuilleGauche2.webp", 
@@ -166,18 +161,18 @@ const Jungle = ({ isModelLoaded, position = "background" }) => {
         className: "layer-feuilleGauche", 
         style: { bottom: "0%", left: "0%" } 
       },     
-      { 
-        src: "/models/jungle/rocher.png", 
-        alt: "Rocher", 
-        className: "layer-rocher", 
-        style: { bottom: "0", left: "50%" } 
-      },
+
     ]),
 
     ].map((layer, index) => (
-      <div key={index} className={`jungle-layer ${layer.className} absolute`} style={layer.style}>
-        <img src={layer.src} alt={layer.alt} />
-      </div>
+      <div key={index} className={`absolute ${layer.className} ${layer.responsiveClass} 
+      sm:w-[40%] md:w-[40%] lg:w-[30%] xl:w-[30%]`}
+      style={{
+        ...layer.style,
+        maxWidth: "100vw", // Limite la largeur du conteneur au viewport
+      }}>
+  <img src={layer.src} alt={layer.alt} className="w-full max-w-full object-contain" />
+  </div>
     ))}
   </div>
 </section>
