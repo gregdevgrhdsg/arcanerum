@@ -25,7 +25,7 @@ export const bottlesConfig = [
     thumbnail: "assets/thumbnail/BouteilleArcane_Flamboyance_Quart.png",
     component: Flamboyance, 
     responsivePositions: {
-      mobile: { x: 1, y: -0.8, z: 0 },
+      mobile: { x: 0.5, y: -0.8, z: 0 },
       tablet: { x: 1, y: -0.6, z: 0 },
       desktop: { x: 1.2, y: -0.8, z: 0 },
     },
@@ -40,7 +40,7 @@ export const bottlesConfig = [
     thumbnail: "assets/thumbnail/BouteilleArcane_Extraroma_Face.png",
     component: RumB, 
     responsivePositions: {
-      mobile: { x: 1, y: -0.8, z: 0 },
+      mobile: { x: 0.5, y: -0.8, z: 0 },
       tablet: { x: 1, y: -0.6, z: 0 },
       desktop: { x: 1.2, y: -0.8, z: 0 },
     },
@@ -55,7 +55,7 @@ export const bottlesConfig = [
     thumbnail: "assets/thumbnail/BouteilleArcane_Extraroma_Face.png",
     component: RumC, 
     responsivePositions: {
-      mobile: { x: 1, y: -0.8, z: 0 },
+      mobile: { x: 0.5, y: -0.8, z: 0 },
       tablet: { x: 1, y: -0.6, z: 0 },
       desktop: { x: 1.2, y: -0.8, z: 0 },
     },

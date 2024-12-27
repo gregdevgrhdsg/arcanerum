@@ -130,7 +130,7 @@
             <p className="highlight-description font-yana font-regular text-gold xl:text-xl lg:text-1xl md:1xl sm:text-sm mb-3">Mauritus Island</p>
               <h2 className="highlight-title font-yana text-gold mb-5 xl:text-4xl lg:text-lg md:text-3xl sm:text-2xl">ESCAPE THE EXPECTED</h2>
               <p className="highlight-description font-yana text-white xl:text-xl lg:text-1xl md:1xl sm:text-sm mb-10">
-              Every adventure begins with the desire to explore the unknown. Today, we invite you to journey into the heart of the extraordinary – through the senses, through flavors, and through the rich stories embedded in every drop of Arcane Rum.</p>
+              Every adventure begins with the desire to explore the unknown. Today, we invite you to journey into the heart of the extraordinary.</p>
               <Link to="/Our-Universe">
                 <button className="highlight-button btn-animated">DISCOVER MORE</button>
               </Link>
@@ -138,12 +138,12 @@
           </section>
 
           {/* Zone 3 */}
-          <section className="zone-3 relative w-full h-screen flex flex-col items-start justify-center bg-transparent">
+          <section className="zone-3 relative w-full h-screen flex flex-col items-start xl:justify-center sm:justify-center bg-transparent">
             <div className="text-center xl:max-w-[40vw] md:max-w-[40vw] sm:max-w-[60vw] xl:pl-40 md:pl-400 sm:pl-5">
             <p className="highlight-description font-yana font-regular text-gold xl:text-xl lg:text-1xl md:1xl sm:text-sm mb-3">Know How</p>
               <h2 className="highlight-title font-yana text-gold mb-5 xl:text-4xl lg:text-3xl md:text-3xl sm:text-2xl"> FROM CANE TO GOLD</h2>
               <p className="highlight-description font-yana text-white xl:text-xl lg:text-1xl md:1xl sm:text-sm mb-10">
-              At Arcane Rum, our savoir-faire is a tribute to the rich heritage of Mauritius. From the cultivation of pure sugarcane to the mastery of distillation, every step is guided by a deep respect for tradition and innovation. Our master blenders transform nature’s finest ingredients into an elixir bursting with tropical aromas and smooth complexity. Explore the secrets of our craft and uncover the essence of Mauritian excellence in every sip.             </p>
+              At Arcane Rum, our savoir-faire is a tribute to the rich heritage of Mauritius. From the cultivation of pure sugarcane to the mastery of distillation, every step is guided by a deep respect for tradition and innovation. </p>
               <Link to="/Know-How">
               <button className="highlight-button btn-animated">UNVEIL OUR SECRETS</button>
               </Link>
