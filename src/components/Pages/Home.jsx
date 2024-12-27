@@ -92,7 +92,7 @@
         transformOrigin: "bottom right",
         scrollTrigger: {
           trigger: element,
-          start: "top 80%", // L'élément entre dans le viewport
+          start: "top 90%", // L'élément entre dans le viewport
           end: "top 50%",
           toggleActions: "play none none reverse",
         },
@@ -169,17 +169,17 @@
 
           {/* Zone 5 */}
           <section className="zone-5 relative w-full h-screen flex flex-col items-end justify-center bg-transparent">
-          <div className="text-center sm:mt-0 xl:max-w-[40vw] md:max-w-[40vw] sm:max-w-[60vw] xl:pr-40 md:pr-20 sm:pr-5">
+          <div className="text-center sm:mt-0 xl:max-w-[40vw] md:max-w-[40vw] sm:max-w-[60vw] xl:pr-40 md:pr-20 sm:pr-5 z-10">
           <p className="highlight-description font-yana font-regular text-gold xl:text-xl lg:text-1xl md:1xl sm:text-sm mb-3">Cocktails with Charater</p>
           <h2 className="highlight-title font-yana text-gold mb-5 xl:text-4xl lg:text-3xl md:text-3xl sm:text-2xl">OUR COCKTAILS</h2>
-          <p className="highlight-description font-yana text-white xl:text-xl lg:text-1xl md:1xl sm:text-sm mb-10">
+          <p className="highlight-description font-yana text-white xl:text-xl lg:text-1xl md:1xl sm:text-sm mb-10 ">
           Immerse yourself in the art of cocktails with Arcane RUM. Be adventurous with our creations, bold with our signature shots, and timeless with revisited classics. From the first sip to the final flourish, each drink is a journey of flavor, aroma, and craftsmanship—an invitation to savor and explore </p>
               <Link to="/Les-Cocktails">
               <button className="highlight-button btn-animated">UNVEIL OUR SECRETS</button>
               </Link>
             </div>
-            <div className="jungle-el-section absolute xl:bottom-[20%] sm:bottom-[26%] xl:left-[20%] md:left-[40%] sm:left-[15%] xl:w-[15vw] md:w-[20vw] sm:w-[25vw] z-10">
-              <img src="assets/cocktails/cocktailTest.webp" alt="cocktail" className="w-full h-full object-contain" />
+            <div className="jungle-el-section absolute xl:bottom-[10%] sm:bottom-[16%] xl:left-[28%] md:left-[20%] sm:left-[15%] xl:w-[18vw] md:w-[20vw] sm:w-[40vw] z-0">
+              <img src="assets/cocktails/cocktailTest.webp" alt="cocktail" className="w-full h-full object-contain z-0" />
             </div>
           </section>
         <div>{isDetailView && <ModelDetail />}

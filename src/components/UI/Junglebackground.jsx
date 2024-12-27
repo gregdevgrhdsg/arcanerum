@@ -15,10 +15,10 @@ const Jungle = ({ isModelLoaded, position = "background" }) => {
   
       const elementsToAnimate = position === "foreground"
         ? [
-            { selector: ".layer-feuilledroite", positions: { mobile: { x: 0, y: 150 }, tablet: { x: 0, y: 250 }, desktop: { x: 0, y: 350 } }, scale: 1, zIndex: 30 },
-            { selector: ".layer-feuilledroite2", positions: { mobile: { x: 0, y: 150 }, tablet: { x: 0, y: 200 }, desktop: { x: 0, y: 300 } }, scale: 1, zIndex: 30 },
-            { selector: ".layer-feuilleGauche", positions: { mobile: { x: 0, y: 700 }, tablet: { x: 0, y: 800 }, desktop: { x: 0, y: 1000 } }, scale: 1, zIndex: 30 },
-            { selector: ".layer-feuilleGauche2", positions: { mobile: { x: 0, y: 700 }, tablet: { x: 0, y: 700 }, desktop: { x: 0, y: 1000 } }, scale: 1, zIndex: 30 },
+            { selector: ".layer-feuilledroite", positions: { mobile: { x: 0, y: 0 }, tablet: { x: 0, y: 250 }, desktop: { x: 0, y: 350 } }, scale: 1, zIndex: 30 },
+            { selector: ".layer-feuilledroite2", positions: { mobile: { x: 0, y: 0 }, tablet: { x: 0, y: 200 }, desktop: { x: 0, y: 300 } }, scale: 1, zIndex: 30 },
+            { selector: ".layer-feuilleGauche", positions: { mobile: { x: 0, y: 600 }, tablet: { x: 0, y: 800 }, desktop: { x: 0, y: 1000 } }, scale: 1, zIndex: 30 },
+            { selector: ".layer-feuilleGauche2", positions: { mobile: { x: 0, y: 600 }, tablet: { x: 0, y: 700 }, desktop: { x: 0, y: 1000 } }, scale: 1, zIndex: 30 },
           ]
         : [
             { selector: ".layer-dodo", positions: { mobile: { x: 0, y: 600 }, tablet: { x: 0, y: 800 }, desktop: { x: 0, y: 1000 } }, scale: 0.8, zIndex: 10 },
@@ -129,8 +129,7 @@ const Jungle = ({ isModelLoaded, position = "background" }) => {
         src: "assets/jungle/layer-feuilledroite2.webp", 
         alt: "feuilleGauche2", 
         position: "absolute", 
-        className: "layer-feuilledroite2", 
-        
+        className: "layer-feuilledroite2 xl:bottom-[0%] sm:bottom-[40%] sm:w-[45%]", 
         style: { bottom: "0vw", right: "0vw", transformOrigin: "top left",
 
         }
@@ -139,19 +138,19 @@ const Jungle = ({ isModelLoaded, position = "background" }) => {
         src: "assets/jungle/layer-feuilledroite.webp", 
         alt: "feuilleGauche",
         position: "absolute",  
-        className: "layer-feuilledroite z-30", 
+        className: "layer-feuilledroite sm:w-[45%]", 
         style: { bottom: "0%", right: "0%" } 
       },
       { 
         src: "assets/jungle/layer-feuilleGauche2.webp", 
         alt: "feuilleGauche2", 
-        className: "layer-feuilleGauche2", 
+        className: "layer-feuilleGauche2 sm:w-[45%]", 
         style: { bottom: "0%", left: "0%" } 
       },
       { 
         src: "assets/jungle/layer-feuilleGauche.webp", 
         alt: "feuilleGauche", 
-        className: "layer-feuilleGauche", 
+        className: "layer-feuilleGauche sm:w-[45%]", 
         style: { bottom: "0%", left: "0%" } 
       },   
     ]
