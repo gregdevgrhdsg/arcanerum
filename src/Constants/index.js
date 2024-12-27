@@ -1,5 +1,10 @@
 export const navLists = ["DISCOVER", "OUR RUMS", "COCKTAILS", "CONTACT"];
 
+export const subMenuLinks = [
+  ["Sous-menu 1", "Sous-menu 2", "Sous-menu 3"], // Sous-menu pour le premier élément
+  ["Option A", "Option B", "Option C"],          // Sous-menu pour le second élément
+];
+
 
 export const models = [
   {

@@ -1,141 +1,192 @@
-// src/components/Pages/Home.jsx
-import React, { useEffect } from "react";
-import { Link } from "react-router-dom";
-import gsap from "gsap";
-import BottleSlider from "../UI/BottleSlider";
-import { useModel } from '../Context/ModelContext';
-import { bottlesConfig } from "../bottleConfig";
-import { useNavigate } from "react-router-dom";
-import ModelDetail from "../Pages/ModelDetail";
-import { ScrollToPlugin } from "gsap/ScrollToPlugin";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { animateButtonsOnScroll } from "../Animations/ModelAnimations";
+  // src/components/Pages/Home.jsx
+  import React, { useEffect } from "react";
+  import { Link } from "react-router-dom";
+  import gsap from "gsap";
+  import BottleSlider from "../UI/BottleSlider";
+  import { useModel } from '../Context/ModelContext';
+  import { bottlesConfig } from "../bottleConfig";
+  import { useNavigate } from "react-router-dom";
+  import ModelDetail from "../Pages/ModelDetail";
+  import { ScrollToPlugin } from "gsap/ScrollToPlugin";
+  import { ScrollTrigger } from "gsap/ScrollTrigger";
+  import { animateButtonsOnScroll } from "../Animations/ModelAnimations";
 
 
-const Home = ({ isModelLoaded }) => {
-  // Destructure toutes les propriétés nécessaires du contexte
-  const { containerRef, isDetailView, setIsDetailView, selectedBottle, setSelectedBottle, setBottlePosition, setBottleScale, setScrollPosition } = useModel();
-  const navigate = useNavigate();
+  const Home = ({ isModelLoaded }) => {
+    // Destructure toutes les propriétés nécessaires du contexte
+    const { containerRef, isDetailView, setIsDetailView, selectedBottle, setSelectedBottle, setBottlePosition, setBottleScale, setScrollPosition } = useModel();
+    const navigate = useNavigate();
 
-  const handleBuyClick = (newIndex) => {
-    console.log(`Bouteille sélectionnée: ${newIndex}`);
-    setSelectedBottle(newIndex);
-  };
-  useEffect(() => {
-    animateButtonsOnScroll();
-  }, []);
-  
-  useEffect(() => {
-    if (!isModelLoaded) {
-      console.log("En attente que le modèle soit prêt...");
-      return;
-    }
-  
-    gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
-
-    const sections = gsap.utils.toArray(".content-container section");
+    const handleBuyClick = (newIndex) => {
+      console.log(`Bouteille sélectionnée: ${newIndex}`);
+      setSelectedBottle(newIndex);
+    };
+    useEffect(() => {
+      animateButtonsOnScroll();
+      ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
+      // Recharge les triggers pour cette page
+    }, []);
     
-    sections.forEach((section, index) => {
-      ScrollTrigger.create({
-        trigger: section,
-        start: "top 90%",
-        end: "bottom top",
-        onEnter: () => {
-          gsap.to(window, {
-            scrollTo: {
-              y: section,
-              autoKill: false,
-              ease: "power3.inOut",
-              scrub: true,
-            },
-            duration: 0.9,
-          });
-        },
-      });
-    });
+    useEffect(() => {
+      if (!isModelLoaded) {
+        console.log("En attente que le modèle soit prêt...");
+        return;
+      }
+    
+      gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
 
-    // Animation des éléments lorsqu'ils apparaissent dans le viewport
-    gsap.utils.toArray(".highlight-title, .highlight-description, .highlight-button").forEach((element) => {
-      gsap.fromTo(
-        element,
-        { opacity: 0, y: 50 },
-        {
-          opacity: 1,
-          y: 0,
-          duration: 1.5,
-          ease: "power2.out",
-          scrollTrigger: {
-            trigger: element,
-            start: "top 80%",
-            end: "bottom 20%",
-            toggleActions: "play none none reverse",
+      const sections = gsap.utils.toArray(".content-container section");
+      
+      sections.forEach((section, index) => {
+        ScrollTrigger.create({
+          trigger: section,
+          start: "top 90%",
+          end: "bottom top",
+          onEnter: () => {
+            gsap.to(window, {
+              scrollTo: {
+                y: section,
+                autoKill: false,
+                ease: "power3.inOut",
+                scrub: true,
+              },
+              duration: 0.9,
+            });
           },
-        }
-      );
+        });
+      });
+
+      // Animation des éléments lorsqu'ils apparaissent dans le viewport
+      gsap.utils.toArray(".highlight-title, .highlight-description, .highlight-button").forEach((element) => {
+        gsap.fromTo(
+          element,
+          { opacity: 0, x: 10, },
+          {
+            opacity: 1,
+            x: 0,
+            duration: 1,
+            ease: "power2.out",
+            stagger: 0.2,
+            scrollTrigger: {
+              trigger: element,
+              start: "top 80%",
+              end: "bottom 20%",
+              toggleActions: "play none none reverse",
+            },
+          }
+        );
+      });
+
+  // Animation d'entrée et effet parallaxe pour les éléments de jungle
+  gsap.utils.toArray(".jungle-el-section").forEach((element) => {
+    // Animation d'apparition (ne modifie pas top/left)
+    gsap.fromTo(
+      element,
+      { opacity: 0, y: 50, scale:1, }, // Part visible, mais légèrement en bas
+      {
+        opacity: 1,
+        y: 0, // Retour à sa position originale
+        scale:1.1,
+        duration: 1,
+        ease: "power2.inOut",
+        transformOrigin: "bottom right",
+        scrollTrigger: {
+          trigger: element,
+          start: "top 80%", // L'élément entre dans le viewport
+          end: "top 50%",
+          toggleActions: "play none none reverse",
+        },
+      }
+    );
+
+    // Effet parallaxe (déplace uniquement y)
+    gsap.to(element, {
+      y: -50, // Déplacement vertical lent
+      duration: 3, // Durée longue
+      ease: "none",
+      scrollTrigger: {
+        trigger: element,
+        start: "top bottom", // L'élément entre dans le viewport
+        end: "bottom top", // L'élément sort du viewport
+        scrub: true, // Mouvement fluide
+      },
     });
+  });
 
+  // Nettoyage des animations au démontage du composant
+  return () => {
+    ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
+    gsap.killTweensOf(".jungle-el-section");
+  };
+}, [isModelLoaded]);
 
-  }, [isModelLoaded, navigate, setSelectedBottle, isDetailView, setIsDetailView, setBottlePosition, setBottleScale]);
+    return (
+      <div ref={containerRef} className="home-container absolute xl:w-full h-full sm:w-full">
+        {/* Sections de Contenu */}
+        <div className="content-container">
+          {/* Zone 2 */}
+          <section className="zone-2 relative w-full h-screen flex flex-col items-end justify-center bg-transparent">
+            <div className="text-center xl:mt-80 sm:mt-0 xl:max-w-[40vw] md:max-w-[40vw] sm:max-w-[60vw] xl:pr-40 md:pr-20 sm:pr-5">
+            <p className="highlight-description font-yana font-regular text-gold xl:text-xl lg:text-1xl md:1xl sm:text-sm mb-3">Mauritus Island</p>
+              <h2 className="highlight-title font-yana text-gold mb-5 xl:text-4xl lg:text-lg md:text-3xl sm:text-2xl">ESCAPE THE EXPECTED</h2>
+              <p className="highlight-description font-yana text-white xl:text-xl lg:text-1xl md:1xl sm:text-sm mb-10">
+              Every adventure begins with the desire to explore the unknown. Today, we invite you to journey into the heart of the extraordinary – through the senses, through flavors, and through the rich stories embedded in every drop of Arcane Rum.</p>
+              <Link to="/Our-Universe">
+                <button className="highlight-button btn-animated">DISCOVER MORE</button>
+              </Link>
+            </div>
+          </section>
 
-  return (
-    <div ref={containerRef} className="home-container absolute w-full h-full">
-      {/* Sections de Contenu */}
-      <div className="content-container">
-        {/* Zone 2 */}
-        <section className="zone-2 h-screen flex flex-col items-end justify-center bg-transparent">
-          <div className="text-right xl:max-w-[40vw] md:max-w-[40vw] sm:max-w-[50vw] xl:pr-20 md:pr-20 sm:pr-5">
-            <h2 className="highlight-title font-yana text-gold mb-5 xl:text-3xl lg:text-lg md:text-3xl sm:text-2xl">ESCAPE THE EXPECTED</h2>
-            <p className="highlight-description font-yana text-gold xl:text-1xl lg:text-1xl md:1xl sm:text-1xl mb-6">
-            Every adventure begins with the desire to explore the unknown. Today, we invite you to journey into the heart of the extraordinary – through the senses, through flavors, and through the rich stories embedded in every drop of Arcane Rum.</p>
-            <Link to="/Our-Universe">
-              <button className="highlight-button btn-animated">DISCOVER MORE</button>
-            </Link>
-          </div>
-        </section>
+          {/* Zone 3 */}
+          <section className="zone-3 relative w-full h-screen flex flex-col items-start justify-center bg-transparent">
+            <div className="text-center xl:max-w-[40vw] md:max-w-[40vw] sm:max-w-[60vw] xl:pl-40 md:pl-400 sm:pl-5">
+            <p className="highlight-description font-yana font-regular text-gold xl:text-xl lg:text-1xl md:1xl sm:text-sm mb-3">Know How</p>
+              <h2 className="highlight-title font-yana text-gold mb-5 xl:text-4xl lg:text-3xl md:text-3xl sm:text-2xl"> FROM CANE TO GOLD</h2>
+              <p className="highlight-description font-yana text-white xl:text-xl lg:text-1xl md:1xl sm:text-sm mb-10">
+              At Arcane Rum, our savoir-faire is a tribute to the rich heritage of Mauritius. From the cultivation of pure sugarcane to the mastery of distillation, every step is guided by a deep respect for tradition and innovation. Our master blenders transform nature’s finest ingredients into an elixir bursting with tropical aromas and smooth complexity. Explore the secrets of our craft and uncover the essence of Mauritian excellence in every sip.             </p>
+              <Link to="/Know-How">
+              <button className="highlight-button btn-animated">UNVEIL OUR SECRETS</button>
+              </Link>
+            </div>
+            <div className="jungle-el-section absolute xl:right-[0%] xl:top-[50%] sm:w-[50vw] sm:right-[0%] sm:top-[75%]  xl:w-[30vw] z-10">
+            <img src="/assets/jungle/layer-JungleRightLarge.webp" alt="Leaf" className="w-full h-full object-contain" />
+            </div>
+          </section>
 
-        {/* Zone 3 */}
-        <section className="zone-3 h-screen flex flex-col items-start justify-center bg-transparent">
-          <div className="text-left xl:max-w-[40vw] md:max-w-[40vw] sm:max-w-[50vw] xl:pl-20 md:pl-20 sm:pl-5">
-            <h2 className="highlight-title font-yana text-gold mb-5 xl:text-3xl lg:text-3xl md:text-3xl sm:text-2xl">KNOW HOW : <br /> FROM CANE TO GOLD</h2>
-            <p className="highlight-description font-yana text-gold xl:text-1xl lg:text-1xl md:1xl sm:text-1xl mb-6">
-            At Arcane Rum, our savoir-faire is a tribute to the rich heritage of Mauritius. From the cultivation of pure sugarcane to the mastery of distillation, every step is guided by a deep respect for tradition and innovation. Our master blenders transform nature’s finest ingredients into an elixir bursting with tropical aromas and smooth complexity. Explore the secrets of our craft and uncover the essence of Mauritian excellence in every sip.             </p>
-            <Link to="/Know-How">
-            <button className="highlight-button btn-animated">UNVEIL OUR SECRETS</button>
+          {/* Zone 4 - Slider */}
+          <section className="zone-4 relative w-full h-screen flex items-center bg-transparent"
+            style={{ padding: "0 10vw" }} // Limite la largeur à 80% de la page
+          >
+            <div className="w-full">
+              <BottleSlider
+                bottles={bottlesConfig}
+                onBottleChange={handleBuyClick}
+                selectedBottle={selectedBottle}
+                onBuy={onclick} // Button action
+              />
+            </div>
+          </section>
 
-            </Link>
-          </div>
-        </section>
-
-        {/* Zone 4 - Slider */}
-        <section className="zone-4 h-screen flex items-center bg-transparent"
-          style={{ padding: "0 10vw" }} // Limite la largeur à 80% de la page
-        >
-          <div className="w-full">
-            <BottleSlider
-              bottles={bottlesConfig}
-              onBottleChange={handleBuyClick}
-              selectedBottle={selectedBottle}
-              onBuy={onclick} // Button action
-            />
-          </div>
-        </section>
-
-        {/* Zone 5 */}
-        <section className="zone-5 h-screen flex flex-col items-end justify-center pl-[5vw] bg-transparent">
-        <div className="text-right xl:max-w-[40vw] md:max-w-[40vw] sm:max-w-[50vw] xl:pr-20 md:pr-20 sm:pr-5">
-        <h2 className="highlight-title font-yana text-gold mb-5 xl:text-3xl lg:text-3xl md:text-3xl sm:text-2xl">OUR COCKTAILS</h2>
-            <p className="highlight-description font-yana text-gold xl:text-1xl lg:text-1xl md:1xl sm:text-1xl mb-6">
-            Immerse yourself in the art of cocktails with Arcane RUM. Be adventurous with our creations, bold with our signature shots, and timeless with revisited classics. From the first sip to the final flourish, each drink is a journey of flavor, aroma, and craftsmanship—an invitation to savor and explore </p>
-            <button className="highlight-button btn-animated">
-              UNVEIL OUR SECRETS
-            </button>
-          </div>
-        </section>
-      <div>{isDetailView && <ModelDetail />}
-  </div>
-      </div>
+          {/* Zone 5 */}
+          <section className="zone-5 relative w-full h-screen flex flex-col items-end justify-center bg-transparent">
+          <div className="text-center sm:mt-0 xl:max-w-[40vw] md:max-w-[40vw] sm:max-w-[60vw] xl:pr-40 md:pr-20 sm:pr-5">
+          <p className="highlight-description font-yana font-regular text-gold xl:text-xl lg:text-1xl md:1xl sm:text-sm mb-3">Cocktails with Charater</p>
+          <h2 className="highlight-title font-yana text-gold mb-5 xl:text-4xl lg:text-3xl md:text-3xl sm:text-2xl">OUR COCKTAILS</h2>
+          <p className="highlight-description font-yana text-white xl:text-xl lg:text-1xl md:1xl sm:text-sm mb-10">
+          Immerse yourself in the art of cocktails with Arcane RUM. Be adventurous with our creations, bold with our signature shots, and timeless with revisited classics. From the first sip to the final flourish, each drink is a journey of flavor, aroma, and craftsmanship—an invitation to savor and explore </p>
+              <Link to="/Les-Cocktails">
+              <button className="highlight-button btn-animated">UNVEIL OUR SECRETS</button>
+              </Link>
+            </div>
+            <div className="jungle-el-section absolute xl:bottom-[20%] sm:bottom-[26%] xl:left-[20%] md:left-[40%] sm:left-[15%] xl:w-[15vw] md:w-[20vw] sm:w-[25vw] z-10">
+              <img src="assets/cocktails/cocktailTest.webp" alt="cocktail" className="w-full h-full object-contain" />
+            </div>
+          </section>
+        <div>{isDetailView && <ModelDetail />}
     </div>
-  );
-};
+        </div>
+      </div>
+    );
+  };
 
-export default Home;
+  export default Home;

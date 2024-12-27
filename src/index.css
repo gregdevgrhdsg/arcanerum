@@ -8,6 +8,14 @@
   box-sizing: border-box;
 }
 
+h1, h2, h3 {
+  font-family: "Yana", serif;
+}
+
+p, button {
+  font-family: "Interstate", sans-serif;
+}
+
 body {
   position: relative;
   overflow-x: hidden !important;
@@ -41,47 +49,48 @@ body {
 
 @font-face {
   font-family: "Interstate";
-  src: url("/public/fonts/Interstate/InterstateRegular.otf") format("opentype");
+  src: url("/fonts/Interstate/InterstateRegular.otf") format("opentype");
   font-weight: 400;
   font-style: normal;
 }
 
 @font-face {
   font-family: "Interstate";
-  src: url("/public/fonts/Interstate/InterstateBold.otf") format("opentype");
+  src: url("/fonts/Interstate/InterstateBold.otf") format("opentype");
   font-weight: 700;
   font-style: normal;
 }
 
 @font-face {
   font-family: "Interstate";
-  src: url("/public/fonts/Interstate/InterstateBlack.otf") format("opentype");
+  src: url("/fonts/Interstate/InterstateBlack.otf") format("opentype");
   font-weight: 900;
   font-style: normal;
 }
 
 @font-face {
   font-family: "Yana";
-  src: url("/public/fonts/Yana/yana-regular.ttf") format("truetype");
+  src: url("/fonts/Yana/yana-regular.ttf") format("truetype");
   font-weight: 400;
   font-style: normal;
 }
 
 @font-face {
   font-family: "Yana";
-  src: url("/public/fonts/Yana/yana-bold.ttf") format("truetype");
+  src: url("/fonts/Yana/yana-bold.ttf") format("truetype");
   font-weight: 700;
   font-style: normal;
 }
 
 .btn-animated {
-  @apply relative inline-block py-4 px-6 pt-5 font-yana text-gold text-sm text-center overflow-hidden transition-all duration-300;
+  @apply relative inline-block py-4 px-6 pt-5 font-yana text-gold xl:text-xl sm:text-sm text-center overflow-hidden transition-all duration-300;
 
   /* Ajout du gradient doré sur le texte */
   background-image: linear-gradient(to right, #FFD700, #FFEC8B, #FFD700);
   background-clip: text;
   -webkit-background-clip: text;
   color: transparent; /* Rend le texte transparent pour laisser voir le gradient */
+  pointer-events: auto;
 }
 
 .btn-animated::before,
@@ -150,4 +159,112 @@ body {
   body {
     overflow-x: hidden;
   }
+}
+.btn-filter-container {
+  @apply flex gap-4 p-2 w-full overflow-x-auto bg-gray-900 rounded-lg;
+}
+
+.btn-filter {
+  @apply py-2 px-4 bg-gradient-to-r from-gold to-yellow-300 text-black text-sm rounded-lg font-yana transition-all duration-200 ease-in-out shadow-md;
+}
+
+.btn-filter:hover {
+  @apply scale-105 shadow-lg;
+}
+
+.btn-filter.active {
+  @apply bg-black text-gold border border-gold scale-110;
+}
+.cocktail-card img {
+  @apply object-cover w-full h-auto;
+}
+
+.btn-filter.active::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: 2px solid rgba(212, 175, 55, 0.7);
+  border-radius: 8px;
+  animation: pulse 1.5s infinite ease-in-out;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.1);
+    opacity: 0.8;
+  }
+}
+
+.timeline-arrow {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 10px 0;
+}
+
+.arrow-icon {
+  animation: bounce 1s infinite; /* Effet de rebond */
+}
+
+@keyframes bounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+.bg-gold {
+  background-color: #d4af37;
+}
+
+.text-gold {
+  color: #d4af37;
+}
+
+.hover\:text-gold:hover {
+  color: #d4af37;
+}
+
+#canvas-container {
+  pointer-events: none; /* Aucune interaction */
+}
+
+#content {
+  pointer-events: auto; /* Réactive les interactions */
+}
+
+.loading-curtain {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 70 !important;
+  height: 100%;
+  background-color: black; /* Couleur de fond */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.loading-bar {
+  width: 80%;
+  height: 8px;
+  background: #222;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.loading-bar-inner {
+  height: 100%;
+  background: linear-gradient(to right, #ffd700, #ffec8b);
+  transition: width 0.3s;
 }

@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useRef } from "react";
 import { Canvas } from "@react-three/fiber";
 import * as THREE from "three";
+import { Environment } from "@react-three/drei"; // Import du composant Environment
 import { bottlesConfig } from "../bottleConfig";
 import { setupModelAnimations, rotateBottle } from "../Animations/ModelAnimations";
 import { useModel } from "../Context/ModelContext";
@@ -127,26 +128,7 @@ const CanvasContainer = ({ selectedBottle }) => {
   }, [screenSize]);
 
   // Ajuster la caméra en fonction de l'écran
-  useEffect(() => {
-    if (!cameraRef.current) return;
 
-    switch (screenSize) {
-      case "mobile":
-        cameraRef.current.fov = 30;
-        cameraRef.current.position.set(0, 0, 8);
-        break;
-      case "tablet":
-        cameraRef.current.fov = 30;
-        cameraRef.current.position.set(0, 0, 6);
-        break;
-      case "desktop":
-      default:
-        cameraRef.current.fov = 25;
-        cameraRef.current.position.set(0, 0, 5);
-        break;
-    }
-    cameraRef.current.updateProjectionMatrix();
-  }, [screenSize]);
 
   // Rendre le modèle
   const renderModel = () => {
@@ -169,7 +151,7 @@ const CanvasContainer = ({ selectedBottle }) => {
   };
 
   return (
-    <div className="relative h-full">
+    <div className="relative w-full h-full">
       {!isModelLoaded && (
         <div className="absolute inset-0 flex items-center justify-center text-white">
           Chargement...
@@ -192,7 +174,7 @@ const CanvasContainer = ({ selectedBottle }) => {
       >
         <ambientLight intensity={2} />
         <directionalLight position={[5, 8, 5]} intensity={3} />
-        <group ref={rotationGroupRef}>{renderModel()}</group>
+        <Environment preset="forest" background={false} />        <group ref={rotationGroupRef}>{renderModel()}</group>
       </Canvas>
     </div>
   );

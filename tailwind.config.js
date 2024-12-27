@@ -1,6 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 export default {
-  content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"], // Parcours tous les fichiers pertinents
+  content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx,css}"], // Parcours tous les fichiers pertinents
   theme: {
     extend: {
       colors: {
@@ -27,6 +27,12 @@ export default {
         sans: ["Interstate", "Arial", "sans-serif"], // Interstate comme police principale pour sans-serif
         yana: ["Yana", "serif"], // Yana comme police pour les textes stylés
         display: ["Oswald", "sans-serif"], // Police pour les titres
+      },
+      fontWeight: {
+        light: "300",
+        regular: "400",
+        bold: "700",
+        black: "900",
       },
       spacing: {
         100: "25rem", // Espacements supplémentaires

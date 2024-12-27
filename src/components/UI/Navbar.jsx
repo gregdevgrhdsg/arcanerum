@@ -1,11 +1,12 @@
 import { useState, useEffect } from "react";
 import { logoArcane } from "../../utils/index";
-import { navLists } from "../../Constants/index";
+import { navLists, subMenuLinks } from "../../Constants/index";
 import gsap from "gsap";
 
 const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [activeSubMenu, setActiveSubMenu] = useState(null);
 
   // Gestion du scroll pour changer le fond
   useEffect(() => {
@@ -29,7 +30,7 @@ const Navbar = () => {
     }
   }, [isMenuOpen]);
 
-  // Animation d'entrée
+  // Animation d'ouverture du menu mobile
   const openMenu = () => {
     gsap.timeline()
       .set(".mobile-menu", { display: "flex" }) // Affiche le menu
@@ -46,7 +47,7 @@ const Navbar = () => {
       );
   };
 
-  // Animation de sortie
+  // Animation de fermeture du menu mobile
   const closeMenu = () => {
     gsap.timeline()
       .to(".mobile-menu div", {
@@ -66,6 +67,20 @@ const Navbar = () => {
     else closeMenu();
   }, [isMenuOpen]);
 
+  // Affichage du sous-menu
+  const handleMouseEnter = (index) => {
+    setActiveSubMenu(index);
+    gsap.fromTo(
+      ".sub-menu",
+      { opacity: 0, y: -20 },
+      { opacity: 1, y: 0, duration: 0.3, ease: "power3.out" }
+    );
+  };
+
+  const handleMouseLeave = () => {
+    setActiveSubMenu(null);
+  };
+
   return (
     <header
       className={`fixed w-full top-0 z-50 transition-all duration-800 ${
@@ -74,26 +89,37 @@ const Navbar = () => {
           : "bg-transparent"
       }`}
     >
-      <nav className="w-full py-5 px-5 md:px-10 flex items-center justify-between">
+      <nav className="w-full py-5 px-5 md:px-10 flex items-center justify-between relative">
         {/* Boutons de menu (gauche) */}
         <div className="flex-1 flex justify-start space-x-10 hidden md:flex">
           {navLists.slice(0, 2).map((nav, index) => (
             <div
               key={index}
-              className="text-lg md:text-xl lg:text-2xl font-yana text-gold cursor-pointer hover:text-white transition-all duration-300"
+              className="relative text-lg md:text-xl lg:text-md font-yana text-gold cursor-pointer hover:text-white transition-all duration-300"
+              onMouseEnter={() => handleMouseEnter(index)}
+              onMouseLeave={handleMouseLeave}
             >
               {nav}
+              {/* Sous-menu */}
+              {activeSubMenu === index && subMenuLinks[index]?.length > 0 && (
+                <div className="sub-menu absolute top-full left-0 w-full bg-black text-white shadow-md">
+                  {subMenuLinks[index].map((link, subIndex) => (
+                    <div
+                      key={subIndex}
+                      className="py-2 px-4 hover:bg-gray-800 cursor-pointer transition-all duration-300"
+                    >
+                      {link}
+                    </div>
+                  ))}
+                </div>
+              )}
             </div>
           ))}
         </div>
 
         {/* Logo centré */}
         <div className="flex-1 flex justify-center">
-          <img
-            src={logoArcane}
-            alt="Arcane"
-            className="w-32 md:w-40"
-          />
+          <img src={logoArcane} alt="Arcane" className="w-32 md:w-40" />
         </div>
 
         {/* Boutons de menu (droite) */}
@@ -101,7 +127,7 @@ const Navbar = () => {
           {navLists.slice(2).map((nav, index) => (
             <div
               key={index}
-              className="text-lg md:text-xl lg:text-2xl font-yana text-gold cursor-pointer hover:text-white transition-all duration-600"
+              className="text-lg md:text-xl lg:text-md font-yana text-gold cursor-pointer hover:text-white transition-all duration-600"
             >
               {nav}
             </div>
@@ -131,7 +157,7 @@ const Navbar = () => {
 
       {/* Menu déroulant pour mobile et tablette */}
       <div
-        className="mobile-menu fixed inset-0 bg-black text-white flex flex-col items-center justify-center hidden"
+        className="mobile-menu w-full fixed inset-0 bg-black text-white flex flex-col items-center justify-center hidden"
         style={{ zIndex: 99 }}
       >
         {/* Logo dans le menu */}
