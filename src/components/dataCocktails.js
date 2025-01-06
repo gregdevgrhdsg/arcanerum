@@ -14,7 +14,7 @@ const cocktails = [
   },
   {
     id: 1,
-    name: "Arcane in Wonderland",
+    name: "CREAMY COCOA",
     ingredients: [
       "5cl Arcane Extraroma",
       "2cl Vermouth Dry",

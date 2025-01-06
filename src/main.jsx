@@ -7,6 +7,7 @@ import App from './App.jsx';
 import './index.css';
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { gsap } from "gsap";
+import './locales/i18n.js'; // Assurez-vous que ce fichier est importé avant tout autre composant
 
 
 gsap.registerPlugin(ScrollTrigger);

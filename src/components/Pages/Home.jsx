@@ -10,10 +10,13 @@
   import { ScrollToPlugin } from "gsap/ScrollToPlugin";
   import { ScrollTrigger } from "gsap/ScrollTrigger";
   import { animateButtonsOnScroll } from "../Animations/ModelAnimations";
+  import { useTranslation } from 'react-i18next';
 
+  gsap.registerPlugin(ScrollTrigger);
 
   const Home = ({ isModelLoaded }) => {
     // Destructure toutes les propriétés nécessaires du contexte
+    const { t } = useTranslation(); // Initialisation du hook
     const { containerRef, isDetailView, setIsDetailView, selectedBottle, setSelectedBottle, setBottlePosition, setBottleScale, setScrollPosition } = useModel();
     const navigate = useNavigate();
 
@@ -69,7 +72,7 @@
             stagger: 0.2,
             scrollTrigger: {
               trigger: element,
-              start: "top 80%",
+              start: "top 90%",
               end: "bottom 20%",
               toggleActions: "play none none reverse",
             },
@@ -82,7 +85,7 @@
     // Animation d'apparition (ne modifie pas top/left)
     gsap.fromTo(
       element,
-      { opacity: 0, y: 50, scale:1, }, // Part visible, mais légèrement en bas
+      { opacity: 0, y: 20, scale:1, }, // Part visible, mais légèrement en bas
       {
         opacity: 1,
         y: 0, // Retour à sa position originale
@@ -92,7 +95,7 @@
         transformOrigin: "bottom right",
         scrollTrigger: {
           trigger: element,
-          start: "top 90%", // L'élément entre dans le viewport
+          start: "top 100%", // L'élément entre dans le viewport
           end: "top 50%",
           toggleActions: "play none none reverse",
         },
@@ -113,10 +116,32 @@
     });
   });
 
+    // Animation d'entrée et effet parallaxe pour les éléments de jungle
+    gsap.utils.toArray(".slider-section").forEach((element) => {
+      // Animation d'apparition (ne modifie pas top/left)
+      gsap.fromTo(
+        element,
+        { opacity: 0, y: 50,  }, // Part visible, mais légèrement en bas
+        {
+          opacity: 1,
+          y: 0, // Retour à sa position originale
+          duration: 1,
+          ease: "power2.inOut",
+          transformOrigin: "bottom right",
+          scrollTrigger: {
+            trigger: element,
+            start: "top 90%", // L'élément entre dans le viewport
+            end: "top 50%",
+            toggleActions: "play none none reverse",
+          },
+        }
+      );
+    });
+
   // Nettoyage des animations au démontage du composant
   return () => {
     ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
-    gsap.killTweensOf(".jungle-el-section");
+    gsap.killTweensOf(".jungle-el-section, .content-container section");
   };
 }, [isModelLoaded]);
 
@@ -126,14 +151,19 @@
         <div className="content-container">
           {/* Zone 2 */}
           <section className="zone-2 relative w-full h-screen flex flex-col items-end justify-center bg-transparent">
-            <div className="text-center xl:mt-80 sm:mt-0 xl:max-w-[40vw] md:max-w-[40vw] sm:max-w-[60vw] xl:pr-40 md:pr-20 sm:pr-5">
+            <div className="text-center sm:mt-0 xl:max-w-[40vw] md:max-w-[40vw] sm:max-w-[60vw] xl:pr-40 md:pr-20 sm:pr-5">
             <p className="highlight-description font-yana font-regular text-gold xl:text-xl lg:text-1xl md:1xl sm:text-sm mb-3">Mauritus Island</p>
-              <h2 className="highlight-title font-yana text-gold mb-5 xl:text-4xl lg:text-lg md:text-3xl sm:text-2xl">ESCAPE THE EXPECTED</h2>
-              <p className="highlight-description font-yana text-white xl:text-xl lg:text-1xl md:1xl sm:text-sm mb-10">
-              Every adventure begins with the desire to explore the unknown. Today, we invite you to journey into the heart of the extraordinary.</p>
+              <h2 className="highlight-title font-yana text-gold mb-5 xl:text-4xl lg:text-lg md:text-3xl sm:text-2xl">{t('welcome')}</h2>
+              <p className="highlight-description font-yana text-white xl:text-xl lg:text-1xl md:1xl sm:text-sm mb-10">{t('discover_more')}</p>
               <Link to="/Our-Universe">
-                <button className="highlight-button btn-animated">DISCOVER MORE</button>
+                <button className="highlight-button btn-animated cursor-pointer">{t('button_discover_more')}</button>
               </Link>
+            </div>
+            <div className="jungle-el-section absolute xl:bottom-[0%] sm:bottom-[16%] xl:left-[0%] md:left-[0%] sm:left-[0%] xl:w-[20vw] md:w-[20vw] sm:w-[40vw] z-0">
+              <img src="assets/jungle/layer-feuilleGauche2.webp" alt="cocktail" className="w-full h-full object-contain z-0" />
+            </div>
+            <div className="jungle-el-section absolute xl:bottom-[0%] sm:bottom-[16%] xl:left-[0%] md:left-[0%] sm:left-[0%] xl:w-[20vw] md:w-[20vw] sm:w-[40vw] z-0">
+              <img src="assets/jungle/layer-feuilleGauche.webp" alt="cocktail" className="w-full h-full object-contain z-0" />
             </div>
           </section>
 
@@ -154,8 +184,8 @@
           </section>
 
           {/* Zone 4 - Slider */}
-          <section className="zone-4 relative w-full h-screen flex items-center bg-transparent"
-            style={{ padding: "0 10vw" }} // Limite la largeur à 80% de la page
+          <section className="zone-4 slider-section relative w-full h-screen flex items-center bg-transparent"
+            style={{ padding: "0 0vw" }} // Limite la largeur à 80% de la page
           >
             <div className="w-full">
               <BottleSlider
@@ -164,6 +194,12 @@
                 selectedBottle={selectedBottle}
                 onBuy={onclick} // Button action
               />
+            </div>
+            <div className="jungle-el-section absolute xl:bottom-[0%] sm:bottom-[16%] xl:right-[0%] md:right-[0%] sm:right-[0%] xl:w-[20vw] md:w-[20vw] sm:w-[40vw] z-0">
+              <img src="assets/jungle/layer-feuilledroite2.webp" alt="cocktail" className="w-full h-full object-contain z-0" />
+            </div>
+            <div className="jungle-el-section absolute xl:bottom-[0%] sm:bottom-[16%] xl:right-[0%] md:right-[0%] sm:right-[0%] xl:w-[20vw] md:w-[20vw] sm:w-[40vw] z-0">
+              <img src="assets/jungle/layer-feuilledroite.webp" alt="cocktail" className="w-full h-full object-contain z-0" />
             </div>
           </section>
 
@@ -178,7 +214,7 @@
               <button className="highlight-button btn-animated">UNVEIL OUR SECRETS</button>
               </Link>
             </div>
-            <div className="jungle-el-section absolute xl:bottom-[10%] sm:bottom-[16%] xl:left-[28%] md:left-[20%] sm:left-[15%] xl:w-[18vw] md:w-[20vw] sm:w-[40vw] z-0">
+            <div className="jungle-el-section absolute xl:bottom-[6%] sm:bottom-[16%] xl:left-[28%] md:left-[20%] sm:left-[15%] xl:w-[16vw] md:w-[20vw] sm:w-[40vw] z-0">
               <img src="assets/cocktails/cocktailTest.webp" alt="cocktail" className="w-full h-full object-contain z-0" />
             </div>
           </section>

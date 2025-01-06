@@ -1,10 +1,31 @@
-export const navLists = ["DISCOVER", "OUR RUMS", "COCKTAILS", "CONTACT"];
-
-export const subMenuLinks = [
-  ["Sous-menu 1", "Sous-menu 2", "Sous-menu 3"], // Sous-menu pour le premier élément
-  ["Option A", "Option B", "Option C"],          // Sous-menu pour le second élément
+// src/constants/index.js
+export const navLists = [
+  { name: "nav.discover", path: "/discover" },
+  { name: "nav.ourRums", path: "/Our-Rums" },
+  { name: "nav.cocktails", path: "/cocktails" },
+  { name: "nav.contact", path: "/contact" },
 ];
 
+export const subMenuLinks = [
+  [
+    { name: "submenu.home", path: "/" },
+    { name: "submenu.ourUniverse", path: "/Our-Universe" },
+    { name: "submenu.knowHow", path: "/Know-How" },
+  ],
+  [
+    { name: "submenu.rumsCollection", path: "/Our-Rums" },
+    { name: "submenu.arcaneExtraroma", path: "/our-rums/limited-editions" },
+  ],
+  [
+    { name: "submenu.classicCocktails", path: "/cocktails/classic" },
+    { name: "submenu.signatureDrinks", path: "/cocktails/signature" },
+    { name: "submenu.seasonalSpecials", path: "/cocktails/seasonal" },
+  ],
+  [
+    { name: "submenu.getInTouch", path: "/contact/get-in-touch" },
+    { name: "submenu.support", path: "/contact/support" },
+  ],
+];
 
 export const models = [
   {

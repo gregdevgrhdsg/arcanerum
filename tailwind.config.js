@@ -3,6 +3,9 @@ export default {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx,css}"], // Parcours tous les fichiers pertinents
   theme: {
     extend: {
+      backgroundImage: {
+        'fond-arcane': "url('/assets/jungle/fond-Arcane.webp')",
+      },
       colors: {
         gold: "#DAB47A", // Couleur dorée
         blue: "#1e3a8a", // Définissez la couleur "blue"

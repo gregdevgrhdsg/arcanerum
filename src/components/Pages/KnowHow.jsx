@@ -114,14 +114,14 @@ const KnowHow = () => {
                 backgroundPosition: "center",
               }}
             >
-          <div className="text-center xl:max-w-[40vw] md:max-w-[40vw] sm:max-w-[60vw] z-10">
+          <div className="text-center xl:max-w-[40vw] md:max-w-[40vw] sm:max-w-[90vw] z-10">
             <p className="text-animated highlight-description font-yana text-gold xl:text-2xl sm:text-sm mb-6">
               Arcane Rum
             </p>
-            <h2 className="text-animated highlight-title font-yana text-gold mb-5 xl:text-5xl sm:text-2xl">
+            <h2 className="text-animated highlight-title ont-yana text-gold mb-5 xl:text-4xl lg:text-3xl md:text-3xl sm:text-2xl">
               THE ALCHEMY OF DISTILLATION
             </h2>
-            <p className="text-animated highlight-description font-yana text-gold xl:text-xl sm:text-sm mb-6">
+            <p className="text-animated highlight-description font-yana text-white xl:text-xl sm:text-sm mb-6">
               Arcane distills pure, freshly pressed sugarcane juice close to cutting time to preserve its vibrant flavors. This ensures that the rum captures the full aromatic essence of the cane.
             </p>
           </div>
@@ -142,7 +142,7 @@ const KnowHow = () => {
             <h2 className="text-animated highlight-title font-yana text-gold mb-5 xl:text-5xl sm:text-2xl">
               A DYNAMIC MATURATION
             </h2>
-            <p className="text-animated highlight-description font-yana text-gold xl:text-xl sm:text-sm mb-6">
+            <p className="text-animated highlight-description font-yana text-white xl:text-xl sm:text-sm mb-6">
               Aged in French and American oak barrels, Arcane rums benefit from Mauritius’ tropical climate. Dynamic temperature variations speed up maturation, creating complex, opulent flavors in a shorter period.
             </p>
           </div>
@@ -151,7 +151,7 @@ const KnowHow = () => {
         </section>
 
         {/* Section 2 : Timeline avec textes alternés */}
-        <section className="timeline-container relative w-full min-h-screen bg-black text-gold flex flex-col items-center py-20">
+        <section className="timeline-container relative w-full min-h-screen bg-black text-white font-yana flex flex-col items-center py-20">
           {[
             { img: "sugarcaneHarvest.webp", label: "Sugarcane Harvest" },
             { img: "sugarcaneCrushing.webp", label: "Sugarcane Crushing" },
@@ -161,11 +161,9 @@ const KnowHow = () => {
           ].map((step, index) => (
             <React.Fragment key={index}>
               <div
-                className={`timeline-step relative flex items-center justify-center w-full mb-20 ${
-                  index % 2 === 0 ? "flex-row" : "flex-row-reverse"
-                }`}
+                className={`timeline-step relative flex items-center justify-center w-full mb-0                 }`}
               >
-                <div className="timeline-image flex justify-center items-center w-1/2">
+                <div className="flex justify-center items-center w-1/2">
                   <img
                     src={`assets/icon/${step.img}`}
                     alt={step.label}
@@ -174,13 +172,11 @@ const KnowHow = () => {
                 </div>
 
                 <div
-                  className={`timeline-text w-1/2 px-6 text-animated text-3xl font-yana flex items-center ${
-                    index % 2 === 0
-                      ? "justify-start text-left"
-                      : "justify-end text-right"
-                  }`}
+                  className=" w-1/3 px-6 font-yana text-animated text-3xl flex items-center "
+                   
+                  
                 >
-                  <p className="max-w-sm">{step.label}</p>
+                  <p className="font-yana max-w-sm">{step.label}</p>
                 </div>
               </div>
 
@@ -199,7 +195,7 @@ const KnowHow = () => {
             <h2 className="text-animated highlight-title font-yana text-gold mb-5 xl:text-5xl sm:text-2xl">
               JOIN THE EXPERIENCE
             </h2>
-            <p className="text-animated highlight-description font-yana text-gold xl:text-xl sm:text-sm mb-6">
+            <p className="text-animated highlight-description font-yana text-white xl:text-xl sm:text-sm mb-6">
               Explore the full range of Arcane rums and discover the spirit of Mauritius through every sip.
             </p>
             <Link

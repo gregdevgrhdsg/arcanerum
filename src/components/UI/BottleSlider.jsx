@@ -1,3 +1,4 @@
+// src/components/UI/BottleSlider.jsx
 import React, { useEffect, useRef, useState, forwardRef, useImperativeHandle } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -50,7 +51,6 @@ const BottleSlider = forwardRef(({ bottles, onBottleChange, selectedBottle, onBu
     },
   }));
 
- 
   const handleSlideChange = (newIndex) => {
     if (isAnimating.current || newIndex === currentSlide) return;
     isAnimating.current = true;
@@ -110,38 +110,47 @@ const BottleSlider = forwardRef(({ bottles, onBottleChange, selectedBottle, onBu
 
   return (
     <div
-      className="relative z-60 pointer-events-auto flex w-full h-screen"
+      className="relative w-full h-screen overflow-visible flex justify-center items-center"
       ref={sliderContainerRef}
     >
-      {/* Texte et Flèches */}
+      {/* Slider Principal avec max-w-6xl */}
       <div
-        ref={sliderContentRef}
-        className="relative flex flex-col xl:text-center xl:text-left sm:text-left xl:w-[40%] sm:w-[50%] xl:top-60 xl:justify-start sm:justify-start sm:top-20 xl:pl-5 sm:pl-3 md:pl-12 w-full md:w-1/2 text-white"
+        className="relative z-60 pointer-events-auto flex w-full h-full max-w-6xl mx-auto"
       >
-        <div className="slider-content">
-          <h2 className="xl:text-4xl sm:text-lg font-yana text-gold mb-4">{bottles[currentSlide].name}</h2>
-          <p className="font-yana text-white lg:text-lg sm:text-sm mb-2">{bottles[currentSlide].description}</p>
-          <p className="text-2xl font-bold mb-6">{bottles[currentSlide].prix}</p>
-          <button className="btn-animated" onClick={() => onBuy(bottles[currentSlide])}>
-            ACHETER
-          </button>
-        </div>
-        <div className="flex items-center justify-between mt-8">
-          <button
-            className="absolute left-10 top-[40%] transform -translate-y-[40%] text-gold text-5xl hover:text-white z-30"
-            onClick={() => handleSlideChange((currentSlide - 1 + bottles.length) % bottles.length)}
-          >
-            &larr;
-          </button>
-          <button
-            className="absolute right-10 top-[40%] transform -translate-y-[40%] text-gold text-5xl hover:text-white z-30"
-            onClick={() => handleSlideChange((currentSlide + 1) % bottles.length)}
-          >
-            &rarr;
-          </button>
+        {/* Texte et Contenu */}
+        <div
+          ref={sliderContentRef}
+          className="relative flex flex-col xl:text-center xl:text-left sm:text-left xl:w-2/5 sm:w-1/2 xl:top-60 sm:top-20 xl:justify-start sm:justify-start sm:pl-3 md:pl-12 w-full md:w-1/2 text-white"
+        >
+          <div className="slider-content">
+            <h2 className="xl:text-4xl sm:text-lg font-yana text-gold mb-4">{bottles[currentSlide].name}</h2>
+            <p className="font-yana text-white lg:text-lg sm:text-sm mb-2">{bottles[currentSlide].description}</p>
+            <p className="text-2xl font-bold mb-6">{bottles[currentSlide].prix}</p>
+            <button className="btn-animated" onClick={() => onBuy(bottles[currentSlide])}>
+              ACHETER
+            </button>
+          </div>
         </div>
       </div>
-      <div className="absolute xl:bottom-20 sm:bottom-5 left-0 flex flex-wrap xl:justify-start sm:justify-center items-center space-x-4 sm:space-x-5 md:space-x-4 z-10 w-full">
+
+      {/* Flèches de Navigation Positionnées Absolument Centrées Verticalement et Écartées */}
+      <button
+        className="absolute sm:left-16 md:left-20 lg:left-24 top-1/2 transform -translate-y-1/2 text-gold text-5xl hover:text-white z-30 transition-transform duration-300 ease-in-out shadow-lg hover:shadow-2xl"
+        onClick={() => handleSlideChange((currentSlide - 1 + bottles.length) % bottles.length)}
+        aria-label="Précédent"
+      >
+        &larr;
+      </button>
+      <button
+        className="absolute  sm:right-16 md:right-20 lg:right-24 top-1/2 transform -translate-y-1/2 text-gold text-5xl hover:text-white z-30 transition-transform duration-300 ease-in-out shadow-lg hover:shadow-2xl"
+        onClick={() => handleSlideChange((currentSlide + 1) % bottles.length)}
+        aria-label="Suivant"
+      >
+        &rarr;
+      </button>
+      
+      {/* Miniatures des Bouteilles */}
+      <div className="absolute bottom-20 left-1/2 transform -translate-x-1/2 flex flex-wrap xl:justify-start sm:justify-center items-center space-x-4 sm:space-x-5 md:space-x-4 z-10 w-full max-w-6xl mx-auto">
         {bottles.map((bottle, index) => (
           <div
             key={bottle.id}

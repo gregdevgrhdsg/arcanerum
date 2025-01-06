@@ -1,12 +1,20 @@
-import { useState, useEffect } from "react";
+// src/components/UI/Navbar.jsx
+
+import React, { useState, useEffect, useRef } from "react";
+import { Link } from "react-router-dom";
 import { logoArcane } from "../../utils/index";
 import { navLists, subMenuLinks } from "../../Constants/index";
+import LanguageSwitcher from './LanguageSwitcher';
 import gsap from "gsap";
+import { useTranslation } from 'react-i18next';
 
 const Navbar = () => {
+  const { t } = useTranslation(); // Initialisation du hook
   const [scrolled, setScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [activeSubMenu, setActiveSubMenu] = useState(null);
+  const subMenuRef = useRef(null);
+  const subMenuContentRef = useRef(null);
 
   // Gestion du scroll pour changer le fond
   useEffect(() => {
@@ -67,18 +75,60 @@ const Navbar = () => {
     else closeMenu();
   }, [isMenuOpen]);
 
-  // Affichage du sous-menu
-  const handleMouseEnter = (index) => {
+  // Animation d'ouverture du sous-menu
+  const openSubMenu = (index) => {
     setActiveSubMenu(index);
+    gsap.to(subMenuRef.current, {
+      duration: 0.5,
+      y: "0%",
+      opacity: 1,
+      ease: "power3.out",
+      display: "flex",
+    });
+
     gsap.fromTo(
-      ".sub-menu",
-      { opacity: 0, y: -20 },
-      { opacity: 1, y: 0, duration: 0.3, ease: "power3.out" }
+      subMenuContentRef.current,
+      { y: 20, opacity: 0 },
+      { y: 0, opacity: 1, duration: 0.3, stagger: 0.05, ease: "power3.out" }
     );
   };
 
+  // Animation de fermeture du sous-menu
+  const closeSubMenu = () => {
+    gsap.to(subMenuContentRef.current, {
+      y: 20,
+      opacity: 0,
+      duration: 0.3,
+      ease: "power3.in",
+      stagger: 0.05,
+      onComplete: () => {
+        gsap.to(subMenuRef.current, {
+          y: "-100%",
+          opacity: 0,
+          duration: 0.5,
+          ease: "power3.in",
+          onComplete: () => {
+            setActiveSubMenu(null);
+          },
+        });
+      },
+    });
+  };
+
+  // Gestion des événements de survol
+  const handleMouseEnter = (index) => {
+    if (activeSubMenu !== index) {
+      if (activeSubMenu !== null) {
+        closeSubMenu();
+        setTimeout(() => openSubMenu(index), 600); // Délai pour laisser l'animation se terminer
+      } else {
+        openSubMenu(index);
+      }
+    }
+  };
+
   const handleMouseLeave = () => {
-    setActiveSubMenu(null);
+    closeSubMenu();
   };
 
   return (
@@ -90,29 +140,15 @@ const Navbar = () => {
       }`}
     >
       <nav className="w-full py-5 px-5 md:px-10 flex items-center justify-between relative">
-        {/* Boutons de menu (gauche) */}
+        {/* Boutons de navigation (gauche) */}
         <div className="flex-1 flex justify-start space-x-10 hidden md:flex">
           {navLists.slice(0, 2).map((nav, index) => (
             <div
               key={index}
               className="relative text-lg md:text-xl lg:text-md font-yana text-gold cursor-pointer hover:text-white transition-all duration-300"
               onMouseEnter={() => handleMouseEnter(index)}
-              onMouseLeave={handleMouseLeave}
             >
-              {nav}
-              {/* Sous-menu */}
-              {activeSubMenu === index && subMenuLinks[index]?.length > 0 && (
-                <div className="sub-menu absolute top-full left-0 w-full bg-black text-white shadow-md">
-                  {subMenuLinks[index].map((link, subIndex) => (
-                    <div
-                      key={subIndex}
-                      className="py-2 px-4 hover:bg-gray-800 cursor-pointer transition-all duration-300"
-                    >
-                      {link}
-                    </div>
-                  ))}
-                </div>
-              )}
+              {t(nav.name)}
             </div>
           ))}
         </div>
@@ -122,16 +158,21 @@ const Navbar = () => {
           <img src={logoArcane} alt="Arcane" className="w-32 md:w-40" />
         </div>
 
-        {/* Boutons de menu (droite) */}
-        <div className="flex-1 flex justify-end space-x-10 hidden md:flex">
+        {/* Boutons de navigation (droite) */}
+        <div className="flex-1 flex justify-end space-x-10 hidden md:flex items-center">
           {navLists.slice(2).map((nav, index) => (
             <div
               key={index}
-              className="text-lg md:text-xl lg:text-md font-yana text-gold cursor-pointer hover:text-white transition-all duration-600"
+              className="text-lg md:text-xl lg:text-md font-yana text-gold cursor-pointer hover:text-white transition-all duration-300"
+              onMouseEnter={() =>
+                handleMouseEnter(index + navLists.slice(0, 2).length)
+              }
             >
-              {nav}
+              {t(nav.name)}
             </div>
           ))}
+          {/* Intégration du LanguageSwitcher */}
+          <LanguageSwitcher /> {/* Ajout du sélecteur de langue */}
         </div>
 
         {/* Bouton burger/croix */}
@@ -143,17 +184,45 @@ const Navbar = () => {
           >
             <span
               className={`absolute block h-0.5 w-8 bg-gold transform transition-transform duration-300 ${
-                isMenuOpen ? "rotate-45 translate-y-[0px]" : "rotate-0 translate-y-[-7px]"
+                isMenuOpen
+                  ? "rotate-45 translate-y-[0px]"
+                  : "rotate-0 translate-y-[-7px]"
               }`}
             ></span>
             <span
               className={`absolute block h-0.5 w-8 bg-gold transform transition-transform duration-300 ${
-                isMenuOpen ? "-rotate-45 -translate-y-[0px]" : "rotate-0 translate-y-[7px]"
+                isMenuOpen
+                  ? "-rotate-45 -translate-y-[0px]"
+                  : "rotate-0 translate-y-[7px]"
               }`}
             ></span>
           </button>
         </div>
       </nav>
+
+      {/* Bandeau noir du sous-menu (Visible uniquement sur desktop) */}
+      <div
+        ref={subMenuRef}
+        className="sub-menu hidden md:flex absolute top-0 left-0 w-full h-full bg-black text-white overflow-hidden flex items-center justify-center transform -translate-y-full opacity-0 z-0"
+        onMouseLeave={handleMouseLeave}
+      >
+        {activeSubMenu !== null && subMenuLinks[activeSubMenu]?.length > 0 && (
+          <div
+            ref={subMenuContentRef}
+            className="flex space-x-10"
+          >
+            {subMenuLinks[activeSubMenu].map((link, subIndex) => (
+              <Link
+                key={subIndex}
+                to={link.path}
+                className="submenu-item text-lg md:text-xl lg:text-md font-yana py-2 px-4 hover:bg-gray-800 cursor-pointer transition-all duration-300 z-0"
+              >
+                {t(link.name)}
+              </Link>
+            ))}
+          </div>
+        )}
+      </div>
 
       {/* Menu déroulant pour mobile et tablette */}
       <div
@@ -167,14 +236,20 @@ const Navbar = () => {
 
         {/* Liens de navigation */}
         {navLists.map((nav, index) => (
-          <div
+          <Link
             key={index}
-            className="text-2xl md:text-3xl lg:text-4xl font-yana my-4 cursor-pointer hover:text-gold"
+            to={nav.path}
+            className="text-2xl md:text-3xl lg:text-4xl font-yana my-4 cursor-pointer hover:text-gold z-60"
             onClick={() => setIsMenuOpen(false)} // Fermer le menu lors du clic
           >
-            {nav}
-          </div>
+            {t(nav.name)}
+          </Link>
         ))}
+
+        {/* Intégration du LanguageSwitcher dans le menu mobile */}
+        <div className="mt-8">
+          <LanguageSwitcher /> {/* Ajout du sélecteur de langue */}
+        </div>
       </div>
     </header>
   );

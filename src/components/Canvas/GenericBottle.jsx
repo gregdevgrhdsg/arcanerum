@@ -46,3 +46,8 @@ export const Flamboyance = React.forwardRef((props, ref) => (
 export const RumC = React.forwardRef((props, ref) => (
   <BaseModel ref={ref} {...props} gltfPath="/models/ArcaneVanille.glb" />
 ));
+
+export const RumD = React.forwardRef((props, ref) => (
+  <BaseModel ref={ref} {...props} gltfPath="/models/ArcaneBanane.glb" />
+));
+

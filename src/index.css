@@ -16,6 +16,11 @@ p, button {
   font-family: "Interstate", sans-serif;
 }
 
+a, button {
+  pointer-events: auto !important;
+  cursor: pointer !important;
+}
+
 body {
   position: relative;
   overflow-x: hidden !important;
@@ -24,7 +29,6 @@ body {
   height: 100%;
   background: #000;
   border-color: #3b3b3b;
-
 }
 
 .slick-arrow {
@@ -35,7 +39,6 @@ body {
 
 .interactive-element {
   z-index: 50;
-  pointer-events: auto;
 }
 
 .screen-max-width {
@@ -45,7 +48,6 @@ body {
   position: relative;
   max-width: 100vw;
 }
-
 
 @font-face {
   font-family: "Interstate";
@@ -90,7 +92,6 @@ body {
   background-clip: text;
   -webkit-background-clip: text;
   color: transparent; /* Rend le texte transparent pour laisser voir le gradient */
-  pointer-events: auto;
 }
 
 .btn-animated::before,
@@ -102,6 +103,7 @@ body {
   background-color: rgb(255, 231, 92); /* Couleur dorée */
   left: 50%;
   transform: translateX(-50%);
+  pointer-events: none; /* Empêche le blocage des interactions */
 }
 
 .btn-animated::before {
@@ -125,24 +127,6 @@ body {
   transform: translateX(-50%) scaleX(1.2);
 }
 
-/* Ajout de l'effet brillant avec un pseudo-élément supplémentaire */
-.btn-animated::after {
-  bottom: 0;
-}
-
-.btn-animated::before {
-  top: 0;
-}
-
-.btn-animated::after {
-  bottom: 0;
-}
-
-.btn-animated::before {
-  top: 0;
-}
-
-
 /* Jungle Background */
 .jungle-section {
   position: relative;
@@ -152,7 +136,6 @@ body {
 #canvas-container {
   inset: 0;
   z-index: 10; /* Canvas entre les couches */
-  pointer-events: none; /* Désactive les interactions du canvas */
 }
 
 @media (max-width: 768px) {
@@ -160,12 +143,13 @@ body {
     overflow-x: hidden;
   }
 }
+
 .btn-filter-container {
   @apply flex gap-4 p-2 w-full overflow-x-auto bg-gray-900 rounded-lg;
 }
 
 .btn-filter {
-  @apply py-2 px-4 bg-gradient-to-r from-gold to-yellow-300 text-black text-sm rounded-lg font-yana transition-all duration-200 ease-in-out shadow-md;
+  @apply py-2 px-4 bg-gradient-to-r from-gold to-yellow-300 text-black text-sm rounded-lg font-yana transition-all duration-200 ease-in-out shadow-md cursor-pointer;
 }
 
 .btn-filter:hover {
@@ -174,9 +158,6 @@ body {
 
 .btn-filter.active {
   @apply bg-black text-gold border border-gold scale-110;
-}
-.cocktail-card img {
-  @apply object-cover w-full h-auto;
 }
 
 .btn-filter.active::before {
@@ -189,6 +170,11 @@ body {
   border: 2px solid rgba(212, 175, 55, 0.7);
   border-radius: 8px;
   animation: pulse 1.5s infinite ease-in-out;
+  pointer-events: none; /* Empêche le blocage des interactions */
+}
+
+.cocktail-card img {
+  @apply object-cover w-full h-auto;
 }
 
 @keyframes pulse {
@@ -232,14 +218,6 @@ body {
 
 .hover\:text-gold:hover {
   color: #d4af37;
-}
-
-#canvas-container {
-  pointer-events: none; /* Aucune interaction */
-}
-
-#content {
-  pointer-events: auto; /* Réactive les interactions */
 }
 
 .loading-curtain {

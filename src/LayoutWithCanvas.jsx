@@ -11,6 +11,7 @@ import OurUniverse from "./components/Pages/OurUniverse.jsx"; // Vérifie le che
 import LesCocktails from "./components/Pages/LesCocktails.jsx"; // Vérifie le chemin
 import CocktailDetail from "./components/Pages/CocktailDetail.jsx";
 import RedirectToCocktails from "./components/Pages/CocktailDetail.jsx";
+import OurRums from "./components/Pages/OurRum.jsx"
 import { useModel } from './components/Context/ModelContext';
 import Loader from "./components/UI/Loader.jsx";
 import { bottlesConfig } from "./components/bottleConfig";
@@ -83,7 +84,7 @@ const LayoutWithCanvas = () => {
     <div className="relative w-full h-full">
 
       {!isAnimationDone && (
-        <div className="loading-curtain fixed top-0 left-0 w-full h-full bg-black  z-[60]"></div>
+        <div className="loading-curtain fixed top-0 left-0 w-full h-full bg-black z-[60]"></div>
           )}
            {!isLoaded && <Loader progress={progress} />}
 
@@ -92,25 +93,26 @@ const LayoutWithCanvas = () => {
 
       {/* Affichage du décor de la jungle si on est sur la Home */}
       {isHome && !isLesCocktailDetail && (
-        <div  id="jungle-section" className="page-content relative left-0 z-0 w-full h-screen pointer-events-none">
+        <div  id="jungle-section" className="page-content relative left-0 z-0 w-full h-screen">
           <Jungle isModelLoaded={isModelLoaded} position="background" />
         </div>
       )}
   
   {!isKnowHow && !isOurUniverse && !isLesCocktails && !isLesCocktailDetail && isCanvasVisible && (
-        <div id="canvas-container" className="page-content fixed inset-0 z-10 pointer-events-none">
-          <CanvaContainer isModelLoaded={isModelLoaded} selectedBottle={selectedBottle} />
+        <div id="canvas-container" className="page-content fixed inset-0 z-10">
+          <CanvaContainer isModelLoaded={isModelLoaded} selectedBottle={selectedBottle} key={location.pathname} // Clé ajoutée ici
+ />
         </div>
       )} 
       { !isLesCocktails && !isLesCocktailDetail && isCanvasVisible && (
-        <div id="jungle-section" className="page-content absolute top-0 z-20 left-0 w-full h-screen pointer-events-none">
+        <div id="jungle-section" className="page-content absolute top-0 z-20 left-0 w-full h-screen">
           <Jungle isModelLoaded={isModelLoaded} position="foreground" />
         </div>
               )}
  
 
       {/* Contenu de l'application */}
-      <div className="page-content w-full relative z-30 pointer-events-auto">
+      <div className="page-content w-full relative z-30">
         <Routes>
           <Route path="/" element={<Home isModelLoaded={isModelLoaded} />} />
           <Route path="/model/:id" element={<ModelDetail isModelLoaded={isModelLoaded} />} />
@@ -118,9 +120,9 @@ const LayoutWithCanvas = () => {
           <Route path="/Know-How" element={<KnowHow />} />
           <Route path="/Les-Cocktails" element={<LesCocktails />} />
           <Route path="/cocktail/:id" element={<CocktailDetail />} />
-          <Route path="/cocktail/" element={<RedirectToCocktails />} // Redirection ou composant d'erreur
-/>        <Route path="*" element={<Navigate to="/" replace />} /> {/* Gérer les 404 */}
-
+          <Route path="/cocktail/" element={<RedirectToCocktails />} />        
+          <Route path="/Our-Rums/" element={<OurRums />} />        
+          <Route path="*" element={<Navigate to="/" replace />} /> {/* Gérer les 404 */}
          </Routes>
         <Outlet />
       </div>

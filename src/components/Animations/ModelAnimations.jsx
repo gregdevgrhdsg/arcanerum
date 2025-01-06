@@ -29,7 +29,7 @@ const zoneConfigurations = {
       mobile: {
         position: { x: -0.4, y: -0.8, duration: 2, ease: "power5.inOut" },
         rotation: { y: 0.5, z: 0, duration: 2, ease: "power5.inOut" },
-        camera: {fov: 25, z: 6, duration: 2, ease: "power5.inOut" },
+        camera: {fov: 25, z: 8, duration: 2, ease: "power5.inOut" },
       },
     },
   },
@@ -57,7 +57,7 @@ const zoneConfigurations = {
     trigger: ".zone-3",
     animations: {
       desktop: {
-        position: { x: 0.8, y: -0.9, z:0, duration: 1.5, ease: "power2.inOut" },
+        position: { x: 0.7, y: -0.9, z:0, duration: 1.5, ease: "power2.inOut" },
         rotation: { x:0, y:0, z:0, duration: 1.5, ease: "power2.inOut" },
         camera: {  fov: 25, z: 4.8, duration: 1.5, ease: "power2.inOut" },  
       },

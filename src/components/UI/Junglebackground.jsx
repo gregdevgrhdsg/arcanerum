@@ -15,15 +15,10 @@ const Jungle = ({ isModelLoaded, position = "background" }) => {
   
       const elementsToAnimate = position === "foreground"
         ? [
-            { selector: ".layer-feuilledroite", positions: { mobile: { x: 0, y: 0 }, tablet: { x: 0, y: 250 }, desktop: { x: 0, y: 350 } }, scale: 1, zIndex: 30 },
-            { selector: ".layer-feuilledroite2", positions: { mobile: { x: 0, y: 0 }, tablet: { x: 0, y: 200 }, desktop: { x: 0, y: 300 } }, scale: 1, zIndex: 30 },
-            { selector: ".layer-feuilleGauche", positions: { mobile: { x: 0, y: 600 }, tablet: { x: 0, y: 800 }, desktop: { x: 0, y: 1000 } }, scale: 1, zIndex: 30 },
-            { selector: ".layer-feuilleGauche2", positions: { mobile: { x: 0, y: 600 }, tablet: { x: 0, y: 700 }, desktop: { x: 0, y: 1000 } }, scale: 1, zIndex: 30 },
+         
           ]
         : [
-            { selector: ".layer-dodo", positions: { mobile: { x: 0, y: 600 }, tablet: { x: 0, y: 800 }, desktop: { x: 0, y: 1000 } }, scale: 0.8, zIndex: 10 },
-            { selector: ".layer-ciel", positions: { mobile: { x: 0, y: 400 }, tablet: { x: 0, y: 600 }, desktop: { x: 0, y: 900 } }, scale: 1, zIndex: 30 },
-            { selector: ".layer-plante1", positions: { mobile: { x: 0, y: 0 }, tablet: { x: 0, y: 700 }, desktop: { x: 0, y: 1000 } }, scale: 1, zIndex: 15 },
+          
           ];
   
       elementsToAnimate.forEach(({ selector, positions, scale }) => {
@@ -112,11 +107,11 @@ const Jungle = ({ isModelLoaded, position = "background" }) => {
        }}
      >
        <img
-         src="assets/jungle/layer-fond.webp"
+         src="assets/jungle/fond-Arcane.webp"
          alt="Fond"
          className="w-full "
          style={{
-           objectFit: "cover", // Permet de voir l'image entière
+           objectFit: "contain", // Permet de voir l'image entière
            objectPosition: "center", // Centre l'image
          }}
        />
@@ -125,56 +120,45 @@ const Jungle = ({ isModelLoaded, position = "background" }) => {
     {[
         // Background ou Foreground en fonction du props
         ...(position === "foreground"
-          ? [{ 
-        src: "assets/jungle/layer-feuilledroite2.webp", 
-        alt: "feuilleGauche2", 
-        position: "absolute", 
-        className: "layer-feuilledroite2 xl:bottom-[0%] sm:bottom-[40%] sm:w-[45%]", 
-        style: { bottom: "0vw", right: "0vw", transformOrigin: "top left",
-
-        }
-      },
-      { 
-        src: "assets/jungle/layer-feuilledroite.webp", 
-        alt: "feuilleGauche",
-        position: "absolute",  
-        className: "layer-feuilledroite sm:w-[45%]", 
-        style: { bottom: "0%", right: "0%" } 
-      },
+          ? [
       { 
         src: "assets/jungle/layer-feuilleGauche2.webp", 
         alt: "feuilleGauche2", 
-        className: "layer-feuilleGauche2 sm:w-[45%]", 
+        className: "layer-feuilleGauche2 xl:w-[25%] sm:w-[45%]", 
         style: { bottom: "0%", left: "0%" } 
       },
       { 
         src: "assets/jungle/layer-feuilleGauche.webp", 
         alt: "feuilleGauche", 
-        className: "layer-feuilleGauche sm:w-[45%]", 
+        className: "layer-feuilleGauche xl:w-[25%] sm:w-[45%]", 
         style: { bottom: "0%", left: "0%" } 
       },   
     ]
     : [     
  
-  
+      { 
+        src: "assets/jungle/layer-rock.webp", 
+        alt: "rock", 
+        className: "layer-rock absolute xl:right-[0%] xl:bottom-[-8%] xl:w-[45vw] lg:right-[0%] lg:bottom-[-8%] md:w-[45vw] md:right-[0%] md:bottom-[10%] md:w-[50vw] sm:w-[70vw] sm:right-[0%] sm:bottom-[30%] sm:w-[50vw]",
+      },
       { 
         src: "assets/jungle/layer-plantFront.webp", 
         alt: "Plante 1", 
         className: "layer-plante1", 
         style: { bottom: "0", left: "0%" } 
       },
-      { 
-        src: "assets/jungle/layer-blur.webp", 
-        alt: "blur", 
-        className: "layer-blur", 
-        style: { 
-          position: "absolute", 
-          top: "60%", 
-          width: "100%", // Fixer une largeur en pixels
-          transform: "translateX(-50%)", // Ajustement centré
-          left: "50%", 
-        }
-      },
+// { 
+//   src: "assets/jungle/layer-blur.webp", 
+//   alt: "blur", 
+//   className: "layer-blur sm:bottom-[0%]", 
+//   style: { 
+//     position: "absolute", 
+//     top: "60%", 
+//     width: "100%", // Fixer une largeur en pixels
+//     transform: "translateX(-50%)", // Ajustement centré
+//     left: "50%", 
+//   }
+// },
       { 
         src: "assets/jungle/layer-ciel.webp", 
         alt: "Ciel", 
@@ -185,7 +169,7 @@ const Jungle = ({ isModelLoaded, position = "background" }) => {
       { 
         src: "assets/jungle/layer-dodo.png",
         alt: "Dodo",
-        className: "layer-dodo absolute xl:bottom-[20%] left-0 sm:bottom-[40%] w-[30%]",
+        className: "layer-dodo absolutexl: w-[20%] xl:bottom-[15%] left-0 sm:bottom-[35%] xl:w-[25%]",
         responsiveClass: "sm:translate-y-[-20% md:translate-y-[-5%] lg:translate-y-[-10%]",
       }, 
 
@@ -193,7 +177,7 @@ const Jungle = ({ isModelLoaded, position = "background" }) => {
 
     ].map((layer, index) => (
       <div key={index} className={`absolute ${layer.className} ${layer.responsiveClass} 
-      sm:w-[60%] md:w-[40%] lg:w-[30%] xl:w-[30%]`}
+     `}
       style={{
         ...layer.style,
         maxWidth: "100vw", // Limite la largeur du conteneur au viewport

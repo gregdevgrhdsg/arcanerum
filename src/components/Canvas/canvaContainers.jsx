@@ -1,10 +1,12 @@
-import React, { useEffect, useState, useRef } from "react";
+// src/components/Canvas/canvaContainers.jsx
+import React, { useEffect, useRef, useState } from "react";
+import * as THREE from 'three';
 import { Canvas } from "@react-three/fiber";
-import * as THREE from "three";
-import { Environment } from "@react-three/drei"; // Import du composant Environment
+import { Environment } from "@react-three/drei";
 import { bottlesConfig } from "../bottleConfig";
 import { setupModelAnimations, rotateBottle } from "../Animations/ModelAnimations";
 import { useModel } from "../Context/ModelContext";
+import { RumA, RumB, Flamboyance, RumC, RumD } from './GenericBottle'; // Assurez-vous d'importer correctement vos composants
 
 const CanvasContainer = ({ selectedBottle }) => {
   const {
@@ -45,16 +47,19 @@ const CanvasContainer = ({ selectedBottle }) => {
       return null;
     }
 
-    // Gestion des positions responsives
-    const position = bottleConfig.responsivePositions?.[screenSize] || {
-      x: 0,
-      y: 0,
-      z: 0,
-    };
+    // Gestion des propriétés responsives
+    const position =
+      bottleConfig.responsivePositions?.[screenSize] || { x: 0, y: 0, z: 0 };
+    const rotation =
+      bottleConfig.responsiveRotations?.[screenSize] || { x: 0, y: 0, z: 0 };
+    const scale =
+      bottleConfig.responsiveScales?.[screenSize] || { x: 1, y: 1, z: 1 };
 
     return {
       ...bottleConfig,
       position,
+      rotation,
+      scale,
     };
   };
 
@@ -127,8 +132,63 @@ const CanvasContainer = ({ selectedBottle }) => {
     }
   }, [screenSize]);
 
-  // Ajuster la caméra en fonction de l'écran
+  // Réinitialiser le modèle lors du montage
+  useEffect(() => {
+    const bottleConfig = getBottleConfig();
+    if (bottleConfig && rotationGroupRef.current && modelRef.current) {
+      applyInitialTransformations(bottleConfig);
+      setupModelAnimations(rotationGroupRef, cameraRef);
+    }
+  }, []);
 
+  // Nettoyage des ressources lors du démontage du composant
+  useEffect(() => {
+    return () => {
+      // Dispose des géométries, matériaux, textures, etc.
+      if (modelRef.current) {
+        modelRef.current.traverse((child) => {
+          if (child.isMesh) {
+            if (child.geometry) child.geometry.dispose();
+            if (child.material?.isMaterial) {
+              cleanMaterial(child.material);
+            } else if (Array.isArray(child.material)) {
+              child.material.forEach((material) => cleanMaterial(material));
+            }
+          }
+        });
+      }
+
+      // Dispose du rotation group
+      if (rotationGroupRef.current) {
+        rotationGroupRef.current.traverse((child) => {
+          if (child.isMesh) {
+            if (child.geometry) child.geometry.dispose();
+            if (child.material?.isMaterial) {
+              cleanMaterial(child.material);
+            } else if (Array.isArray(child.material)) {
+              child.material.forEach((material) => cleanMaterial(material));
+            }
+          }
+        });
+      }
+
+      // Réinitialiser l'état de chargement du modèle
+      setIsModelLoaded(false);
+    };
+  }, []);
+
+  // Fonction pour nettoyer les matériaux
+  const cleanMaterial = (material) => {
+    material.dispose();
+
+    // Dispose des textures si elles existent
+    for (const key in material) {
+      const value = material[key];
+      if (value && typeof value === "object" && value.isTexture) {
+        value.dispose();
+      }
+    }
+  };
 
   // Rendre le modèle
   const renderModel = () => {
@@ -160,7 +220,7 @@ const CanvasContainer = ({ selectedBottle }) => {
       <Canvas
         className="sticky inset-0 top-0 h-screen"
         camera={{ position: [0, 0, 5], fov: 25 }}
-        onCreated={({ camera, scene }) => {
+        onCreated={({ camera, scene, gl }) => {
           cameraRef.current = camera;
 
           if (!rotationGroupRef.current) {
@@ -169,12 +229,38 @@ const CanvasContainer = ({ selectedBottle }) => {
             rotationGroupRef.current = group;
             setRotationGroupRef(group);
           }
+
+          // Gestion de la perte et de la restauration du contexte WebGL
+          const handleContextLost = (event) => {
+            event.preventDefault();
+            console.warn("WebGL Context Lost");
+            gl.domElement.style.display = "none";
+          };
+
+          const handleContextRestored = () => {
+            console.info("WebGL Context Restored");
+            gl.domElement.style.display = "block";
+            // Re-initialiser les animations ou tout autre état nécessaire
+            if (rotationGroupRef.current && isModelLoaded) {
+              setupModelAnimations(rotationGroupRef, cameraRef);
+            }
+          };
+
+          gl.domElement.addEventListener("webglcontextlost", handleContextLost, false);
+          gl.domElement.addEventListener("webglcontextrestored", handleContextRestored, false);
+
+          // Nettoyage des écouteurs d'événements lors du démontage
+          return () => {
+            gl.domElement.removeEventListener("webglcontextlost", handleContextLost);
+            gl.domElement.removeEventListener("webglcontextrestored", handleContextRestored);
+          };
         }}
         style={{ width: "100vw", height: "100vh" }}
       >
         <ambientLight intensity={2} />
         <directionalLight position={[5, 8, 5]} intensity={3} />
-        <Environment preset="forest" background={false} />        <group ref={rotationGroupRef}>{renderModel()}</group>
+        <Environment preset="forest" background={false} />
+        <group ref={rotationGroupRef}>{renderModel()}</group>
       </Canvas>
     </div>
   );

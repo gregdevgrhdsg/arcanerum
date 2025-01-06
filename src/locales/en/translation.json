@@ -1,0 +1,40 @@
+{
+  "welcome": "ESCAPE THE EXPECTED",
+  "discover_more": "Every adventure begins with the desire to explore the unknown. Today, we invite you to journey into the heart of the extraordinary – through the senses, through flavors, and through the rich stories embedded in every drop of Arcane Rum.",
+  "button_discover_more":"DISCOVER MORE",
+  "mauritus_island": "Mauritus Island",
+  "escape_the_expected": "ESCAPE THE EXPECTED",
+  "adventure_description": "Every adventure begins with the desire to explore the unknown. Today, we invite you to journey into the heart of the extraordinary.",
+  "know_how": "Know How",
+  "from_cane_to_gold": "FROM CANE TO GOLD",
+  "savoir_faire_description": "At Arcane Rum, our savoir-faire is a tribute to the rich heritage of Mauritius. From the cultivation of pure sugarcane to the mastery of distillation, every step is guided by a deep respect for tradition and innovation.",
+  "unveil_our_secrets": "UNVEIL OUR SECRETS",
+  "cocktails_with_character": "Cocktails with Character",
+  "our_cocktails": "OUR COCKTAILS",
+  "cocktails_description": "Immerse yourself in the art of cocktails with Arcane RUM. Be adventurous with our creations, bold with our signature shots, and timeless with revisited classics. From the first sip to the final flourish, each drink is a journey of flavor, aroma, and craftsmanship—an invitation to savor and explore.",
+  "unveil_our_secrets_cocktails": "UNVEIL OUR SECRETS",
+  "nav": {
+    "discover": "DISCOVER",
+    "ourRums": "OUR RUMS",
+    "cocktails": "COCKTAILS",
+    "contact": "CONTACT"
+  },
+  "submenu": {
+    "home": "Home",
+    "ourUniverse": "Our Universe",
+    "knowHow": "Know How",
+    "rumsCollection": "Rums Collection",
+    "arcaneExtraroma": "Arcane Extraroma",
+    "classicCocktails": "Classic Cocktails",
+    "signatureDrinks": "Signature Drinks",
+    "seasonalSpecials": "Seasonal Specials",
+    "getInTouch": "Get in Touch",
+    "support": "Support"
+  },
+  "ourUniverse": {
+    "slide1Title": "Arcane Rum",
+    "slide1Content1": "BienveDans un monde où l&#39;ordinaire domine, Arcane Rum vous invite à percer le mystère du quotidien et à goûter à l&#39;extraordinaire. Imaginez un voyage digne d&#39;une odyssée sur l&#39;île Maurice, où la nature chuchote ses secrets les mieux gardés au plus profond de vos papilles. En quête d&#39;unicité, plongez au cœur de cette île opulente, guidé par les chuchotements de la faune, de la flore et le parfum enivrant du rhum. Chaque",
+    "slide1Content2": "Découvrez le mystère et la richesse de notre rhum exceptionnel.",
+    "slide1Content3": "Explorez les territoires volcaniques qui façonnent nos saveurs distinctives."
+  }
+}
