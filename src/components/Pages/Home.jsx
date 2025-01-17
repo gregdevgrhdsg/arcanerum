@@ -85,13 +85,14 @@
     // Animation d'apparition (ne modifie pas top/left)
     gsap.fromTo(
       element,
-      { opacity: 0, y: 20, scale:1, }, // Part visible, mais légèrement en bas
+      { opacity: 0, y: 50, scale:1, }, // Part visible, mais légèrement en bas
       {
         opacity: 1,
         y: 0, // Retour à sa position originale
-        scale:1.1,
+        scale:1.3,
         duration: 1,
         ease: "power2.inOut",
+        stagger: 0.2,
         transformOrigin: "bottom right",
         scrollTrigger: {
           trigger: element,
@@ -152,17 +153,17 @@
           {/* Zone 2 */}
           <section className="zone-2 relative w-full h-screen flex flex-col items-end justify-center bg-transparent">
             <div className="text-center sm:mt-0 xl:max-w-[40vw] md:max-w-[40vw] sm:max-w-[60vw] xl:pr-40 md:pr-20 sm:pr-5">
-            <p className="highlight-description font-yana font-regular text-gold xl:text-xl lg:text-1xl md:1xl sm:text-sm mb-3">Mauritus Island</p>
-              <h2 className="highlight-title font-yana text-gold mb-5 xl:text-4xl lg:text-lg md:text-3xl sm:text-2xl">{t('welcome')}</h2>
-              <p className="highlight-description font-yana text-white xl:text-xl lg:text-1xl md:1xl sm:text-sm mb-10">{t('discover_more')}</p>
+            <p className="highlight-description font-yana font-regular text-gold xl:text-xl lg:text-1xl md:1xl sm:text-sm mb-3">{t('home.zone2.title')}</p>
+              <h2 className="highlight-title font-bold font-yana text-gold mb-5 xl:text-4xl lg:text-lg md:text-3xl sm:text-2xl">{t('home.zone2.subtitle')}</h2>
+              <p className="highlight-description font-yana text-white xl:text-xl lg:text-1xl md:1xl sm:text-sm mb-10">{t('home.zone2.description')}</p>
               <Link to="/Our-Universe">
-                <button className="highlight-button btn-animated cursor-pointer">{t('button_discover_more')}</button>
+                <button className="highlight-button btn-animated cursor-pointer">{t('home.zone2.button')}</button>
               </Link>
             </div>
-            <div className="jungle-el-section absolute xl:bottom-[0%] sm:bottom-[16%] xl:left-[0%] md:left-[0%] sm:left-[0%] xl:w-[20vw] md:w-[20vw] sm:w-[40vw] z-0">
+            <div className="jungle-el-section absolute xl:bottom-[0%] sm:bottom-[0%] xl:left-[0%] md:left-[0%] sm:left-[0%] xl:w-[20vw] md:w-[20vw] sm:w-[40vw] z-0">
               <img src="assets/jungle/layer-feuilleGauche2.webp" alt="cocktail" className="w-full h-full object-contain z-0" />
             </div>
-            <div className="jungle-el-section absolute xl:bottom-[0%] sm:bottom-[16%] xl:left-[0%] md:left-[0%] sm:left-[0%] xl:w-[20vw] md:w-[20vw] sm:w-[40vw] z-0">
+            <div className="jungle-el-section absolute xl:bottom-[0%] sm:bottom-[0%] xl:left-[0%] md:left-[0%] sm:left-[0%] xl:w-[20vw] md:w-[20vw] sm:w-[40vw] z-0">
               <img src="assets/jungle/layer-feuilleGauche.webp" alt="cocktail" className="w-full h-full object-contain z-0" />
             </div>
           </section>
@@ -170,16 +171,21 @@
           {/* Zone 3 */}
           <section className="zone-3 relative w-full h-screen flex flex-col items-start xl:justify-center sm:justify-center bg-transparent">
             <div className="text-center xl:max-w-[40vw] md:max-w-[40vw] sm:max-w-[60vw] xl:pl-40 md:pl-400 sm:pl-5">
-            <p className="highlight-description font-yana font-regular text-gold xl:text-xl lg:text-1xl md:1xl sm:text-sm mb-3">Know How</p>
-              <h2 className="highlight-title font-yana text-gold mb-5 xl:text-4xl lg:text-3xl md:text-3xl sm:text-2xl"> FROM CANE TO GOLD</h2>
-              <p className="highlight-description font-yana text-white xl:text-xl lg:text-1xl md:1xl sm:text-sm mb-10">
-              At Arcane Rum, our savoir-faire is a tribute to the rich heritage of Mauritius. From the cultivation of pure sugarcane to the mastery of distillation, every step is guided by a deep respect for tradition and innovation. </p>
+            <p className="highlight-description font-yana font-regular text-gold xl:text-xl lg:text-1xl md:1xl sm:text-sm mb-3">{t('home.zone3.title')}</p>
+              <h2 className="highlight-title font-bold font-yana text-gold mb-5 xl:text-4xl lg:text-3xl md:text-3xl sm:text-2xl">{t('home.zone3.subtitle')}</h2>
+              <p className="highlight-description font-yana text-white xl:text-xl lg:text-1xl md:1xl sm:text-sm mb-10">{t('home.zone3.description')}</p>
               <Link to="/Know-How">
-              <button className="highlight-button btn-animated">UNVEIL OUR SECRETS</button>
+              <button className="highlight-button btn-animated">{t('home.zone3.button')}</button>
               </Link>
             </div>
-            <div className="jungle-el-section absolute xl:right-[0%] xl:top-[50%] sm:w-[50vw] sm:right-[0%] sm:top-[75%]  xl:w-[30vw] z-10">
-            <img src="/assets/jungle/layer-JungleRightLarge.webp" alt="Leaf" className="w-full h-full object-contain" />
+            <div className="jungle-el-section absolute xl:bottom-[0%] sm:bottom-[0%] xl:right-[0%] md:right-[0%] sm:right-[0%] xl:w-[20vw] md:w-[20vw] sm:w-[40vw] z-0">
+              <img src="assets/jungle/layer-feuilledroite2.webp" alt="jungle" className="w-full h-full object-contain z-0" />
+            </div>
+            <div className="jungle-el-section absolute xl:bottom-[0%] sm:bottom-[0%] xl:right-[0%] md:right-[0%] sm:right-[0%] xl:w-[20vw] md:w-[20vw] sm:w-[40vw] z-0">
+              <img src="assets/jungle/layer-feuilledroite.webp" alt="jungle2" className="w-full h-full object-contain z-0" />
+            </div>
+            <div className="jungle-el-section absolute xl:bottom-[50%] sm:bottom-[65%] xl:right-[15%] md:right-[0%] sm:right-[70%] xl:w-[10vw] md:w-[20vw] sm:w-[20vw] z-0">
+              <img src="assets/jungle/layer-Bird.webp" alt="jungle3" className="w-full h-full object-contain z-0" />
             </div>
           </section>
 
@@ -195,27 +201,23 @@
                 onBuy={onclick} // Button action
               />
             </div>
-            <div className="jungle-el-section absolute xl:bottom-[0%] sm:bottom-[16%] xl:right-[0%] md:right-[0%] sm:right-[0%] xl:w-[20vw] md:w-[20vw] sm:w-[40vw] z-0">
-              <img src="assets/jungle/layer-feuilledroite2.webp" alt="cocktail" className="w-full h-full object-contain z-0" />
-            </div>
-            <div className="jungle-el-section absolute xl:bottom-[0%] sm:bottom-[16%] xl:right-[0%] md:right-[0%] sm:right-[0%] xl:w-[20vw] md:w-[20vw] sm:w-[40vw] z-0">
-              <img src="assets/jungle/layer-feuilledroite.webp" alt="cocktail" className="w-full h-full object-contain z-0" />
-            </div>
           </section>
 
           {/* Zone 5 */}
           <section className="zone-5 relative w-full h-screen flex flex-col items-end justify-center bg-transparent">
           <div className="text-center sm:mt-0 xl:max-w-[40vw] md:max-w-[40vw] sm:max-w-[60vw] xl:pr-40 md:pr-20 sm:pr-5 z-10">
-          <p className="highlight-description font-yana font-regular text-gold xl:text-xl lg:text-1xl md:1xl sm:text-sm mb-3">Cocktails with Charater</p>
-          <h2 className="highlight-title font-yana text-gold mb-5 xl:text-4xl lg:text-3xl md:text-3xl sm:text-2xl">OUR COCKTAILS</h2>
-          <p className="highlight-description font-yana text-white xl:text-xl lg:text-1xl md:1xl sm:text-sm mb-10 ">
-          Immerse yourself in the art of cocktails with Arcane RUM. Be adventurous with our creations, bold with our signature shots, and timeless with revisited classics. From the first sip to the final flourish, each drink is a journey of flavor, aroma, and craftsmanship—an invitation to savor and explore </p>
+          <p className="highlight-description font-yana font-regular text-gold xl:text-xl lg:text-1xl md:1xl sm:text-sm mb-3">{t('home.zone5.title')}</p>
+          <h2 className="highlight-title font-bold font-yana text-gold mb-5 xl:text-4xl lg:text-3xl md:text-3xl sm:text-2xl">{t('home.zone5.subtitle')}</h2>
+          <p className="highlight-description font-yana text-white xl:text-xl lg:text-1xl md:1xl sm:text-sm mb-10 " style={{ whiteSpace: "pre-line" }}>{t('home.zone5.description')}</p>
               <Link to="/Les-Cocktails">
-              <button className="highlight-button btn-animated">UNVEIL OUR SECRETS</button>
+              <button className="highlight-button btn-animated">{t('home.zone5.button')}</button>
               </Link>
             </div>
-            <div className="jungle-el-section absolute xl:bottom-[6%] sm:bottom-[16%] xl:left-[28%] md:left-[20%] sm:left-[15%] xl:w-[16vw] md:w-[20vw] sm:w-[40vw] z-0">
+            <div className="jungle-el-section absolute xl:bottom-[8%] sm:bottom-[16%] xl:left-[30%] md:left-[20%] sm:left-[15%] xl:w-[13vw] md:w-[20vw] sm:w-[20vw] z-0">
               <img src="assets/cocktails/cocktailTest.webp" alt="cocktail" className="w-full h-full object-contain z-0" />
+            </div>
+            <div className="jungle-el-section absolute xl:bottom-[60%] sm:bottom-[16%] xl:left-[10%] md:left-[20%] sm:left-[15%] xl:w-[5vw] md:w-[20vw] sm:w-[20vw] z-0">
+              <img src="assets/jungle/layer-papillon1.webp" alt="cocktail" className="w-full h-full object-contain z-0" />
             </div>
           </section>
         <div>{isDetailView && <ModelDetail />}

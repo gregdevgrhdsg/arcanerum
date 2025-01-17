@@ -78,7 +78,7 @@ const zoneConfigurations = {
     animations: {
       desktop: {
         position: { x: -1, y: -0.8, z:0, duration: 1.5, ease: "power2.inOut" },
-        rotation: { y: 1, z: 0, duration: 1.5, ease: "power2.inOut" },
+        rotation: { y: 1, z: 0, x:-0.1, duration: 1.5, ease: "power2.inOut" },
         camera: { z: 5, duration: 1.5, ease: "power2.inOut" },
       },
       tablet: {

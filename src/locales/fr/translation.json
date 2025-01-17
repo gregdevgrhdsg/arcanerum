@@ -1,19 +1,52 @@
 {
-  "welcome": "ESCAPE THE EXPECTED",
-  "discover_more": "Chaque aventure commence par le désir d'explorer l'inconnu. Aujourd'hui, nous vous invitons à voyager au cœur de l'extraordinaire – à travers les sens, les saveurs et les riches histoires contenues dans chaque goutte de rhum Arcane.",
-  "button_discover_more":"DÉCOUVRIR PLUS",
-  "mauritus_island": "Mauritus Island",
-  "escape_the_expected": "ESCAPE THE EXPECTED",
-  "adventure_description": "Chaque aventure commence par le désir d'explorer l'inconnu. Aujourd'hui, nous vous invitons à voyager au cœur de l'extraordinaire.",
-  "our_universe_a":"Dans un monde où l'ordinaire domine, Arcane Rum vous invite à percer le mystère du quotidien et à goûter à l&#39;extraordinaire. Imaginez un voyage digne d&#39;une odyssée sur l'île Maurice, où la nature chuchote ses secrets les mieux gardés au plus profond de vos papilles. En quête d'unicité, plongez au cœur de cette île opulente, guidé par les chuchotements de la faune, de la flore et le parfum enivrant du rhum. Chaque gorgée de rhum Arcane ravive les sens, révélant des histoires enfouies dans le nectar sacré de la canne à sucre. Nos maîtres de chais gardent méticuleusement les secrets d&#39;une distillation qui transforme des arômes luxuriants en un élixir singulier. Les saveurs tropicales éclatent, évoquant les fruits exotiques et les fleurs sauvages de l&#39;île. Chaque bouteille de notre gamme est un mystère à percer, émanant de l&#39;opulente et énigmatique terre mauricienne. Ce rhum n&#39;est pas seulement une boisson, c'est une porte d&#39;entrée dans un univers de légendes et de merveilles, où chaque détail organoleptique raconte une épopée de découverte et d&#39;évasion. Embarquez dans cette aventure sensorielle qui devient un véritable voyage initiatique, où le rhum Arcane n&#39;est pas seulement découvert mais vécu comme un éveil des sens et de l&#39;âme, défiant tout ce que vous pensiez savoir sur le rhum.",
-  "know_how": "Savoir-faire",
-  "from_cane_to_gold": "DE LA CANNE AU GOLD",
-  "savoir_faire_description": "Chez Arcane Rum, notre savoir-faire est un hommage au riche patrimoine de l'île Maurice. De la culture de la canne à sucre pure à la maîtrise de la distillation, chaque étape est guidée par un profond respect de la tradition et de l'innovation.",
-  "unveil_our_secrets": "DÉVOILER NOS SECRETS",
-  "cocktails_with_character": "Cocktails avec Caractère",
-  "our_cocktails": "NOS COCKTAILS",
-  "cocktails_description": "Immergez-vous dans l'art des cocktails avec Arcane RUM. Soyez aventureux avec nos créations, audacieux avec nos shots signature, et intemporels avec des classiques revisités. De la première gorgée à la touche finale, chaque boisson est un voyage de saveurs, d'arômes et d'artisanat—une invitation à savourer et à explorer.",
-  "unveil_our_secrets_cocktails": "DÉVOILER NOS SECRETS",
+  "home": {
+    "zone2": {
+      "title": "Île Maurice",
+      "subtitle": "ESCAPE THE EXPECTED",
+      "description": "Chaque aventure commence par le désir d'explorer l'inconnu. Aujourd'hui, nous vous invitons à voyager au cœur de l'extraordinaire à travers les sens, les saveurs et les riches histoires contenues dans chaque goutte de rhum Arcane.",
+      "button": "DÉCOUVRIR PLUS"
+    },
+    "zone3": {
+      "title": "Savoir-faire",
+      "subtitle": "DE LA CANNE AU GOLD",
+      "description": "Chez Arcane Rum, notre savoir-faire est un hommage au riche patrimoine de l'île Maurice. De la culture de la canne à sucre pure à la maîtrise de la distillation, chaque étape est guidée par un profond respect de la tradition et de l'innovation.",
+      "button": "DÉVOILER NOS SECRETS"
+    },
+    "zone5": {
+      "title": "Cocktails avec Caractère",
+      "subtitle": "NOS COCKTAILS",
+      "description": "Immergez-vous dans l'art des cocktails avec Arcane RUM. Soyez aventureux avec nos créations, audacieux avec nos shots signature, et intemporels avec des classiques revisités. De la première gorgée à la touche finale, chaque boisson est un voyage de saveurs, d'arômes et d'artisanat \n une invitation à savourer et à explorer.",
+      "button": "DÉVOILER NOS SECRETS"
+    }
+  },
+ "know_how": {
+  "section1": {
+    "subtitle": "Rhum Arcane",
+    "title": "L'ALCHIMIE DE LA DISTILLATION",
+    "description": "Arcane distille un jus de canne à sucre pur et fraîchement pressé, juste après la coupe, pour préserver ses saveurs vibrantes."
+  },
+  "sugarcane_harvest": {
+    "title": "Récolte de Canne à Sucre",
+    "description": "Depuis plus de deux siècles, Maurice est reconnue comme l'une des meilleures terres au monde pour la production de canne à sucre et de rhum..."
+  },
+  "sugarcane_crushing": {
+    "title": "Écrasement de la Canne à Sucre",
+    "description": "Au cœur de Maurice, Arcane capture l'essence de la canne à sucre fraîche grâce à un processus d'écrasement méticuleux..."
+  },
+  "fermentation_process": {
+    "title": "Processus de Fermentation",
+    "description": "Le processus de fermentation d'Arcane transforme le jus de canne à sucre fraîchement extrait en une base riche et savoureuse pour son rhum..."
+  },
+  "distillation": {
+    "title": "Distillation et Réduction",
+    "description": "Lors de la distillation, les arômes révélés pendant la fermentation sont soigneusement extraits dans l'alambic à colonne..."
+  },
+  "aging": {
+    "title": "Vieillissement",
+    "description": "Vieilli au moins 3 ans dans des fûts de chêne français et américain, le rhum Arcane bénéficie du climat tropical de Maurice..."
+  },
+  "step": "Étape {{step}}"
+},
   "nav": {
     "discover": "DÉCOUVRIR",
     "ourRums": "NOS RHUMS",
@@ -26,26 +59,28 @@
     "knowHow": "Savoir-faire",
     "rumsCollection": "Collection de Rums",
     "arcaneExtraroma": "Arcane Extraroma",
+    "arcaneFlamboyance":"Arcane Flamboyance",
+    "arcaneAnanasRoti": "Ananas Roti",
+    "arcaneVanilleDesIles": "Vanille des Îles",
+    "arcaneBananeFlambée":"Banane Flambée",
     "classicCocktails": "Cocktails Classiques",
     "signatureDrinks": "Boissons Signature",
     "seasonalSpecials": "Spécialités Saisonnières",
     "getInTouch": "Prendre Contact",
     "support": "Support"
   },
-  "ourUniverse": {
-    "slide1Title": "Arcane Rum",
-    "slide1Content1": "Dans un monde où l'ordinaire domine, Arcane Rum vous invite à percer le mystère du quotidien et à goûter à l'extraordinaire. Imaginez un voyage digne d'une odyssée sur l'île Maurice, où la nature chuchote ses secrets les mieux gardés au plus profond de vos papilles. En quête d'unicité, plongez au cœur de cette île opulente, guidé par les chuchotements de la faune, de la flore et le parfum enivrant du rhum.",
-    "slide1Content2": "Chaque gorgée de rhum Arcane ravive les sens, révélant des histoires enfouies dans le nectar sacré de la canne à sucre. Nos maîtres de chais gardent méticuleusement les secrets d'une distillation qui transforme des arômes luxuriants en un élixir singulier. Les saveurs tropicales éclatent, évoquant les fruits exotiques et les fleurs sauvages de l'île. Chaque bouteille de notre gamme est un mystère à percer, émanant de l'opulente et énigmatique terre mauricienne.",
-    "slide1Content3": "Ce rhum n'est pas seulement une boisson, c'est une porte d'entrée dans un univers de légendes et de merveilles, où chaque détail organoleptique raconte une épopée de découverte et d'évasion. Embarquez dans cette aventure sensorielle qui devient un véritable voyage initiatique, où le rhum Arcane n&#39;est pas seulement découvert mais vécu comme un éveil des sens et de l'âme, défiant tout ce que vous pensiez savoir sur le rhum.",
-
-    "slide2Title": "Processus de Distillation",
-    "slide2Content1": "Située au cœur de l'océan Indien, l'île Maurice est plus qu'une belle île, c'est l'âme d'Arcane Rum. Le mélange vibrant d'influences africaines, indiennes, européennes et chinoises de l'île crée une tapisserie culturelle unique qui inspire le sens du mystère et de la découverte de la marque.",
-    "slide2Content2": "L'île Maurice est une terre de trésors cachés, de ses paysages volcaniques luxuriants à son riche folklore et à sa musique. Arcane Rum est profondément lié à cet héritage, infusant l'esprit de l'île dans chaque bouteille, célébrant ses histoires inédites et ses mystères exotiques. Au cœur d'Arcane se trouve la canne à sucre, nourrie par les sols volcaniques et le climat tropical de l'île Maurice.",
-    "slide2Content3": "Les 12 variétés uniques, dont la Canne Rouge et la Canne Bourbon, sont cultivées dans  le nord ensoleillé et absorbent les minéraux de l'île, ce qui leur confère des saveurs fraîches et vibrantes. La culture sans pesticides garantit que chaque bouteille capture l'essence pure de l'île Maurice, profondément liée à son riche terroir.",
-
-    "slide3Title": "Un Terroir Façonné par la Richesse Volcanique",
-    "slide3Content1": "Située au cœur de l'océan Indien, l'île Maurice bénéficie d'un terroir unique façonné par une activité volcanique ancienne, offrant des sols fertiles idéaux pour la culture de la canne à sucre.",
-    "slide3Content2": "Les influences climatiques variées et la richesse géologique de la région se reflètent dans la qualité et la diversité des arômes de notre rhum.",
-    "slide3Content3": "Chaque bouteille de rhum Arcane capture l'essence de ce terroir exceptionnel, offrant une expérience sensorielle inoubliable."
-  }
+"ourUniverse": {
+  "slide1Title": "ESCAPE THE EXPECTED",
+  "slide1Content1": "Dans un monde où l'ordinaire domine, Arcane Rum vous invite à percer le mystère du quotidien et à goûter à l'extraordinaire. Imaginez un voyage digne d'une odyssée sur l'île Maurice, où la nature chuchote ses secrets les mieux gardés au plus profond de vos papilles. En quête d'unicité, plongez au cœur de cette île opulente, guidé par les chuchotements de la faune, de la flore et le parfum enivrant du rhum.",
+  "slide1Content2": "Chaque gorgée de rhum Arcane ravive les sens, révélant des histoires enfouies dans le nectar sacré de la canne à sucre. Nos maîtres de chais gardent méticuleusement les secrets d'une distillation qui transforme des arômes luxuriants en un élixir singulier. Les saveurs tropicales éclatent, évoquant les fruits exotiques et les fleurs sauvages de l'île. Chaque bouteille de notre gamme est un mystère à percer, émanant de l'opulente et énigmatique terre mauricienne.",
+  "slide1Content3": "Ce rhum n'est pas seulement une boisson, c'est une porte d'entrée dans un univers de légendes et de merveilles, où chaque détail organoleptique raconte une épopée de découverte et d'évasion. Embarquez dans cette aventure sensorielle qui devient un véritable voyage initiatique, où le rhum Arcane n'est pas seulement découvert mais vécu comme un éveil des sens et de l'âme, défiant tout ce que vous pensiez savoir sur le rhum.",
+  "slide2Title": "UN TERROIR FAÇONNÉ PAR LA RICHESSE VOLCANIQUE",
+  "slide2Content1": "Au cœur d'Arcane se trouve la canne à sucre, nourrie par les sols volcaniques et le climat tropical de l'île Maurice. Les 12 variétés uniques, dont la Cane Rouge et la Cane Bourbon, sont cultivées dans le nord ensoleillé de l'île, où elles absorbent les minéraux du terroir, conférant au rhum des saveurs fraîches et vibrantes. Une culture sans pesticides garantit que chaque bouteille capture la pure essence de Maurice, profondément connectée à son terroir exceptionnel.",
+  "slide2Content2": "Découvrez le mystère et la richesse de notre rhum exceptionnel.",
+  "slide2Content3": "Explorez les territoires volcaniques qui façonnent nos saveurs distinctives.",
+  "slide3Title": "L'ÎLE MAURICE,",
+  "slide3Content1": "Une terre de beauté et de mystères Située au cœur de l'océan Indien, l'île Maurice est plus qu'une belle île, c'est l'âme d'Arcane Rum. Le mélange vibrant d'influences africaines, indiennes, européennes et chinoises de l'île crée une tapisserie culturelle unique qui inspire le sens du mystère et  \n de la découverte de la marque.",
+  "slide3Content2": "L'île Maurice est une terre de trésors cachés, de ses paysages volcaniques luxuriants à son riche folklore et à sa musique. Arcane Rum est profondément lié à cet héritage, infusant l'esprit de l'île dans chaque bouteille, célébrant ses histoires inédites et ses mystères exotiques.",
+  "slide3Content3": "Au cœur d'Arcane se trouve la canne à sucre, nourrie par les sols volcaniques et le climat tropical de l'île Maurice. Les 12 variétés uniques, dont la Canne Rouge et la Canne Bourbon, sont cultivées dans  le nord ensoleillé et absorbent les minéraux de l'île, ce qui leur confère des saveurs fraîches et vibrantes. La culture sans pesticides garantit que chaque bouteille capture l'essence pure de l'île Maurice, profondément liée à son riche terroir."
+}
 }

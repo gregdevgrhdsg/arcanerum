@@ -1,9 +1,9 @@
 // src/constants/index.js
 export const navLists = [
-  { name: "nav.discover", path: "/discover" },
-  { name: "nav.ourRums", path: "/Our-Rums" },
-  { name: "nav.cocktails", path: "/cocktails" },
-  { name: "nav.contact", path: "/contact" },
+  { name: "nav.discover", path: "/discover", hasSubMenu: true },
+  { name: "nav.ourRums", path: "/Our-Rums", hasSubMenu: true },
+  { name: "nav.cocktails", path: "/Les-Cocktails", hasSubMenu: false },
+  { name: "nav.contact", path: "/contact", hasSubMenu: false },
 ];
 
 export const subMenuLinks = [
@@ -14,16 +14,19 @@ export const subMenuLinks = [
   ],
   [
     { name: "submenu.rumsCollection", path: "/Our-Rums" },
-    { name: "submenu.arcaneExtraroma", path: "/our-rums/limited-editions" },
+    { name: "submenu.arcaneExtraroma", path: "/rum/1" },
+    { name: "submenu.arcaneFlamboyance", path: "/rum/2" },
+    { name: "submenu.arcaneAnanasRoti", path: "/rum/2" },
+    { name: "submenu.arcaneVanilleDesIles", path: "/rum/4" },
+    { name: "submenu.arcaneBananeFlambée", path: "/rum/5" },
   ],
   [
-    { name: "submenu.classicCocktails", path: "/cocktails/classic" },
-    { name: "submenu.signatureDrinks", path: "/cocktails/signature" },
-    { name: "submenu.seasonalSpecials", path: "/cocktails/seasonal" },
+
+    
   ],
   [
-    { name: "submenu.getInTouch", path: "/contact/get-in-touch" },
-    { name: "submenu.support", path: "/contact/support" },
+
+    
   ],
 ];
 

@@ -17,7 +17,8 @@ const CanvasContainer = ({ selectedBottle }) => {
     setRotationGroupRef,
   } = useModel();
 
-  const [currentBottle, setCurrentBottle] = useState(selectedBottle || 0);
+  const DEFAULT_BOTTLE = 0; // ID de la bouteille Extraroma
+  const [currentBottle, setCurrentBottle] = useState(selectedBottle || DEFAULT_BOTTLE);
   const rotationGroupRef = useRef();
   const [screenSize, setScreenSize] = useState("desktop");
 
@@ -39,15 +40,29 @@ const CanvasContainer = ({ selectedBottle }) => {
     return () => window.removeEventListener("resize", detectScreenSize);
   }, []);
 
-  // Récupérer la configuration actuelle de la bouteille
+  // Charger Extraroma si selectedBottle est null ou undefined
+  useEffect(() => {
+    if (selectedBottle === null || selectedBottle === undefined) {
+      setCurrentBottle(DEFAULT_BOTTLE);
+    } else {
+      setCurrentBottle(selectedBottle);
+    }
+  }, [selectedBottle]);
+
+   useEffect(() => {
+    if (selectedBottle === null || selectedBottle === undefined) {
+      setCurrentBottle(DEFAULT_BOTTLE);
+    } else {
+      setCurrentBottle(selectedBottle);
+    }
+  }, [selectedBottle]);
+
   const getBottleConfig = () => {
     const bottleConfig = bottlesConfig[currentBottle];
     if (!bottleConfig) {
       console.error(`Bouteille introuvable pour l'ID : ${currentBottle}`);
       return null;
     }
-
-    // Gestion des propriétés responsives
     const position =
       bottleConfig.responsivePositions?.[screenSize] || { x: 0, y: 0, z: 0 };
     const rotation =
@@ -55,13 +70,9 @@ const CanvasContainer = ({ selectedBottle }) => {
     const scale =
       bottleConfig.responsiveScales?.[screenSize] || { x: 1, y: 1, z: 1 };
 
-    return {
-      ...bottleConfig,
-      position,
-      rotation,
-      scale,
-    };
+    return { ...bottleConfig, position, rotation, scale };
   };
+
 
   // Appliquer les transformations initiales
   const applyInitialTransformations = (bottleConfig) => {

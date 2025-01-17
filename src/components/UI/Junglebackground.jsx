@@ -109,10 +109,11 @@ const Jungle = ({ isModelLoaded, position = "background" }) => {
        <img
          src="assets/jungle/fond-Arcane.webp"
          alt="Fond"
-         className="w-full "
+         className="w-full z-0 "
          style={{
-           objectFit: "contain", // Permet de voir l'image entière
+           objectFit: "cover", // Permet de voir l'image entière
            objectPosition: "center", // Centre l'image
+           minWidth:"1400px"
          }}
        />
      </div>
@@ -124,29 +125,30 @@ const Jungle = ({ isModelLoaded, position = "background" }) => {
       { 
         src: "assets/jungle/layer-feuilleGauche2.webp", 
         alt: "feuilleGauche2", 
-        className: "layer-feuilleGauche2 xl:w-[25%] sm:w-[45%]", 
+        className: "layer-feuilleGauche2 xl:w-[25%] md:w-[25%] sm:w-[45%] z-20", 
         style: { bottom: "0%", left: "0%" } 
       },
       { 
         src: "assets/jungle/layer-feuilleGauche.webp", 
         alt: "feuilleGauche", 
-        className: "layer-feuilleGauche xl:w-[25%] sm:w-[45%]", 
+        className: "layer-feuilleGauche xl:w-[25%] md:w-[25%] sm:w-[45%] z-20", 
         style: { bottom: "0%", left: "0%" } 
-      },   
-    ]
-    : [     
- 
-      { 
-        src: "assets/jungle/layer-rock.webp", 
-        alt: "rock", 
-        className: "layer-rock absolute xl:right-[0%] xl:bottom-[-8%] xl:w-[45vw] lg:right-[0%] lg:bottom-[-8%] md:w-[45vw] md:right-[0%] md:bottom-[10%] md:w-[50vw] sm:w-[70vw] sm:right-[0%] sm:bottom-[30%] sm:w-[50vw]",
-      },
+      }, 
       { 
         src: "assets/jungle/layer-plantFront.webp", 
         alt: "Plante 1", 
-        className: "layer-plante1", 
+        className: "layer-plante1 xl:w-[30%] md:w-[45%] sm:w-[80%] z-10", 
         style: { bottom: "0", left: "0%" } 
+      }, 
+    ]
+    : [     
+
+      { 
+        src: "assets/jungle/layer-rock.webp", 
+        alt: "rock", 
+        className: "layer-rock sm:hidden md:block absolute xl:right-[0%] xl:bottom-[-8%] md:bottom-[-1%] xl:w-[45vw] lg:w-[45vw] md:w-[70vw] lg:right-[0%] lg:bottom-[-8%] md:right-[0%] md:bottom-[-9%] sm:w-[70vw] sm:right-[0%] sm:bottom-[30%] sm:w-[50vw]",
       },
+  
 // { 
 //   src: "assets/jungle/layer-blur.webp", 
 //   alt: "blur", 
@@ -163,14 +165,15 @@ const Jungle = ({ isModelLoaded, position = "background" }) => {
         src: "assets/jungle/layer-ciel.webp", 
         alt: "Ciel", 
         className: "layer-ciel", 
+        responsiveClass: "",
         style: {  width:"100%", top: "0", left: "0%", transform: "translateY(-10%)" } 
       },
    
       { 
         src: "assets/jungle/layer-dodo.png",
         alt: "Dodo",
-        className: "layer-dodo absolutexl: w-[20%] xl:bottom-[15%] left-0 sm:bottom-[35%] xl:w-[25%]",
-        responsiveClass: "sm:translate-y-[-20% md:translate-y-[-5%] lg:translate-y-[-10%]",
+        className: "layer-dodo absolutexl: xl:w-[25%] lg:w-[30%] md:w-[40%] sm:w-[60%] xl:bottom-[15%] lg:bottom-[15%] md:bottom-[10%] left-0 sm:bottom-[25%] xl:w-[25%] ",
+        responsiveClass: "sm:translate-y-[-20%] md:translate-y-[-5%] lg:translate-y-[-10%]",
       }, 
 
     ]),

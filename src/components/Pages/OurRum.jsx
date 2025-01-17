@@ -1,105 +1,168 @@
-import React from "react";
+import React, { useEffect, useRef, useState } from "react";
+import { Link } from "react-router-dom";
+import rumData from "../rumData"
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+gsap.registerPlugin(ScrollTrigger);
 
 const RumPage = () => {
-  const rumData = [
-    {
-      id: 1,
-      image: "assets/thumbnail/BouteilleArcane_Extraroma_Quart.png",
-      title: "EXTRAROMA",
-      subtitle: "OUR FLAG BEARER",
-      description: "ANANAS ROTI A DELIGHTFUL TREAT",
-      background: "bg-[url('assets/sections/fondExtraroma.webp')]",
-    },
-    {
-      id: 2,
-      image: "assets/thumbnail/BouteilleArcane_Extraroma_Quart.png",
-      title: "Flamboyance",
-      subtitle: "OUR FLAG BEARER",
-      description: "ANANAS ROTI A DELIGHTFUL TREAT",
-      background: "bg-[url('assets/sections/fondFlamboyance.webp')]",
-    },
-    {
-      id: 3,
-      image: "assets/thumbnail/BouteilleArcane_Extraroma_Quart.png",
-      title: "EXTRAROMA",
-      subtitle: "OUR FLAG BEARER",
-      description: "ANANAS ROTI A DELIGHTFUL TREAT",
-      background: "bg-[url('/path-to-background/background3.png')]",
-    },
-    {
-      id: 4,
-      image: "assets/thumbnail/BouteilleArcane_Extraroma_Quart.png",
-      title: "EXTRAROMA",
-      subtitle: "OUR FLAG BEARER",
-      description: "ANANAS ROTI A DELIGHTFUL TREAT",
-      background: "bg-[url('/path-to-background/background4.png')]",
-    },
-    {
-      id: 5,
-      image: "assets/thumbnail/BouteilleArcane_Extraroma_Quart.png",
-      title: "EXTRAROMA",
-      subtitle: "OUR FLAG BEARER",
-      description: "ANANAS ROTI A DELIGHTFUL TREAT",
-      background: "bg-[url('/path-to-background/background5.png')]",
-    },
-  ];
+  const [isMobile, setIsMobile] = useState(false);
+  const sectionRefs = useRef([]);
+
+  useEffect(() => {
+    // Vérifie si l'écran est mobile
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 768); // Ajustez la largeur selon vos besoins
+    };
+
+    handleResize();
+    window.addEventListener("resize", handleResize);
+
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  useEffect(() => {
+    sectionRefs.current.forEach((section, index) => {
+      const texts = section.querySelectorAll(".text-content");
+      const image = section.querySelector(".bottle-image");
+
+      gsap.fromTo(
+        texts,
+        { opacity: 0, y: 20 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 1,
+          ease: "power3.out",
+          stagger: 0.2,
+          scrollTrigger: {
+            trigger: section,
+            start: "top 80%",
+            end: "bottom 20%",
+            toggleActions: "play none none reverse",
+          },
+        }
+      );
+
+      gsap.fromTo(
+        image,
+        { opacity: 0, scale: 0.8 },
+        {
+          opacity: 1,
+          scale: 1,
+          duration: 1.2,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: section,
+            start: "top 80%",
+            end: "bottom 20%",
+            toggleActions: "play none none reverse",
+          },
+        }
+      );
+    });
+
+    return () => {
+      ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
+    };
+  }, []);
 
   return (
-    <div className="w-full h-screen grid grid-rows-[1fr_1fr] gap-4 mt-0 p-0">
-      {/* Ligne du haut : Deux colonnes */}
-      <div className="grid xl:grid-cols-2 sm:grid-cols-1 gap-0">
-        {rumData.slice(0, 2).map((rum) => (
+    <section className="w-full">
+      {/* Première section : Extraroma et Flamboyance */}
+      <div className="w-full grid xl:grid-cols-2 sm:grid-cols-1">
+        {rumData.slice(0, 2).map((rum, idx) => (
           <div
             key={rum.id}
-            className={`relative flex ${rum.background} position-center bg-center p-10`}
+            ref={(el) => (sectionRefs.current[idx] = el)}
+            className="relative flex flex-col items-center justify-center h-screen sm:h-screen sm:min-h-screen overflow-hidden"
+            style={{ background: rum.gradient }}
           >
-            <div className="absolute inset-0 bg-black/30"></div> {/* Overlay */}
-            <div className="relative z-10 flex items-center justify-start w-full h-screen p-0 text-white">
-              {/* Bouteille */}
+            {/* Pattern d'arrière-plan */}
+            <div
+              className="absolute mb-44 inset-0 bg-contain bg-center xl:opacity-80 sm:opacity-50"
+              style={{
+                backgroundImage: `url(${rum.pattern})`,
+                backgroundRepeat: "no-repeat",
+                backgroundSize: "40%",
+              }}
+            ></div>
+
+            {/* Contenu principal */}
+            <div className="relative z-10 flex flex-col items-center text-center px-4 sm:space-y-4">
               <img
                 src={rum.image}
                 alt={rum.title}
-                className="w-[30%] object-contain"
+                className="bottle-image object-contain drop-shadow-lg mb-4"
+                style={{
+                  width: isMobile ? "30vw" : "20vw",
+                  maxWidth: isMobile ? "200px" : "150px",
+                }}
               />
-              {/* Texte */}
-              <div className="ml-10">
-                <h2 className="text-4xl lg:text-3xl sm:text-2xl font-bold">{rum.title}</h2>
-                <p className="text-2xl font-semibold">{rum.subtitle}</p>
-                <p className="text-1xl mt-1">{rum.description}</p>
-                <button className="btn-animated mt-4 self-start bg-white text-black px-4 py-2 rounded-md">En Savoir PLus</button>
-              </div>
+              <h2 className="text-gold xl:text-4xl font-bold mb-2 text-content sm:text-2xl">
+                {rum.title}
+              </h2>
+              <p className="text-white text-lg text-content sm:text-sm">
+                {rum.description}
+              </p>   
+              <Link to={`/rum/${rum.id}`} >
+                <button className="highlight-button btn-animated cursor-pointer">
+                  EN SAVOIR PLUS
+                </button>
+              </Link>
+           
             </div>
           </div>
         ))}
       </div>
 
-      {/* Ligne du bas : Trois colonnes */}
-      <div className="grid xl:grid-cols-3 sm:grid-cols-1 gap-4">
-        {rumData.slice(2).map((rum) => (
+      {/* Deuxième section : Arrangés */}
+      <div className="w-full grid xl:grid-cols-3 sm:grid-cols-1">
+        {rumData.slice(2).map((rum, idx) => (
           <div
             key={rum.id}
-            className={`relative flex ${rum.background} bg-contain bg-center p-0`}
+            ref={(el) => (sectionRefs.current[idx + 2] = el)}
+            className="relative flex flex-col items-center justify-center h-screen sm:h-screen sm:min-h-screen overflow-hidden"
+            style={{ background: rum.gradient }}
           >
-            <div className="absolute inset-0 bg-black/20"></div> {/* Overlay */}
-            <div className="relative z-10 flex items-center justify-center w-full h-full p-4 text-white">
-              {/* Bouteille */}
+            {/* Pattern d'arrière-plan */}
+            <div
+              className="absolute mb-44 inset-0 bg-contain bg-center xl:opacity-80 sm:opacity-50"
+              style={{
+                backgroundImage: `url(${rum.pattern})`,
+                backgroundRepeat: "no-repeat",
+                backgroundSize: "55%",
+              }}
+            ></div>
+
+            {/* Contenu principal */}
+            <div className="relative z-10 flex flex-col items-center text-center px-4 sm:space-y-4">
               <img
                 src={rum.image}
                 alt={rum.title}
-                className="w-[40%] object-contain"
+                className="bottle-image object-contain drop-shadow-lg mb-4"
+                style={{
+                  width: isMobile ? "30vw" : "20vw",
+                  maxWidth: isMobile ? "200px" : "150px",
+                }}
               />
-              {/* Texte */}
-              <div className="ml-4">
-                <h2 className="text-lg md:text-xl font-bold">{rum.title}</h2>
-                <p className="text-sm md:text-md font-semibold">{rum.subtitle}</p>
-                <p className="text-xs md:text-sm mt-1">{rum.description}</p>
-                <button className="btn-animated mt-4 self-start bg-white text-black px-4 py-2 rounded-md">En Savoir PLus</button>
-              </div>
+              <h2 className="text-gold xl:text-3xl font-bold mb-2 text-content sm:text-xl">
+                {rum.title}
+              </h2>
+              <p className="text-white text-md text-content sm:text-sm">
+                {rum.description}
+              </p>
+              <Link to={`/rum/${rum.id}`} >
+                <button className="highlight-button btn-animated cursor-pointer">
+                  EN SAVOIR PLUS
+                </button>
+              </Link>
             </div>
           </div>
         ))}
       </div>
-    </div>
+    </section>
   );
 };
 

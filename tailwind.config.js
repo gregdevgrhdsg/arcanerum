@@ -1,10 +1,22 @@
 /** @type {import('tailwindcss').Config} */
 export default {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx,css}"], // Parcours tous les fichiers pertinents
+  mode: "jit",
   theme: {
     extend: {
+      keyframes: {
+        gradientMove: {
+          '0%': { backgroundPosition: '0% 50%' },
+          '50%': { backgroundPosition: '100% 50%' },
+          '100%': { backgroundPosition: '0% 50%' },
+        },
+      },
+      animation: {
+        gradientMove: 'gradientMove 3s ease-in-out infinite',
+      },
       backgroundImage: {
         'fond-arcane': "url('/assets/jungle/fond-Arcane.webp')",
+        'gold-linear': "linear-gradient(to right, #B07C41, #FCCF87)", // Dégradé doré
       },
       colors: {
         gold: "#DAB47A", // Couleur dorée

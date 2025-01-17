@@ -1,212 +1,201 @@
-import React, { useEffect } from "react";
-import { Link, useLocation } from "react-router-dom"; // Assurez-vous que useLocation est importé
+import React, { useState, useRef, useEffect } from "react";
+import { useTranslation } from "react-i18next";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 gsap.registerPlugin(ScrollTrigger);
 
 const KnowHow = () => {
-  const location = useLocation(); // Récupère l'emplacement actuel
-  
-  useEffect(() => {
-    // Nettoyer les anciens ScrollTriggers au montage
-    ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
+  const [currentStep, setCurrentStep] = useState(0);
+  const imageRef = useRef(null);
+  const section1Ref = useRef(null);
+  const panoramaRef = useRef(null);
+  const { t } = useTranslation(); // Initialisation du hook
 
-    gsap.utils.toArray(".highlight-title, .highlight-description, .highlight-button").forEach((element) => {
+  const timelineSteps = [
+    {
+      img: "assets/sections/harvest.webp",
+      monogram: "assets/monograms/step1.webp", // Monogramme pour l'étape 1
+      title: t("know_how.sugarcane_harvest.title"),
+      description: t("know_how.sugarcane_harvest.description"),
+    },
+    {
+      img: "assets/sections/crushing.webp",
+      monogram: "assets/monograms/step2.webp", // Monogramme pour l'étape 2
+      title: t("know_how.sugarcane_crushing.title"),
+      description: t("know_how.sugarcane_crushing.description"),
+    },
+    {
+      img: "assets/sections/aging.jpg",
+      monogram: "assets/monograms/step3.webp", // Monogramme pour l'étape 3
+      title: t("know_how.fermentation_process.title"),
+      description: t("know_how.fermentation_process.description"),
+    },
+    {
+      img: "assets/sections/distilation.webp",
+      monogram: "assets/monograms/step4.webp", // Monogramme pour l'étape 4
+      title: t("know_how.distillation.title"),
+      description: t("know_how.distillation.description"),
+    },
+    {
+      img: "assets/sections/aging.webp",
+      monogram: "assets/monograms/step5.webp", // Monogramme pour l'étape 5
+      title: t("know_how.aging.title"),
+      description: t("know_how.aging.description"),
+    },
+  ];
+
+  // Animation d'entrée pour la section 1
+  useEffect(() => {
+    const section1Elements = section1Ref.current?.querySelectorAll(
+      ".section1-animated"
+    );
+    if (section1Elements) {
       gsap.fromTo(
-        element,
-        { opacity: 0, x: 50, },
+        section1Elements,
+        { opacity: 0, y: 50 },
         {
           opacity: 1,
-          x: 0,
+          y: 0,
           duration: 1,
-          ease: "power2.out",
-          stagger: 0.2,
+          stagger: 0.3,
+          ease: "power3.out",
           scrollTrigger: {
-            trigger: element,
+            trigger: section1Ref.current,
             start: "top 80%",
             end: "bottom 20%",
             toggleActions: "play none none reverse",
           },
         }
       );
-    });
+    }
+  }, []);
 
-        // Animation des étapes de la timeline (images et flèches)
-        const timelineSteps = gsap.utils.toArray(".timeline-step");
-        timelineSteps.forEach((step, index, steps) => {
-          gsap.fromTo(
-            step,
-            { opacity: 0.5, scale: 0.8 },
-            {
-              opacity: 1,
-              scale: 1,
-              scrollTrigger: {
-                trigger: step,
-                start: "top 80%",
-                end: "top 50%",
-                scrub: true,
-              },
-            }
-          );
-    
-    // Animation des textes dans les sections
-    const animateTexts = gsap.utils.toArray(".text-animated");
-    animateTexts.forEach((text) => {
+  // Animation sur le panorama
+  useEffect(() => {
+    const panoramaElements = panoramaRef.current?.querySelectorAll(
+      ".panorama-animated"
+    );
+    if (panoramaElements) {
       gsap.fromTo(
-        text,
-        { opacity: 0, y: 20 },
+        panoramaElements,
+        { opacity: 0, y: 50 },
         {
           opacity: 1,
           y: 0,
           duration: 1,
+          stagger: 0.3,
+          ease: "power3.out",
           scrollTrigger: {
-            trigger: text,
+            trigger: panoramaRef.current,
             start: "top 80%",
-            end: "bootom 20%",
+            end: "bottom 20%",
             toggleActions: "play none none reverse",
           },
         }
       );
-    });
+    }
+  }, [currentStep]);
 
-
-      // Ajouter des animations pour les flèches
-      if (index < steps.length - 1) {
-        const arrow = step.nextElementSibling;
-        if (arrow) {
-          gsap.fromTo(
-            arrow,
-            { opacity: 0, y: -20 },
-            {
-              opacity: 1,
-              y: 0,
-              duration: 0.5,
-              ease: "power2.out",
-              scrollTrigger: {
-                trigger: step,
-                start: "top 50%",
-                end: "top 30%",
-                toggleActions: "play none none reverse",
-              },
-            }
-          );
-        }
-      }
-    });
-
-    // Nettoyer les ScrollTriggers à la suppression du composant
-    return () => {
-      ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
-    };
-  }, [location.pathname]); // Réexécuter lorsque l'emplacement change
+  // Animation GSAP pour les images
+  useEffect(() => {
+    if (imageRef.current) {
+      gsap.fromTo(
+        imageRef.current,
+        { opacity: 0, scale: 0.95 },
+        { opacity: 1, scale: 1, duration: 0.8, ease: "power2.out" }
+      );
+    }
+  }, [currentStep]);
 
   return (
-    <div className="know-how-container absolute w-full h-full">
-      <div className="content-container">
-        {/* Section 1 : Intro */}
-        <section className="h-screen flex flex-col items-center justify-center bg-transparent">
+    <div className="know-how-container w-full h-full">
+      {/* Section 1 */}
+      <section
+        ref={section1Ref}
+        className="h-screen flex flex-col items-center justify-center bg-transparent"
+      >
         <div
-              className="h-screen w-full relative flex items-center justify-center"
-              style={{
-                backgroundImage: "url('assets/sections/aging.jpg')",
-                backgroundSize: "cover",
-                backgroundPosition: "center",
-              }}
-            >
+          className="h-screen w-full relative flex items-center justify-center"
+          style={{
+            backgroundImage: "url('assets/sections/aging.jpg')",
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+          }}
+        >
           <div className="text-center xl:max-w-[40vw] md:max-w-[40vw] sm:max-w-[90vw] z-10">
-            <p className="text-animated highlight-description font-yana text-gold xl:text-2xl sm:text-sm mb-6">
-              Arcane Rum
+            <p className="section1-animated font-yana text-gold xl:text-2xl sm:text-sm mb-6">
+              {t("know_how.section1.subtitle")}
             </p>
-            <h2 className="text-animated highlight-title ont-yana text-gold mb-5 xl:text-4xl lg:text-3xl md:text-3xl sm:text-2xl">
-              THE ALCHEMY OF DISTILLATION
+            <h2 className="section1-animated font-yana font-bold text-gold mb-5 xl:text-4xl lg:text-3xl md:text-3xl sm:text-2xl">
+              {t("know_how.section1.title")}
             </h2>
-            <p className="text-animated highlight-description font-yana text-white xl:text-xl sm:text-sm mb-6">
-              Arcane distills pure, freshly pressed sugarcane juice close to cutting time to preserve its vibrant flavors. This ensures that the rum captures the full aromatic essence of the cane.
+            <p className="section1-animated font-yana text-white xl:text-xl sm:text-sm mb-6">
+              {t("know_how.section1.description")}
             </p>
           </div>
           <div className="absolute top-0 left-0 w-full h-full bg-black/50 z-0"></div>
-          </div>
-        </section>
-   {/* Section 3 : Process */}
-   <section className="h-screen flex flex-col items-center justify-center bg-transparent">
-        <div
-              className="h-screen w-full relative flex items-center justify-center"
-              style={{
-                backgroundImage: "url('assets/sections/distilation.webp')",
-                backgroundSize: "cover",
-                backgroundPosition: "center",
-              }}
-            >
-          <div className="text-center xl:max-w-[40vw] md:max-w-[40vw] sm:max-w-[60vw] z-10">
-            <h2 className="text-animated highlight-title font-yana text-gold mb-5 xl:text-5xl sm:text-2xl">
-              A DYNAMIC MATURATION
-            </h2>
-            <p className="text-animated highlight-description font-yana text-white xl:text-xl sm:text-sm mb-6">
-              Aged in French and American oak barrels, Arcane rums benefit from Mauritius’ tropical climate. Dynamic temperature variations speed up maturation, creating complex, opulent flavors in a shorter period.
-            </p>
-          </div>
-          <div className="absolute top-0 left-0 w-full h-full bg-black/50 z-0"></div>
-          </div>
-        </section>
+        </div>
+      </section>
 
-        {/* Section 2 : Timeline avec textes alternés */}
-        <section className="timeline-container relative w-full min-h-screen bg-black text-white font-yana flex flex-col items-center py-20">
-          {[
-            { img: "sugarcaneHarvest.webp", label: "Sugarcane Harvest" },
-            { img: "sugarcaneCrushing.webp", label: "Sugarcane Crushing" },
-            { img: "fermentationProcess.webp", label: "Fermentation Process" },
-            { img: "distillation.webp", label: "Distillation" },
-            { img: "aging.webp", label: "Aging" },
-          ].map((step, index) => (
-            <React.Fragment key={index}>
-              <div
-                className={`timeline-step relative flex items-center justify-center w-full mb-0                 }`}
-              >
-                <div className="flex justify-center items-center w-1/2">
-                  <img
-                    src={`assets/icon/${step.img}`}
-                    alt={step.label}
-                    className="w-[400px] h-auto object-contain"
-                  />
-                </div>
+     {/* Panorama Section */}
+<section
+  ref={panoramaRef}
+  className="h-screen flex flex-col items-center justify-center bg-black text-white relative"
+>
 
-                <div
-                  className=" w-1/3 px-6 font-yana text-animated text-3xl flex items-center "
-                   
-                  
-                >
-                  <p className="font-yana max-w-sm">{step.label}</p>
-                </div>
-              </div>
+  {/* Image et contenu */}
+  <div
+    ref={imageRef}
+    className="absolute inset-0 transition-transform"
+    style={{
+      backgroundImage: `url(${timelineSteps[currentStep].img})`,
+      backgroundSize: "cover",
+      backgroundPosition: "center",
+    }}
+  ></div>
+  <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-black opacity-80"></div>
+  
+  {/* Texte centré verticalement */}
+<div className="z-10 flex flex-col justify-center items-center text-center h-full xl:max-w-[50vw] md:max-w-[40vw] sm:max-w-[90vw] px-6">
+  {/* Barre d'étapes positionnée au-dessus des images */}
+  <div className="w-full py-4 text-center z-10 relative flex flex-col items-center justify-center">
+    <h1 className="text-4xl text-gold font-yana mt-4 mb-2 font-bold">
+      DIVING INTO OUR <br /> PROCESS
+    </h1>
+    <div className="flex justify-center space-x-6 max-w-5xl mx-auto">
+      {timelineSteps.map((_, index) => (
+        <button
+          key={index}
+          className={`px-4 py-2 text-lg transition-all duration-300 ${
+            currentStep === index
+              ? "bg-gold text-black"
+              : "text-white hover:bg-gold hover:text-black"
+          }`}
+          onClick={() => setCurrentStep(index)}
+        >
+          {t("know_how.step", { step: index + 1 })}
+        </button>
+      ))}
+    </div>
+  </div>
 
-              {index < 4 && (
-                <div className="timeline-arrow flex justify-center items-center w-full mb-10">
-                  <span className="arrow-icon text-gold text-4xl">↓</span>
-                </div>
-              )}
-            </React.Fragment>
-          ))}
-        </section>
+  {/* Monogramme */}
+  <img
+    src={timelineSteps[currentStep].monogram}
+    alt={`Monogram for step ${currentStep + 1}`}
+    className="panorama-animated w-20 h-20 my-6 object-contain"
+  />
 
-        {/* Section 4 : Call-to-action */}
-        <section className="h-screen flex flex-col items-center justify-center bg-transparent">
-          <div className="text-center xl:max-w-[40vw] md:max-w-[40vw] sm:max-w-[60vw]">
-            <h2 className="text-animated highlight-title font-yana text-gold mb-5 xl:text-5xl sm:text-2xl">
-              JOIN THE EXPERIENCE
-            </h2>
-            <p className="text-animated highlight-description font-yana text-white xl:text-xl sm:text-sm mb-6">
-              Explore the full range of Arcane rums and discover the spirit of Mauritius through every sip.
-            </p>
-            <Link
-              to="/products"
-              className="highlight-button bg-gold text-black px-6 py-3 rounded-full mt-6 text-animated"
-            >
-              Discover More
-            </Link>
-          </div>
-        </section>
-      </div>
+  <h2 className="panorama-animated mt-4 font-yana text-gold mb-5 xl:text-4xl lg:text-3xl md:text-3xl sm:text-2xl">
+    {timelineSteps[currentStep].title}
+  </h2>
+  <p className="panorama-animated font-yana text-white xl:text-xl sm:text-sm mb-6">
+    {timelineSteps[currentStep].description}
+  </p>
+</div>
+  <div className="absolute top-0 left-0 w-full h-full bg-black/50 z-0"></div>
+</section>
     </div>
   );
 };

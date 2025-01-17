@@ -11,6 +11,7 @@ const BottleSlider = forwardRef(({ bottles, onBottleChange, selectedBottle, onBu
   const sliderContentRef = useRef(null);
   const isAnimating = useRef(false);
   const [currentSlide, setCurrentSlide] = useState(selectedBottle);
+  const DEFAULT_BOTTLE = 0; // ID ou index de Extraroma
 
   const { rotationGroupRef } = useModel();
 
@@ -29,24 +30,6 @@ const BottleSlider = forwardRef(({ bottles, onBottleChange, selectedBottle, onBu
             ease: "power2.out",
           }
         );
-
-        // Animation pour les éléments internes avec stagger
-        if (sliderContentRef.current) {
-          const sliderElements = sliderContentRef.current.querySelectorAll(".slider-content > *");
-          if (sliderElements.length) {
-            gsap.fromTo(
-              sliderElements,
-              { opacity: 0, y: 50 },
-              {
-                opacity: 1,
-                y: 0,
-                duration: 1,
-                ease: "power2.out",
-                stagger: 0.2,
-              }
-            );
-          }
-        }
       }
     },
   }));
@@ -66,6 +49,11 @@ const BottleSlider = forwardRef(({ bottles, onBottleChange, selectedBottle, onBu
       });
     });
   };
+
+    // Revenir à Extraroma en dehors du slider
+    const resetToDefaultBottle = () => {
+      onBottleChange(DEFAULT_BOTTLE);
+    };  
 
   const rotateBottle = (rotationGroup, onComplete) => {
     if (!rotationGroup) return;
@@ -112,6 +100,7 @@ const BottleSlider = forwardRef(({ bottles, onBottleChange, selectedBottle, onBu
     <div
       className="relative w-full h-screen overflow-visible flex justify-center items-center"
       ref={sliderContainerRef}
+      onMouseLeave={resetToDefaultBottle}
     >
       {/* Slider Principal avec max-w-6xl */}
       <div
@@ -149,40 +138,52 @@ const BottleSlider = forwardRef(({ bottles, onBottleChange, selectedBottle, onBu
         &rarr;
       </button>
       
-      {/* Miniatures des Bouteilles */}
-      <div className="absolute bottom-20 left-1/2 transform -translate-x-1/2 flex flex-wrap xl:justify-start sm:justify-center items-center space-x-4 sm:space-x-5 md:space-x-4 z-10 w-full max-w-6xl mx-auto">
-        {bottles.map((bottle, index) => (
-          <div
-            key={bottle.id}
-            className={`cursor-pointer transition-transform ${
-              currentSlide === index ? "scale-110" : "opacity-50"
-            }`}
-            style={{
-              backgroundImage: `url(${bottle.thumbnail || ""})`,
-              backgroundSize: "contain",
-              backgroundPosition: "center",
-              backgroundRepeat: "no-repeat",
-              width: "clamp(50px, 8vw, 100px)",
-              height: "clamp(10px, 12vw, 200px)",
-              boxShadow:
-                currentSlide === index
-                  ? "0 0 20px 7px rgba(212, 175, 55, 0.7)"
-                  : "none",
-              borderRadius: "10px",
-              transition: "box-shadow 0.3s ease, transform 0.3s ease",
-              padding: "3px",
-            }}
-            onClick={() => handleSlideChange(index)}
-            onMouseEnter={(e) =>
-              gsap.to(e.currentTarget, { scale: 1.2, duration: 0.3 })
-            }
-            onMouseLeave={(e) =>
-              gsap.to(e.currentTarget, { scale: 1, duration: 0.3 })
-            }
+       {/* Miniatures des Bouteilles */}
+  <div className="absolute bottom-10 left-1/2 transform -translate-x-1/2 flex flex-wrap xl:justify-start sm:justify-center items-center xl:space-x-4 sm:space-x-4 md:space-x-28 z-10 w-full max-w-6xl mx-auto">
+    {bottles.map((bottle, index) => (
+      <div
+        key={bottle.id}
+        className={`relative cursor-pointer transition-transform ${
+          currentSlide === index ? "scale-110" : "opacity-60"
+        }`}
+        style={{
+          width: "clamp(50px, 8vw, 100px)",
+          height: "clamp(100px, 20vw, 200px)",
+        }}
+        onClick={() => handleSlideChange(index)}
+        onMouseEnter={(e) => gsap.to(e.currentTarget, { scale: 1.2, duration: 0.3 })}
+        onMouseLeave={(e) => gsap.to(e.currentTarget, { scale: 1, duration: 0.3 })}
+      >
+        {/* Image de la bouteille */}
+        <div
+    className="absolute inset-0"
+    style={{
+      backgroundImage: `url(${bottle.thumbnail || ""})`,
+      backgroundSize: "contain",
+      backgroundPosition: "center",
+      backgroundRepeat: "no-repeat",
+      zIndex: 10, // La bouteille reste au-dessus
+    }}
+  />
+
+  {/* Halo ajusté */}
+  {currentSlide === index && (
+    <div
+      className="absolute inset-0"
+      style={{
+        zIndex: 0, // Derrière la bouteille
+        backgroundImage: "url(/assets/thumbnail/lueurBottle.webp)",
+        backgroundSize: "contain",
+        backgroundPosition: "center",
+        backgroundRepeat: "no-repeat",
+        transform: `scale(${345 / 300})`, // Ratio largeur du halo / largeur du thumbnail
+      }}
           />
-        ))}
+        )}
       </div>
-    </div>
+    ))}
+  </div>
+</div>
   );
 });
 

@@ -18,51 +18,52 @@ const SliderSection = ({ slider }) => {
   const bulletsRef = useRef([]);
   const [currentIndex, setCurrentIndex] = useState(0);
 
-  const slides = slider.slides; // Tableau des contenus des slides
+  const slides = slider.slides;
 
   useEffect(() => {
-    console.log('Slides:', slides); // Pour déboguer
-
     if (!slidesRef.current || slidesRef.current.length === 0) {
       console.warn('Aucun slide trouvé pour GSAP.');
       return;
     }
 
-    // Initialisation des animations GSAP pour les slides
+    // Initialisation des animations pour le slide actif
     gsap.set(slidesRef.current, { opacity: 0, y: 20 });
     gsap.to(slidesRef.current[currentIndex], {
       opacity: 1,
       y: 0,
       duration: 1,
-      ease: 'power2.out',
+      ease: 'power2.inOut',
     });
 
-    // Nettoyage des animations au démontage
     return () => {
       gsap.killTweensOf(slidesRef.current[currentIndex]);
     };
   }, [currentIndex, slides]);
 
-  const handleBulletClick = (index) => {
+  const handleSlideChange = (index) => {
     if (index !== currentIndex) {
-      // Animer la slide actuelle en sortie
       gsap.to(slidesRef.current[currentIndex], {
         opacity: 0,
         y: 20,
-        duration: 0.5,
-        ease: 'power2.in',
-        stagger: 0.3,
+        duration: 1,
+        ease: 'power2.inOut',
       });
 
-      // Mettre à jour l'index après l'animation
       setTimeout(() => {
         setCurrentIndex(index);
       }, 500); // Correspond à la durée de l'animation de sortie
     }
   };
 
+  const handleArrowClick = (direction) => {
+    const newIndex = (currentIndex + direction + slides.length) % slides.length;
+    handleSlideChange(newIndex);
+  };
+
   return (
-    <section className={`h-screen flex flex-col items-center bg-transparent slide-${slider.id}`}>
+    <section
+      className={`h-screen flex flex-col items-star bg-transparent slide-${slider.id}`}
+    >
       <div
         className={`h-full w-full relative flex ${slider.flexClasses}`}
         style={{
@@ -71,13 +72,11 @@ const SliderSection = ({ slider }) => {
           backgroundPosition: 'center',
         }}
       >
-        {/* Conteneur Principal avec largeur ajustée */}
         <div className={`text-center z-10 ${slider.containerClass}`}>
-          <p className="highlight-title font-yana text-gold xl:text-5xl lg:text-1xl md:text-xl sm:text-sm mb-3">
+          <h2 className="highlight-title font-yana font-bold text-gold xl:text-4xl lg:text-1xl md:text-xl sm:text-sm mb-3">
             {slider.title}
-          </p>
-          <div className="slider-container relative w-[80%] mx-auto py-10 px-4">
-            {/* Slides */}
+          </h2>
+          <div className="slider-container relative w-[100%] mx-auto">
             <div className="slides font-yana relative h-80 flex items-center justify-center">
               {slides.map((slide, index) => (
                 <div
@@ -87,27 +86,34 @@ const SliderSection = ({ slider }) => {
                     index === currentIndex ? 'opacity-100 z-10' : 'opacity-0 z-0'
                   }`}
                 >
-                  <p className="highlight-description text-center font-yana text-lg text-white">
+                  <p className="highlight-description pl-20 pr-20 font-yana text-white xl:text-xl lg:text-1xl md:1xl sm:text-sm"
+                    style={{ whiteSpace: "pre-line" }} // Permet d’interpréter les \n
+                    >
                     {slide}
                   </p>
                 </div>
               ))}
             </div>
 
-            {/* Bullets */}
-            <div className="bullets flex justify-center cursor-pointer mt-4 space-x-2">
-              {slides.map((_, index) => (
-                <button
-                  key={index}
-                  ref={(el) => (bulletsRef.current[index] = el)}
-                  onClick={() => handleBulletClick(index)}
-                  className={`w-3 h-3 rounded-full transition-all duration-300 ${
-                    index === currentIndex ? 'bg-gold scale-125' : 'bg-gray-400'
-                  } focus:outline-none focus:ring-2 focus:ring-gold`}
-                  aria-label={`Go to slide ${index + 1}`}
-                ></button>
-              ))}
+            {/* Flèches de navigation */}
+            <div className="flex justify-between items-center absolute top-1/2 transform -translate-y-1/2 w-full px-4 z-[100]">
+              <button
+                className="text-gold text-6xl hover:text-gold"
+                onClick={() => handleArrowClick(-1)}
+                aria-label="Previous slide"
+              >
+                &larr;
+              </button>
+              <button
+                className="text-gold text-6xl hover:text-gold"
+                onClick={() => handleArrowClick(1)}
+                aria-label="Next slide"
+              >
+                &rarr;
+              </button>
             </div>
+
+
           </div>
         </div>
         <div className="absolute top-0 left-0 w-full h-full bg-black/50 z-0"></div>
@@ -134,21 +140,19 @@ const OurUniverse = () => {
       ],
       backgroundImage: '/assets/sections/volcanic.webp',
       buttonText: t('button_discover_more'),
-      flexClasses: 'xl:justify-end sm:justify-center xl:items-center sm:items-center', // Alignement spécifique
-      containerClass: 'xl:w-[50vw] md:max-w-[60vw] sm:w-[80vw] xl:pr-40', // Disposition spécifique
+      flexClasses: 'xl:justify-start sm:justify-center xl:items-center sm:items-center', // Alignement spécifique
+      containerClass: 'xl:w-[50vw] md:max-w-[60vw] sm:w-[80vw] xl:pl-40', // Disposition spécifique
     },
     {
       id: 2,
       title: t('ourUniverse.slide2Title'),
       slides: [
         t('ourUniverse.slide2Content1'),
-        t('ourUniverse.slide2Content2'),
-        t('ourUniverse.slide2Content3'),
       ],
       backgroundImage: '/assets/sections/volcanicShape.webp',
       buttonText: t('button_discover_more'),
-      flexClasses: 'xl:justify-left sm:justify-start xl:items-center sm:items-center', // Alignement spécifique pour la section 2
-      containerClass: 'xl:w-[50vw] md:max-w-[50vw] sm:w-[80vw] xl:pl-40', // Disposition spécifique
+      flexClasses: 'xl:justify-end sm:justify-start xl:items-center sm:items-center', // Alignement spécifique pour la section 2
+      containerClass: 'xl:w-[50vw] md:max-w-[50vw] sm:w-[80vw] xl:pr-40', // Disposition spécifique
     },
     {
       id: 3,
@@ -160,8 +164,8 @@ const OurUniverse = () => {
       ],
       backgroundImage: '/assets/sections/territory.webp',
       buttonText: t('button_discover_more'),
-      flexClasses: 'xl:justify-end sm:justify-left xl:items-center sm:items-center', // Alignement spécifique
-      containerClass: 'xl:w-[50vw] md:max-w-[50vw] sm:w-[80vw] xl:pr-40', // Disposition spécifique
+      flexClasses: 'xl:justify-start sm:justify-left xl:items-center sm:items-center', // Alignement spécifique
+      containerClass: 'xl:w-[50vw] md:max-w-[50vw] sm:w-[80vw] xl:pl-40', // Disposition spécifique
     },
     // Ajoutez plus de sliders si nécessaire
   ], [t]);

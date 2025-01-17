@@ -1,10 +1,14 @@
-// src/App.jsx
 import React from "react";
-import LayoutWithCanvas from './LayoutWithCanvas';
+import Navbar from "./components/UI/Navbar"; // Assurez-vous du chemin correct
+import Footer from "./components/UI/Footer"; // Assurez-vous du chemin correct
+import LayoutWithCanvas from "./LayoutWithCanvas";
 
 function App() {
   return (
-    <LayoutWithCanvas />
+    <div className="app-container">
+      <Navbar />
+      <LayoutWithCanvas />
+    </div>
   );
 }
 

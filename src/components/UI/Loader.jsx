@@ -16,6 +16,13 @@ const Loader = ({ progress }) => {
 
   return (
     <div className="loader-container fixed top-0 left-0 w-full h-full bg-black flex flex-col justify-center items-center z-[70]">
+      {/* Ajout du logo */}
+      <img
+        src="/assets/monogramArcane.png" // Remplace par le chemin de ton logo
+        alt="Logo"
+        className="w-24 h-24 mb-4 object-contain"
+      />
+
       <div className="text-white mb-4">Chargement...</div>
       <div className="w-1/2 h-2 bg-gray-700">
         <div
