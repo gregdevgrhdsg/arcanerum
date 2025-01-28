@@ -63,7 +63,7 @@ const LayoutWithCanvas = () => {
                   setIsAnimationDone(true); // Cache le rideau après l'animation
                 },
               });
-            },);
+            }, 2000);
           }
         }, 200);
       } else {

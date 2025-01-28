@@ -15,7 +15,7 @@ export const bottlesConfig = (t) => [
     },
     responsiveRotations: {
       mobile: { x: 0.2, y: -0.2, z: -0.2 },
-      tablet: { x: 0, y: 0, z: 0 },
+      mobile: { x: 0.2, y: -0.2, z: -0.2 },
       desktop: { x: 0, y: 0, z: 0 },
     },
     responsiveScales: {
@@ -38,7 +38,7 @@ export const bottlesConfig = (t) => [
     },
     responsiveRotations: {
       mobile: { x: 0.2, y: -0.2, z: -0.2 },
-      tablet: { x: 0, y: 0, z: 0 },
+      mobile: { x: 0.2, y: -0.2, z: -0.2 },
       desktop: { x: 0, y: 0, z: 0 },
     },
     responsiveScales: {
@@ -61,7 +61,7 @@ export const bottlesConfig = (t) => [
     },
     responsiveRotations: {
       mobile: { x: 0.2, y: -0.2, z: -0.2 },
-      tablet: { x: 0, y: 0, z: 0 },
+      mobile: { x: 0.2, y: -0.2, z: -0.2 },
       desktop: { x: 0, y: 0, z: 0 },
     },
     responsiveScales: {
@@ -84,7 +84,7 @@ export const bottlesConfig = (t) => [
     },
     responsiveRotations: {
       mobile: { x: 0.2, y: -0.2, z: -0.2 },
-      tablet: { x: 0, y: 0, z: 0 },
+      mobile: { x: 0.2, y: -0.2, z: -0.2 },
       desktop: { x: 0, y: 0, z: 0 },
     },
     responsiveScales: {
@@ -107,7 +107,7 @@ export const bottlesConfig = (t) => [
     },
     responsiveRotations: {
       mobile: { x: 0.2, y: -0.2, z: -0.2 },
-      tablet: { x: 0, y: 0, z: 0 },
+      mobile: { x: 0.2, y: -0.2, z: -0.2 },
       desktop: { x: 0, y: 0, z: 0 },
     },
     responsiveScales: {

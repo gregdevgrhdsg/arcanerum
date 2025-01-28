@@ -148,7 +148,7 @@
 }, [isModelLoaded]);
 
     return (
-      <div ref={containerRef} className="home-container absolute xl:w-full h-full sm:w-full">
+      <div ref={containerRef} className="home-container absolute xl:w-full xl:h-auto sm:w-full sm:h-auto">
         {/* Sections de Contenu */}
         <div className="content-container">
           {/* Zone 2 */}
@@ -214,7 +214,7 @@
               <button className="highlight-button btn-animated">{t('home.zone5.button')}</button>
               </Link>
             </div>
-            <div className="jungle-el-section absolute xl:bottom-[8%] sm:bottom-[16%] xl:left-[30%] md:left-[20%] sm:left-[15%] xl:w-[13vw] md:w-[20vw] sm:w-[25vw] z-0">
+            <div className="jungle-el-section absolute xl:bottom-[8%] sm:bottom-[16%] xl:left-[30%] md:left-[20%] sm:left-[15%] xl:w-[13vw] md:w-[25vw] sm:w-[35vw] z-0">
               <img src="assets/cocktails/cocktailTest.webp" alt="cocktail" className="w-full h-full object-contain z-0" />
             </div>
             <div className="jungle-el-section absolute xl:bottom-[60%] sm:bottom-[80%] xl:left-[10%] md:left-[20%] sm:left-[15%] xl:w-[5vw] md:w-[20vw] sm:w-[10vw] z-0">

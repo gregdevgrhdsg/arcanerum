@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { logoArcane } from "../../utils/index";
+import { logoArcane, monoGramLogo } from "../../utils/index";
 import { navLists, subMenuLinks } from "../../Constants/index";
 import LanguageSwitcher from "./LanguageSwitcher";
 import { FiChevronDown } from "react-icons/fi";
@@ -186,8 +186,8 @@ const Navbar = () => {
         </div>
 
         {/* Logo centré */}
-        <div className="flex-1 flex justify-center">
-          <img src={logoArcane} alt="Arcane" className="xl:w-42 md:w-40 sm:w-32" />
+        <div className="flex-1 flex xl:justify-center sm:justify-start">
+          <img src={monoGramLogo} alt="Arcane" className="xl:w-16 md:w-16 sm:w-16" />
         </div>
 
         {/* Navigation droite */}
@@ -211,12 +211,12 @@ const Navbar = () => {
             onClick={toggleMobileMenu}
           >
             <span
-              className={`absolute block h-0.5 w-8 bg-gold transform transition-transform duration-300 ${
+              className={`absolute block h-1 w-8 bg-gold-linear transform transition-transform duration-300 ${
                 isMenuOpen ? "rotate-45 translate-y-[0px]" : "rotate-0 translate-y-[-7px]"
               }`}
             ></span>
             <span
-              className={`absolute block h-0.5 w-8 bg-gold transform transition-transform duration-300 ${
+              className={`absolute block h-1 w-8 bg-gold-linear transform transition-transform duration-300 ${
                 isMenuOpen ? "-rotate-45 -translate-y-[0px]" : "rotate-0 translate-y-[7px]"
               }`}
             ></span>

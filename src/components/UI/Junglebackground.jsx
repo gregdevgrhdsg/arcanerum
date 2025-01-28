@@ -104,6 +104,7 @@ const Jungle = ({ isModelLoaded, position = "background" }) => {
     
          zIndex: 0,
          overflow: "hidden", // Empêche tout débordement
+
        }}
      >
        <img
@@ -113,7 +114,8 @@ const Jungle = ({ isModelLoaded, position = "background" }) => {
          style={{
            objectFit: "cover", // Permet de voir l'image entière
            objectPosition: "center", // Centre l'image
-           minWidth:"1400px"
+           minWidth:"1400px",
+           minHeight:"500vh",
          }}
        />
      </div>
@@ -142,7 +144,7 @@ const Jungle = ({ isModelLoaded, position = "background" }) => {
       { 
         src: "assets/jungle/layer-rock.webp", 
         alt: "rock", 
-        className: "layer-rock sm:hidden md:block absolute xl:right-[0%] xl:bottom-[-8%] md:bottom-[-1%] xl:w-[45vw] lg:w-[45vw] md:w-[70vw] lg:right-[0%] lg:bottom-[-8%] md:right-[0%] md:bottom-[-9%] sm:w-[70vw] sm:right-[0%] sm:bottom-[30%] sm:w-[50vw]",
+        className: "layer-rock sm:hidden md:block absolute xl:right-[0%] xl:bottom-[-8%] md:bottom-[-1%] xl:w-[45vw] lg:w-[45vw] md:w-[70vw] lg:right-[0%] lg:bottom-[-8%] md:right-[0%] md:bottom-[-7%] sm:w-[70vw] sm:right-[0%] sm:bottom-[10%] sm:w-[50vw]",
       },
   
       {   src: "assets/jungle/layer-blur.webp", 
@@ -174,7 +176,7 @@ const Jungle = ({ isModelLoaded, position = "background" }) => {
       { 
         src: "assets/jungle/layer-dodo.png",
         alt: "Dodo",
-        className: "layer-dodo absolutexl: xl:w-[25%] lg:w-[30%] md:w-[40%] sm:w-[60%] xl:bottom-[15%] lg:bottom-[15%] md:bottom-[10%] left-0 sm:bottom-[25%] xl:w-[25%] ",
+        className: "layer-dodo absolutexl: xl:w-[25%] lg:w-[30%] md:w-[40%] sm:w-[50vw] xl:bottom-[15%] lg:bottom-[15%] md:bottom-[10%] sm:bottom-[10%] left-0 sm:bottom-[25%] xl:w-[25%] ",
         responsiveClass: "sm:translate-y-[-20%] md:translate-y-[-5%] lg:translate-y-[-10%]",
       }, 
 

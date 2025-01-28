@@ -87,7 +87,7 @@ const zoneConfigurations = {
         camera: { z: 4.5, duration: 2, ease: "power5.inOut" },
       },
       mobile: {
-        position: { x: -0.7, y: -0.8, duration: 2, ease: "power5.inOut" },
+        position: { x: -0.5, y: -0.8, duration: 2, ease: "power5.inOut" },
         rotation: { y: 1, z: 0, duration: 2, ease: "power5.inOut" },
         camera: { z: 6, duration: 2, ease: "power5.inOut" },
       },
