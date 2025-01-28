@@ -25,29 +25,30 @@ const BaseModel = React.forwardRef(
 );
 
 // Précharge les modèles pour améliorer les performances
-useGLTF.preload("/models/ArcaneExtraroma.glb");
-useGLTF.preload("/models/ArcaneAnanas.glb");
-useGLTF.preload("/models/ArcaneFlamboyance.glb");
-useGLTF.preload("/models/ArcaneVanille.glb");
+useGLTF.preload("/models/untitled2.glb");
+useGLTF.preload("/models/untitled4.glb");
+useGLTF.preload("/models/untitled3.glb");
+useGLTF.preload("/models/untitled5.glb");
+useGLTF.preload("/models/untitled6.glb");
 
 // Exportation des modèles spécifiques
 export const RumA = React.forwardRef((props, ref) => (
-  <BaseModel ref={ref} {...props} gltfPath="/models/ArcaneExtraroma.glb" />
+  <BaseModel ref={ref} {...props} gltfPath="/models/untitled2.glb" />
 ));
 
 export const RumB = React.forwardRef((props, ref) => (
-  <BaseModel ref={ref} {...props} gltfPath="/models/ArcaneAnanas.glb" />
+  <BaseModel ref={ref} {...props} gltfPath="/models/untitled4.glb" />
 ));
 
 export const Flamboyance = React.forwardRef((props, ref) => (
-  <BaseModel ref={ref} {...props} gltfPath="/models/ArcaneFlamboyance.glb" />
+  <BaseModel ref={ref} {...props} gltfPath="/models/untitled3.glb" />
 ));
 
 export const RumC = React.forwardRef((props, ref) => (
-  <BaseModel ref={ref} {...props} gltfPath="/models/ArcaneVanille.glb" />
+  <BaseModel ref={ref} {...props} gltfPath="/models/untitled5.glb" />
 ));
 
 export const RumD = React.forwardRef((props, ref) => (
-  <BaseModel ref={ref} {...props} gltfPath="/models/ArcaneBanane.glb" />
+  <BaseModel ref={ref} {...props} gltfPath="/models/untitled6.glb" />
 ));
 

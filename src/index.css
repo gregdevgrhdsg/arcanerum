@@ -100,17 +100,17 @@ footer {
 }
 
 @font-face {
-  font-family: "Yana";
-  src: url("/fonts/Yana/yana-regular.ttf") format("truetype");
+  font-family: "yana", sans-serif;
   font-weight: 400;
   font-style: normal;
+  unicode-range: U+0000-00FF, U+0100-017F; /* Latin + Latin étendu */
 }
 
 @font-face {
-  font-family: "Yana";
-  src: url("/fonts/Yana/yana-bold.ttf") format("truetype");
+  font-family: "yana", sans-serif;
   font-weight: 700;
   font-style: normal;
+  unicode-range: U+0000-00FF, U+0100-017F; /* Latin + Latin étendu */
 }
 
 .btn-animated {
@@ -277,12 +277,18 @@ footer {
   background: linear-gradient(to right, #FCCF87, #B07C41);
 
 }
+.hover-black-bg {
+  background-color: transparent; /* Fond initial */
+  transition: background-color 0.3s ease-in-out; /* Transition fluide */
+}
 
+.hover-black-bg:hover {
+  background-color: black; /* Fond noir au survol */
+}
 
 .text-gold:hover {
   background: linear-gradient(to right, #FCCF87, #B07C41);
   -webkit-background-clip: text;
-
 }
 
 .text-gold[data-scroll] {
@@ -293,6 +299,34 @@ footer {
   color: #d4af37;
 }
 
+.text-gold-hover-bg-black {
+  position: relative;
+  display: inline-block;
+  background: linear-gradient(to right, #B07C41, #FCCF87);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.text-gold-hover-bg-black::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: transparent;
+  z-index: -1; /* Permet de mettre le fond derrière le texte */
+  transition: background-color 0.3s ease-in-out;
+}
+
+.text-gold-hover-bg-black:hover::before {
+  background-color: black; /* Fond noir au survol */
+}
+
+.text-gold-hover-bg-black:hover {
+  -webkit-text-fill-color: transparent; /* Le texte reste doré */
+}
 .loading-curtain {
   position: fixed;
   top: 0;

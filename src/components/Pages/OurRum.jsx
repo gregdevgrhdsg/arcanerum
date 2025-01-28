@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
-import rumData from "../rumData"
+import useRumData from "../rumData"; // Assurez-vous que l'import est correct
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
@@ -8,6 +8,8 @@ gsap.registerPlugin(ScrollTrigger);
 
 const RumPage = () => {
   const [isMobile, setIsMobile] = useState(false);
+  const rumData = useRumData(); // Appel de la fonction pour obtenir les données
+
   const sectionRefs = useRef([]);
 
   useEffect(() => {
@@ -66,7 +68,7 @@ const RumPage = () => {
     return () => {
       ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
     };
-  }, []);
+  }, [rumData]);
 
   return (
     <section className="w-full">
@@ -90,7 +92,7 @@ const RumPage = () => {
             ></div>
 
             {/* Contenu principal */}
-            <div className="relative z-10 flex flex-col items-center text-center px-4 sm:space-y-4">
+            <div className="relative z-10 flex flex-col items-center text-center xl:px-32 sm:px-12 sm:space-y-4">
               <img
                 src={rum.image}
                 alt={rum.title}
@@ -103,15 +105,14 @@ const RumPage = () => {
               <h2 className="text-gold xl:text-4xl font-bold mb-2 text-content sm:text-2xl">
                 {rum.title}
               </h2>
-              <p className="text-white text-lg text-content sm:text-sm">
-                {rum.description}
-              </p>   
-              <Link to={`/rum/${rum.id}`} >
+              <p className="text-white font-yana xl:text-1xl text-content sm:text-sm">
+                {rum.description_a}
+              </p>
+              <Link to={`/rum/${rum.id}`}>
                 <button className="highlight-button btn-animated cursor-pointer">
                   EN SAVOIR PLUS
                 </button>
               </Link>
-           
             </div>
           </div>
         ))}
@@ -137,7 +138,7 @@ const RumPage = () => {
             ></div>
 
             {/* Contenu principal */}
-            <div className="relative z-10 flex flex-col items-center text-center px-4 sm:space-y-4">
+            <div className="relative z-10 flex flex-col items-center px-12 text-center px-4 sm:space-y-4">
               <img
                 src={rum.image}
                 alt={rum.title}
@@ -147,13 +148,13 @@ const RumPage = () => {
                   maxWidth: isMobile ? "200px" : "150px",
                 }}
               />
-              <h2 className="text-gold xl:text-3xl font-bold mb-2 text-content sm:text-xl">
+              <h2 className="text-gold font-yana xl:text-3xl font-bold mb-2 text-content sm:text-xl">
                 {rum.title}
               </h2>
-              <p className="text-white text-md text-content sm:text-sm">
-                {rum.description}
+              <p className="text-white font-yana text-md text-content sm:text-sm">
+                {rum.description_a}
               </p>
-              <Link to={`/rum/${rum.id}`} >
+              <Link to={`/rum/${rum.id}`}>
                 <button className="highlight-button btn-animated cursor-pointer">
                   EN SAVOIR PLUS
                 </button>

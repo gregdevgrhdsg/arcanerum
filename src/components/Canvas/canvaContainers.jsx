@@ -1,12 +1,12 @@
 // src/components/Canvas/canvaContainers.jsx
 import React, { useEffect, useRef, useState } from "react";
-import * as THREE from 'three';
+import * as THREE from "three";
 import { Canvas } from "@react-three/fiber";
 import { Environment } from "@react-three/drei";
 import { bottlesConfig } from "../bottleConfig";
 import { setupModelAnimations, rotateBottle } from "../Animations/ModelAnimations";
 import { useModel } from "../Context/ModelContext";
-import { RumA, RumB, Flamboyance, RumC, RumD } from './GenericBottle'; // Assurez-vous d'importer correctement vos composants
+import { useTranslation } from "react-i18next";
 
 const CanvasContainer = ({ selectedBottle }) => {
   const {
@@ -17,7 +17,10 @@ const CanvasContainer = ({ selectedBottle }) => {
     setRotationGroupRef,
   } = useModel();
 
-  const DEFAULT_BOTTLE = 0; // ID de la bouteille Extraroma
+  const DEFAULT_BOTTLE = 0; // ID de la bouteille par défaut
+  const { t } = useTranslation(); // Fonction de traduction
+  const bottles = bottlesConfig(t); // Charge la configuration des bouteilles en fonction des traductions
+
   const [currentBottle, setCurrentBottle] = useState(selectedBottle || DEFAULT_BOTTLE);
   const rotationGroupRef = useRef();
   const [screenSize, setScreenSize] = useState("desktop");
@@ -40,7 +43,7 @@ const CanvasContainer = ({ selectedBottle }) => {
     return () => window.removeEventListener("resize", detectScreenSize);
   }, []);
 
-  // Charger Extraroma si selectedBottle est null ou undefined
+  // Charger la bouteille par défaut si `selectedBottle` est null ou undefined
   useEffect(() => {
     if (selectedBottle === null || selectedBottle === undefined) {
       setCurrentBottle(DEFAULT_BOTTLE);
@@ -49,16 +52,9 @@ const CanvasContainer = ({ selectedBottle }) => {
     }
   }, [selectedBottle]);
 
-   useEffect(() => {
-    if (selectedBottle === null || selectedBottle === undefined) {
-      setCurrentBottle(DEFAULT_BOTTLE);
-    } else {
-      setCurrentBottle(selectedBottle);
-    }
-  }, [selectedBottle]);
-
+  // Récupérer la configuration de la bouteille actuelle
   const getBottleConfig = () => {
-    const bottleConfig = bottlesConfig[currentBottle];
+    const bottleConfig = bottles[currentBottle];
     if (!bottleConfig) {
       console.error(`Bouteille introuvable pour l'ID : ${currentBottle}`);
       return null;
@@ -73,42 +69,37 @@ const CanvasContainer = ({ selectedBottle }) => {
     return { ...bottleConfig, position, rotation, scale };
   };
 
-
   // Appliquer les transformations initiales
   const applyInitialTransformations = (bottleConfig) => {
     if (!bottleConfig || !rotationGroupRef.current) return;
 
     const { position, rotation, scale } = bottleConfig;
 
-    // Mettre à jour la position
     rotationGroupRef.current.position.set(
       position.x || 0,
       position.y || 0,
       position.z || 0
     );
 
-    // Mettre à jour la rotation
     rotationGroupRef.current.rotation.set(
       rotation?.x || 0,
       rotation?.y || 0,
       rotation?.z || 0
     );
 
-    // Mettre à jour l'échelle
     if (modelRef.current) {
       modelRef.current.scale.set(
         scale?.x || 1,
         scale?.y || 1,
         scale?.z || 1
       );
-      console.log("Échelle appliquée :", scale); // Trace l'échelle
+      console.log("Échelle appliquée :", scale); // Log de débogage
     }
   };
 
   // Charger le modèle et initialiser les animations
   const handleModelLoad = () => {
     if (!isModelLoaded) {
-      console.log("Modèle chargé.");
       setIsModelLoaded(true);
 
       const bottleConfig = getBottleConfig();
@@ -135,8 +126,6 @@ const CanvasContainer = ({ selectedBottle }) => {
     const bottleConfig = getBottleConfig();
     if (bottleConfig) {
       applyInitialTransformations(bottleConfig);
-
-      // Forcer une mise à jour
       if (rotationGroupRef.current) {
         rotationGroupRef.current.updateMatrixWorld(true);
       }
@@ -152,56 +141,40 @@ const CanvasContainer = ({ selectedBottle }) => {
     }
   }, []);
 
-  // Nettoyage des ressources lors du démontage du composant
+  // Nettoyage des ressources lors du démontage
   useEffect(() => {
     return () => {
-      // Dispose des géométries, matériaux, textures, etc.
       if (modelRef.current) {
         modelRef.current.traverse((child) => {
           if (child.isMesh) {
-            if (child.geometry) child.geometry.dispose();
-            if (child.material?.isMaterial) {
-              cleanMaterial(child.material);
-            } else if (Array.isArray(child.material)) {
-              child.material.forEach((material) => cleanMaterial(material));
+            child.geometry?.dispose();
+            if (Array.isArray(child.material)) {
+              child.material.forEach((mat) => mat.dispose());
+            } else {
+              child.material?.dispose();
             }
           }
         });
       }
 
-      // Dispose du rotation group
       if (rotationGroupRef.current) {
         rotationGroupRef.current.traverse((child) => {
           if (child.isMesh) {
-            if (child.geometry) child.geometry.dispose();
-            if (child.material?.isMaterial) {
-              cleanMaterial(child.material);
-            } else if (Array.isArray(child.material)) {
-              child.material.forEach((material) => cleanMaterial(material));
+            child.geometry?.dispose();
+            if (Array.isArray(child.material)) {
+              child.material.forEach((mat) => mat.dispose());
+            } else {
+              child.material?.dispose();
             }
           }
         });
       }
 
-      // Réinitialiser l'état de chargement du modèle
       setIsModelLoaded(false);
     };
   }, []);
 
-  // Fonction pour nettoyer les matériaux
-  const cleanMaterial = (material) => {
-    material.dispose();
-
-    // Dispose des textures si elles existent
-    for (const key in material) {
-      const value = material[key];
-      if (value && typeof value === "object" && value.isTexture) {
-        value.dispose();
-      }
-    }
-  };
-
-  // Rendre le modèle
+  // Rendu du modèle
   const renderModel = () => {
     const bottleConfig = getBottleConfig();
     if (!bottleConfig) return null;
@@ -241,32 +214,18 @@ const CanvasContainer = ({ selectedBottle }) => {
             setRotationGroupRef(group);
           }
 
-          // Gestion de la perte et de la restauration du contexte WebGL
-          const handleContextLost = (event) => {
+          gl.domElement.addEventListener("webglcontextlost", (event) => {
             event.preventDefault();
-            console.warn("WebGL Context Lost");
             gl.domElement.style.display = "none";
-          };
+          });
 
-          const handleContextRestored = () => {
-            console.info("WebGL Context Restored");
+          gl.domElement.addEventListener("webglcontextrestored", () => {
             gl.domElement.style.display = "block";
-            // Re-initialiser les animations ou tout autre état nécessaire
             if (rotationGroupRef.current && isModelLoaded) {
               setupModelAnimations(rotationGroupRef, cameraRef);
             }
-          };
-
-          gl.domElement.addEventListener("webglcontextlost", handleContextLost, false);
-          gl.domElement.addEventListener("webglcontextrestored", handleContextRestored, false);
-
-          // Nettoyage des écouteurs d'événements lors du démontage
-          return () => {
-            gl.domElement.removeEventListener("webglcontextlost", handleContextLost);
-            gl.domElement.removeEventListener("webglcontextrestored", handleContextRestored);
-          };
+          });
         }}
-        style={{ width: "100vw", height: "100vh" }}
       >
         <ambientLight intensity={2} />
         <directionalLight position={[5, 8, 5]} intensity={3} />

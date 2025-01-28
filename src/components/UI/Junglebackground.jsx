@@ -125,42 +125,44 @@ const Jungle = ({ isModelLoaded, position = "background" }) => {
       { 
         src: "assets/jungle/layer-feuilleGauche2.webp", 
         alt: "feuilleGauche2", 
-        className: "layer-feuilleGauche2 xl:w-[25%] md:w-[25%] sm:w-[45%] z-20", 
+        className: "layer-feuilleGauche2 xl:w-[25%] md:w-[25%] sm:w-[45%] z-50", 
         style: { bottom: "0%", left: "0%" } 
       },
       { 
         src: "assets/jungle/layer-feuilleGauche.webp", 
         alt: "feuilleGauche", 
-        className: "layer-feuilleGauche xl:w-[25%] md:w-[25%] sm:w-[45%] z-20", 
+        className: "layer-feuilleGauche xl:w-[25%] md:w-[25%] sm:w-[45%] z-50", 
         style: { bottom: "0%", left: "0%" } 
       }, 
-      { 
-        src: "assets/jungle/layer-plantFront.webp", 
-        alt: "Plante 1", 
-        className: "layer-plante1 xl:w-[30%] md:w-[45%] sm:w-[80%] z-10", 
-        style: { bottom: "0", left: "0%" } 
-      }, 
+  
     ]
-    : [     
+    : [    
 
+  
       { 
         src: "assets/jungle/layer-rock.webp", 
         alt: "rock", 
         className: "layer-rock sm:hidden md:block absolute xl:right-[0%] xl:bottom-[-8%] md:bottom-[-1%] xl:w-[45vw] lg:w-[45vw] md:w-[70vw] lg:right-[0%] lg:bottom-[-8%] md:right-[0%] md:bottom-[-9%] sm:w-[70vw] sm:right-[0%] sm:bottom-[30%] sm:w-[50vw]",
       },
   
-// { 
-//   src: "assets/jungle/layer-blur.webp", 
-//   alt: "blur", 
-//   className: "layer-blur sm:bottom-[0%]", 
-//   style: { 
-//     position: "absolute", 
-//     top: "60%", 
-//     width: "100%", // Fixer une largeur en pixels
-//     transform: "translateX(-50%)", // Ajustement centré
-//     left: "50%", 
-//   }
-// },
+      {   src: "assets/jungle/layer-blur.webp", 
+         alt: "blur", 
+         className: "layer-blur sm:bottom-[0%] z-20", 
+         style: { 
+         position: "absolute", 
+         top: "90%", 
+         width: "100%", // Fixer une largeur en pixels
+         transform: "translateX(-50%)", // Ajustement centré
+         left: "50%", 
+        }
+      },
+      { 
+        src: "assets/jungle/layer-plantFront.webp", 
+        alt: "Plante 1", 
+        className: "layer-plante1 xl:w-[30%] md:w-[45%] sm:w-[80%] z-10", 
+        style: { bottom: "0", left: "0%" } 
+      }, 
+
       { 
         src: "assets/jungle/layer-ciel.webp", 
         alt: "Ciel", 

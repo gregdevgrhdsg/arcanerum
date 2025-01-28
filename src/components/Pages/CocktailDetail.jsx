@@ -23,7 +23,33 @@ const CocktailDetail = () => {
       return;
     }
 
-    // Animations GSAP
+    // Animation GSAP pour les éléments de la jungle
+    const jungleElements = document.querySelectorAll(".jungle-el-section");
+    if (jungleElements.length > 0) {
+      jungleElements.forEach((element) => {
+        gsap.fromTo(
+          element,
+          { opacity: 0, y: 50, scale: 1 },
+          {
+            opacity: 1,
+            y: 0,
+            scale: 1.3,
+            duration: 1,
+            ease: "power2.inOut",
+            stagger: 0.2,
+            transformOrigin: "bottom right",
+            scrollTrigger: {
+              trigger: element,
+              start: "top 100%",
+              end: "top 50%",
+              toggleActions: "play none none reverse",
+            },
+          }
+        );
+      });
+    }
+
+    // Animation pour le texte et l'image
     gsap.fromTo(
       textRef.current,
       { opacity: 0, y: -20 },
@@ -48,21 +74,21 @@ const CocktailDetail = () => {
     );
   }
 
-  const currentSection = cocktail.sections?.[0] || { ingredients: [], method: [] };
-  const ingredients = currentSection.ingredients || [];
-  
+  const currentSection = cocktail.sections?.[activeSection] || { ingredients: [], method: [] };
+
   return (
     <section
-    className="cocktail-page bg-cover bg-center text-white min-h-screen flex flex-col items-center justify-center relative"
-    style={{ backgroundImage: "url('/assets/jungle/fond-Arcane.webp')" }}
-  >
-    <div
-      className="absolute inset-0 bg-black opacity-50 z-0"
-      style={{
-        background: "linear-gradient(to bottom, rgba(0,0,0,0.7), rgba(0,0,0,0.7))",
-      }}
-    ></div>
-    
+      className="cocktail-page bg-cover bg-center text-white min-h-screen flex flex-col items-center justify-center relative"
+      style={{ backgroundImage: "url('/assets/jungle/fond-Arcane.webp')" }}
+    >
+      {/* Fond transparent */}
+      <div
+        className="absolute inset-0 bg-black opacity-50 z-0"
+        style={{
+          background: "linear-gradient(to bottom, rgba(0,0,0,0.7), rgba(0,0,0,0.7))",
+        }}
+      ></div>
+
       {/* Flèches de navigation */}
       {previousCocktail && (
         <Link
@@ -81,78 +107,91 @@ const CocktailDetail = () => {
         </Link>
       )}
 
-      <div className="cocktail-detail-container relative flex flex-col lg:flex-row lg:items-center lg:justify-center w-full max-w-screen-xl">
-        {/* Image fixe en desktop */}
+      <div className="cocktail-detail-container relative flex flex-col lg:flex-row lg:items-center lg:justify-center w-full max-w-screen-xl z-10">
+        {/* Image fixe */}
         <div
           ref={imageRef}
-          className="hidden lg:flex lg:items-center lg:justify-center lg:w-1/2 h-auto"
+          className="hidden xl:items-center lg:flex lg:items-center lg:justify-center lg:w-1/3 h-auto"
         >
           <img
             src={cocktail.image}
             alt={cocktail.name}
-            className="max-w-full max-h-[80%] object-contain"
+            className="max-w-full max-h-[90%] object-contain"
           />
         </div>
 
+        {/* Détails du cocktail */}
         <div
-  className="w-full lg:w-1/2 px-6 py-10 overflow-y-auto max-h-[80vh] flex flex-col items-center justify-center text-center"
-  ref={textRef}
-  style={{
-    minHeight: "400px", // Définit une hauteur minimale
-    maxHeight: "600px", // Définit une hauteur maximale
-    overflowY: "auto", // Active le défilement si le contenu dépasse la hauteur maximale
-  }}
->
-  <h1 className="text-4xl text-gold font-yana mb-6">{cocktail.name}</h1>
+          className="w-full lg:w-1/2 px-6 py-10 overflow-y-auto max-h-[80vh] flex flex-col items-center justify-center text-center"
+          ref={textRef}
+        >
+          <h1 className="text-4xl text-gold font-yana mb-6">{cocktail.name}</h1>
 
-  {/* Section Selector */}
-  <div className="flex justify-center space-x-4 mb-6">
-    {cocktail.sections.map((section, index) => (
-      <button
-        key={index}
-        onClick={() => setActiveSection(index)}
-        className={`px-4 py-2 text-sm font-yana ${
-          activeSection === index
-            ? "text-gold border-b-2 border-gold"
-            : "text-gray-500"
-        }`}
-      >
-        {section.title}
-      </button>
-    ))}
-  </div>
+          {/* Sélecteur de section */}
+          <div className="flex justify-center space-x-4 mb-6">
+            {cocktail.sections.map((section, index) => (
+              <button
+                key={index}
+                onClick={() => setActiveSection(index)}
+                className={`px-4 py-2 text-sm font-yana ${
+                  activeSection === index
+                    ? "text-gold border-b-2 border-gold"
+                    : "text-gray-500"
+                }`}
+              >
+                {section.title}
+              </button>
+            ))}
+          </div>
 
-  {/* Tab Content */}
-  <div>
-    <table className="table-auto w-full text-left text-sm mb-6">
-      <thead>
-        <tr className="bg-gold text-white">
-          <th className="px-4 py-2">Ingredient</th>
-          <th className="px-4 py-2">QTY</th>
-          <th className="px-4 py-2">Unit</th>
-        </tr>
-      </thead>
-      <tbody>
-        {currentSection.ingredients.map((ingredient, index) => (
-          <tr key={index} className="border-t text-white">
-            <td className="px-4 py-2">{ingredient.name}</td>
-            <td className="px-4 py-2">{ingredient.qty || "-"}</td>
-            <td className="px-4 py-2">{ingredient.unit || "-"}</td>
-          </tr>
-        ))}
-      </tbody>
-    </table>
+          {/* Contenu de la section */}
+          <div>
+            <table className="table-auto w-full text-left text-sm mb-6">
+              <thead>
+                <tr className="bg-gold text-white">
+                  <th className="px-4 py-2">Ingredient</th>
+                  <th className="px-4 py-2">QTY</th>
+                  <th className="px-4 py-2">Unit</th>
+                </tr>
+              </thead>
+              <tbody>
+                {currentSection.ingredients.map((ingredient, index) => (
+                  <tr key={index} className="border-t text-white">
+                    <td className="px-4 py-2">{ingredient.name}</td>
+                    <td className="px-4 py-2">{ingredient.qty || "-"}</td>
+                    <td className="px-4 py-2">{ingredient.unit || "-"}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
 
-    <h2 className="text-2xl text-gold font-yana mb-4">Method</h2>
-    <ul className="list-disc ml-4 space-y-2">
-      {currentSection.method.map((step, index) => (
-        <li key={index} className="text-sm text-left text-white">
-          {step}
-        </li>
-      ))}
-    </ul>
-  </div>
-</div>
+            <h2 className="text-2xl text-gold font-yana mb-4">Method</h2>
+            <ul className="list-disc ml-4 space-y-2">
+              {currentSection.method.map((step, index) => (
+                <li key={index} className="text-sm text-left text-white">
+                  {step}
+                </li>
+              ))}
+            </ul>
+            <Link
+            to="/Les-Cocktails"
+            className="btn-animated mt-16 px-4 py-2 text-sm font-medium bg-gold text-black rounded-md hover:bg-yellow-500 transition-all duration-300"
+          >
+            Retour à la liste
+          </Link>
+          </div>
+        </div>
+      </div>
+
+      {/* Éléments de la jungle */}
+      <div className="jungle-el-section absolute bottom-0 right-0 w-[15vw] z-[1]">
+        <img src="/assets/jungle/layer-feuilledroite2.webp" alt="jungle4" className="w-full h-full object-contain" />
+      </div>
+      <div className="jungle-el-section absolute bottom-0 right-0 w-[15vw] z-[1]">
+        <img src="/assets/jungle/layer-feuilledroite.webp" alt="jungle3" className="w-full h-full object-contain" />
+      </div>
+      <div className="jungle-el-section absolute bottom-[60%] left-[10%] w-[10vw] z-[10]">
+        <img src="/assets/jungle/layer-Bird.webp" alt="jungle5" className="w-full h-full object-contain" />
       </div>
     </section>
   );

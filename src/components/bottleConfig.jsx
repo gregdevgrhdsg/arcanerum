@@ -1,14 +1,13 @@
-// src/components/bottleConfig.jsx
 import { RumA, Flamboyance, RumB, RumC, RumD } from './Canvas/GenericBottle';
 
-export const bottlesConfig = [
-  { 
-    id: 0, 
-    name: "Extraroma", 
-    prix: "100€", 
-    description: "Arcane Extraroma révèle de délicieux et délicats arômes de vanille Bourbon, de noix de coco, de chocolat, de caramel, de notes fumées et de banane", 
+export const bottlesConfig = (t) => [
+  {
+    id: 0,
+    name: t("ourRums.arcaneExtraroma.title"),
+    description: t("ourRums.arcaneExtraroma.description"),
     thumbnail: "assets/thumbnail/arcaneExtraroma.webp",
-    component: RumA, 
+    externalLink: "https://www.example.com/extraroma",
+    component: RumA,
     responsivePositions: {
       mobile: { x: 0, y: -0.8, z: 0.3 },
       tablet: { x: 0.8, y: -0.8, z: 0 },
@@ -17,7 +16,7 @@ export const bottlesConfig = [
     responsiveRotations: {
       mobile: { x: 0.2, y: -0.2, z: -0.2 },
       tablet: { x: 0, y: 0, z: 0 },
-      desktop: { x: 0, y: 0, z: 0},
+      desktop: { x: 0, y: 0, z: 0 },
     },
     responsiveScales: {
       mobile: { x: 7, y: 7, z: 7 },
@@ -25,13 +24,13 @@ export const bottlesConfig = [
       desktop: { x: 7, y: 7, z: 7 },
     },
   },
-  { 
-    id: 1, 
-    name: "Flamboyance", 
-    prix: "150€", 
-    description: "Un assemblage de Rhums de pur jus de canne à sucre vieillis pendant 3 ans dans des fûts de chêne Français et Américain ayant bénéficié d’un affinage en fut ayant contenu du whisky Français tourbé.", 
+  {
+    id: 1,
+    name: t("ourRums.arcaneFlamboyance.title"),
+    description: t("ourRums.arcaneFlamboyance.description"),
     thumbnail: "assets/thumbnail/arcaneFlamboyance.webp",
-    component: Flamboyance, 
+    externalLink: "https://www.example.com/flamboyance",
+    component: Flamboyance,
     responsivePositions: {
       mobile: { x: 0, y: -0.8, z: 0.3 },
       tablet: { x: 0.8, y: -0.8, z: 0 },
@@ -40,7 +39,7 @@ export const bottlesConfig = [
     responsiveRotations: {
       mobile: { x: 0.2, y: -0.2, z: -0.2 },
       tablet: { x: 0, y: 0, z: 0 },
-      desktop: { x: 0, y: 0, z: 0},
+      desktop: { x: 0, y: 0, z: 0 },
     },
     responsiveScales: {
       mobile: { x: 7, y: 7, z: 7 },
@@ -48,13 +47,13 @@ export const bottlesConfig = [
       desktop: { x: 7, y: 7, z: 7 },
     },
   },
-  { 
-    id: 2, 
-    name: "Ananas Rotie", 
-    prix: "150€", 
-    description: "Description de Ananas", 
+  {
+    id: 2,
+    name: t("ourRums.arcaneAnanasRoti.title"),
+    description: t("ourRums.arcaneAnanasRoti.description"),
     thumbnail: "assets/thumbnail/arcaneArrangeAnanas.webp",
-    component: RumB, 
+    externalLink: "https://www.example.com/ananas-roti",
+    component: RumB,
     responsivePositions: {
       mobile: { x: 0, y: -0.8, z: 0.3 },
       tablet: { x: 0.8, y: -0.8, z: 0 },
@@ -63,7 +62,7 @@ export const bottlesConfig = [
     responsiveRotations: {
       mobile: { x: 0.2, y: -0.2, z: -0.2 },
       tablet: { x: 0, y: 0, z: 0 },
-      desktop: { x: 0, y: 0, z: 0},
+      desktop: { x: 0, y: 0, z: 0 },
     },
     responsiveScales: {
       mobile: { x: 7, y: 7, z: 7 },
@@ -71,13 +70,13 @@ export const bottlesConfig = [
       desktop: { x: 7, y: 7, z: 7 },
     },
   },
-  { 
-    id: 3, 
-    name: "ArcaneVanille", 
-    prix: "200€", 
-    description: "Description de Vanille", 
+  {
+    id: 3,
+    name: t("ourRums.arcaneVanilleDesIles.title"),
+    description: t("ourRums.arcaneVanilleDesIles.description"),
     thumbnail: "assets/thumbnail/arcaneArrangeVanille.webp",
-    component: RumC, 
+    externalLink: "https://www.example.com/vanille-des-iles",
+    component: RumC,
     responsivePositions: {
       mobile: { x: 0, y: -0.8, z: 0.3 },
       tablet: { x: 0.8, y: -0.8, z: 0 },
@@ -86,7 +85,7 @@ export const bottlesConfig = [
     responsiveRotations: {
       mobile: { x: 0.2, y: -0.2, z: -0.2 },
       tablet: { x: 0, y: 0, z: 0 },
-      desktop: { x: 0, y: 0, z: 0},
+      desktop: { x: 0, y: 0, z: 0 },
     },
     responsiveScales: {
       mobile: { x: 7, y: 7, z: 7 },
@@ -94,13 +93,13 @@ export const bottlesConfig = [
       desktop: { x: 7, y: 7, z: 7 },
     },
   },
-  { 
-    id: 4, 
-    name: "ArcaneBanane", 
-    prix: "200€", 
-    description: "Description de Vanille", 
+  {
+    id: 4,
+    name: t("ourRums.arcaneBananeFlambee.title"),
+    description: t("ourRums.arcaneBananeFlambee.description"),
     thumbnail: "assets/thumbnail/arcaneArrangeBanane.webp",
-    component: RumD, 
+    externalLink: "https://www.example.com/banane-flambee",
+    component: RumD,
     responsivePositions: {
       mobile: { x: 0, y: -0.8, z: 0.3 },
       tablet: { x: 0.8, y: -0.8, z: 0 },
@@ -109,7 +108,7 @@ export const bottlesConfig = [
     responsiveRotations: {
       mobile: { x: 0.2, y: -0.2, z: -0.2 },
       tablet: { x: 0, y: 0, z: 0 },
-      desktop: { x: 0, y: 0, z: 0},
+      desktop: { x: 0, y: 0, z: 0 },
     },
     responsiveScales: {
       mobile: { x: 7, y: 7, z: 7 },
@@ -118,3 +117,4 @@ export const bottlesConfig = [
     },
   },
 ];
+export default bottlesConfig;

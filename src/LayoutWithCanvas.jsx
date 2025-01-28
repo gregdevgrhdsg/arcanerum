@@ -1,79 +1,61 @@
 // src/LayoutWithCanvas.jsx
-import React, { useEffect, useState } from 'react';
-import { Routes, Route, Outlet, useLocation, Navigate } from 'react-router-dom';
-import Navbar from "./components/UI/Navbar";
+import React, { useEffect, useState } from "react";
+import { Routes, Route, Outlet, useLocation, Navigate } from "react-router-dom";
 import CanvaContainer from "./components/Canvas/canvaContainers.jsx";
 import Home from "./components/Pages/Home";
 import ModelDetail from "./components/Pages/ModelDetail";
 import Jungle from "./components/UI/Junglebackground";
-import KnowHow from "./components/Pages/KnowHow.jsx"; // Vérifie le chemin
-import OurUniverse from "./components/Pages/OurUniverse.jsx"; // Vérifie le chemin
-import LesCocktails from "./components/Pages/LesCocktails.jsx"; // Vérifie le chemin
+import KnowHow from "./components/Pages/KnowHow.jsx";
+import OurUniverse from "./components/Pages/OurUniverse.jsx";
+import LesCocktails from "./components/Pages/LesCocktails.jsx";
 import CocktailDetail from "./components/Pages/CocktailDetail.jsx";
-import RedirectToCocktails from "./components/Pages/ RedirectToCocktails.jsx";
-import OurRums from "./components/Pages/OurRum.jsx"
+import RedirectToCocktails from "./components/Pages/RedirectToCocktails.jsx";
+import OurRums from "./components/Pages/OurRum.jsx";
 import RumDetailPage from "./components/Pages/RumDetailPage.jsx";
 import Contact from "./components/Pages/Contact.jsx";
-import { useModel } from './components/Context/ModelContext';
+import { useModel } from "./components/Context/ModelContext";
 import Loader from "./components/UI/Loader.jsx";
-import Footer from "./components/UI/Footer.jsx"; // Importez le Footer
-import { bottlesConfig } from "./components/bottleConfig";
-import DebugContext from './utils/DebugContext.jsx'; // Import du composant de debug
-import gsap from 'gsap';
+import Footer from "./components/UI/Footer.jsx";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import gsap from "gsap";
+
+gsap.registerPlugin(ScrollTrigger);
 
 const LayoutWithCanvas = () => {
-  const { selectedBottle, setSelectedBottle, isModelLoaded, cameraRef } = useModel();
-  const [progress, setProgress] = useState(0);
-  const [isLoaded, setIsLoaded] = useState(false);
-  const location = useLocation();
-  const [isAnimationDone, setIsAnimationDone] = useState(false); // Nouveau état pour l'animation du rideau
-  const isHome = location.pathname === "/";
-  const isKnowHow = location.pathname === "/Know-How"; // Vérifie si la page actuelle est KnowHow
-  const isOurUniverse = location.pathname === "/Our-Universe"; // Vérifie si la page actuelle est KnowHow
-  const isLesCocktails = location.pathname === "/Les-Cocktails"; // Vérifie si la page actuelle est KnowHow
-  const isLesCocktailDetail = location.pathname === "/cocktail/:id"; // Vérifie si la page actuelle est KnowHow
-  const isCanvasVisible = location.pathname === "/" || location.pathname.startsWith("/explore");
+    const { selectedBottle, setSelectedBottle, isModelLoaded, cameraRef } = useModel();
+    const [isInitialLoad, setIsInitialLoad] = useState(true);
+  
+    const [progress, setProgress] = useState(0);
+    const [isLoaded, setIsLoaded] = useState(false);
+    const location = useLocation();
+    const [isAnimationDone, setIsAnimationDone] = useState(false); // Nouveau état pour l'animation du rideau
+    const isHome = location.pathname === "/";
+    const isKnowHow = location.pathname === "/Know-How"; // Vérifie si la page actuelle est KnowHow
+    const isOurUniverse = location.pathname === "/Our-Universe"; // Vérifie si la page actuelle est KnowHow
+    const isLesCocktails = location.pathname === "/Les-Cocktails"; // Vérifie si la page actuelle est KnowHow
+    const isLesCocktailDetail = location.pathname === "/cocktail/:id"; // Vérifie si la page actuelle est KnowHow
+    const isCanvasVisible = location.pathname === "/" || location.pathname.startsWith("/explore");
 
   useEffect(() => {
-    // Vérifier si la route actuelle est une route de détail de cocktail
-    const isCocktailDetail = location.pathname.startsWith("/cocktail/");
-    const isHomePage = location.pathname === "/"; // Vérifie si c'est la page d'accueil
-    const assetsToLoad = 10;
-    let loaded = 0;
-    
-    if (isHomePage) {
-      setIsLoaded(false); // Réinitialise le loader
-    
-      const startTime = Date.now();
+    if (isHome) {
+      setIsLoaded(false); // Réactive le loader
+      setProgress(0); // Réinitialise la progression
+      const assetsToLoad = 10;
+      let loaded = 0;
 
-const interval = setInterval(() => {
-  loaded++;
-  setProgress((loaded / assetsToLoad) * 100);
+      const interval = setInterval(() => {
+        loaded++;
+        setProgress((loaded / assetsToLoad) * 100);
 
-  if (loaded === assetsToLoad) {
-    clearInterval(interval);
-    const elapsedTime = Date.now() - startTime;
-    const remainingTime = Math.max(0, 2000 - elapsedTime); // Minimum 2s de chargement
-
-    setTimeout(() => {
-      setIsLoaded(true);
-
-      // Animation de rideau
-      gsap.to(".loading-curtain", {
-        y: "-100%",
-        duration: 1.5,
-        ease: "power2.out",
-        onComplete: () => {
-          setIsAnimationDone(true);
-        },
-      });
-    }, remainingTime);
-  }
-}, 500);
-    }
-
-    if (!isCocktailDetail) {
-      // Animation d'entrée pour les pages autres que les détails de cocktail
+        if (loaded === assetsToLoad) {
+          clearInterval(interval);
+          setTimeout(() => {
+            setIsLoaded(true); // Termine le chargement après 2 secondes
+          }, 2000);
+        }
+      }, 200);
+    } else {
+      // Animation d'entrée pour toutes les pages autres que la home
       gsap.fromTo(
         ".page-content",
         { opacity: 0, y: -50 },
@@ -89,36 +71,13 @@ const interval = setInterval(() => {
     // Scroll en haut à chaque changement de route
     window.scrollTo(0, 0);
   }, [location]);
-  
-  useEffect(() => {
-    const handleScroll = () => {
-      const scrollPosition = window.scrollY; // Position actuelle du scroll
-      const elements = document.querySelectorAll('.text-gold-scroll');
-  
-      elements.forEach(el => {
-        const offset = scrollPosition * 0.2; // Ajustez ce facteur pour modifier la vitesse
-        el.style.setProperty('--scroll-offset', `${offset}px`);
-      });
-    };
-  
-    // Ajouter l'écouteur d'événement scroll
-    window.addEventListener('scroll', handleScroll);
-  
-    // Nettoyer l'écouteur lors du démontage du composant
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-    };
-  }, []);
-
 
   return (
     <div className="relative flex flex-col min-h-screen">
-      {/* Animation de rideau */}
-      {!isAnimationDone && (
-        <div className="loading-curtain fixed top-0 left-0 w-full h-full bg-black z-[60]"></div>
-      )}
-      {!isLoaded && <Loader progress={progress} />}
+      {/* Affiche le loader uniquement lorsque nécessaire */}
+      {!isLoaded && isHome && <Loader progress={progress} />}
 
+      {/* Contenu principal */}
       {/* Contenu principal */}
       <div className="flex-grow">
         {isHome && (
@@ -137,7 +96,7 @@ const interval = setInterval(() => {
         </div>
       )}
 
-        <div className="w-full relative z-30">
+        <div className="w-full relative z-30 page-content">
           <Routes>
             <Route path="/" element={<Home isModelLoaded={isModelLoaded} />} />
             <Route path="/model/:id" element={<ModelDetail isModelLoaded={isModelLoaded} />} />

@@ -8,7 +8,10 @@ const Loader = ({ progress }) => {
         opacity: 0,
         duration: 0.5,
         onComplete: () => {
-          document.querySelector(".loader-container").style.display = "none";
+          const loaderElement = document.querySelector(".loader-container");
+          if (loaderElement) {
+            loaderElement.style.display = "none";
+          }
         },
       });
     }
@@ -26,7 +29,7 @@ const Loader = ({ progress }) => {
       <div className="text-white mb-4">Chargement...</div>
       <div className="w-1/2 h-2 bg-gray-700">
         <div
-          className="bg-gold h-full"
+          className="bg-gold-linear h-full"
           style={{ width: `${progress}%` }}
         ></div>
       </div>

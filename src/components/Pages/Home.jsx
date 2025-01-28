@@ -19,6 +19,7 @@
     const { t } = useTranslation(); // Initialisation du hook
     const { containerRef, isDetailView, setIsDetailView, selectedBottle, setSelectedBottle, setBottlePosition, setBottleScale, setScrollPosition } = useModel();
     const navigate = useNavigate();
+    const translatedBottlesConfig = bottlesConfig(t);
 
     const handleBuyClick = (newIndex) => {
       console.log(`Bouteille sélectionnée: ${newIndex}`);
@@ -72,8 +73,8 @@
             stagger: 0.2,
             scrollTrigger: {
               trigger: element,
-              start: "top 90%",
-              end: "bottom 20%",
+              start: "top 97%",
+              end: "bottom 10%",
               toggleActions: "play none none reverse",
             },
           }
@@ -152,36 +153,36 @@
         <div className="content-container">
           {/* Zone 2 */}
           <section className="zone-2 relative w-full h-screen flex flex-col items-end justify-center bg-transparent">
-            <div className="text-center sm:mt-0 xl:max-w-[40vw] md:max-w-[40vw] sm:max-w-[60vw] xl:pr-40 md:pr-20 sm:pr-5">
+            <div className="text-center sm:mt-0 xl:max-w-[42vw] md:max-w-[40vw] sm:max-w-[60vw] xl:pr-40 md:pr-20 sm:pr-5">
             <p className="highlight-description font-yana font-regular text-gold xl:text-xl lg:text-1xl md:1xl sm:text-sm mb-3">{t('home.zone2.title')}</p>
               <h2 className="highlight-title font-bold font-yana text-gold mb-5 xl:text-4xl lg:text-lg md:text-3xl sm:text-2xl">{t('home.zone2.subtitle')}</h2>
-              <p className="highlight-description font-yana text-white xl:text-xl lg:text-1xl md:1xl sm:text-sm mb-10">{t('home.zone2.description')}</p>
+              <p className="highlight-description font-yana text-white xl:text-xl lg:text-1xl md:1xl sm:text-sm mb-10" style={{ whiteSpace: "pre-line" }}>{t('home.zone2.description')}</p>
               <Link to="/Our-Universe">
-                <button className="highlight-button btn-animated cursor-pointer">{t('home.zone2.button')}</button>
+                <button className="highlight-button btn-animated cursor-pointer ">{t('home.zone2.button')}</button>
               </Link>
             </div>
-            <div className="jungle-el-section absolute xl:bottom-[0%] sm:bottom-[0%] xl:left-[0%] md:left-[0%] sm:left-[0%] xl:w-[20vw] md:w-[20vw] sm:w-[40vw] z-0">
+            <div className="jungle-el-section absolute xl:bottom-[0%] sm:bottom-[0%] xl:left-[0%] md:left-[0%] sm:left-[0%] xl:w-[15vw] md:w-[20vw] sm:w-[40vw] z-0">
               <img src="assets/jungle/layer-feuilleGauche2.webp" alt="cocktail" className="w-full h-full object-contain z-0" />
             </div>
-            <div className="jungle-el-section absolute xl:bottom-[0%] sm:bottom-[0%] xl:left-[0%] md:left-[0%] sm:left-[0%] xl:w-[20vw] md:w-[20vw] sm:w-[40vw] z-0">
+            <div className="jungle-el-section absolute xl:bottom-[0%] sm:bottom-[0%] xl:left-[0%] md:left-[0%] sm:left-[0%] xl:w-[15vw] md:w-[20vw] sm:w-[40vw] z-0">
               <img src="assets/jungle/layer-feuilleGauche.webp" alt="cocktail" className="w-full h-full object-contain z-0" />
             </div>
           </section>
 
           {/* Zone 3 */}
           <section className="zone-3 relative w-full h-screen flex flex-col items-start xl:justify-center sm:justify-center bg-transparent">
-            <div className="text-center xl:max-w-[40vw] md:max-w-[40vw] sm:max-w-[60vw] xl:pl-40 md:pl-400 sm:pl-5">
+            <div className="text-center xl:max-w-[40vw] md:max-w-[42vw] sm:max-w-[60vw] xl:pl-40 md:pl-400 sm:pl-5">
             <p className="highlight-description font-yana font-regular text-gold xl:text-xl lg:text-1xl md:1xl sm:text-sm mb-3">{t('home.zone3.title')}</p>
               <h2 className="highlight-title font-bold font-yana text-gold mb-5 xl:text-4xl lg:text-3xl md:text-3xl sm:text-2xl">{t('home.zone3.subtitle')}</h2>
-              <p className="highlight-description font-yana text-white xl:text-xl lg:text-1xl md:1xl sm:text-sm mb-10">{t('home.zone3.description')}</p>
+              <p className="highlight-description font-yana text-white xl:text-xl lg:text-1xl md:1xl sm:text-sm mb-10" style={{ whiteSpace: "pre-line" }}>{t('home.zone3.description')}</p>
               <Link to="/Know-How">
               <button className="highlight-button btn-animated">{t('home.zone3.button')}</button>
               </Link>
             </div>
-            <div className="jungle-el-section absolute xl:bottom-[0%] sm:bottom-[0%] xl:right-[0%] md:right-[0%] sm:right-[0%] xl:w-[20vw] md:w-[20vw] sm:w-[40vw] z-0">
+            <div className="jungle-el-section absolute xl:bottom-[0%] sm:bottom-[0%] xl:right-[0%] md:right-[0%] sm:right-[0%] xl:w-[15vw] md:w-[20vw] sm:w-[40vw] z-0">
               <img src="assets/jungle/layer-feuilledroite2.webp" alt="jungle" className="w-full h-full object-contain z-0" />
             </div>
-            <div className="jungle-el-section absolute xl:bottom-[0%] sm:bottom-[0%] xl:right-[0%] md:right-[0%] sm:right-[0%] xl:w-[20vw] md:w-[20vw] sm:w-[40vw] z-0">
+            <div className="jungle-el-section absolute xl:bottom-[0%] sm:bottom-[0%] xl:right-[0%] md:right-[0%] sm:right-[0%] xl:w-[15vw] md:w-[20vw] sm:w-[40vw] z-0">
               <img src="assets/jungle/layer-feuilledroite.webp" alt="jungle2" className="w-full h-full object-contain z-0" />
             </div>
             <div className="jungle-el-section absolute xl:bottom-[50%] sm:bottom-[65%] xl:right-[15%] md:right-[0%] sm:right-[70%] xl:w-[10vw] md:w-[20vw] sm:w-[20vw] z-0">
@@ -195,7 +196,7 @@
           >
             <div className="w-full">
               <BottleSlider
-                bottles={bottlesConfig}
+                bottles={bottlesConfig(t)}
                 onBottleChange={handleBuyClick}
                 selectedBottle={selectedBottle}
                 onBuy={onclick} // Button action
@@ -213,10 +214,10 @@
               <button className="highlight-button btn-animated">{t('home.zone5.button')}</button>
               </Link>
             </div>
-            <div className="jungle-el-section absolute xl:bottom-[8%] sm:bottom-[16%] xl:left-[30%] md:left-[20%] sm:left-[15%] xl:w-[13vw] md:w-[20vw] sm:w-[20vw] z-0">
+            <div className="jungle-el-section absolute xl:bottom-[8%] sm:bottom-[16%] xl:left-[30%] md:left-[20%] sm:left-[15%] xl:w-[13vw] md:w-[20vw] sm:w-[25vw] z-0">
               <img src="assets/cocktails/cocktailTest.webp" alt="cocktail" className="w-full h-full object-contain z-0" />
             </div>
-            <div className="jungle-el-section absolute xl:bottom-[60%] sm:bottom-[16%] xl:left-[10%] md:left-[20%] sm:left-[15%] xl:w-[5vw] md:w-[20vw] sm:w-[20vw] z-0">
+            <div className="jungle-el-section absolute xl:bottom-[60%] sm:bottom-[80%] xl:left-[10%] md:left-[20%] sm:left-[15%] xl:w-[5vw] md:w-[20vw] sm:w-[10vw] z-0">
               <img src="assets/jungle/layer-papillon1.webp" alt="cocktail" className="w-full h-full object-contain z-0" />
             </div>
           </section>

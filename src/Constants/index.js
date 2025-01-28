@@ -16,7 +16,7 @@ export const subMenuLinks = [
     { name: "submenu.rumsCollection", path: "/Our-Rums" },
     { name: "submenu.arcaneExtraroma", path: "/rum/1" },
     { name: "submenu.arcaneFlamboyance", path: "/rum/2" },
-    { name: "submenu.arcaneAnanasRoti", path: "/rum/2" },
+    { name: "submenu.arcaneAnanasRoti", path: "/rum/3" },
     { name: "submenu.arcaneVanilleDesIles", path: "/rum/4" },
     { name: "submenu.arcaneBananeFlambée", path: "/rum/5" },
   ],

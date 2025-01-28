@@ -11,24 +11,17 @@ const BottleSlider = forwardRef(({ bottles, onBottleChange, selectedBottle, onBu
   const sliderContentRef = useRef(null);
   const isAnimating = useRef(false);
   const [currentSlide, setCurrentSlide] = useState(selectedBottle);
-  const DEFAULT_BOTTLE = 0; // ID ou index de Extraroma
+  const DEFAULT_BOTTLE = 0;
 
   const { rotationGroupRef } = useModel();
 
-  // Expose une méthode pour déclencher les animations
   useImperativeHandle(ref, () => ({
     startAnimation: () => {
       if (sliderContainerRef.current) {
-        // Animation pour tout le slider
         gsap.fromTo(
           sliderContainerRef.current,
           { opacity: 0, y: 50 },
-          {
-            opacity: 1,
-            y: 0,
-            duration: 1,
-            ease: "power2.out",
-          }
+          { opacity: 1, y: 0, duration: 1, ease: "power2.out" }
         );
       }
     },
@@ -50,10 +43,10 @@ const BottleSlider = forwardRef(({ bottles, onBottleChange, selectedBottle, onBu
     });
   };
 
-    // Revenir à Extraroma en dehors du slider
-    const resetToDefaultBottle = () => {
-      onBottleChange(DEFAULT_BOTTLE);
-    };  
+  // Revenir à Extraroma en dehors du slider
+  const resetToDefaultBottle = () => {
+    onBottleChange(DEFAULT_BOTTLE);
+  };
 
   const rotateBottle = (rotationGroup, onComplete) => {
     if (!rotationGroup) return;
@@ -102,88 +95,94 @@ const BottleSlider = forwardRef(({ bottles, onBottleChange, selectedBottle, onBu
       ref={sliderContainerRef}
       onMouseLeave={resetToDefaultBottle}
     >
-      {/* Slider Principal avec max-w-6xl */}
-      <div
-        className="relative z-60 pointer-events-auto flex w-full h-full max-w-6xl mx-auto"
-      >
+      {/* Slider Principal */}
+      <div className="relative z-60 pointer-events-auto flex w-full h-full max-w-6xl mx-auto">
         {/* Texte et Contenu */}
         <div
           ref={sliderContentRef}
-          className="relative flex flex-col xl:text-center xl:text-left sm:text-left xl:w-2/5 sm:w-1/2 xl:top-60 sm:top-20 xl:justify-start sm:justify-start sm:pl-3 md:pl-12 w-full md:w-1/2 text-white"
+          className="relative flex xl:flex-col sm:flex-row xl:text-center xl:text-center sm:text-center xl:w-2/5 sm:w-full xl:top-36 sm:top-14 xl:justify-start sm:items-end md:pl-12 sm:m-10 md:w-1/2 text-white"
         >
           <div className="slider-content">
-            <h2 className="xl:text-4xl sm:text-lg font-yana text-gold mb-4">{bottles[currentSlide].name}</h2>
-            <p className="font-yana text-white lg:text-lg sm:text-sm mb-2">{bottles[currentSlide].description}</p>
+            <h2 className="xl:text-4xl sm:text-4xl font-yana text-gold mb-4">
+              {bottles[currentSlide].name}
+            </h2>
+            <p className="font-yana text-white lg:text-lg sm:text-md mb-2">
+              {bottles[currentSlide].description}
+            </p>
             <p className="text-2xl font-bold mb-6">{bottles[currentSlide].prix}</p>
-            <button className="btn-animated" onClick={() => onBuy(bottles[currentSlide])}>
+            <a
+              href={bottles[currentSlide].externalLink}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn-animated"
+            >
               ACHETER
-            </button>
+            </a>
           </div>
         </div>
       </div>
 
-      {/* Flèches de Navigation Positionnées Absolument Centrées Verticalement et Écartées */}
+      {/* Flèches de Navigation */}
       <button
         className="absolute sm:left-16 md:left-20 lg:left-24 top-1/2 transform -translate-y-1/2 text-gold text-5xl hover:text-white z-30 transition-transform duration-300 ease-in-out shadow-lg hover:shadow-2xl"
-        onClick={() => handleSlideChange((currentSlide - 1 + bottles.length) % bottles.length)}
+        onClick={() =>
+          handleSlideChange((currentSlide - 1 + bottles.length) % bottles.length)
+        }
         aria-label="Précédent"
       >
         &larr;
       </button>
       <button
-        className="absolute  sm:right-16 md:right-20 lg:right-24 top-1/2 transform -translate-y-1/2 text-gold text-5xl hover:text-white z-30 transition-transform duration-300 ease-in-out shadow-lg hover:shadow-2xl"
+        className="absolute sm:right-16 md:right-20 lg:right-24 top-1/2 transform -translate-y-1/2 text-gold text-5xl hover:text-white z-30 transition-transform duration-300 ease-in-out shadow-lg hover:shadow-2xl"
         onClick={() => handleSlideChange((currentSlide + 1) % bottles.length)}
         aria-label="Suivant"
       >
         &rarr;
       </button>
-      
-       {/* Miniatures des Bouteilles */}
-  <div className="absolute bottom-10 left-1/2 transform -translate-x-1/2 flex flex-wrap xl:justify-start sm:justify-center items-center xl:space-x-4 sm:space-x-4 md:space-x-28 z-10 w-full max-w-6xl mx-auto">
-    {bottles.map((bottle, index) => (
-      <div
-        key={bottle.id}
-        className={`relative cursor-pointer transition-transform ${
-          currentSlide === index ? "scale-110" : "opacity-60"
-        }`}
-        style={{
-          width: "clamp(50px, 8vw, 100px)",
-          height: "clamp(100px, 20vw, 200px)",
-        }}
-        onClick={() => handleSlideChange(index)}
-        onMouseEnter={(e) => gsap.to(e.currentTarget, { scale: 1.2, duration: 0.3 })}
-        onMouseLeave={(e) => gsap.to(e.currentTarget, { scale: 1, duration: 0.3 })}
-      >
-        {/* Image de la bouteille */}
-        <div
-    className="absolute inset-0"
-    style={{
-      backgroundImage: `url(${bottle.thumbnail || ""})`,
-      backgroundSize: "contain",
-      backgroundPosition: "center",
-      backgroundRepeat: "no-repeat",
-      zIndex: 10, // La bouteille reste au-dessus
-    }}
-  />
 
-  {/* Halo ajusté */}
-  {currentSlide === index && (
-    <div
-      className="absolute inset-0"
-      style={{
-        zIndex: 0, // Derrière la bouteille
-        backgroundImage: "url(/assets/thumbnail/lueurBottle.webp)",
-        backgroundSize: "contain",
-        backgroundPosition: "center",
-        backgroundRepeat: "no-repeat",
-        transform: `scale(${345 / 300})`, // Ratio largeur du halo / largeur du thumbnail
-      }}
-          />
-        )}
+      {/* Miniatures des Bouteilles */}
+      <div
+        className="absolute bottom-10 left-1/2 transform -translate-x-1/2 flex flex-wrap xl:justify-start md:justify-center items-center xl:space-x-4 md:space-x-4 z-10 w-full max-w-6xl mx-auto hidden md:flex"
+      >
+        {bottles.map((bottle, index) => (
+          <div
+            key={bottle.id}
+            className={`relative cursor-pointer transition-transform ${currentSlide === index ? "scale-110" : "opacity-60"
+              }`}
+            style={{
+              width: "clamp(50px, 8vw, 100px)",
+              height: "clamp(100px, 20vw, 200px)",
+            }}
+            onClick={() => handleSlideChange(index)}
+          >
+            <div
+              className="absolute inset-0"
+              style={{
+                backgroundImage: `url(${bottle.thumbnail || ""})`,
+                backgroundSize: "contain",
+                backgroundPosition: "center",
+                backgroundRepeat: "no-repeat",
+              }}
+            />
+
+            {/* Halo ajusté */}
+            {currentSlide === index && (
+              <div
+                className="absolute inset-0"
+                style={{
+                  zIndex: 0, // Derrière la bouteille
+                  backgroundImage: "url(/assets/thumbnail/lueurBottle.webp)",
+                  backgroundSize: "contain",
+                  backgroundPosition: "center",
+                  backgroundRepeat: "no-repeat",
+                  transform: `scale(${345 / 300})`, // Ratio largeur du halo / largeur du thumbnail
+                }}
+              />
+            )}
+          </div>
+        ))}
       </div>
-    ))}
-  </div>
-</div>
+    </div>
   );
 });
 

@@ -2,6 +2,7 @@ const cocktails = [
   {
     id: 0,
     name: "Bunker Pants", // Nom du cocktail principal
+    category: "Créations",
     sections: [
       {
         title: "MAIN COCKTAIL",
@@ -40,10 +41,12 @@ const cocktails = [
     ],
     garnish: "None",
     image: "/assets/cocktails/bankerPants.webp",
+    imageB: "/assets/cocktails/vignettes/bankerPants-1.webp", // Remplacez par le chemin réel si disponible
   },
   {
     id: 1,
     name: "Day At The Peach",
+    category: "Créations",
     sections: [
       {
         title: "MAIN COCKTAIL",
@@ -115,10 +118,12 @@ const cocktails = [
     ],
     garnish: "None",
     image: "/assets/cocktails/dayAtTheBeach.webp",
+    imageB: "/assets/cocktails/vignettes/dayAtTheBeach.webp", // Remplacez par le chemin réel si disponible
   },
   {
     id: 2,
     name: "Dull The Pain",
+    category: "Créations",
     sections: [
       {
         title: "MAIN COCKTAIL",
@@ -164,10 +169,12 @@ const cocktails = [
     ],
     garnish: "Grated Fresh Nutmeg",
     image: "/assets/cocktails/dullThepain.webp",
+    imageB: "/assets/cocktails/vignettes/dullThepain.webp", // Remplacez par le chemin réel si disponible
   },
   {
     id: 3,
     name: "Hazelnut Mint Julep",
+    category: "Créations",
     sections: [
       {
         title: "MAIN COCKTAIL",
@@ -188,10 +195,12 @@ const cocktails = [
     ],
     garnish: "Fresh Mint Sprig and Dried Hazelnut",
     image: "/assets/cocktails/hazeluntMintJulep.webp",
+    imageB: "/assets/cocktails/vignettes/hazeluntMintJulep.webp", // Remplacez par le chemin réel si disponible
   },
   {
     id: 4,
     name: "Mango Milk Punch",
+    category: "Créations",
     sections: [
       {
         title: "MAIN COCKTAIL",
@@ -225,10 +234,12 @@ const cocktails = [
     ],
     garnish: "Dried Mango Slice",
     image: "/assets/cocktails/mangoMilPunch.webp",
+    imageB: "/assets/cocktails/vignettes/mangoMilPunch.webp", // Remplacez par le chemin réel si disponible
   },
   {
     id: 5,
     name: "Passion Fruit Milk Punch",
+    category: "Créations",
     sections: [
       {
         title: "MAIN COCKTAIL",
@@ -263,10 +274,12 @@ const cocktails = [
     ],
     garnish: "Fresh Passion Fruit",
     image: "/assets/cocktails/passionFruitMilkPunch.webp",
+    imageB: "/assets/cocktails/vignettes/passionFruitMilkPunch.webp", // Remplacez par le chemin réel si disponible
   },
   {
     id: 6,
     name: "Peach Rum Punch",
+    category: "Créations",
     sections: [
       {
         title: "MAIN COCKTAIL",
@@ -322,10 +335,12 @@ const cocktails = [
     ],
     garnish: "Fresh Lemon Peel & Grated Fresh Nutmeg",
     image: "/assets/cocktails/peachPunchRum.webp",
+    imageB: "/assets/cocktails/vignettes/peachPunchRum.webp", // Remplacez par le chemin réel si disponible
   },
   {
     id: 7,
     name: "Smoked Banana Sazerac",
+    category: "Créations",
     sections: [
       {
         title: "MAIN COCKTAIL",
@@ -361,10 +376,12 @@ const cocktails = [
     ],
     garnish: "Fresh Orange Peel & Lighter or Match",
     image: "/assets/cocktails/smokedBanana.webp",
+    imageB: "/assets/cocktails/vignettes/smokedBanana.webp", // Remplacez par le chemin réel si disponible
   },
   {
     id: 8,
     name: "Tropic Thunder",
+    category: "Créations",
     sections: [
       {
         title: "MAIN COCKTAIL",
@@ -411,6 +428,7 @@ const cocktails = [
       },
       {
         title: "Grilled Pineapple Ice",
+        category: "Créations",
         ingredients: [
           { name: "Whole Pineapple", qty: 1, unit: "unité" },
         ],
@@ -425,10 +443,12 @@ const cocktails = [
     ],
     garnish: "Sprig of Fresh Mint or Basil and Fresh Pineapple Wedge",
     image: "/assets/cocktails/tropicThunder.webp",
+    imageB: "/assets/cocktails/vignettes/unbelievableOldFashion.webp", // Remplacez par le chemin réel si disponible
   },
   {
     id: 9,
     name: "Unbelievable Old Fashioned",
+    category: "Créations",
     sections: [
       {
         title: "MAIN COCKTAIL",
@@ -457,8 +477,118 @@ const cocktails = [
       },
     ],
     garnish: "Dried Banana Slice & Edible Flower",
-    image: "/assets/cocktails/unbelievableOldFashion.webp",
+    image: "/assets/cocktails/unbelievableOldFashion.webp", // Remplacez par le chemin réel si disponible
+    imageB: "/assets/cocktails/vignettes/unbelievableOldFashion.webp", // Remplacez par le chemin réel si disponible
+  },
+  {
+    id: 10,
+    name: "Extra Martini",
+    category: "Revisités",
+    sections: [
+      {
+        title: "MAIN COCKTAIL",
+        ingredients: [
+          { name: "Extraroma", qty: 60, unit: "ml" },
+          { name: "Dry Vermouth by Joseph Cartron", qty: 15, unit: "ml" },
+          { name: "Ice Cubes", qty: null, unit: "" },
+        ],
+        method: [
+          "Mix it.",
+        ],
+      },
+    ],
+    garnish: "A sprig of fresh mint and a twist of lime.",
+    image: "/assets/cocktails/classic2.webp", // Remplacez par le chemin réel si disponible
+  },
+  {
+    id: 11,
+    name: "Banana Daiquiri",
+    category: "Revisités",
+    sections: [
+      {
+        title: "MAIN COCKTAIL",
+        ingredients: [
+          { name: "Extraroma", qty: 60, unit: "ml" },
+          { name: "Ripe Banana", qty: 1, unit: "unit" },
+          { name: "Fresh Lime Juice", qty: 30, unit: "ml" },
+          { name: "Simple Syrup", qty: 15, unit: "ml" },
+          { name: "Ice Cubes", qty: null, unit: "" },
+        ],
+        method: [
+          "Blender.",
+        ],
+      },
+    ],
+    garnish: "A slice of banana or lime zest.",
+    image: "/assets/cocktails/classic1.webp", // Remplacez par le chemin réel si disponible
+  },
+  {
+    id: 12,
+    name: "Old Mauritian",
+    category: "Revisités",
+    sections: [
+      {
+        title: "MAIN COCKTAIL",
+        ingredients: [
+          { name: "Extraroma", qty: 45, unit: "ml" },
+          { name: "Champagne or Prosecco", qty: 30, unit: "ml" },
+          { name: "Simple Syrup", qty: 15, unit: "ml" },
+          { name: "Fresh Mint Leaves", qty: 10, unit: "unit" },
+          { name: "Fresh Lime Juice", qty: 15, unit: "ml" },
+          { name: "Ice Cubes", qty: null, unit: "" },
+        ],
+        method: [
+          "Shaker.",
+        ],
+      },
+    ],
+    garnish: "A fresh mint leaf.",
+    image: "/assets/cocktails/classic3.webp", // Remplacez par le chemin réel si disponible
+  },
+  {
+    id: 13,
+    name: "Arcane Mai Tai",
+    category: "Revisités",
+    sections: [
+      {
+        title: "MAIN COCKTAIL",
+        ingredients: [
+          { name: "Extraroma", qty: 45, unit: "ml" },
+          { name: "White Rum", qty: 15, unit: "ml" },
+          { name: "Fresh Lime Juice", qty: 30, unit: "ml" },
+          { name: "Orgeat Syrup", qty: 15, unit: "ml" },
+          { name: "Orange Liqueur", qty: 15, unit: "ml" },
+          { name: "Ice Cubes", qty: null, unit: "" },
+        ],
+        method: [
+          "Shaker.",
+        ],
+      },
+    ],
+    garnish: "A sprig of fresh mint and a twist of lime.",
+    image: "/assets/cocktails/classic4.webp", // Remplacez par le chemin réel si disponible
+    imageB: "/assets/cocktails/vignettes/mangoMilkPunch.png", // Remplacez par le chemin réel si disponible
+  },
+  {
+    id: 14,
+    name: "Extra'n'Stormy",
+    category: "Revisités",
+    sections: [
+      {
+        title: "MAIN COCKTAIL",
+        ingredients: [
+          { name: "Extraroma", qty: 60, unit: "ml" },
+          { name: "Ginger Beer", qty: 120, unit: "ml" },
+          { name: "Fresh Lime Juice", qty: 15, unit: "ml" },
+          { name: "Ice Cubes", qty: null, unit: "" },
+        ],
+        method: [
+          "On the glass.",
+        ],
+      },
+    ],
+    garnish: "A slice of lime.",
+    image: "/assets/cocktails/classic5.webp", // Remplacez par le chemin réel si disponible
   },
 ];
-
 export default cocktails;

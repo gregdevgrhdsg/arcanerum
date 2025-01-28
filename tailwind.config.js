@@ -21,6 +21,7 @@ export default {
       colors: {
         gold: "#DAB47A", // Couleur dorée
         blue: "#1e3a8a", // Définissez la couleur "blue"
+        green: "#1e4442", // Définissez la couleur "blue"
         primary: "#3b3b3b", // Couleur principale (fond)
         accent: "#e63946", // Couleur d'accentuation
         secondary: "#555555", // Couleur secondaire (pour détails)

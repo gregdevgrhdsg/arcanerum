@@ -40,19 +40,21 @@ const LanguageSwitcher = () => {
 
   // Animation avec GSAP pour l'ouverture/fermeture
   useEffect(() => {
-    if (isOpen) {
-      gsap.fromTo(
-        listRef.current,
-        { opacity: 0, y: -10 },
-        { opacity: 1, y: 0, duration: 0.3, ease: 'power3.out' }
-      );
-    } else {
-      gsap.to(listRef.current, {
-        opacity: 0,
-        y: -10,
-        duration: 0.3,
-        ease: 'power3.in',
-      });
+    if (listRef.current) {
+      if (isOpen) {
+        gsap.fromTo(
+          listRef.current,
+          { opacity: 0, y: -10 },
+          { opacity: 1, y: 0, duration: 0.3, ease: 'power3.out' }
+        );
+      } else {
+        gsap.to(listRef.current, {
+          opacity: 0,
+          y: -10,
+          duration: 0.3,
+          ease: 'power3.in',
+        });
+      }
     }
   }, [isOpen]);
 
@@ -92,14 +94,17 @@ const LanguageSwitcher = () => {
         <div
           ref={listRef}
           className="absolute right-0 mt-2 w-40 bg-black border border-gold rounded shadow-lg z-50"
+          style={{
+            visibility: isOpen ? 'visible' : 'hidden',
+            height: isOpen ? 'auto' : 0,
+          }}
         >
           {languages.map((lang) => (
             <button
               key={lang.code}
               onClick={() => changeLanguage(lang.code)}
-              className={`flex items-center w-full px-4 py-2 text-left hover:bg-gold hover:text-white transition-colors duration-300 ${
-                lang.code === currentLanguage.code ? 'bg-gold text-white' : 'bg-transparent text-gold'
-              }`}
+              className={`flex items-center w-full px-4 py-2 text-left hover:bg-gold hover:text-white transition-colors duration-300 ${lang.code === currentLanguage.code ? 'bg-gold text-white' : 'bg-transparent text-gold'
+                }`}
               aria-label={`Changer la langue en ${lang.label}`}
             >
               <ReactCountryFlag
