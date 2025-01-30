@@ -92,12 +92,12 @@ const zoneConfigurations = {
         camera: { z: 6, duration: 2, ease: "power5.inOut" },
       },
     },
+    stopAtEnd: true, // Nouveau paramètre
   },
 };
 
-// Fonction pour créer une animation pour une zone
-// Crée une animation pour une zone
-// Fonction pour créer une animation pour une zone
+let isLocked = false;
+
 const createZoneAnimation = (modelRef, cameraRef, animationConfig) => {
   const timeline = gsap.timeline({
     scrollTrigger: {
@@ -105,21 +105,41 @@ const createZoneAnimation = (modelRef, cameraRef, animationConfig) => {
       start: "top top",
       end: "bottom top",
       scrub: true,
+      onLeave: () => {
+        if (animationConfig.stopAtEnd) {
+          isLocked = true; // Verrouiller le modèle
+          const { position, rotation, camera } = animationConfig.animations;
+          gsap.set(modelRef.current.position, position);
+          gsap.set(modelRef.current.rotation, rotation);
+          gsap.set(cameraRef.current.position, camera);
+          cameraRef.current.updateProjectionMatrix();
+        }
+      },
+      onEnterBack: () => {
+        isLocked = false; // Déverrouiller en remontant
+      },
     },
   });
 
-  if (animationConfig.animations.position) {
+  if (!isLocked) {
     timeline.to(modelRef.current.position, animationConfig.animations.position);
-  }
-
-  if (animationConfig.animations.rotation) {
     timeline.to(modelRef.current.rotation, animationConfig.animations.rotation, "<");
-  }
-
-  if (animationConfig.animations.camera) {
     timeline.to(cameraRef.current.position, animationConfig.animations.camera, "<");
-    cameraRef.current.updateProjectionMatrix();
   }
+};
+
+export const setupGlobalFreeze = (modelRef, cameraRef) => {
+  ScrollTrigger.create({
+    trigger: ".last-zone", // Classe de la dernière zone
+    start: "top top",
+    end: "bottom top",
+    onEnter: () => {
+      // Figer le modèle et la caméra
+      gsap.set(modelRef.current.position, { x: 0, y: 0, z: 0 });
+      gsap.set(modelRef.current.rotation, { x: 0, y: 0, z: 0 });
+      gsap.set(cameraRef.current.position, { z: 5 });
+    },
+  });
 };
 
 // Configure les animations pour une taille d'écran donnée

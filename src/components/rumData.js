@@ -49,10 +49,10 @@ const rumData = () => {
       subtitle: t("ourRums.arcaneAnanasRoti.subtitle"),
       description_a: t("ourRums.arcaneAnanasRoti.description_a"),
       description: t("ourRums.arcaneAnanasRoti.description"),
-      tastingNotes: {
-        color: t("ourRums.arcaneAnanasRoti.tastingNotes.color"),
-        nose: t("ourRums.arcaneAnanasRoti.tastingNotes.nose"),
-        palate: t("ourRums.arcaneAnanasRoti.tastingNotes.palate"),
+      waysToEnjoy: {
+        title: t("ourRums.arcaneAnanasRoti.waysToEnjoy.title"),
+        description: t("ourRums.arcaneAnanasRoti.waysToEnjoy.description"),
+        signatureShot: t("ourRums.arcaneAnanasRoti.waysToEnjoy.signatureShot"),
       },
       logisticInfo: {
         volume: t("ourRums.arcaneAnanasRoti.logisticInfo.volume"),
@@ -68,10 +68,10 @@ const rumData = () => {
       subtitle: t("ourRums.arcaneVanilleDesIles.subtitle"),
       description_a: t("ourRums.arcaneVanilleDesIles.description_a"),
       description: t("ourRums.arcaneVanilleDesIles.description"),
-      tastingNotes: {
-        color: t("ourRums.arcaneVanilleDesIles.tastingNotes.color"),
-        nose: t("ourRums.arcaneVanilleDesIles.tastingNotes.nose"),
-        palate: t("ourRums.arcaneVanilleDesIles.tastingNotes.palate"),
+      waysToEnjoy: {
+        title: t("ourRums.arcaneVanilleDesIles.waysToEnjoy.title"),
+        description: t("ourRums.arcaneVanilleDesIles.waysToEnjoy.description"),
+        signatureShot: t("ourRums.arcaneVanilleDesIles.waysToEnjoy.signatureShot"),
       },
       logisticInfo: {
         volume: t("ourRums.arcaneVanilleDesIles.logisticInfo.volume"),
@@ -83,23 +83,22 @@ const rumData = () => {
     {
       id: 5,
       image: "/assets/thumbnail/arcaneArrangeBanane.webp",
-      title: t("ourRums.arcaneBananeFlambée.title"),
-      subtitle: t("ourRums.arcaneBananeFlambée.subtitle"),
-      description_a: t("ourRums.arcaneBananeFlambée.description_a"),
-      description: t("ourRums.arcaneBananeFlambée.description"),
-      tastingNotes: {
-        color: t("ourRums.arcaneBananeFlambée.tastingNotes.color"),
-        nose: t("ourRums.arcaneBananeFlambée.tastingNotes.nose"),
-        palate: t("ourRums.arcaneBananeFlambée.tastingNotes.palate"),
+      title: t("ourRums.arcaneBananeFlambee.title"),
+      subtitle: t("ourRums.arcaneBananeFlambee.subtitle"),
+      description_a: t("ourRums.arcaneBananeFlambee.description_a"),
+      description: t("ourRums.arcaneBananeFlambee.description"),
+      waysToEnjoy: {
+        title: t("ourRums.arcaneBananeFlambee.waysToEnjoy.title"),
+        description: t("ourRums.arcaneBananeFlambee.waysToEnjoy.description"),
+        signatureShot: t("ourRums.arcaneBananeFlambee.waysToEnjoy.signatureShot"),
       },
       logisticInfo: {
-        volume: t("ourRums.arcaneBananeFlambée.logisticInfo.volume"),
-        alcohol: t("ourRums.arcaneBananeFlambée.logisticInfo.alcohol"),
-
+        volume: t("ourRums.arcaneBananeFlambee.logisticInfo.volume"),
+        alcohol: t("ourRums.arcaneBananeFlambee.logisticInfo.alcohol"),
       },
       pattern: "/assets/paterns/paternBanane.webp",
       gradient: "radial-gradient(circle, #A1524C, #682317, #491713)",
-    }
+    },
   ];
 };
 

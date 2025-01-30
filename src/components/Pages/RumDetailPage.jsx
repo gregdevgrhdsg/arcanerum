@@ -5,31 +5,37 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useState } from "react";
 
-
 gsap.registerPlugin(ScrollTrigger);
 
 const RumDetailPage = () => {
   const { id } = useParams();
   const navigate = useNavigate();
-  const rumData = useRumData(); // Appel de la fonction pour obtenir les données
+  const rumData = useRumData();
   const rum = rumData.find((item) => item.id === parseInt(id));
   const sectionRef = useRef();
   const textRefs = useRef([]);
   const imageContainerRef = useRef();
-  // Définir l'état initial de l'onglet actif
-  const [activeTab, setActiveTab] = useState(() =>
-    rum?.tastingNotes.color || rum?.tastingNotes.nose || rum?.tastingNotes.palate
-      ? "tastingNotes"
-      : "logisticInfo"
-  );
 
-  // Animation de transition
+  // Vérifier s'il s'agit d'un rhum classique ou d'un arrangé
+  const hasTastingNotes = rum?.tastingNotes?.color || rum?.tastingNotes?.nose || rum?.tastingNotes?.palate;
+  const hasWaysToEnjoy = rum?.waysToEnjoy;
+
+  const [activeTab, setActiveTab] = useState("logisticInfo"); // Par défaut
+
+  useEffect(() => {
+    if (hasWaysToEnjoy) {
+      setActiveTab("waysToEnjoy");
+    } else if (hasTastingNotes) {
+      setActiveTab("tastingNotes");
+    }
+  }, [rum]); // Mettre à jour l'onglet actif à chaque changement de bouteille
+
+  // Fonction pour naviguer entre les rhums avec animation GSAP
   const handleNavigation = (direction) => {
     const currentIndex = rumData.findIndex((item) => item.id === parseInt(id));
     const nextIndex = (currentIndex + direction + rumData.length) % rumData.length;
     const nextId = rumData[nextIndex].id;
 
-    // Animation de sortie
     gsap.to(sectionRef.current, {
       opacity: 0,
       x: direction > 0 ? -100 : 100,
@@ -43,14 +49,12 @@ const RumDetailPage = () => {
   useEffect(() => {
     if (!sectionRef.current) return;
 
-    // Animation d'entrée
     gsap.fromTo(
       sectionRef.current,
       { opacity: 0, x: 100 },
       { opacity: 1, x: 0, duration: 0.5, ease: "power3.out" }
     );
 
-    // Animations GSAP pour le contenu
     gsap.fromTo(
       textRefs.current,
       { opacity: 0, y: 20 },
@@ -96,69 +100,59 @@ const RumDetailPage = () => {
   }
 
   return (
-    <section
-      ref={sectionRef}
-      className="relative w-full min-h-screen flex flex-col items-center justify-center bg-gray-900 text-white"
-      style={{ background: rum.gradient }}
-    >
-      <div className="container mx-auto flex xl:flex-row md:flex-col sm:flex-col items-center justify-between px-6 py-10 gap-8 z-30">
+    <section ref={sectionRef} className="relative w-full min-h-screen flex flex-col items-center justify-center bg-gray-900 text-white" style={{ background: rum.gradient }}>
+      <div className="container mx-auto flex xl:flex-row md:flex-col sm:flex-col items-center justify-start px-6 py-10 gap-8 z-30">
 
-        {/* Colonne gauche : Image de la bouteille */}
-        <div
-          className="flex-1 relative flex justify-center items-center"
-          ref={imageContainerRef}
-        >
-          <div
-            className="absolute inset-0 xl:bg-center lg:bg-start md:bg-start sm:bg-start bg-no-repeat z-0 xl:bg-[size:60%] lg:bg-[size:100%] lg:w-[100%] md:bg-[size:100%] sm:bg-[size:100%] xl:top-0 md:top-0 sm:top-44"
-            style={{
-              backgroundImage: `url(${rum.pattern})`,
-              opacity: 0.8,
-            }}
-          ></div>
-          <img
-            src={rum.image}
-            alt={rum.title}
-            className="relative font-yana xl:mt-0 sm:mt-20 z-10 object-contain drop-shadow-lg"
-            style={{
-              width: "200px",
-              maxWidth: "300px",
-            }}
-          />
+        {/* Image de la bouteille */}
+        <div className="flex-1 relative flex justify-center items-center" ref={imageContainerRef}>
+        <div 
+  className="absolute inset-0 bg-no-repeat xl:bg-contain xl:bg-center lg:bg-cover md:bg-cover sm:bg-size[500px]"
+  style={{
+    backgroundImage: `url(${rum.pattern})`,
+    backgroundSize: "contain",
+    minHeight: "100%", // Force une taille minimum
+    width: "100%",     // Remplit l’écran
+  }}
+></div>
+          <img src={rum.image} alt={rum.title} className="relative font-yana xl:mt-0 sm:mt-20 z-10 object-contain drop-shadow-lg" 
+          style={{ width: "200px", maxWidth: "200px" }} />
         </div>
 
-        {/* Colonne droite : Informations */}
-        <div className="flex-1 flex w-full flex-col text-center items-center xl:mr-20 sm:mr-0 sm:ml-0">
-          <h1 className="text-4xl font-bold xl:text-center font-yana text-gold">
-            {rum.title}
-          </h1>
-          <h2 className="mt-2 text-2xl text-center font-yana font-semibold mb-6">
-            {rum.subtitle}
-          </h2>
+        {/* Informations */}
+        <div className="flex-1 flex w-full flex-col justify-start text-center items-center xl:mr-20 sm:mr-0 sm:ml-0">
+          <h1 className="text-4xl font-bold xl:text-center font-yana text-gold">{rum.title}</h1>
+          <h2 className="mt-2 text-2xl text-center font-yana font-semibold mb-6">{rum.subtitle}</h2>
           <p className="text-lg text-center font-yana text-content">{rum.description}</p>
 
           <div className="mt-6">
-            <div className="flex space-x-4 border-b border-gold mb-4">
-              {/* Afficher l'onglet Tasting Notes uniquement si les données sont présentes */}
-              {rum.tastingNotes.color || rum.tastingNotes.nose || rum.tastingNotes.palate ? (
+            <div className="flex justify-center items-center flex-wrap gap-4 mb-4">
+              {hasTastingNotes && (
                 <button
-                  className={`px-4 py-2 ${
-                    activeTab === "tastingNotes"
-                      ? "text-gold border-b-2 border-gold"
-                      : "text-gray-400"
-                  }`}
+                  className={`px-4 py-2 transition duration-300 ${activeTab === "tastingNotes"
+                    ? "text-gold border-b-4 border-gold font-bold"
+                    : "text-gray-400 border-transparent"
+                    }`}
                   onClick={() => setActiveTab("tastingNotes")}
                 >
                   Tasting Notes
                 </button>
-              ) : null}
-
-              {/* Onglet Logistic Info toujours visible */}
+              )}
+              {hasWaysToEnjoy && (
+                <button
+                  className={`px-4 py-2 transition duration-300 ${activeTab === "waysToEnjoy"
+                    ? "text-gold border-b-4 border-gold font-bold"
+                    : "text-gray-400 border-transparent"
+                    }`}
+                  onClick={() => setActiveTab("waysToEnjoy")}
+                >
+                  {rum.waysToEnjoy.title}
+                </button>
+              )}
               <button
-                className={`px-4 py-2 ${
-                  activeTab === "logisticInfo"
-                    ? "text-gold border-b-2 border-gold"
-                    : "text-gray-400"
-                }`}
+                className={`px-4 py-2 transition duration-300 ${activeTab === "logisticInfo"
+                  ? "text-gold border-b-4 border-gold font-bold"
+                  : "text-gray-400 border-transparent"
+                  }`}
                 onClick={() => setActiveTab("logisticInfo")}
               >
                 Logistic Info
@@ -166,67 +160,44 @@ const RumDetailPage = () => {
             </div>
 
             {/* Contenu des onglets */}
-            {activeTab === "tastingNotes" && (
+            {activeTab === "tastingNotes" && hasTastingNotes && (
+              <div className="grid text-sm text-center grid-cols-1 md:grid-cols-3 gap-6">
+                {rum.tastingNotes.color && <div><h4 className="text-lg font-semibold text-gold mb-2">Color</h4><p className="text-content">{rum.tastingNotes.color}</p></div>}
+                {rum.tastingNotes.nose && <div><h4 className="text-lg font-semibold text-gold mb-2">Nose</h4><p className="text-content">{rum.tastingNotes.nose}</p></div>}
+                {rum.tastingNotes.palate && <div><h4 className="text-lg font-semibold text-gold mb-2">Palate</h4><p className="text-content">{rum.tastingNotes.palate}</p></div>}
+              </div>
+            )}
+
+            {activeTab === "waysToEnjoy" && hasWaysToEnjoy && (
               <div>
-                <div className="grid text-center grid-cols-1 md:grid-cols-3 gap-6">
-                  {rum.tastingNotes.color && (
-                    <div>
-                      <h4 className="text-lg font-semibold text-gold mb-2">Color</h4>
-                      <p className="text-content">{rum.tastingNotes.color}</p>
-                    </div>
-                  )}
-                  {rum.tastingNotes.nose && (
-                    <div>
-                      <h4 className="text-lg font-semibold text-gold mb-2">Nose</h4>
-                      <p className="text-content">{rum.tastingNotes.nose}</p>
-                    </div>
-                  )}
-                  {rum.tastingNotes.palate && (
-                    <div>
-                      <h4 className="text-lg font-semibold text-gold mb-2">Palate</h4>
-                      <p className="text-content">{rum.tastingNotes.palate}</p>
-                    </div>
-                  )}
-                </div>
+                <p className="text-content xl:mx-28 sm:mx-0 text-sm">{rum.waysToEnjoy.description}</p>
+                {rum.waysToEnjoy.signatureShot && (
+                  <div className="mt-4">
+                    <h4 className="text-lg font-semibold text-gold mb-2">Signature Shot</h4>
+                    <p className="text-content text-sm whitespace-pre-line">{rum.waysToEnjoy.signatureShot}</p>
+                  </div>
+                )}
               </div>
             )}
 
             {activeTab === "logisticInfo" && (
               <div>
                 <ul className="space-y-2 text-yana">
-                  <li>
-                    <strong>Volume :</strong> {rum.logisticInfo.volume}
-                  </li>
-                  <li>
-                    <strong>Alcohol Content :</strong> {rum.logisticInfo.alcohol}
-                  </li>
+                  <li><strong>Volume :</strong> {rum.logisticInfo.volume}</li>
+                  <li><strong>Alcohol Content :</strong> {rum.logisticInfo.alcohol}</li>
                 </ul>
               </div>
             )}
           </div>
-          <Link
-            to="/Our-Rums"
-            className="btn-animated mt-16 px-4 py-2 text-sm font-medium bg-gold text-black rounded-md hover:bg-yellow-500 transition-all duration-300"
-          >
+          <Link to="/Our-Rums" className="btn-animated mt-16 px-4 py-2 text-sm font-medium bg-gold text-black rounded-md hover:bg-yellow-500 transition-all duration-300">
             Retour à la liste
           </Link>
         </div>
 
-        {/* Flèche droite */}
-             {/* Flèche gauche */}
-             <button
-          className="absolute left-4 top-100 transform  text-5xl text-gold p-3 rounded-full hover:bg-gray-700"
-          onClick={() => handleNavigation(-1)}
-        >
-          &larr;
-        </button>
-        
-        <button
-          className="absolute right-4 top-100 text-5xl text-gold p-3 rounded-full hover:bg-gray-700"
-          onClick={() => handleNavigation(1)}
-        >
-          &rarr;
-        </button>
+        {/* Flèches de navigation */}
+        <button className="absolute left-4 top-1/2 transform -translate-y-1/2 text-5xl text-gold p-3 rounded-full hover:bg-gray-700" onClick={() => handleNavigation(-1)}>&larr;</button>
+        <button className="absolute right-4 top-1/2 transform -translate-y-1/2 text-5xl text-gold p-3 rounded-full hover:bg-gray-700" onClick={() => handleNavigation(1)}>&rarr;</button>
+
       </div>
     </section>
   );

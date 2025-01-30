@@ -4,7 +4,7 @@ export const bottlesConfig = (t) => [
   {
     id: 0,
     name: t("ourRums.arcaneExtraroma.title"),
-    description: t("ourRums.arcaneExtraroma.description"),
+    description: t("ourRums.arcaneExtraroma.description_a"),
     thumbnail: "assets/thumbnail/arcaneExtraroma.webp",
     externalLink: "https://www.example.com/extraroma",
     component: RumA,
@@ -15,7 +15,7 @@ export const bottlesConfig = (t) => [
     },
     responsiveRotations: {
       mobile: { x: 0.2, y: -0.2, z: -0.2 },
-      mobile: { x: 0.2, y: -0.2, z: -0.2 },
+      tablet: { x: 0, y: 0, z: 0 },
       desktop: { x: 0, y: 0, z: 0 },
     },
     responsiveScales: {
@@ -27,7 +27,7 @@ export const bottlesConfig = (t) => [
   {
     id: 1,
     name: t("ourRums.arcaneFlamboyance.title"),
-    description: t("ourRums.arcaneFlamboyance.description"),
+    description: t("ourRums.arcaneFlamboyance.description_a"),
     thumbnail: "assets/thumbnail/arcaneFlamboyance.webp",
     externalLink: "https://www.example.com/flamboyance",
     component: Flamboyance,
@@ -38,7 +38,7 @@ export const bottlesConfig = (t) => [
     },
     responsiveRotations: {
       mobile: { x: 0.2, y: -0.2, z: -0.2 },
-      mobile: { x: 0.2, y: -0.2, z: -0.2 },
+      tablet: { x: 0, y: 0, z: 0 },
       desktop: { x: 0, y: 0, z: 0 },
     },
     responsiveScales: {
@@ -50,7 +50,7 @@ export const bottlesConfig = (t) => [
   {
     id: 2,
     name: t("ourRums.arcaneAnanasRoti.title"),
-    description: t("ourRums.arcaneAnanasRoti.description"),
+    description: t("ourRums.arcaneAnanasRoti.description_a"),
     thumbnail: "assets/thumbnail/arcaneArrangeAnanas.webp",
     externalLink: "https://www.example.com/ananas-roti",
     component: RumB,
@@ -61,7 +61,7 @@ export const bottlesConfig = (t) => [
     },
     responsiveRotations: {
       mobile: { x: 0.2, y: -0.2, z: -0.2 },
-      mobile: { x: 0.2, y: -0.2, z: -0.2 },
+      tablet: { x: 0, y: 0, z: 0 },
       desktop: { x: 0, y: 0, z: 0 },
     },
     responsiveScales: {
@@ -73,7 +73,7 @@ export const bottlesConfig = (t) => [
   {
     id: 3,
     name: t("ourRums.arcaneVanilleDesIles.title"),
-    description: t("ourRums.arcaneVanilleDesIles.description"),
+    description: t("ourRums.arcaneVanilleDesIles.description_a"),
     thumbnail: "assets/thumbnail/arcaneArrangeVanille.webp",
     externalLink: "https://www.example.com/vanille-des-iles",
     component: RumC,
@@ -84,7 +84,7 @@ export const bottlesConfig = (t) => [
     },
     responsiveRotations: {
       mobile: { x: 0.2, y: -0.2, z: -0.2 },
-      mobile: { x: 0.2, y: -0.2, z: -0.2 },
+      tablet: { x: 0, y: 0, z: 0 },
       desktop: { x: 0, y: 0, z: 0 },
     },
     responsiveScales: {
@@ -96,7 +96,7 @@ export const bottlesConfig = (t) => [
   {
     id: 4,
     name: t("ourRums.arcaneBananeFlambee.title"),
-    description: t("ourRums.arcaneBananeFlambee.description"),
+    description: t("ourRums.arcaneBananeFlambee.description_a"),
     thumbnail: "assets/thumbnail/arcaneArrangeBanane.webp",
     externalLink: "https://www.example.com/banane-flambee",
     component: RumD,
@@ -107,7 +107,7 @@ export const bottlesConfig = (t) => [
     },
     responsiveRotations: {
       mobile: { x: 0.2, y: -0.2, z: -0.2 },
-      mobile: { x: 0.2, y: -0.2, z: -0.2 },
+      tablet: { x: 0, y: 0, z: 0 },
       desktop: { x: 0, y: 0, z: 0 },
     },
     responsiveScales: {

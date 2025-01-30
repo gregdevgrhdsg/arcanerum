@@ -1,69 +1,44 @@
 // src/components/Pages/OurUniverse.jsx
 
 import React, { useEffect, useRef, useState, useMemo } from 'react';
-import { Link } from 'react-router-dom';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { useTranslation } from 'react-i18next';
 
-// Enregistrer le plugin GSAP
 gsap.registerPlugin(ScrollTrigger);
 
 /**
- * Composant SliderSection
- * Représente une section avec un slider animé
+ * Composant SliderSection (identique à Know How)
  */
 const SliderSection = ({ slider }) => {
   const slidesRef = useRef([]);
-  const bulletsRef = useRef([]);
+  const titleRef = useRef(null);
+  const textRef = useRef(null);
   const [currentIndex, setCurrentIndex] = useState(0);
-
   const slides = slider.slides;
 
   useEffect(() => {
-    if (!slidesRef.current || slidesRef.current.length === 0) {
-      console.warn('Aucun slide trouvé pour GSAP.');
-      return;
-    }
+    if (!textRef.current) return;
+  
+    gsap.fromTo(
+      textRef.current,
+      { opacity: 0, y: 20, },
+      {
+        opacity: 1,
+        y: 0,
+        duration: 0.6,
+        ease: "power2.out",
+      }
+    );
+  }, [currentIndex]); // Déclenché uniquement lorsque le slide change
 
-    // Initialisation des animations pour le slide actif
-    gsap.set(slidesRef.current, { opacity: 0, y: 20 });
-    gsap.to(slidesRef.current[currentIndex], {
-      opacity: 1,
-      y: 0,
-      duration: 1,
-      ease: 'power2.inOut',
-    });
-
-    return () => {
-      gsap.killTweensOf(slidesRef.current[currentIndex]);
-    };
-  }, [currentIndex, slides]);
-
-  const handleSlideChange = (index) => {
-    if (index !== currentIndex) {
-      gsap.to(slidesRef.current[currentIndex], {
-        opacity: 0,
-        y: 20,
-        duration: 1,
-        ease: 'power2.inOut',
-      });
-
-      setTimeout(() => {
-        setCurrentIndex(index);
-      }, 500); // Correspond à la durée de l'animation de sortie
-    }
-  };
-
-  const handleArrowClick = (direction) => {
+  const handleSlideChange = (direction) => {
     const newIndex = (currentIndex + direction + slides.length) % slides.length;
-    handleSlideChange(newIndex);
+    setCurrentIndex(newIndex);
   };
 
   return (
-    <section
-      className={`h-screen flex flex-col items-star bg-transparent slide-${slider.id}`}
-    >
+    <section className={`h-screen flex flex-col bg-transparent slide-${slider.id}`}>
       <div
         className={`h-full w-full relative flex ${slider.flexClasses}`}
         style={{
@@ -73,47 +48,32 @@ const SliderSection = ({ slider }) => {
         }}
       >
         <div className={`text-center z-10 ${slider.containerClass}`}>
-          <h2 className="highlight-title font-yana font-bold text-gold xl:text-4xl sm:text-3xl lg:text-3xl md:text-3xl sm:text-sm mb-3">
+          <h2 ref={titleRef} className="highlight-title font-yana font-bold text-gold xl:text-4xl lg:text-3xl md:text-3xl sm:text-2xl mb-3">
             {slider.title}
           </h2>
-          <div className="slider-container relative w-[100%] mx-auto">
-            <div className="slides font-yana relative xl:min-h-[18vw] sm:min-h-[30vw] flex items-center justify-center">
-              {slides.map((slide, index) => (
-                <div
-                  key={index}
-                  ref={(el) => (slidesRef.current[index] = el)}
-                  className={`slide-item absolute top-0 left-0 w-full transition-opacity duration-200 ${index === currentIndex ? 'opacity-100 z-10' : 'opacity-0 z-0'
-                    }`}
-                >
-                  <p className="highlight-description pl-20 pr-20 font-yana text-white xl:text-xl lg:text-1xl md:1xl sm:text-sm"
-                    style={{ whiteSpace: "pre-line" }} // Permet d’interpréter les \n
-                  >
-                    {slide}
-                  </p>
-                </div>
-              ))}
-            </div>
+          <p ref={textRef} className="highlight-description font-yana text-white xl:text-xl lg:text-lg md:text-md sm:text-sm">
+            {slides[currentIndex]}
+          </p>
 
-            {/* Flèches de navigation */}
-            {slides.length > 1 && (
-            <div className="flex justify-center items-end relative">
+          {/* Flèches de navigation (adaptées dynamiquement) */}
+          {slides.length > 1 && (
+            <div className="flex justify-center items-end relative mt-6">
               <button
                 className="text-gold text-6xl hover:text-white mx-4 transform rotate-90"
-                onClick={() => handleArrowClick(-1)}
+                onClick={() => handleSlideChange(-1)}
                 aria-label="Previous slide"
               >
-                &#8249; {/* Chevron orienté vers le haut */}
+                &#8249;
               </button>
               <button
                 className="text-gold text-6xl hover:text-white mx-4 -rotate-90"
-                onClick={() => handleArrowClick(1)}
+                onClick={() => handleSlideChange(1)}
                 aria-label="Next slide"
               >
-                &#8249; {/* Chevron orienté vers le bas */}
+                &#8249;
               </button>
             </div>
-              )}
-          </div>
+          )}
         </div>
         <div className="absolute top-0 left-0 w-full h-full bg-black/50 z-0"></div>
       </div>

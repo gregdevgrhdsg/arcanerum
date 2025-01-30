@@ -375,7 +375,7 @@ const cocktails = [
       },
     ],
     garnish: "Fresh Orange Peel & Lighter or Match",
-    image: "/assets/cocktails/smokedBanana.webp",
+    image: "/assets/cocktails/SmokedBanana.webp",
     imageB: "/assets/cocktails/vignettes/smokedBanana.webp", // Remplacez par le chemin réel si disponible
   },
   {
@@ -443,7 +443,7 @@ const cocktails = [
     ],
     garnish: "Sprig of Fresh Mint or Basil and Fresh Pineapple Wedge",
     image: "/assets/cocktails/tropicThunder.webp",
-    imageB: "/assets/cocktails/vignettes/unbelievableOldFashion.webp", // Remplacez par le chemin réel si disponible
+    imageB: "/assets/cocktails/vignettes/tropicThunder.webp", // Remplacez par le chemin réel si disponible
   },
   {
     id: 9,
@@ -499,6 +499,7 @@ const cocktails = [
     ],
     garnish: "A sprig of fresh mint and a twist of lime.",
     image: "/assets/cocktails/classic2.webp", // Remplacez par le chemin réel si disponible
+    imageB: "/assets/cocktails/vignettes/classic2Vignette.webp", // Remplacez par le chemin réel si disponible
   },
   {
     id: 11,
@@ -521,6 +522,7 @@ const cocktails = [
     ],
     garnish: "A slice of banana or lime zest.",
     image: "/assets/cocktails/classic1.webp", // Remplacez par le chemin réel si disponible
+    imageB: "/assets/cocktails/vignettes/classic1Vignette.webp", // Remplacez par le chemin réel si disponible
   },
   {
     id: 12,
@@ -544,6 +546,7 @@ const cocktails = [
     ],
     garnish: "A fresh mint leaf.",
     image: "/assets/cocktails/classic3.webp", // Remplacez par le chemin réel si disponible
+    imageB: "/assets/cocktails/vignettes/classic3Vignette.webp", // Remplacez par le chemin réel si disponible
   },
   {
     id: 13,
@@ -567,7 +570,7 @@ const cocktails = [
     ],
     garnish: "A sprig of fresh mint and a twist of lime.",
     image: "/assets/cocktails/classic4.webp", // Remplacez par le chemin réel si disponible
-    imageB: "/assets/cocktails/vignettes/mangoMilkPunch.png", // Remplacez par le chemin réel si disponible
+    imageB: "/assets/cocktails/vignettes/classic5Vignette.png", // Remplacez par le chemin réel si disponible
   },
   {
     id: 14,
@@ -589,6 +592,7 @@ const cocktails = [
     ],
     garnish: "A slice of lime.",
     image: "/assets/cocktails/classic5.webp", // Remplacez par le chemin réel si disponible
+    imageB: "/assets/cocktails/vignettes/classic4Vignette.webp", // Remplacez par le chemin réel si disponible
   },
 ];
 export default cocktails;

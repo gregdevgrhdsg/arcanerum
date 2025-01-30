@@ -122,7 +122,7 @@ const CocktailDetail = () => {
 
         {/* Détails du cocktail */}
         <div
-          className="w-full lg:w-1/2 px-6 py-10 overflow-y-auto max-h-[80vh] flex flex-col items-center justify-center text-center"
+          className="w-full lg:w-1/2 px-6 py-10 overflow-y-auto max-h-[80vh] flex flex-col items-center justify-start text-center"
           ref={textRef}
         >
           <h1 className="text-4xl text-gold font-yana mb-6">{cocktail.name}</h1>

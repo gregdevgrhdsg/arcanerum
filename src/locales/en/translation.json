@@ -19,7 +19,7 @@
       "button": "UNVEIL OUR SECRETS"
     }
   },
- "know_how": {
+  "know_how": {
     "sugarcane_harvest": {
       "title": "Récolte de Canne à Sucre",
       "description": "Since more than 2 centuries, Mauritius is known as one of the best land in the world for the production of sugar cane and rum. The balance between the climate, the relief and the nature of the soil is just ideal ! From the coast to the mountains, the long green shoots of sugar cane invade the landscape."
@@ -40,7 +40,19 @@
       "title": "Vieillissement",
       "description": "Aged at least 3 years in French and American oak barrels, Arcane rums benefit from the tropical climate of Mauritius. The dynamic temperature variations accelerate the maturation process, creating gourmet and complex aromas in a shorter time frame."
     },
-    "step": "Étape {{step}}"
+    "slide1": {
+      "title": "THE ALCHEMY OF DISTILLATION",
+      "description": "Arcane distills pure, freshly pressed sugarcane juice close to cutting time to preserve its vibrant flavors. This ensures that the rum captures the full aromatic essence of the cane."
+    },
+    "slide2": {
+      "title": "A DYNAMIC MATURATION",
+      "description": "Aged in French and American oak barrels, Arcane rums benefit from Mauritius’ tropical climate. Dynamic temperature variations speed up maturation, creating complex, opulent flavors in a shorter period."
+    },
+    "slide3": {
+      "title": "THe ARRANGÉS : CRAFTED WITH NATURAL FLAVORS",
+      "description": "Arcane elevates its rum with the Arrangés collection, infusing natural flavors from fresh local fruits and spices. Whether it’s Banane Flambée, Ananas Rôti, or Vanille des Îles, each Arrangé is crafted to blend perfectly with the rum, enhancing it with vibrant tropical notes of banana, pineapple, or vanilla. The tradition of rhum arrangé hails from the islands, where fruits and spices have long been used to infuse rum, creating flavorful and aromatic spirits that reflect the richness of local produce and culture. Arcane continues this heritage, capturing the essence of Mauritius in each bottle through natural, exotic infusions that celebrate the island’s bounty."
+    },
+    "step": "Étape {{step}}"  
   },
   "nav": {
     "discover": "DISCOVER",
@@ -61,14 +73,18 @@
     "support": "Support"
   },
   "ourUniverse": {
-    "slide1Title": "Arcane Rum",
-    "slide1Content1": "Bienvenue dans un monde où l'ordinaire domine, Arcane Rum...",
-    "slide1Content2": "Découvrez le mystère et la richesse de notre rhum exceptionnel.",
-    "slide1Content3": "Explorez les territoires volcaniques qui façonnent nos saveurs distinctives.",
-    "slide2Title": "Arcane Rum",
-    "slide2Content1": "Bienve dans un monde où l'ordinaire domine, Arcane Rum...",
+    "slide1Title": "ESCAPE THE EXPECTED",
+    "slide1Content1": "In a world where the ordinary prevails, Arcane Rum invites you to uncover the mystery of the everyday and taste the extraordinary. Imagine a journey worthy of an odyssey on the island of Mauritius, where nature whispers its best-kept secrets into the depths of your taste buds. In your quest for uniqueness, dive into the heart of this opulent island, guided by the whispers of the fauna, flora, and the intoxicating scent of rum.",
+    "slide1Content2": "Each sip of Arcane Rum revives the senses, revealing stories buried in the sacred nectar of sugarcane. Our master blenders jealously guard the secrets of a distillation that transforms lush aromas into a singular elixir. Tropical flavors burst, evoking exotic fruits and wildflowers from the island. Each bottle in our range is a mystery to be unraveled, emanating from the opulent and enigmatic Mauritian land.",
+    "slide1Content3": "This rum is not just a drink; it’s a gateway to a universe of legends and wonders, where every organoleptic detail tells an epic tale of discovery and escape. Embark on this sensory adventure that becomes a true initiatory journey, where Arcane Rum is not just discovered but experienced as an awakening of the senses and the soul, defying everything you thought you knew about rum.",
+    "slide2Title": "A TERROIR SHAPED \n BY VOLCANIC RICHNESS",
+    "slide2Content1": "Mauritius is a land of hidden treasures, from its lush, volcanic landscapes to its rich folklore and music. Arcane Rum is deeply connected to this heritage, infusing the island’s spirit into each bottle, celebrating its untold stories and exotic mysteries.",
     "slide2Content2": "Découvrez le mystère et la richesse de notre rhum exceptionnel.",
-    "slide2Content3": "Explorez les territoires volcaniques qui façonnent nos saveurs distinctives."
+    "slide2Content3": "Explorez les territoires volcaniques qui façonnent nos saveurs distinctives.",
+    "slide3Title": "MAURITIUS ISLAND",
+    "slide3Content1": "A Land of Beauty and Mysteries  Located in the heart of the Indian Ocean, Mauritius is more than just a beautiful island—it is the soul of Arcane Rum. The island’s vibrant blend of African, Indian, European, and Chinese influences creates a unique cultural tapestry that inspires the brand’s sense of mystery and discovery.",
+    "slide3Content2": "Mauritius is a land of hidden treasures, from its lush volcanic landscapes to its rich folklore and music. Arcane Rum is deeply connected to this heritage, infusing the island’s spirit into every bottle, celebrating its untold stories and exotic mysteries.  At the heart of Arcane lies sugarcane, nurtured by Mauritius’ volcanic soils and tropical climate.",
+    "slide3Content3": "The 12 unique varieties, including Red Cane and Bourbon Cane, are grown in the sun-drenched north, absorbing the island’s minerals, which give them their fresh and vibrant flavors. The pesticide-free cultivation ensures that each bottle captures the pure essence of Mauritius, deeply tied to its rich terroir."
   },
   "ourRums": {
     "arcaneExtraroma": {
@@ -78,14 +94,12 @@
       "description": "A blend of pure cane juice rums aged for 3 years in French and American oak barrels, each contributing its own unique character. Arcane Extraroma reveals delicious and delicate aromas of Bourbon vanilla, coconut, chocolate, caramel, smoky notes and banana, with a refreshing finish characteristic of Mauritian rums.",
       "tastingNotes": {
         "color": "A beautiful aged gold robe with shimmering mahogany highlights.",
-        "nose": "Rich notes of brown sugar and vanilla, with hints of fresh cane juice and a subtle peppery touch. As it evolves, aromas of caramel and gingerbread emerge. The aromatic finish is complex, with elegant fruity notes that linger for a long time.",
-        "palate": "Well-structured, offering both body and length. An explosion of spicy flavors, with the vegetal essence of fresh cane juice and a velvety touch of tropical aging, evolves into a harmonious blend of pepper and cinnamon, with a subtly woody character. Exceptional persistence, leaving a captivating impression of freshness."
+        "nose": "Rich notes of brown sugar and vanilla, with hints of fresh cane juice and a subtle peppery touch. As it evolves, aromas of caramel and gingerbread emerge",
+        "palate": "Well-structured, offering both body and length. An explosion of spicy flavors, with the vegetal essence of fresh cane juice"
       },
       "logisticInfo": {
         "volume": "70 CL",
-        "alcohol": "40 % ALC./VOL.",
-        "bottleEAN": "3760194540481",
-        "cartonEAN": "3760194540450"
+        "alcohol": "40 % ALC./VOL."
       }
     },
     "arcaneFlamboyance": {
@@ -95,14 +109,12 @@
       "description": "A blend of rums made from pure cane juice, aged for 2 years in French and American oak barrels, with a finishing in casks that previously contained peated French whisky. This finishing gives it a beautiful structure and reveals aromas of candied sugar, toasted coconut, and smoky notes, followed by fresh and subtly seductive floral notes.",
       "tastingNotes": {
         "color": "A beautiful golden robe with copper highlights.",
-        "nose": "Clean and particularly enticing, it exudes rich aromas of caramelized sugar, toasted coconut, and delicate smoky notes. As the aroma develops, fresh floral notes emerge, revealing a powerful bouquet of flowers.",
-        "palate": "The texture is well-structured and smooth, offering a pleasant roundness. Flavors of sugarcane and candied sugar gracefully emerge, followed by complex and subtly smoky notes. The finish is unique, long, and lingering, reminiscent of sweet, almost honeyed candies. This rum embodies a supple and indulgent character, with original aromatic components that bring richness and depth."
+        "nose": "Clean and particularly enticing, it exudes rich aromas of caramelized sugar, toasted coconut, and delicate smoky notes.",
+        "palate": "The texture is well-structured and smooth, offering a pleasant roundness. Flavors of sugarcane and candied sugar gracefully emerge, followed by complex and subtly smoky notes."
       },
       "logisticInfo": {
         "volume": "70 CL",
-        "alcohol": "43 % ALC./VOL.",
-        "bottleEAN": "3760194540078",
-        "cartonEAN": "3760194540085"
+        "alcohol": "43 % ALC./VOL."
       }
     },
     "arcaneAnanasRoti": {
@@ -110,16 +122,14 @@
       "subtitle": "Arrangé - Roasted Pineapple",
       "description_a": "The 'Arrangés' range offers a delightful fusion of freshness and delicacy, enhancing the tropical flavors of Mauritius.",
       "description": "Savor the enticing 'Roasted Pineapple', crafted with 100% natural aromas and experience the harmonious symphony of bold pineapple, the gentle embrace of caramel, and the richness of Mauritian rum.",
-      "tastingNotes": {
-        "color": null,
-        "nose": null,
-        "palate": null
+      "waysToEnjoy": {
+        "title": "Way To Enjoy",
+        "description": "For the ultimate gourmet experience, we encourage you to enjoy your 'Roasted Pineapple' alongside a delicious chocolate marble cake. This divine pairing promises a moment of pure indulgence and culinary bliss.",
+        "signatureShot": "ROASTED PINEAPPLE - NOTRE SHOT SIGNATURE \n\n30ml Arcane Ananas Rôti \n10ml Cocody Liqueur by Cartron \n20ml Fresh Pineapple Juice"
       },
       "logisticInfo": {
         "volume": "70 CL",
-        "alcohol": "35 % ALC./VOL.",
-        "bottleEAN": "3760194540115",
-        "cartonEAN": "3760194540139"
+        "alcohol": "35 % ALC./VOL."
       }
     },
     "arcaneVanilleDesIles": {
@@ -127,16 +137,14 @@
       "subtitle": "Arrangé - Vanilla from the Islands",
       "description_a": "The 'Arrangés' range offers a delightful fusion of freshness and delicacy, enhancing the tropical flavors of Mauritius.",
       "description": "Discover the captivating 'Vanilla from the Islands', an ode to Mauritius’s iconic specialties. Enriched with Bourbon vanilla and elevated by the strength of Mauritian rum, this exceptional elixir takes you on a sensory journey that captures the essence of the tropical paradise of Mauritius.",
-      "tastingNotes": {
-        "color": null,
-        "nose": null,
-        "palate": null
-      },
+      "waysToEnjoy": {
+        "title": "Way To Enjoy",
+        "description": "For an unforgettable experience, we recommend savouring 'Vanille des Iles' chilled. To enhance this gourmet experience, combine this exotic elixir with a delicious homemade creme brûlée. Add a few drops of 'Vanille des les' directly to your recipe for a magical touch.",
+        "signatureShot": "TI' VANILLA - NOTRE SHOT SIGNATURE \n\n30ml Arcane Vanille des îles \n10ml Passion Fruit by Cartron \n20ml Fresh Lime Juice"
+      },  
       "logisticInfo": {
         "volume": "70 CL",
-        "alcohol": "35 % ALC./VOL.",
-        "bottleEAN": "3760194540092",
-        "cartonEAN": "3760194540122"
+        "alcohol": "35 % ALC./VOL."
       }
     },
     "arcaneBananeFlambee": {
@@ -144,33 +152,15 @@
       "subtitle": "Arrangé - Banana Flambée",
       "description_a": "The 'Arrangés' range offers a delightful fusion of freshness and delicacy, elevating the tropical flavors of Mauritius to new heights.",
       "description": "Discover the star of the range, 'Banana Flambée', the iconic reference in our collection. Inspired by the famous dessert, this exquisite elixir showcases the natural sweetness of bananas, perfectly blended with the smoothness of Mauritian rum.",
-      "tastingNotes": {
-        "color": null,
-        "nose": null,
-        "palate": null
+      "waysToEnjoy": {
+        "title": "Way To Enjoy",
+        "description": "For an unforgettable experience, enjoy 'Banane Flambée' chilled, either as an aperitif or as a liqueur after dinner. For an even more indulgent tasting, pair it with a crepe of pancake. Our tip for a magical touch : add a few drops of 'Banane Flambée' to the batter.",
+        "signatureShot": "TROPICAL SMOKE - OUR SIGNATURE SHOT \n\n45 ml Arcane Banane Flambée \n15ml Cacao Blanc Liqueur by Cartron \nwhipped cream on the top"
       },
       "logisticInfo": {
         "volume": "70 CL",
-        "alcohol": "35 % ALC./VOL.",
-        "bottleEAN": "3760194540108",
-        "cartonEAN": "3760194540146"
+        "alcohol": "35 % ALC./VOL."
       }
-   },
-    "sliderKnowHow": {
-      "slides": [
-        {
-          "title": "L'ALCHIMIE DE LA DISTILLATION",
-          "content": "Arcane distille un jus de canne à sucre pur et fraîchement pressé, juste après la coupe, pour préserver ses saveurs vibrantes."
-        },
-        {
-          "title": "UNE MATURATION DYNAMIQUE",
-          "content": "Vieillis dans des fûts de chêne français et américain, les rhums Arcane tirent profit du climat tropical de l'île Maurice. Les variations dynamiques de température accélèrent la maturation, créant des saveurs complexes et opulentes en un temps réduit."
-        },
-        {
-          "title": "LES ARRANGÉS : ÉLABORÉS AVEC DES SAVEURS NATURELLES",
-          "content": "Arcane sublime son rhum avec la collection Les Arrangés, en y infusant des saveurs naturelles issues de fruits et d’épices locaux frais. Qu’il s’agisse de Banane Flambée, d’Ananas Rôti ou de Vanille des Îles, chaque Arrangé est conçu pour se marier parfaitement avec le rhum, l’enrichissant de notes tropicales éclatantes de banane, d’ananas ou de vanille."
-        }
-      ]
     }
   }
 }

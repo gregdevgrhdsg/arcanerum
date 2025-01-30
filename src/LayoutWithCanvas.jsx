@@ -65,7 +65,7 @@ const LayoutWithCanvas = () => {
               });
             },);
           }
-        }, 200);
+        }, 1000);
       } else {
         // Animation d'entrée pour les autres pages
         gsap.fromTo(
@@ -86,7 +86,7 @@ const LayoutWithCanvas = () => {
   
 
   return (
-    <div className="relative flex flex-col min-h-screen">
+    <div className="relative flex flex-col min-h-full">
     {/* Animation de rideau */}
     {!isAnimationDone && (
       <div className="loading-curtain fixed top-0 left-0 w-full h-full bg-black z-[60]"></div>
@@ -94,17 +94,25 @@ const LayoutWithCanvas = () => {
     {!isLoaded && <Loader progress={progress} />}
 
       {/* Contenu principal */}
-      <div className="flex-grow">
+      <div className="flex-grow min-h-full">
         {isHome && (
           <div id="jungle-section" className="relative z-0 w-full h-screen">
             <Jungle isModelLoaded={isModelLoaded} position="background" />
           </div>
         )}
-        {isCanvasVisible && (
-          <div id="canvas-container" className="fixed inset-0 z-10 pointer-events-none">
-            <CanvaContainer isModelLoaded={isModelLoaded} selectedBottle={selectedBottle} />
-            </div>
-        )}
+{isCanvasVisible && (
+  <div
+  id="canvas-container"
+  className={`${
+    location.pathname === "/last-section" ? "absolute" : "fixed"
+  } inset-0 z-10 pointer-events-none`}
+>
+  <CanvaContainer
+    isModelLoaded={isModelLoaded}
+    selectedBottle={selectedBottle}
+  />
+</div>
+)}
    {!isLesCocktails && !isLesCocktailDetail && isCanvasVisible && (
         <div id="jungle-section" className="page-content absolute top-0 z-20 left-0 w-full h-screen">
           <Jungle isModelLoaded={isModelLoaded} position="foreground" />
