@@ -147,7 +147,7 @@ const Navbar = () => {
     >
       <nav className="w-full py-5 px-5 md:px-10 flex items-center justify-between relative">
         {/* Navigation gauche */}
-        <div className="flex-1 flex justify-start space-x-10 hidden lg:flex">
+        <div className="flex-1 flex justify-start space-x-10 hidden md:flex">
           {navLists.slice(0, 2).map((nav, index) => (
             <div key={index} className="relative group">
               <div
@@ -184,12 +184,12 @@ const Navbar = () => {
         </div>
 
         {/* Logo centré */}
-        <div className="flex-1 flex xl:justify-center lg:justify-center md:justify-start sm:justify-start">
+        <div className="flex-1 flex xl:justify-center lg:justify-center md:justify-center sm:justify-start">
           <img src={monoGramLogo} alt="Arcane" className="xl:w-16 md:w-16 sm:w-16" />
         </div>
 
         {/* Navigation droite */}
-        <div className="flex-1 flex justify-end space-x-10 hidden lg:flex">
+        <div className="flex-1 flex justify-end space-x-10 hidden md:flex">
           {navLists.slice(2).map((nav, index) => (
             <Link
               key={index}
@@ -203,7 +203,7 @@ const Navbar = () => {
         </div>
 
         {/* Bouton burger mobile */}
-        <div className="lg:hidden z-[101] relative">
+        <div className="md:hidden z-[101] relative">
           <button
             className="relative w-10 h-10 flex flex-col justify-center items-center"
             onClick={toggleMobileMenu}
@@ -233,7 +233,7 @@ const Navbar = () => {
             <button
               className="text-2xl md:text-3xl lg:text-4xl font-yana my-4 cursor-pointer hover:text-gold flex items-center justify-left w-full pl-20"
               onClick={() =>
-                navLists[index]?.length
+                subMenuLinks[index]?.length
                   ? toggleMobileSubMenu(index)
                   : closeMobileMenu()
               }

@@ -9,7 +9,7 @@ gsap.registerPlugin(ScrollTrigger);
 const RumPage = () => {
   const [isMobile, setIsMobile] = useState(false);
   const rumData = useRumData(); // Appel de la fonction pour obtenir les données
-
+  const [screenSize, setScreenSize] = useState(window.innerWidth);
   const sectionRefs = useRef([]);
 
   useEffect(() => {
@@ -87,7 +87,8 @@ const RumPage = () => {
               style={{
                 backgroundImage: `url(${rum.pattern})`,
                 backgroundRepeat: "no-repeat",
-                backgroundSize: isMobile ? "55%" : "40%",              }}
+                backgroundSize: isMobile ? "55%" : "40%",
+              }}
             ></div>
 
             {/* Contenu principal */}
@@ -101,10 +102,10 @@ const RumPage = () => {
                   maxWidth: isMobile ? "200px" : "150px",
                 }}
               />
-              <h2 className="text-gold xl:text-4xl font-bold mb-2 text-content sm:text-2xl">
+              <h2 className="text-gold 2xl:text-7xl xl:text-4xl font-bold mb-2 text-content sm:text-2xl">
                 {rum.title}
               </h2>
-              <p className="text-white font-yana xl:text-1xl text-content sm:text-sm">
+              <p className="text-white font-yana  2xl:text-4xl xl:text-1xl text-content sm:text-sm">
                 {rum.description_a}
               </p>
               <Link to={`/rum/${rum.id}`}>
@@ -143,14 +144,15 @@ const RumPage = () => {
                 alt={rum.title}
                 className="bottle-image object-contain drop-shadow-lg mb-4"
                 style={{
-                  width: isMobile ? "30vw" : "20vw",
-                  maxWidth: isMobile ? "200px" : "150px",
+                  width: isMobile ? "30vw" : screenSize >= 1536 ? "18vw" : "20vw", // Réduction sur 2XL
+                  maxWidth: isMobile ? "200px" : screenSize >= 1536 ? "220px" : "250px", // Ajustement précis
+                  transform: screenSize >= 1536 ? "translateY(10%)" : "none", // Ajustement vertical sur 2XL
                 }}
               />
-              <h2 className="text-gold font-yana xl:text-3xl font-bold mb-2 text-content sm:text-xl">
+              <h2 className="text-gold font-yana 2xl:text-7xl xl:text-3xl font-bold mb-2 text-content sm:text-xl">
                 {rum.title}
               </h2>
-              <p className="text-white font-yana text-md text-content sm:text-sm">
+              <p className="text-white 2xl:text-3xl font-yana text-md text-content sm:text-sm">
                 {rum.description_a}
               </p>
               <Link to={`/rum/${rum.id}`}>

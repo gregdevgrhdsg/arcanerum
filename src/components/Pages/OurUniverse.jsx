@@ -48,10 +48,10 @@ const SliderSection = ({ slider }) => {
         }}
       >
         <div className={`text-center z-10 ${slider.containerClass}`}>
-          <h2 ref={titleRef} className="highlight-title font-yana font-bold text-gold xl:text-4xl lg:text-3xl md:text-3xl sm:text-2xl mb-3">
+          <h2 ref={titleRef} className="highlight-title font-yana font-bold text-gold  2xl:text-7xl xl:text-4xl lg:text-3xl md:text-3xl sm:text-2xl mb-3">
             {slider.title}
           </h2>
-          <p ref={textRef} className="highlight-description font-yana text-white xl:text-xl lg:text-lg md:text-md sm:text-sm">
+          <p ref={textRef} className="highlight-description font-yana text-white 2xl:text-4xl xl:text-xl lg:text-lg md:text-md sm:text-sm">
             {slides[currentIndex]}
           </p>
 
