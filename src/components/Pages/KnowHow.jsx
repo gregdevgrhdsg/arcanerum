@@ -179,11 +179,11 @@ const KnowHow = () => {
             <h1 className="text-4xl text-gold font-yana mt-4 mb-2 font-bold">
               DIVING INTO OUR <br /> PROCESS
             </h1>
-            <div className="flex justify-center space-x-6 max-w-5xl mx-auto">
+            <div className="flex justify-center space-x-6 max-w-5xl ">
               {timelineSteps.map((_, index) => (
                 <button
                   key={index}
-                  className={`px-4 py-2 text-lg transition-all duration-300 ${currentStep === index
+                  className={`px-2 py-2 xl:text-lg sm:text-xs transition-all duration-300 ${currentStep === index
                       ? "bg-gold-linear text-black rounded-xl"
                       : "text-white hover:bg-gold-linear hover:text-black rounded-xl"
                     }`}

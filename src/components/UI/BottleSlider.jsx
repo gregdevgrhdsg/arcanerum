@@ -100,7 +100,7 @@ const BottleSlider = forwardRef(({ bottles, onBottleChange, selectedBottle, onBu
         {/* Texte et Contenu */}
         <div
           ref={sliderContentRef}
-          className="relative flex xl:flex-col sm:flex-row xl:text-center xl:text-center sm:text-center xl:w-2/5 sm:w-full xl:top-36 sm:top-14 xl:justify-start sm:items-end md:pl-12 sm:m-10 md:w-1/2 text-white"
+          className="relative flex xl:flex-col lg:flex-col md:flex-col sm:flex-row xl:text-center sm:text-center xl:w-2/5 sm:w-full xl:top-36 lg:top-36 md:top-36 sm:top-14 xl:justify-start md:justify-start md:items-end sm:items-end md:pl-12 sm:m-10 md:w-1/2 text-white"
         >
           <div className="slider-content">
             <h2 className="xl:text-4xl sm:text-4xl font-yana text-gold mb-4">
@@ -142,7 +142,7 @@ const BottleSlider = forwardRef(({ bottles, onBottleChange, selectedBottle, onBu
 
       {/* Miniatures des Bouteilles */}
       <div
-        className="absolute bottom-10 left-1/2 transform -translate-x-1/2 flex flex-wrap xl:justify-start md:justify-center items-center xl:space-x-4 md:space-x-4 z-10 w-full max-w-6xl mx-auto hidden md:flex"
+        className="absolute bottom-10 left-1/2 transform -translate-x-1/2 flex flex-wrap xl:justify-start lg:justify-start md:justify-start items-center xl:space-x-4 md:space-x-4 md:pl-10 md:pb-10 z-10 w-full max-w-6xl mx-auto hidden md:flex"
       >
         {bottles.map((bottle, index) => (
           <div

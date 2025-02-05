@@ -52,7 +52,7 @@
       "title": "THe ARRANGÉS : CRAFTED WITH NATURAL FLAVORS",
       "description": "Arcane elevates its rum with the Arrangés collection, infusing natural flavors from fresh local fruits and spices. Whether it’s Banane Flambée, Ananas Rôti, or Vanille des Îles, each Arrangé is crafted to blend perfectly with the rum, enhancing it with vibrant tropical notes of banana, pineapple, or vanilla. The tradition of rhum arrangé hails from the islands, where fruits and spices have long been used to infuse rum, creating flavorful and aromatic spirits that reflect the richness of local produce and culture. Arcane continues this heritage, capturing the essence of Mauritius in each bottle through natural, exotic infusions that celebrate the island’s bounty."
     },
-    "step": "Étape {{step}}"  
+    "step": "Étape {{step}}"
   },
   "nav": {
     "discover": "DISCOVER",
@@ -141,7 +141,7 @@
         "title": "Way To Enjoy",
         "description": "For an unforgettable experience, we recommend savouring 'Vanille des Iles' chilled. To enhance this gourmet experience, combine this exotic elixir with a delicious homemade creme brûlée. Add a few drops of 'Vanille des les' directly to your recipe for a magical touch.",
         "signatureShot": "TI' VANILLA - NOTRE SHOT SIGNATURE \n\n30ml Arcane Vanille des îles \n10ml Passion Fruit by Cartron \n20ml Fresh Lime Juice"
-      },  
+      },
       "logisticInfo": {
         "volume": "70 CL",
         "alcohol": "35 % ALC./VOL."
@@ -160,6 +160,28 @@
       "logisticInfo": {
         "volume": "70 CL",
         "alcohol": "35 % ALC./VOL."
+      }
+    },
+    "bottles": {
+      "extraroma": {
+        "name": "Extraroma",
+        "description": "Arcane Extraroma révèle de délicieux et délicats arômes de vanille Bourbon, de noix de coco, de chocolat, de caramel, de notes fumées et de banane."
+      },
+      "flamboyance": {
+        "name": "Flamboyance",
+        "description": "Un assemblage de rhums de pur jus de canne à sucre vieillis pendant 3 ans dans des fûts de chêne Français et Américain ayant bénéficié d’un affinage en fût ayant contenu du whisky Français tourbé."
+      },
+      "ananasRotie": {
+        "name": "Ananas Rôtie",
+        "description": "Dégustez le séduisant 'Ananas Rôtie', élaboré avec des arômes 100% naturels, une symphonie harmonieuse de l’audace de l’ananas et du caramel doux."
+      },
+      "vanilleDesIles": {
+        "name": "Vanille des Îles",
+        "description": "Découvrez la fascinante 'Vanille des Îles', une ode à l'une des spécialités emblématiques de l'île Maurice, enrichie par la vanille Bourbon."
+      },
+      "bananeFlambee": {
+        "name": "Banane Flambée",
+        "description": "Découvrez la vedette de la gamme, 'Banane Flambée', la référence emblématique mettant en valeur la douceur naturelle des bananes."
       }
     }
   }

@@ -19,16 +19,28 @@ const RumDetailPage = () => {
   // Vérifier s'il s'agit d'un rhum classique ou d'un arrangé
   const hasTastingNotes = rum?.tastingNotes?.color || rum?.tastingNotes?.nose || rum?.tastingNotes?.palate;
   const hasWaysToEnjoy = rum?.waysToEnjoy;
+  const hasLogisticInfo = rum?.logisticInfo;
 
-  const [activeTab, setActiveTab] = useState("logisticInfo"); // Par défaut
+  // Définir l'onglet actif par défaut
+  const [activeTab, setActiveTab] = useState("tastingNotes");
 
   useEffect(() => {
-    if (hasWaysToEnjoy) {
-      setActiveTab("waysToEnjoy");
-    } else if (hasTastingNotes) {
+    if (!rum) return;
+  
+    // Vérifie quels onglets sont disponibles pour le rhum actuel
+    const hasTastingNotes = rum.tastingNotes && Object.keys(rum.tastingNotes).length > 0;
+    const hasWaysToEnjoy = rum.waysToEnjoy && Object.keys(rum.waysToEnjoy).length > 0;
+    const hasLogisticInfo = rum.logisticInfo && Object.keys(rum.logisticInfo).length > 0;
+  
+    // Réinitialiser l'onglet actif en fonction des informations disponibles
+    if (hasTastingNotes) {
       setActiveTab("tastingNotes");
+    } else if (hasWaysToEnjoy) {
+      setActiveTab("waysToEnjoy");
+    } else if (hasLogisticInfo) {
+      setActiveTab("logisticInfo");
     }
-  }, [rum]); // Mettre à jour l'onglet actif à chaque changement de bouteille
+  }, [id]); // Ajout de `id` pour mettre à jour l'onglet à chaque changement de bouteille; // Exécute ce useEffect uniquement lorsque `rum` change // Mettre à jour l'onglet actif à chaque changement de bouteille
 
   // Fonction pour naviguer entre les rhums avec animation GSAP
   const handleNavigation = (direction) => {

@@ -2,8 +2,8 @@
 export const navLists = [
   { name: "nav.discover", path: "/discover", hasSubMenu: true },
   { name: "nav.ourRums", path: "/Our-Rums", hasSubMenu: true },
-  { name: "nav.cocktails", path: "/Les-Cocktails", hasSubMenu: false },
-  { name: "nav.contact", path: "/contact", hasSubMenu: false },
+  { name: "nav.cocktails", path: "/Les-Cocktails", hasSubMenu: true },
+  { name: "nav.contact", path: "/contact", hasSubMenu: true },
 ];
 
 export const subMenuLinks = [

@@ -1,4 +1,3 @@
-import { section } from "framer-motion/client";
 import React, { useState } from "react";
 
 const Contact = () => {
@@ -21,10 +20,7 @@ const Contact = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
-    // Ici, vous pouvez intégrer une API pour envoyer le formulaire
     console.log("Form Data Submitted:", formData);
-
     setSuccessMessage("Votre message a été envoyé avec succès !");
     setFormData({
       name: "",
@@ -36,34 +32,36 @@ const Contact = () => {
 
   return (
     <section
-      className="w-full bg-cover bg-center flex flex-col items-center justify-start text-white"
+      className="w-full bg-cover bg-center flex flex-col items-center text-white"
       style={{
         backgroundImage: "url('/assets/jungle/fond-Arcane.webp')",
-        backgroundAttachment: "fixed", // Le fond reste fixe lors du scroll
+        backgroundAttachment: "fixed",
       }}
     >
-      <div className="min-h-screen w-full flex flex-col-2 items-center justify-center gap-48">
-        <div className="justify-left items-left">
-          {/* Monogramme ajouté ici */}
-          <div className="flex justify-center mb-4">
+      <div className="min-h-screen w-full flex flex-col md:flex-row items-center justify-center gap-12 xl:gap-48 xl:mt-0 md:mt-0 sm:mt-40 px-4 sm:px-8 md:px-12">
+        
+        {/* Bloc d'introduction */}
+        <div className="w-full xl:w-1/2 text-center xl:text-left">
+          <div className="flex justify-center xl:justify-center mb-4">
             <img
-              src="/assets/monogramArcane.png" // Remplacez par le chemin de votre monogramme
+              src="/assets/monogramArcane.png"
               alt="Monogramme"
-              className="w-16 h-16 object-contain"
+              className="w-16 h-16 sm:w-14 sm:h-14 object-contain"
             />
           </div>
-          <h1 className="text-4xl text-center font-yana font-bold mb-6 text-gold">
+          <h1 className="text-3xl text-center sm:text-4xl xl:text-5xl font-yana font-bold mb-4 text-gold">
             Contactez-nous
           </h1>
-          <p className="mb-6 font-yana text-xl text-gray-300 text-center">
-            Une question ? Un commentaire ? Remplissez <br /> le formulaire
-            ci-dessous, nous vous répondrons dès que possible.
+          <p className="text-center text-lg sm:text-xl text-gray-300">
+            Une question ? Un commentaire ? Remplissez le formulaire ci-dessous,
+            nous vous répondrons dès que possible.
           </p>
         </div>
 
+        {/* Formulaire */}
         <form
           onSubmit={handleSubmit}
-          className="w-full max-w-md p-6 rounded-lg "
+          className="w-full max-w-lg p-6 rounded-lg bg-transparent"
         >
           <div className="mb-4">
             <label htmlFor="name" className="block font-yana text-gold mb-2">
@@ -75,7 +73,7 @@ const Contact = () => {
               name="name"
               value={formData.name}
               onChange={handleChange}
-              className="w-full px-3 py-2 border border-gold rounded bg-transparent text-white"
+              className="w-full px-3 py-2 border border-gold rounded bg-transparent text-white focus:outline-none focus:ring-2 focus:ring-gold"
               placeholder="Votre nom"
               required
             />
@@ -91,7 +89,7 @@ const Contact = () => {
               name="email"
               value={formData.email}
               onChange={handleChange}
-              className="w-full px-3 py-2 border border-gold rounded bg-transparent text-white"
+              className="w-full px-3 py-2 border border-gold rounded bg-transparent text-white focus:outline-none focus:ring-2 focus:ring-gold"
               placeholder="Votre adresse email"
               required
             />
@@ -107,7 +105,7 @@ const Contact = () => {
               name="subject"
               value={formData.subject}
               onChange={handleChange}
-              className="w-full px-3 py-2 border border-gold rounded bg-transparent text-white"
+              className="w-full px-3 py-2 border border-gold rounded bg-transparent text-white focus:outline-none focus:ring-2 focus:ring-gold"
               placeholder="Sujet de votre message"
               required
             />
@@ -122,7 +120,7 @@ const Contact = () => {
               name="message"
               value={formData.message}
               onChange={handleChange}
-              className="w-full px-3 py-2 border border-gold rounded bg-transparent text-white"
+              className="w-full px-3 py-2 border border-gold rounded bg-transparent text-white focus:outline-none focus:ring-2 focus:ring-gold"
               placeholder="Votre message"
               rows="5"
               required
@@ -137,8 +135,9 @@ const Contact = () => {
           </button>
         </form>
 
+        {/* Message de confirmation */}
         {successMessage && (
-          <p className="mt-4 text-green-500">{successMessage}</p>
+          <p className="mt-4 text-green-500 text-center">{successMessage}</p>
         )}
       </div>
     </section>

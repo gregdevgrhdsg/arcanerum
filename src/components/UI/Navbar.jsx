@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { logoArcane, monoGramLogo } from "../../utils/index";
-import { navLists, subMenuLinks } from "../../Constants/index";
+import { navLists, subMenuLinks } from "../../Constants/index.js";
 import LanguageSwitcher from "./LanguageSwitcher";
 import { FiChevronDown } from "react-icons/fi";
 import gsap from "gsap";
@@ -142,13 +142,12 @@ const Navbar = () => {
   return (
     <header
       ref={headerRef}
-      className={`fixed w-full top-0 z-50 transition-all ${
-        scrolled ? "bg-gradient-to-b from-black to-transparent" : "bg-transparent"
-      }`}
+      className={`fixed w-full top-0 z-50 transition-all ${scrolled ? "bg-gradient-to-b from-black to-transparent" : "bg-transparent"
+        }`}
     >
       <nav className="w-full py-5 px-5 md:px-10 flex items-center justify-between relative">
         {/* Navigation gauche */}
-        <div className="flex-1 flex justify-start space-x-10 hidden md:flex">
+        <div className="flex-1 flex justify-start space-x-10 hidden lg:flex">
           {navLists.slice(0, 2).map((nav, index) => (
             <div key={index} className="relative group">
               <div
@@ -158,9 +157,8 @@ const Navbar = () => {
                 {t(nav.name)}
                 {subMenuLinks[index]?.length > 0 && (
                   <FiChevronDown
-                    className={`ml-2 text-gold transition-transform duration-300 ${
-                      activeSubMenu === index ? "rotate-180" : "rotate-0"
-                    }`}
+                    className={`ml-2 text-gold transition-transform duration-300 ${activeSubMenu === index ? "rotate-180" : "rotate-0"
+                      }`}
                   />
                 )}
               </div>
@@ -176,7 +174,7 @@ const Navbar = () => {
                     key={subIndex}
                     to={link.path}
                     className="block py-2 px-4 text-gold-hover-bg-black transition-all"
-                    >
+                  >
                     {t(link.name)}
                   </Link>
                 ))}
@@ -186,12 +184,12 @@ const Navbar = () => {
         </div>
 
         {/* Logo centré */}
-        <div className="flex-1 flex xl:justify-center sm:justify-start">
+        <div className="flex-1 flex xl:justify-center lg:justify-center md:justify-start sm:justify-start">
           <img src={monoGramLogo} alt="Arcane" className="xl:w-16 md:w-16 sm:w-16" />
         </div>
 
         {/* Navigation droite */}
-        <div className="flex-1 flex justify-end space-x-10 hidden md:flex">
+        <div className="flex-1 flex justify-end space-x-10 hidden lg:flex">
           {navLists.slice(2).map((nav, index) => (
             <Link
               key={index}
@@ -205,20 +203,18 @@ const Navbar = () => {
         </div>
 
         {/* Bouton burger mobile */}
-        <div className="md:hidden z-[101] relative">
+        <div className="lg:hidden z-[101] relative">
           <button
             className="relative w-10 h-10 flex flex-col justify-center items-center"
             onClick={toggleMobileMenu}
           >
             <span
-              className={`absolute block h-1 w-8 bg-gold-linear transform transition-transform duration-300 ${
-                isMenuOpen ? "rotate-45 translate-y-[0px]" : "rotate-0 translate-y-[-7px]"
-              }`}
+              className={`absolute block h-1 w-8 bg-gold-linear transform transition-transform duration-300 ${isMenuOpen ? "rotate-45 translate-y-[0px]" : "rotate-0 translate-y-[-7px]"
+                }`}
             ></span>
             <span
-              className={`absolute block h-1 w-8 bg-gold-linear transform transition-transform duration-300 ${
-                isMenuOpen ? "-rotate-45 -translate-y-[0px]" : "rotate-0 translate-y-[7px]"
-              }`}
+              className={`absolute block h-1 w-8 bg-gold-linear transform transition-transform duration-300 ${isMenuOpen ? "-rotate-45 -translate-y-[0px]" : "rotate-0 translate-y-[7px]"
+                }`}
             ></span>
           </button>
         </div>
@@ -237,7 +233,7 @@ const Navbar = () => {
             <button
               className="text-2xl md:text-3xl lg:text-4xl font-yana my-4 cursor-pointer hover:text-gold flex items-center justify-left w-full pl-20"
               onClick={() =>
-                subMenuLinks[index]?.length
+                navLists[index]?.length
                   ? toggleMobileSubMenu(index)
                   : closeMobileMenu()
               }
@@ -245,9 +241,8 @@ const Navbar = () => {
               {t(nav.name)}
               {subMenuLinks[index]?.length > 0 && (
                 <FiChevronDown
-                  className={`ml-2 text-gold transition-transform duration-300 ${
-                    activeMobileSubMenu === index ? "rotate-180" : "rotate-0"
-                  }`}
+                  className={`ml-2 text-gold transition-transform duration-300 ${activeMobileSubMenu === index ? "rotate-180" : "rotate-0"
+                    }`}
                 />
               )}
             </button>
@@ -260,14 +255,14 @@ const Navbar = () => {
                 opacity: activeMobileSubMenu === index ? 1 : 0,
               }}
             >
-              {subMenuLinks[index]?.map((link, subIndex) => (
+              {subMenuLinks[index]?.map((nav, subIndex) => (
                 <Link
                   key={subIndex}
-                  to={link.path}
+                  to={nav.path}
                   className="py-2 hover:text-gold w-full text-left"
                   onClick={() => closeMobileMenu()}
                 >
-                  {t(link.name)}
+                  {t(nav.name)}
                 </Link>
               ))}
             </div>

@@ -25,13 +25,16 @@ const CanvasContainer = ({ selectedBottle }) => {
   const rotationGroupRef = useRef();
   const [screenSize, setScreenSize] = useState("desktop");
 
-  // Détection de la taille d'écran
   const detectScreenSize = () => {
     const width = window.innerWidth;
+    const height = window.innerHeight;
+  
     if (width < 640) {
       setScreenSize("mobile");
     } else if (width < 1024) {
       setScreenSize("tablet");
+    } else if (width < 1404) { 
+      setScreenSize("medium"); // ✅ Nouvelle condition pour medium
     } else {
       setScreenSize("desktop");
     }
