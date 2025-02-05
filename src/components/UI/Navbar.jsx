@@ -230,42 +230,49 @@ const Navbar = () => {
         </div>
         {navLists.map((nav, index) => (
           <div key={index} className="w-full">
-            <button
-              className="text-2xl md:text-3xl lg:text-4xl font-yana my-4 cursor-pointer hover:text-gold flex items-center justify-left w-full pl-20"
-              onClick={() =>
-                subMenuLinks[index]?.length
-                  ? toggleMobileSubMenu(index)
-                  : closeMobileMenu()
-              }
-            >
-              {t(nav.name)}
-              {subMenuLinks[index]?.length > 0 && (
+            {subMenuLinks[index]?.length > 0 ? (
+              // Si l'élément possède un sous-menu, on affiche un bouton qui gère l'ouverture du sous-menu
+              <button
+                className="text-2xl md:text-3xl lg:text-4xl font-yana my-4 cursor-pointer hover:text-gold flex items-center justify-left w-full pl-20"
+                onClick={() => toggleMobileSubMenu(index)}
+              >
+                {t(nav.name)}
                 <FiChevronDown
-                  className={`ml-2 text-gold transition-transform duration-300 ${activeMobileSubMenu === index ? "rotate-180" : "rotate-0"
-                    }`}
+                  className={`ml-2 text-gold transition-transform duration-300 ${activeMobileSubMenu === index ? "rotate-180" : "rotate-0"}`}
                 />
-              )}
-            </button>
+              </button>
+            ) : (
+              // Sinon, on affiche directement un Link qui navigue vers nav.path
+              <Link
+                to={nav.path}
+                className="text-2xl md:text-3xl lg:text-4xl font-yana my-4 cursor-pointer hover:text-gold flex items-center justify-left w-full pl-20"
+                onClick={closeMobileMenu}
+              >
+                {t(nav.name)}
+              </Link>
+            )}
 
             {/* Sous-menu mobile */}
-            <div
-              className={`mobile-submenu-${index} bg-green text-white flex flex-col items-start w-full px-8 overflow-hidden`}
-              style={{
-                height: activeMobileSubMenu === index ? "auto" : 0,
-                opacity: activeMobileSubMenu === index ? 1 : 0,
-              }}
-            >
-              {subMenuLinks[index]?.map((nav, subIndex) => (
-                <Link
-                  key={subIndex}
-                  to={nav.path}
-                  className="py-2 hover:text-gold w-full text-left"
-                  onClick={() => closeMobileMenu()}
-                >
-                  {t(nav.name)}
-                </Link>
-              ))}
-            </div>
+            {subMenuLinks[index]?.length > 0 && (
+              <div
+                className={`mobile-submenu-${index} bg-green text-white flex flex-col items-start w-full px-8 overflow-hidden`}
+                style={{
+                  height: activeMobileSubMenu === index ? "auto" : 0,
+                  opacity: activeMobileSubMenu === index ? 1 : 0,
+                }}
+              >
+                {subMenuLinks[index].map((link, subIndex) => (
+                  <Link
+                    key={subIndex}
+                    to={link.path}
+                    className="py-2 hover:text-gold w-full text-left"
+                    onClick={closeMobileMenu}
+                  >
+                    {t(link.name)}
+                  </Link>
+                ))}
+              </div>
+            )}
           </div>
         ))}
         <div className="mt-8">
