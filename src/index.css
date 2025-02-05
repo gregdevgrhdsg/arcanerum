@@ -45,7 +45,7 @@ body {
   border-color: #3b3b3b;
   display: flex;
   flex-direction: column;
-  min-height: 100vh;
+  max-height: 400vh;
 }
 
 footer {
@@ -79,7 +79,8 @@ footer {
 }
 
 .home-container{
-  height: 500vh;
+  height: 400vh;
+  overflow-y: hidden;
 }
 
 @font-face {
