@@ -92,7 +92,6 @@ const zoneConfigurations = {
         camera: { z: 6, duration: 2, ease: "power5.inOut" },
       },
     },
-    stopAtEnd: true, // Nouveau paramètre
   },
 };
 
@@ -114,9 +113,7 @@ const createZoneAnimation = (modelRef, cameraRef, animationConfig) => {
           gsap.set(cameraRef.current.position, camera);
           cameraRef.current.updateProjectionMatrix();
         }
-      },
-      onEnterBack: () => {
-        isLocked = false; // Déverrouiller en remontant
+      
       },
     },
   });

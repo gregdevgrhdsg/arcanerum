@@ -37,16 +37,19 @@ export const bottlesConfig = (t) => [
     responsivePositions: {
       mobile: { x: 0, y: -0.8, z: 0.3 },
       tablet: { x: 0.8, y: -0.8, z: 0 },
+      medium: { x: 1.4, y: -0.9, z: 0 },
       desktop: { x: 1.2, y: -0.8, z: 0 },
     },
     responsiveRotations: {
       mobile: { x: 0.2, y: -0.2, z: -0.2 },
       tablet: { x: 0, y: 0, z: 0 },
+      medium: { x: 0, y: 0, z: 0 },
       desktop: { x: 0, y: 0, z: 0 },
     },
     responsiveScales: {
       mobile: { x: 7, y: 7, z: 7 },
       tablet: { x: 7, y: 7, z: 7 },
+      medium: { x: 7, y: 7, z: 7 },
       desktop: { x: 7, y: 7, z: 7 },
     },
   },
@@ -60,16 +63,19 @@ export const bottlesConfig = (t) => [
     responsivePositions: {
       mobile: { x: 0, y: -0.8, z: 0.3 },
       tablet: { x: 0.8, y: -0.8, z: 0 },
+      medium: { x: 1.4, y: -0.9, z: 0 },
       desktop: { x: 1.2, y: -0.8, z: 0 },
     },
     responsiveRotations: {
       mobile: { x: 0.2, y: -0.2, z: -0.2 },
       tablet: { x: 0, y: 0, z: 0 },
+      medium: { x: 0, y: 0, z: 0 },
       desktop: { x: 0, y: 0, z: 0 },
     },
     responsiveScales: {
       mobile: { x: 7, y: 7, z: 7 },
       tablet: { x: 7, y: 7, z: 7 },
+      medium: { x: 7, y: 7, z: 7 },
       desktop: { x: 7, y: 7, z: 7 },
     },
   },
@@ -83,16 +89,19 @@ export const bottlesConfig = (t) => [
     responsivePositions: {
       mobile: { x: 0, y: -0.8, z: 0.3 },
       tablet: { x: 0.8, y: -0.8, z: 0 },
+      medium: { x: 1.4, y: -0.9, z: 0 },
       desktop: { x: 1.2, y: -0.8, z: 0 },
     },
     responsiveRotations: {
       mobile: { x: 0.2, y: -0.2, z: -0.2 },
       tablet: { x: 0, y: 0, z: 0 },
+      medium: { x: 0, y: 0, z: 0 },
       desktop: { x: 0, y: 0, z: 0 },
     },
     responsiveScales: {
       mobile: { x: 7, y: 7, z: 7 },
       tablet: { x: 7, y: 7, z: 7 },
+      medium: { x: 7, y: 7, z: 7 },
       desktop: { x: 7, y: 7, z: 7 },
     },
   },
@@ -106,16 +115,19 @@ export const bottlesConfig = (t) => [
     responsivePositions: {
       mobile: { x: 0, y: -0.8, z: 0.3 },
       tablet: { x: 0.8, y: -0.8, z: 0 },
+      medium: { x: 1.4, y: -0.9, z: 0 },
       desktop: { x: 1.2, y: -0.8, z: 0 },
     },
     responsiveRotations: {
       mobile: { x: 0.2, y: -0.2, z: -0.2 },
       tablet: { x: 0, y: 0, z: 0 },
+      medium: { x: 0, y: 0, z: 0 },
       desktop: { x: 0, y: 0, z: 0 },
     },
     responsiveScales: {
       mobile: { x: 7, y: 7, z: 7 },
       tablet: { x: 7, y: 7, z: 7 },
+      medium: { x: 7, y: 7, z: 7 },
       desktop: { x: 7, y: 7, z: 7 },
     },
   },

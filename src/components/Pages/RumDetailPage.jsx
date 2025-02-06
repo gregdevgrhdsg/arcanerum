@@ -26,12 +26,12 @@ const RumDetailPage = () => {
 
   useEffect(() => {
     if (!rum) return;
-  
+
     // Vérifie quels onglets sont disponibles pour le rhum actuel
     const hasTastingNotes = rum.tastingNotes && Object.keys(rum.tastingNotes).length > 0;
     const hasWaysToEnjoy = rum.waysToEnjoy && Object.keys(rum.waysToEnjoy).length > 0;
     const hasLogisticInfo = rum.logisticInfo && Object.keys(rum.logisticInfo).length > 0;
-  
+
     // Réinitialiser l'onglet actif en fonction des informations disponibles
     if (hasTastingNotes) {
       setActiveTab("tastingNotes");
@@ -116,18 +116,17 @@ const RumDetailPage = () => {
       <div className="container mx-auto flex xl:flex-row md:flex-col sm:flex-col items-center justify-start px-6 py-10 gap-8 z-30">
 
         {/* Image de la bouteille */}
-        <div className="flex-1 relative flex justify-center items-center" ref={imageContainerRef}>
-        <div 
-  className="absolute inset-0 bg-no-repeat xl:bg-contain xl:bg-center lg:bg-cover md:bg-cover sm:bg-size[500px]"
-  style={{
-    backgroundImage: `url(${rum.pattern})`,
-    backgroundSize: "contain",
-    minHeight: "100%", // Force une taille minimum
-    width: "100%",     // Remplit l’écran
-  }}
-></div>
-          <img src={rum.image} alt={rum.title} className="relative font-yana xl:mt-0 sm:mt-20 z-10 object-contain drop-shadow-lg" 
-          style={{ width: "200px", maxWidth: "200px" }} />
+        <div className="flex-1 relative flex justify-center " ref={imageContainerRef}>
+          <div
+            className="absolute inset-0 bg-no-repeat bg-cover bg-center xl:bg-center"
+            style={{
+              backgroundImage: `url(${rum.pattern})`,
+              backgroundSize: "contain",
+              width: "100%",
+            }}
+          ></div>
+          <img src={rum.image} alt={rum.title} className="relative font-yana xl:mt-0 sm:mt-20 z-10 object-contain drop-shadow-lg"
+            style={{ width: "30vw", maxWidth: "200px", minWidth: "100px" }} />
         </div>
 
         {/* Informations */}
@@ -201,14 +200,14 @@ const RumDetailPage = () => {
               </div>
             )}
           </div>
-          <Link to="/Our-Rums" className="btn-animated mt-16 px-4 py-2 text-sm font-medium bg-gold text-black rounded-md hover:bg-yellow-500 transition-all duration-300">
+          <Link to="/Our-Rums" className="btn-animated w-1/2 mt-16 px-4 py-2 text-sm font-medium bg-gold text-black hover:bg-yellow-500 transition-all duration-300 justify-center">
             Retour à la liste
           </Link>
         </div>
 
         {/* Flèches de navigation */}
-        <button className="absolute left-4 top-1/2 transform -translate-y-1/2 text-5xl text-gold p-3 rounded-full hover:bg-gray-700" onClick={() => handleNavigation(-1)}>&larr;</button>
-        <button className="absolute right-4 top-1/2 transform -translate-y-1/2 text-5xl text-gold p-3 rounded-full hover:bg-gray-700" onClick={() => handleNavigation(1)}>&rarr;</button>
+        <button className="absolute left-4 xl:top-1/2 sm:top-1/4 transform -translate-y-1/2 text-5xl text-gold p-3 rounded-full hover:bg-gray-700" onClick={() => handleNavigation(-1)}>&larr;</button>
+        <button className="absolute right-4 xl:top-1/2 sm:top-1/4 transform -translate-y-1/2 text-5xl text-gold p-3 rounded-full hover:bg-gray-700" onClick={() => handleNavigation(1)}>&rarr;</button>
 
       </div>
     </section>
