@@ -152,7 +152,7 @@
         {/* Sections de Contenu */}
         <div className="content-container">
           {/* Zone 2 */}
-          <section className="zone-2 relative w-full h-screen flex flex-col items-end justify-center bg-transparent">
+          <section className="zone-2 relative w-full h-[100vh] flex flex-col items-end justify-center bg-transparent">
             <div className="text-center sm:mt-0 xl:max-w-[42vw] md:max-w-[40vw] sm:max-w-[60vw] xl:pr-40 md:pr-20 sm:pr-5">
             <p className="highlight-description font-yana font-regular text-gold 2xl:text-4xl xl:text-xl lg:text-1xl md:1xl sm:text-sm mb-3">{t('home.zone2.title')}</p>
               <h2 className="highlight-title font-bold font-yana text-gold mb-5 2xl:text-7xl xl:text-4xl lg:text-lg md:text-3xl sm:text-2xl">{t('home.zone2.subtitle')}</h2>
@@ -170,7 +170,7 @@
           </section>
 
           {/* Zone 3 */}
-          <section className="zone-3 relative w-full h-screen flex flex-col items-start xl:justify-center sm:justify-center bg-transparent">
+          <section className="zone-3 relative w-full h-[100vh] flex flex-col items-start xl:justify-center sm:justify-center bg-transparent">
             <div className="text-center xl:max-w-[40vw] md:max-w-[42vw] sm:max-w-[60vw] xl:pl-40 md:pl-400 sm:pl-5">
             <p className="highlight-description font-yana font-regular text-gold 2xl:text-4xl xl:text-xl lg:text-1xl md:1xl sm:text-sm mb-3">{t('home.zone3.title')}</p>
               <h2 className="highlight-title font-bold font-yana text-gold mb-5 2xl:text-7xl xl:text-4xl lg:text-3xl md:text-3xl sm:text-2xl">{t('home.zone3.subtitle')}</h2>
@@ -185,13 +185,13 @@
             <div className="jungle-el-section absolute xl:bottom-[0%] sm:bottom-[0%] xl:right-[0%] md:right-[0%] sm:right-[0%] xl:w-[15vw] md:w-[20vw] sm:w-[40vw] z-0">
               <img src="assets/jungle/layer-feuilledroite.webp" alt="jungle2" className="w-full h-full object-contain z-0" />
             </div>
-            <div className="jungle-el-section absolute xl:bottom-[50%] sm:bottom-[65%] xl:right-[15%] md:right-[0%] sm:right-[70%] xl:w-[10vw] md:w-[20vw] sm:w-[20vw] z-0">
+            <div className="jungle-el-section absolute xl:bottom-[50%] sm:bottom-[65%] xl:right-[15%] md:right-[40%] sm:right-[70%] xl:w-[10vw] md:w-[15vw] sm:w-[20vw] z-0">
               <img src="assets/jungle/layer-Bird.webp" alt="jungle3" className="w-full h-full object-contain z-0" />
             </div>
           </section>
 
           {/* Zone 4 - Slider */}
-          <section className="zone-4 slider-section relative w-full h-screen flex items-center bg-transparent"
+          <section className="zone-4 slider-section relative w-full h-[100vh] flex items-center bg-transparent"
             style={{ padding: "0 0vw" }} // Limite la largeur à 80% de la page
           >
             <div className="w-full">
@@ -205,7 +205,7 @@
           </section>
 
           {/* Zone 5 */}
-          <section className="zone-5 relative w-full h-screen flex flex-col items-end justify-center bg-transparent">
+          <section className="zone-5 relative w-full h-[100vh] flex flex-col items-end justify-center bg-transparent">
           <div className="text-center sm:mt-0 xl:max-w-[40vw] md:max-w-[40vw] sm:max-w-[60vw] xl:pr-40 md:pr-20 sm:pr-5 z-10">
           <p className="highlight-description font-yana font-regular text-gold 2xl:text-4xl xl:text-xl lg:text-1xl md:1xl sm:text-sm mb-3">{t('home.zone5.title')}</p>
           <h2 className="highlight-title font-bold font-yana text-gold mb-5 2xl:text-7xl xl:text-4xl lg:text-3xl md:text-3xl sm:text-2xl">{t('home.zone5.subtitle')}</h2>
@@ -214,10 +214,10 @@
               <button className="highlight-button btn-animated">{t('home.zone5.button')}</button>
               </Link>
             </div>
-            <div className="jungle-el-section absolute xl:bottom-[8%]  lg:bottom-[8%] sm:bottom-[16%] xl:left-[30%] lg:left-[30%] md:left-[20%] sm:left-[15%] xl:w-[13vw] lg:w-[17vw] md:w-[25vw] sm:w-[35vw] z-0">
+            <div className="jungle-el-section absolute xl:bottom-[8%] lg:bottom-[8%] md:bottom-[3%] sm:bottom-[16%] xl:left-[30%] lg:left-[30%] md:left-[25%] sm:left-[15%] xl:w-[13vw] lg:w-[17vw] md:w-[28vw] sm:w-[35vw] z-0">
               <img src="assets/cocktails/cocktailTest.webp" alt="cocktail" className="w-full h-full object-contain z-0" />
             </div>
-            <div className="jungle-el-section absolute xl:bottom-[60%] sm:bottom-[80%] xl:left-[10%] md:left-[20%] sm:left-[15%] xl:w-[5vw] lg:w-[5vw] md:w-[20vw] sm:w-[10vw] z-0">
+            <div className="jungle-el-section absolute xl:bottom-[60%] sm:bottom-[80%] xl:left-[10%] md:left-[20%] sm:left-[15%] xl:w-[5vw] lg:w-[5vw] md:w-[7vw] sm:w-[10vw] z-0">
               <img src="assets/jungle/layer-papillon1.webp" alt="cocktail" className="w-full h-full object-contain z-0" />
             </div>
           </section>

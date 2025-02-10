@@ -151,7 +151,7 @@ const Navbar = () => {
           {navLists.slice(0, 2).map((nav, index) => (
             <div key={index} className="relative group">
               <div
-                className="relative text-lg font-bold md:text-xl lg:text-sm font-yana text-gold cursor-pointer hover:text-gold flex items-center"
+                className="relative text-lg font-bold md:text-xl lg:text-md font-yana text-gold cursor-pointer hover:text-gold flex items-center"
                 onClick={() => toggleSubMenu(index)}
               >
                 {t(nav.name)}

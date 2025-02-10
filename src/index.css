@@ -80,6 +80,7 @@ footer {
 
 .home-container{
   height: 400vh;
+  min-height: 400vh;
   overflow-y: hidden;
 }
 

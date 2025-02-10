@@ -150,7 +150,7 @@ const Jungle = ({ isModelLoaded, position = "background" }) => {
                 objectFit: "cover", // Permet de voir l'image entière
                 objectPosition: "center", // Centre l'image
                 minWidth: "620px",
-                minHeight: "500vh",
+                minHeight: "400vh",
               }}
             />
           </div>
