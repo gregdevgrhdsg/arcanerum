@@ -119,7 +119,7 @@ const LayoutWithCanvas = () => {
         </div>
       )}
 
-        <div className="w-full relative z-30 page-content">
+        <div className="w-full h-400vmax relative z-30 page-content">
           <Routes>
             <Route path="/" element={<Home isModelLoaded={isModelLoaded} />} />
             <Route path="/model/:id" element={<ModelDetail isModelLoaded={isModelLoaded} />} />

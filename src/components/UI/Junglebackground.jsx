@@ -147,10 +147,13 @@ const Jungle = ({ isModelLoaded, position = "background" }) => {
               alt="Fond"
               className="w-full z-0 "
               style={{
+                overflow: "hidden",
                 objectFit: "cover", // Permet de voir l'image entière
                 objectPosition: "center", // Centre l'image
-                minWidth: "620px",
-                minHeight: "400vh",
+                minWidth: "1080px",
+                height: "500vh", // Fixé pour couvrir 5 sections de 100vh
+                maxHeight: "500vh", // Ne jamais dépasser cette hauteur
+                overflow: "hidden",
               }}
             />
           </div>

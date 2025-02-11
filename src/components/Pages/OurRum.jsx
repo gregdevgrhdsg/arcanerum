@@ -145,7 +145,7 @@ const RumPage = () => {
                 className="bottle-image object-contain drop-shadow-lg mb-4"
                 style={{
                   width: isMobile ? "30vw" : screenSize >= 1536 ? "18vw" : "20vw", // Réduction sur 2XL
-                  maxWidth: isMobile ? "200px" : screenSize >= 1536 ? "220px" : "250px", // Ajustement précis
+                  maxWidth: isMobile ? "200px" : screenSize >= 1536 ? "220px" : "150px", // Ajustement précis
                   transform: screenSize >= 1536 ? "translateY(10%)" : "none", // Ajustement vertical sur 2XL
                 }}
               />
