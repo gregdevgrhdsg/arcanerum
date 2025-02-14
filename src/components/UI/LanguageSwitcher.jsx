@@ -63,7 +63,7 @@ const LanguageSwitcher = () => {
   ) || languages[0];
 
   return (
-    <div className="relative" ref={dropdownRef}>
+    <div className="relative flex items-center justify-center" ref={dropdownRef}>
       <button
         onClick={() => setIsOpen(!isOpen)}
         className="flex items-center px-2 py-1 border border-gold rounded bg-transparent hover:bg-gold hover:text-white transition-colors duration-300"
@@ -73,11 +73,7 @@ const LanguageSwitcher = () => {
         <ReactCountryFlag
           countryCode={currentLanguage.countryCode}
           svg
-          style={{
-            width: '1.5em',
-            height: '1.5em',
-            marginRight: '0.5em',
-          }}
+          className="w-6 h-6 md:w-8 md:h-8 lg:w-10 lg:h-10 2xl:w-26 2xl:h-26 mr-2"
           title={currentLanguage.label}
         />
         <span className="font-yana">{currentLanguage.code.toUpperCase()}</span>

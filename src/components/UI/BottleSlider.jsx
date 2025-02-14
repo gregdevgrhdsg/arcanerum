@@ -14,6 +14,7 @@ const BottleSlider = forwardRef(({ bottles, onBottleChange, selectedBottle, onBu
   const DEFAULT_BOTTLE = 0;
 
   const { rotationGroupRef } = useModel();
+  
 
   useImperativeHandle(ref, () => ({
     startAnimation: () => {
@@ -42,7 +43,7 @@ const BottleSlider = forwardRef(({ bottles, onBottleChange, selectedBottle, onBu
       });
     });
   };
-
+ 
   // Revenir à Extraroma en dehors du slider
   const resetToDefaultBottle = () => {
     onBottleChange(DEFAULT_BOTTLE);
@@ -88,6 +89,7 @@ const BottleSlider = forwardRef(({ bottles, onBottleChange, selectedBottle, onBu
       );
     }
   };
+
 
   return (
     <div

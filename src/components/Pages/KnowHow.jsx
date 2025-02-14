@@ -125,10 +125,10 @@ const KnowHow = () => {
           }}
         >
           <div className="text-center z-10 w-full xl:pl-40 md:pl-0 xl:max-w-[50vw] md:max-w-[60vw] sm:max-w-[100vw] px-6 flex flex-col justify-start">
-            <h2 ref={titleRef} className="slide-item font-bold text-gold font-yana  2xl:text-7xl xl:text-4xl mb-6">
+            <h2 ref={titleRef} className="slide-item font-bold text-gold font-yana leading-none 2xl:text-6xl xl:text-4xl mb-6">
               {sliderData[currentStep]?.title}
             </h2>
-            <p ref={textRef} className="highlight-description font-yana text-white  2xl:text-4xl xl:text-xl sm:text-sm">
+            <p ref={textRef} className="highlight-description font-yana text-white  2xl:text-3xl xl:text-xl sm:text-sm">
               {sliderData[currentStep]?.description}
             </p>
 
@@ -176,9 +176,8 @@ const KnowHow = () => {
         <div className="z-10 flex flex-col justify-center items-center text-center h-full xl:max-w-[50vw] md:max-w-[40vw] sm:max-w-[90vw] px-6">
           {/* Barre d'étapes positionnée au-dessus des images */}
           <div className="w-full py-4 text-center z-10 relative flex flex-col items-center justify-center">
-            <h1 className=" 2xl:text-7xl text-4xl text-gold font-yana mt-4 mb-2 font-bold">
-              DIVING INTO OUR <br /> PROCESS
-            </h1>
+            <h1 className=" 2xl:text-6xl text-4xl text-gold font-yana mt-4 mb-2 font-bold">
+            {t('know_how.title')} </h1>
             <div className="flex justify-center space-x-6 max-w-5xl ">
               {timelineSteps.map((_, index) => (
                 <button

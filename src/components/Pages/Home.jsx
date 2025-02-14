@@ -155,8 +155,8 @@
           <section className="zone-2 relative w-full h-[100vh] flex flex-col items-end justify-center bg-transparent">
             <div className="text-center sm:mt-0 xl:max-w-[42vw] md:max-w-[40vw] sm:max-w-[60vw] xl:pr-40 md:pr-20 sm:pr-5">
             <p className="highlight-description font-yana font-regular text-gold 2xl:text-4xl xl:text-xl lg:text-1xl md:1xl sm:text-sm mb-3">{t('home.zone2.title')}</p>
-              <h2 className="highlight-title font-bold font-yana text-gold mb-5 2xl:text-7xl xl:text-4xl lg:text-lg md:text-3xl sm:text-2xl">{t('home.zone2.subtitle')}</h2>
-              <p className="highlight-description font-yana text-white 2xl:text-4xl xl:text-xl lg:text-1xl md:1xl sm:text-sm mb-10" style={{ whiteSpace: "pre-line" }}>{t('home.zone2.description')}</p>
+              <h2 className="highlight-title font-bold font-yana text-gold mb-5 2xl:text-6xl xl:text-4xl lg:text-lg md:text-3xl sm:text-2xl">{t('home.zone2.subtitle')}</h2>
+              <p className="highlight-description font-yana text-white 2xl:text-3xl xl:text-xl lg:text-1xl md:1xl sm:text-sm mb-10" style={{ whiteSpace: "pre-line" }}>{t('home.zone2.description')}</p>
               <Link to="/Our-Universe">
                 <button className="highlight-button btn-animated cursor-pointer ">{t('home.zone2.button')}</button>
               </Link>
@@ -172,9 +172,9 @@
           {/* Zone 3 */}
           <section className="zone-3 relative w-full h-[100vh] flex flex-col items-start xl:justify-center sm:justify-center bg-transparent">
             <div className="text-center xl:max-w-[40vw] md:max-w-[42vw] sm:max-w-[60vw] xl:pl-40 md:pl-400 sm:pl-5">
-            <p className="highlight-description font-yana font-regular text-gold 2xl:text-4xl xl:text-xl lg:text-1xl md:1xl sm:text-sm mb-3">{t('home.zone3.title')}</p>
-              <h2 className="highlight-title font-bold font-yana text-gold mb-5 2xl:text-7xl xl:text-4xl lg:text-3xl md:text-3xl sm:text-2xl">{t('home.zone3.subtitle')}</h2>
-              <p className="highlight-description font-yana text-white 2xl:text-4xl xl:text-xl lg:text-1xl md:1xl sm:text-sm mb-10" style={{ whiteSpace: "pre-line" }}>{t('home.zone3.description')}</p>
+            <p className="highlight-description font-yana font-regular text-gold 2xl:text-3xl xl:text-xl lg:text-1xl md:1xl sm:text-sm mb-3">{t('home.zone3.title')}</p>
+              <h2 className="highlight-title font-bold font-yana text-gold mb-5 2xl:text-6xl xl:text-4xl lg:text-3xl md:text-3xl sm:text-2xl">{t('home.zone3.subtitle')}</h2>
+              <p className="highlight-description font-yana text-white 2xl:text-3xl xl:text-xl lg:text-1xl md:1xl sm:text-sm mb-10" style={{ whiteSpace: "pre-line" }}>{t('home.zone3.description')}</p>
               <Link to="/Know-How">
               <button className="highlight-button btn-animated">{t('home.zone3.button')}</button>
               </Link>
@@ -199,7 +199,7 @@
                 bottles={bottlesConfig(t)}
                 onBottleChange={handleBuyClick}
                 selectedBottle={selectedBottle}
-                onBuy={onclick} // Button action
+                onBuy={onclick} // Bewxzutton action
               />
             </div>
           </section>
@@ -207,9 +207,9 @@
           {/* Zone 5 */}
           <section className="zone-5 relative w-full h-[100vh] flex flex-col items-end justify-center bg-transparent">
           <div className="text-center sm:mt-0 xl:max-w-[40vw] md:max-w-[40vw] sm:max-w-[60vw] xl:pr-40 md:pr-20 sm:pr-5 z-10">
-          <p className="highlight-description font-yana font-regular text-gold 2xl:text-4xl xl:text-xl lg:text-1xl md:1xl sm:text-sm mb-3">{t('home.zone5.title')}</p>
-          <h2 className="highlight-title font-bold font-yana text-gold mb-5 2xl:text-7xl xl:text-4xl lg:text-3xl md:text-3xl sm:text-2xl">{t('home.zone5.subtitle')}</h2>
-          <p className="highlight-description font-yana text-white  2xl:text-4xl xl:text-xl lg:text-1xl md:1xl sm:text-sm mb-10 " style={{ whiteSpace: "pre-line" }}>{t('home.zone5.description')}</p>
+          <p className="highlight-description font-yana font-regular text-gold 2xl:text-3xl xl:text-xl lg:text-1xl md:1xl sm:text-sm mb-3">{t('home.zone5.title')}</p>
+          <h2 className="highlight-title font-bold font-yana text-gold mb-5 2xl:text-6xl xl:text-4xl lg:text-3xl md:text-3xl sm:text-2xl">{t('home.zone5.subtitle')}</h2>
+          <p className="highlight-description font-yana text-white  2xl:text-3xl xl:text-xl lg:text-1xl md:1xl sm:text-sm mb-10 " style={{ whiteSpace: "pre-line" }}>{t('home.zone5.description')}</p>
               <Link to="/Les-Cocktails">
               <button className="highlight-button btn-animated">{t('home.zone5.button')}</button>
               </Link>

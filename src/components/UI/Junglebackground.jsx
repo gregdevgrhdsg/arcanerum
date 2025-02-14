@@ -21,11 +21,15 @@ const Jungle = ({ isModelLoaded, position = "background" }) => {
         setRockRight("5%");
         setRockLeft("auto");
       } else if (screenHeight < 800) {
-        setRockBottom("-15vh");
-        setRockRight("3%");
+        setRockBottom("-9vh");
+        setRockRight("0%");
         setRockLeft("auto");
       } else if (screenHeight < 1000) {
         setRockBottom("-10vh");
+        setRockRight("0%");
+        setRockLeft("auto");
+      } else if (screenHeight < 1900) {
+        setRockBottom("-7vh");
         setRockRight("0%");
         setRockLeft("auto");
       } else {
@@ -153,7 +157,6 @@ const Jungle = ({ isModelLoaded, position = "background" }) => {
                 minWidth: "1080px",
                 height: "500vh", // Fixé pour couvrir 5 sections de 100vh
                 maxHeight: "500vh", // Ne jamais dépasser cette hauteur
-                overflow: "hidden",
               }}
             />
           </div>
@@ -218,8 +221,8 @@ const Jungle = ({ isModelLoaded, position = "background" }) => {
               {
                 src: "assets/jungle/layer-dodo.png",
                 alt: "Dodo",
-                className: "layer-dodo absolutexl: xl:w-[25%] lg:w-[25%] md:w-[40%] sm:w-[50vw] xl:bottom-[15%] lg:bottom-[15%] md:bottom-[10%] sm:bottom-[10%] left-0 sm:bottom-[25%] xl:w-[25%] ",
-                responsiveClass: "sm:translate-y-[-20%] md:translate-y-[-5%] lg:translate-y-[-10%]",
+                className: "layer-dodo absolutexl: xl:w-[25%] lg:w-[25%] md:w-[40%] sm:w-[70vw] xl:bottom-[15%] lg:bottom-[15%] md:bottom-[10%] left-0 sm:bottom-[40%] xl:w-[25%] ",
+                responsiveClass: " md:translate-y-[-5%] lg:translate-y-[-10%]",
               },
 
             ]),

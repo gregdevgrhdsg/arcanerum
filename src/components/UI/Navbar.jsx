@@ -145,13 +145,13 @@ const Navbar = () => {
       className={`fixed w-full top-0 z-50 transition-all ${scrolled ? "bg-gradient-to-b from-black to-transparent" : "bg-transparent"
         }`}
     >
-      <nav className="w-full py-5 px-5 md:px-10 flex items-center justify-between relative">
+      <nav className="w-full py-5 lg:space-x-4 2xl:space-x-20 px-5 md:px-10 flex items-center justify-between relative">
         {/* Navigation gauche */}
         <div className="flex-1 flex justify-start space-x-10 hidden md:flex">
           {navLists.slice(0, 2).map((nav, index) => (
             <div key={index} className="relative group">
               <div
-                className="relative text-lg font-bold md:text-xl lg:text-md font-yana text-gold cursor-pointer hover:text-gold flex items-center"
+                className="relative 2xl:text-4xl xl:text-xl font-bold md:text-xl lg:text-md font-yana text-gold cursor-pointer hover:text-gold flex items-center"
                 onClick={() => toggleSubMenu(index)}
               >
                 {t(nav.name)}
@@ -166,8 +166,8 @@ const Navbar = () => {
               {/* Sous-menu desktop */}
               <div
                 ref={(el) => (subMenuRefs.current[index] = el)}
-                className="absolute flex flex-col top-full mt-2 font-yana text-xl overflow-hidden opacity-0"
-                style={{ minWidth: "200px", height: 0 }}
+                className="absolute flex flex-col top-full mt-2 font-yana 2xl:text-4xl xl:text-xl text-xl overflow-hidden opacity-0"
+                style={{ minWidth: "400px", height: 0 }}
               >
                 {subMenuLinks[index]?.map((link, subIndex) => (
                   <Link
@@ -184,17 +184,17 @@ const Navbar = () => {
         </div>
 
         {/* Logo centré */}
-        <div className="flex-1 flex xl:justify-center lg:justify-center md:justify-center sm:justify-start">
-          <img src={monoGramLogo} alt="Arcane" className="xl:w-16 md:w-16 sm:w-16" />
+        <div className="flex flex xl:justify-center lg:justify-center md:justify-center sm:justify-start">
+          <img src={monoGramLogo} alt="Arcane" className="2xl:w-24 xl:w-16 md:w-16 sm:w-16" />
         </div>
 
         {/* Navigation droite */}
-        <div className="flex-1 flex justify-end space-x-10 hidden md:flex">
+        <div className="flex-1 flex justify-end 2xl:space-x-20 xl:space-x-10 lg:space-x-4 md:space-x-4 hidden md:flex">
           {navLists.slice(2).map((nav, index) => (
             <Link
               key={index}
               to={nav.path}
-              className="text-lg font-bold md:text-xl lg:text-md font-yana text-gold cursor-pointer hover:text-white flex items-center"
+              className="text-lg font-bold 2xl:text-4xl xl:text-xl md:text-xl lg:text-md font-yana text-gold cursor-pointer hover:text-white flex items-center"
             >
               {t(nav.name)}
             </Link>

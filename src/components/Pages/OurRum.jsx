@@ -9,19 +9,30 @@ gsap.registerPlugin(ScrollTrigger);
 const RumPage = () => {
   const [isMobile, setIsMobile] = useState(false);
   const rumData = useRumData(); // Appel de la fonction pour obtenir les données
-  const [screenSize, setScreenSize] = useState(window.innerWidth);
+  const [screenSize, setScreenSize] = useState("desktop");
   const sectionRefs = useRef([]);
 
   useEffect(() => {
-    // Vérifie si l'écran est mobile
-    const handleResize = () => {
-      setIsMobile(window.innerWidth < 768); // Ajustez la largeur selon vos besoins
+    const detectScreenSize = () => {
+      const width = window.innerWidth;
+      
+      if (width < 640) {
+        setScreenSize("mobile");
+      } else if (width < 1024) {
+        setScreenSize("tablet");
+      } else if (width < 1536) {
+        setScreenSize("desktop");
+      } else {
+        setScreenSize("4k");
+      }
+      
+      console.log("Taille d'écran détectée:", width, screenSize);
     };
-
-    handleResize();
-    window.addEventListener("resize", handleResize);
-
-    return () => window.removeEventListener("resize", handleResize);
+  
+    window.addEventListener("resize", detectScreenSize);
+    detectScreenSize();
+  
+    return () => window.removeEventListener("resize", detectScreenSize);
   }, []);
 
   useEffect(() => {
@@ -83,7 +94,7 @@ const RumPage = () => {
           >
             {/* Pattern d'arrière-plan */}
             <div
-              className="absolute mb-44 inset-0 bg-contain bg-center xl:opacity-80 sm:opacity-50"
+              className="absolute 2xl:mb-80 sm:mb-44 inset-0 bg-contain bg-center xl:opacity-80 sm:opacity-50"
               style={{
                 backgroundImage: `url(${rum.pattern})`,
                 backgroundRepeat: "no-repeat",
@@ -92,20 +103,22 @@ const RumPage = () => {
             ></div>
 
             {/* Contenu principal */}
-            <div className="relative z-10 flex flex-col items-center text-center xl:px-32 sm:px-12 sm:space-y-4">
+            <div className="relative z-10 flex flex-col items-center text-center 2xl:px-32 xl:px-32 sm:px-12 sm:space-y-4">
               <img
                 src={rum.image}
                 alt={rum.title}
                 className="bottle-image object-contain drop-shadow-lg mb-4"
                 style={{
-                  width: isMobile ? "30vw" : "20vw",
-                  maxWidth: isMobile ? "200px" : "150px",
+                  width: screenSize === "mobile" ? "150px" :
+                         screenSize === "tablet" ? "150px" :
+                         screenSize === "desktop" ? "150px" : "300px",
+                  height: "auto",
                 }}
               />
-              <h2 className="text-gold 2xl:text-7xl xl:text-4xl font-bold mb-2 text-content sm:text-2xl">
+              <h2 className="text-gold 2xl:text-6xl xl:text-4xl font-bold mb-2 text-content sm:text-2xl">
                 {rum.title}
               </h2>
-              <p className="text-white font-yana  2xl:text-4xl xl:text-1xl text-content sm:text-sm">
+              <p className="text-white font-yana 2xl:text-3xl xl:text-1xl text-content sm:text-sm">
                 {rum.description_a}
               </p>
               <Link to={`/rum/${rum.id}`}>
@@ -129,7 +142,7 @@ const RumPage = () => {
           >
             {/* Pattern d'arrière-plan */}
             <div
-              className="absolute mb-44 inset-0 bg-contain bg-center xl:opacity-80 sm:opacity-50"
+              className="absolute 2xl:mb-80 sm:mb-44 inset-0 bg-contain bg-center xl:opacity-80 sm:opacity-50"
               style={{
                 backgroundImage: `url(${rum.pattern})`,
                 backgroundRepeat: "no-repeat",
@@ -144,12 +157,13 @@ const RumPage = () => {
                 alt={rum.title}
                 className="bottle-image object-contain drop-shadow-lg mb-4"
                 style={{
-                  width: isMobile ? "30vw" : screenSize >= 1536 ? "18vw" : "20vw", // Réduction sur 2XL
-                  maxWidth: isMobile ? "200px" : screenSize >= 1536 ? "220px" : "150px", // Ajustement précis
-                  transform: screenSize >= 1536 ? "translateY(10%)" : "none", // Ajustement vertical sur 2XL
+                  width: screenSize === "mobile" ? "150px" :
+                         screenSize === "tablet" ? "150px" :
+                         screenSize === "desktop" ? "150px" : "300px",
+                  height: "auto",
                 }}
               />
-              <h2 className="text-gold font-yana 2xl:text-7xl xl:text-3xl font-bold mb-2 text-content sm:text-xl">
+              <h2 className="text-gold font-yana 2xl:text-6xl xl:text-3xl font-bold mb-2 text-content sm:text-xl">
                 {rum.title}
               </h2>
               <p className="text-white 2xl:text-3xl font-yana text-md text-content sm:text-sm">

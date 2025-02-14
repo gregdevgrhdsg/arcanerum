@@ -1,16 +1,21 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Link, useParams, useNavigate } from "react-router-dom";
 import gsap from "gsap";
+import { useTranslation } from "react-i18next";
 import cocktails from "../dataCocktails";
 
 const CocktailDetail = () => {
+  const { i18n } = useTranslation();
+  const currentLang = i18n.language; // "fr" ou "en"
   const { id } = useParams();
   const navigate = useNavigate();
   const cocktailIndex = cocktails.findIndex((c) => c.id === parseInt(id));
   const cocktail = cocktails[cocktailIndex];
 
-  const previousCocktail = cocktailIndex > 0 ? cocktails[cocktailIndex - 1] : null;
-  const nextCocktail = cocktailIndex < cocktails.length - 1 ? cocktails[cocktailIndex + 1] : null;
+  const previousCocktail =
+    cocktailIndex > 0 ? cocktails[cocktailIndex - 1] : null;
+  const nextCocktail =
+    cocktailIndex < cocktails.length - 1 ? cocktails[cocktailIndex + 1] : null;
 
   const textRef = useRef(null);
   const imageRef = useRef(null);
@@ -61,7 +66,7 @@ const CocktailDetail = () => {
       { opacity: 0, scale: 0.95 },
       { opacity: 1, scale: 1, duration: 0.8, ease: "power2.out" }
     );
-  }, [cocktail, activeSection]);
+  }, [cocktail, activeSection, navigate]);
 
   if (!cocktail) {
     return (
@@ -74,7 +79,9 @@ const CocktailDetail = () => {
     );
   }
 
-  const currentSection = cocktail.sections?.[activeSection] || { ingredients: [], method: [] };
+  // Si les sections, ingrédients ou méthodes sont traduits, on récupère la version en fonction de la langue
+  const currentSection =
+    cocktail.sections?.[activeSection] || { ingredients: [], method: [] };
 
   return (
     <section
@@ -85,7 +92,8 @@ const CocktailDetail = () => {
       <div
         className="absolute inset-0 bg-black opacity-50 z-0"
         style={{
-          background: "linear-gradient(to bottom, rgba(0,0,0,0.7), rgba(0,0,0,0.7))",
+          background:
+            "linear-gradient(to bottom, rgba(0,0,0,0.7), rgba(0,0,0,0.7))",
         }}
       ></div>
 
@@ -93,7 +101,7 @@ const CocktailDetail = () => {
       {previousCocktail && (
         <Link
           to={`/cocktail/${previousCocktail.id}`}
-          className="hidden lg:flex fixed left-5 top-1/2 transform -translate-y-1/2 text-gold text-5xl hover:text-black z-30"
+          className="lg:flex fixed left-5 sm:top-1/4 md:top-1/2 lg:top-1/2 transform -translate-y-1/2 text-gold text-5xl hover:text-black z-30"
         >
           &larr;
         </Link>
@@ -101,31 +109,33 @@ const CocktailDetail = () => {
       {nextCocktail && (
         <Link
           to={`/cocktail/${nextCocktail.id}`}
-          className="hidden lg:flex fixed right-5 top-1/2 transform -translate-y-1/2 text-gold text-5xl hover:text-black z-30"
+          className="lg:flex fixed right-5 sm:top-1/4 md:top-1/2 lg:top-1/2 transform -translate-y-1/2 text-gold text-5xl hover:text-black z-30"
         >
           &rarr;
         </Link>
       )}
 
-      <div className="cocktail-detail-container relative flex flex-col lg:flex-row lg:items-center lg:justify-center w-full max-w-screen-xl z-10">
+      <div className="cocktail-detail-container relative flex flex-col lg:flex-row lg:items-center lg:justify-center sm:justify-center w-full max-w-screen-xl z-10">
         {/* Image fixe */}
         <div
           ref={imageRef}
-          className="hidden xl:items-center lg:flex lg:items-center lg:justify-center lg:w-1/3 h-auto"
+          className="flex items-center justify-center h-auto sm:mt-20 md:mt-20"
         >
           <img
             src={cocktail.image}
-            alt={cocktail.name}
-            className="max-w-full max-h-[90%] object-contain"
+            alt={cocktail.name[currentLang] || cocktail.name}
+            className="max-w-[80%] max-h-[80%] object-contain lg:max-w-full sm:max-w-[60%] sm:max-h-[30%] lg:max-h-[90%]"
           />
         </div>
 
         {/* Détails du cocktail */}
         <div
-          className="w-full lg:w-1/2 px-6 py-10 overflow-y-auto max-h-[80vh] flex flex-col items-center justify-start text-center"
+          className="w-full lg:w-1/2 px-6 py-10 flex flex-col items-center justify-start text-center lg:overflow-y-auto lg:max-h-[80vh]"
           ref={textRef}
         >
-          <h1 className="text-4xl text-gold font-yana mb-6">{cocktail.name}</h1>
+          <h1 className="text-4xl text-gold font-yana mb-6">
+            {cocktail.name[currentLang] || cocktail.name}
+          </h1>
 
           {/* Sélecteur de section */}
           <div className="flex justify-center space-x-4 mb-6">
@@ -139,7 +149,7 @@ const CocktailDetail = () => {
                     : "text-gray-500"
                 }`}
               >
-                {section.title}
+                {section.title[currentLang] || section.title}
               </button>
             ))}
           </div>
@@ -157,7 +167,9 @@ const CocktailDetail = () => {
               <tbody>
                 {currentSection.ingredients.map((ingredient, index) => (
                   <tr key={index} className="border-t text-white">
-                    <td className="px-4 py-2">{ingredient.name}</td>
+                    <td className="px-4 py-2">
+                      {ingredient.name[currentLang] || ingredient.name}
+                    </td>
                     <td className="px-4 py-2">{ingredient.qty || "-"}</td>
                     <td className="px-4 py-2">{ingredient.unit || "-"}</td>
                   </tr>
@@ -169,29 +181,41 @@ const CocktailDetail = () => {
             <ul className="list-disc ml-4 space-y-2">
               {currentSection.method.map((step, index) => (
                 <li key={index} className="text-sm text-left text-white">
-                  {step}
+                  {step[currentLang] || step}
                 </li>
               ))}
             </ul>
             <Link
-            to="/Les-Cocktails"
-            className="btn-animated mt-16 px-4 py-2 text-sm font-medium bg-gold text-black rounded-md hover:bg-yellow-500 transition-all duration-300"
-          >
-            Retour à la liste
-          </Link>
+              to="/Les-Cocktails"
+              className="btn-animated mt-16 px-4 py-2 text-sm font-medium bg-gold text-black rounded-md hover:bg-yellow-500 transition-all duration-300"
+            >
+              Retour à la liste
+            </Link>
           </div>
         </div>
       </div>
 
       {/* Éléments de la jungle */}
-      <div className="jungle-el-section absolute bottom-0 right-0 w-[15vw] z-[1]">
-        <img src="/assets/jungle/layer-feuilledroite2.webp" alt="jungle4" className="w-full h-full object-contain" />
+      <div className="jungle-el-section absolute bottom-10 right-0 sm:w-[20vw] z-[1]">
+        <img
+          src="/assets/jungle/layer-feuilledroite2.webp"
+          alt="jungle4"
+          className="w-full h-full object-contain"
+        />
       </div>
-      <div className="jungle-el-section absolute bottom-0 right-0 w-[15vw] z-[1]">
-        <img src="/assets/jungle/layer-feuilledroite.webp" alt="jungle3" className="w-full h-full object-contain" />
+      <div className="jungle-el-section absolute bottom-10 right-0 sm:w-[20vw] z-[1]">
+        <img
+          src="/assets/jungle/layer-feuilledroite.webp"
+          alt="jungle3"
+          className="w-full h-full object-contain"
+        />
       </div>
-      <div className="jungle-el-section absolute bottom-[60%] left-[10%] w-[10vw] z-[10]">
-        <img src="/assets/jungle/layer-Bird.webp" alt="jungle5" className="w-full h-full object-contain" />
+      <div className="jungle-el-section absolute sm:top-[10%] bottom-[60%] left-[10%] w-[10vw] z-[10]">
+        <img
+          src="/assets/jungle/layer-Bird.webp"
+          alt="jungle5"
+          className="w-full h-full object-contain"
+        />
       </div>
     </section>
   );

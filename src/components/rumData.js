@@ -11,7 +11,11 @@ const rumData = () => {
       subtitle: t("ourRums.arcaneExtraroma.subtitle"),
       description_a: t("ourRums.arcaneExtraroma.description_a"),
       description: t("ourRums.arcaneExtraroma.description"),
+      button: t("ourRums.arcaneExtraroma.button"),
       tastingNotes: {
+        titleA: t("ourRums.arcaneFlamboyance.tastingNotes.titleA"),
+        titleB: t("ourRums.arcaneFlamboyance.tastingNotes.titleB"),
+        titleC: t("ourRums.arcaneFlamboyance.tastingNotes.titleC"),
         color: t("ourRums.arcaneExtraroma.tastingNotes.color"),
         nose: t("ourRums.arcaneExtraroma.tastingNotes.nose"),
         palate: t("ourRums.arcaneExtraroma.tastingNotes.palate"),
@@ -30,7 +34,11 @@ const rumData = () => {
       subtitle: t("ourRums.arcaneFlamboyance.subtitle"),
       description_a: t("ourRums.arcaneFlamboyance.description_a"),
       description: t("ourRums.arcaneFlamboyance.description"),
+      button: t("ourRums.arcaneFlamboyance.button"),
       tastingNotes: {
+        titleA: t("ourRums.arcaneFlamboyance.tastingNotes.titleA"),
+        titleB: t("ourRums.arcaneFlamboyance.tastingNotes.titleB"),
+        titleC: t("ourRums.arcaneFlamboyance.tastingNotes.titleC"),
         color: t("ourRums.arcaneFlamboyance.tastingNotes.color"),
         nose: t("ourRums.arcaneFlamboyance.tastingNotes.nose"),
         palate: t("ourRums.arcaneFlamboyance.tastingNotes.palate"),
@@ -49,6 +57,7 @@ const rumData = () => {
       subtitle: t("ourRums.arcaneAnanasRoti.subtitle"),
       description_a: t("ourRums.arcaneAnanasRoti.description_a"),
       description: t("ourRums.arcaneAnanasRoti.description"),
+      button: t("ourRums.arcaneAnanasRoti.button"),
       waysToEnjoy: {
         title: t("ourRums.arcaneAnanasRoti.waysToEnjoy.title"),
         description: t("ourRums.arcaneAnanasRoti.waysToEnjoy.description"),
@@ -68,6 +77,7 @@ const rumData = () => {
       subtitle: t("ourRums.arcaneVanilleDesIles.subtitle"),
       description_a: t("ourRums.arcaneVanilleDesIles.description_a"),
       description: t("ourRums.arcaneVanilleDesIles.description"),
+      button: t("ourRums.arcaneVanilleDesIles.button"),
       waysToEnjoy: {
         title: t("ourRums.arcaneVanilleDesIles.waysToEnjoy.title"),
         description: t("ourRums.arcaneVanilleDesIles.waysToEnjoy.description"),
@@ -87,6 +97,7 @@ const rumData = () => {
       subtitle: t("ourRums.arcaneBananeFlambee.subtitle"),
       description_a: t("ourRums.arcaneBananeFlambee.description_a"),
       description: t("ourRums.arcaneBananeFlambee.description"),
+      button: t("ourRums.arcaneBananeFlambee.button"),
       waysToEnjoy: {
         title: t("ourRums.arcaneBananeFlambee.waysToEnjoy.title"),
         description: t("ourRums.arcaneBananeFlambee.waysToEnjoy.description"),

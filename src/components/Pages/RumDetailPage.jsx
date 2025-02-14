@@ -113,26 +113,25 @@ const RumDetailPage = () => {
 
   return (
     <section ref={sectionRef} className="relative w-full min-h-screen flex flex-col items-center justify-center bg-gray-900 text-white" style={{ background: rum.gradient }}>
-      <div className="container mx-auto flex xl:flex-row md:flex-col sm:flex-col items-center justify-start px-6 py-10 gap-8 z-30">
-
+      <div className="container mx-auto flex sm:flex-col md:flex-col lg:flex-row xl:flex-row items-center justify-start px-6 py-10 gap-8 z-30">
         {/* Image de la bouteille */}
         <div className="flex-1 relative flex justify-center " ref={imageContainerRef}>
           <div
-            className="absolute inset-0 bg-no-repeat bg-cover bg-center xl:bg-center"
+            className="absolute inset-0 bg-no-repeat bg-contain bg-center lg:bg-bottom xl:bg-center"
             style={{
               backgroundImage: `url(${rum.pattern})`,
-              backgroundSize: "contain",
               width: "100%",
+              height: "100%",
             }}
           ></div>
-          <img src={rum.image} alt={rum.title} className="relative font-yana xl:mt-0 sm:mt-20 z-10 object-contain drop-shadow-lg"
-            style={{ width: "30vw", maxWidth: "200px", minWidth: "100px" }} />
+          <img src={rum.image} alt={rum.title}
+            className="relative z-10 drop-shadow-lg sm:w-[150px] md:w-[150px] lg:w-[150px] xl:w-[200px] 2xl:w-[400px]"
+          />
         </div>
 
         {/* Informations */}
-        <div className="flex-1 flex w-full flex-col justify-start text-center items-center xl:mr-20 sm:mr-0 sm:ml-0">
+        <div ref={textRefs} className="flex-1 flex w-full flex-col justify-start text-center items-center xl:mr-20 sm:mr-0 sm:ml-0">
           <h1 className="text-4xl font-bold xl:text-center font-yana text-gold">{rum.title}</h1>
-          <h2 className="mt-2 text-2xl text-center font-yana font-semibold mb-6">{rum.subtitle}</h2>
           <p className="text-lg text-center font-yana text-content">{rum.description}</p>
 
           <div className="mt-6">
@@ -173,9 +172,9 @@ const RumDetailPage = () => {
             {/* Contenu des onglets */}
             {activeTab === "tastingNotes" && hasTastingNotes && (
               <div className="grid text-sm text-center grid-cols-1 md:grid-cols-3 gap-6">
-                {rum.tastingNotes.color && <div><h4 className="text-lg font-semibold text-gold mb-2">Color</h4><p className="text-content">{rum.tastingNotes.color}</p></div>}
-                {rum.tastingNotes.nose && <div><h4 className="text-lg font-semibold text-gold mb-2">Nose</h4><p className="text-content">{rum.tastingNotes.nose}</p></div>}
-                {rum.tastingNotes.palate && <div><h4 className="text-lg font-semibold text-gold mb-2">Palate</h4><p className="text-content">{rum.tastingNotes.palate}</p></div>}
+                {rum.tastingNotes.color && <div><h4 className="text-lg font-semibold text-gold mb-2">{rum.tastingNotes.titleA}</h4><p className="text-content">{rum.tastingNotes.color}</p></div>}
+                {rum.tastingNotes.nose && <div><h4 className="text-lg font-semibold text-gold mb-2">{rum.tastingNotes.titleB}</h4><p className="text-content">{rum.tastingNotes.nose}</p></div>}
+                {rum.tastingNotes.palate && <div><h4 className="text-lg font-semibold text-gold mb-2">{rum.tastingNotes.titleC}</h4><p className="text-content">{rum.tastingNotes.palate}</p></div>}
               </div>
             )}
 
@@ -201,13 +200,13 @@ const RumDetailPage = () => {
             )}
           </div>
           <Link to="/Our-Rums" className="btn-animated w-1/2 mt-16 px-4 py-2 text-sm font-medium bg-gold text-black hover:bg-yellow-500 transition-all duration-300 justify-center">
-            Retour à la liste
+          {rum.button}
           </Link>
         </div>
 
         {/* Flèches de navigation */}
-        <button className="absolute left-4 xl:top-1/2 sm:top-1/4 transform -translate-y-1/2 text-5xl text-gold p-3 rounded-full hover:bg-gray-700" onClick={() => handleNavigation(-1)}>&larr;</button>
-        <button className="absolute right-4 xl:top-1/2 sm:top-1/4 transform -translate-y-1/2 text-5xl text-gold p-3 rounded-full hover:bg-gray-700" onClick={() => handleNavigation(1)}>&rarr;</button>
+        <button className="absolute left-4 xl:top-1/2 lg:top-1/2 sm:top-1/4 transform -translate-y-1/2 text-5xl text-gold p-3 rounded-full hover:bg-gray-700" onClick={() => handleNavigation(-1)}>&larr;</button>
+        <button className="absolute right-4 xl:top-1/2 lg:top-1/2 sm:top-1/4 transform -translate-y-1/2 text-5xl text-gold p-3 rounded-full hover:bg-gray-700" onClick={() => handleNavigation(1)}>&rarr;</button>
 
       </div>
     </section>
