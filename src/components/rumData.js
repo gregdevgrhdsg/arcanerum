@@ -13,6 +13,7 @@ const rumData = () => {
       description: t("ourRums.arcaneExtraroma.description"),
       button: t("ourRums.arcaneExtraroma.button"),
       tastingNotes: {
+        title: t("ourRums.arcaneFlamboyance.tastingNotes.title"),
         titleA: t("ourRums.arcaneFlamboyance.tastingNotes.titleA"),
         titleB: t("ourRums.arcaneFlamboyance.tastingNotes.titleB"),
         titleC: t("ourRums.arcaneFlamboyance.tastingNotes.titleC"),
@@ -21,6 +22,7 @@ const rumData = () => {
         palate: t("ourRums.arcaneExtraroma.tastingNotes.palate"),
       },
       logisticInfo: {
+        title: t("ourRums.arcaneExtraroma.logisticInfo.title"),
         volume: t("ourRums.arcaneExtraroma.logisticInfo.volume"),
         alcohol: t("ourRums.arcaneExtraroma.logisticInfo.alcohol"),
       },
@@ -36,6 +38,7 @@ const rumData = () => {
       description: t("ourRums.arcaneFlamboyance.description"),
       button: t("ourRums.arcaneFlamboyance.button"),
       tastingNotes: {
+        title: t("ourRums.arcaneFlamboyance.tastingNotes.title"),
         titleA: t("ourRums.arcaneFlamboyance.tastingNotes.titleA"),
         titleB: t("ourRums.arcaneFlamboyance.tastingNotes.titleB"),
         titleC: t("ourRums.arcaneFlamboyance.tastingNotes.titleC"),
@@ -44,6 +47,7 @@ const rumData = () => {
         palate: t("ourRums.arcaneFlamboyance.tastingNotes.palate"),
       },
       logisticInfo: {
+        title: t("ourRums.arcaneFlamboyance.logisticInfo.title"),
         volume: t("ourRums.arcaneFlamboyance.logisticInfo.volume"),
         alcohol: t("ourRums.arcaneFlamboyance.logisticInfo.alcohol"),
       },
@@ -64,6 +68,7 @@ const rumData = () => {
         signatureShot: t("ourRums.arcaneAnanasRoti.waysToEnjoy.signatureShot"),
       },
       logisticInfo: {
+        title: t("ourRums.arcaneAnanasRoti.logisticInfo.title"),
         volume: t("ourRums.arcaneAnanasRoti.logisticInfo.volume"),
         alcohol: t("ourRums.arcaneAnanasRoti.logisticInfo.alcohol"),
       },
@@ -84,6 +89,7 @@ const rumData = () => {
         signatureShot: t("ourRums.arcaneVanilleDesIles.waysToEnjoy.signatureShot"),
       },
       logisticInfo: {
+        title: t("ourRums.arcaneVanilleDesIles.logisticInfo.title"),
         volume: t("ourRums.arcaneVanilleDesIles.logisticInfo.volume"),
         alcohol: t("ourRums.arcaneVanilleDesIles.logisticInfo.alcohol"),
       },
@@ -104,6 +110,7 @@ const rumData = () => {
         signatureShot: t("ourRums.arcaneBananeFlambee.waysToEnjoy.signatureShot"),
       },
       logisticInfo: {
+        title: t("ourRums.arcaneBananeFlambee.logisticInfo.title"),
         volume: t("ourRums.arcaneBananeFlambee.logisticInfo.volume"),
         alcohol: t("ourRums.arcaneBananeFlambee.logisticInfo.alcohol"),
       },

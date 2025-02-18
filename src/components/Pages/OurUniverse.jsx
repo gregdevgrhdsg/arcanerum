@@ -8,7 +8,7 @@ import { useTranslation } from 'react-i18next';
 gsap.registerPlugin(ScrollTrigger);
 
 /**
- * Composant SliderSection (identique à Know How)
+ * Composant SliderSection (identique à Know How) avec dots de navigation
  */
 const SliderSection = ({ slider }) => {
   const slidesRef = useRef([]);
@@ -22,7 +22,7 @@ const SliderSection = ({ slider }) => {
   
     gsap.fromTo(
       textRef.current,
-      { opacity: 0, y: 20, },
+      { opacity: 0, y: 20 },
       {
         opacity: 1,
         y: 0,
@@ -30,7 +30,7 @@ const SliderSection = ({ slider }) => {
         ease: "power2.out",
       }
     );
-  }, [currentIndex]); // Déclenché uniquement lorsque le slide change
+  }, [currentIndex]); // Animation déclenchée lors du changement de slide
 
   const handleSlideChange = (direction) => {
     const newIndex = (currentIndex + direction + slides.length) % slides.length;
@@ -48,27 +48,49 @@ const SliderSection = ({ slider }) => {
         }}
       >
         <div className={`text-center z-10 ${slider.containerClass}`}>
-          <h2 ref={titleRef} className="highlight-title font-yana font-bold text-gold leading-none 2xl:text-6xl xl:text-4xl lg:text-3xl md:text-3xl sm:text-2xl mb-3">
+          <h2
+            ref={titleRef}
+            className="highlight-title font-yana font-bold text-gold leading-none 2xl:text-6xl xl:text-4xl lg:text-3xl md:text-3xl sm:text-2xl mb-3"
+          >
             {slider.title}
           </h2>
-          <p ref={textRef} className="highlight-description font-yana text-white 2xl:text-3xl xl:text-xl lg:text-lg md:text-md sm:text-sm">
+          <p
+            ref={textRef}
+            className="highlight-description font-yana text-white 2xl:text-3xl xl:text-xl lg:text-lg md:text-md sm:text-sm"
+          >
             {slides[currentIndex]}
           </p>
 
-          {/* Flèches de navigation (adaptées dynamiquement) */}
+          {/* Dots de navigation */}
           {slides.length > 1 && (
-            <div className="flex justify-center items-end relative mt-6">
+            <div className="flex justify-center items-center mt-6">
+              {slides.map((_, index) => (
+                <button
+                  key={index}
+                  onClick={() => setCurrentIndex(index)}
+                  aria-label={`Aller à la diapositive ${index + 1}`}
+                  className={`w-3 h-3 rounded-full mx-1 transition-colors duration-300 ${
+                    currentIndex === index ? "bg-gold" : "bg-gray-500"
+                  }`}
+                ></button>
+              ))}
+            </div>
+          )}
+
+          {/* Flèches de navigation */}
+          {slides.length > 1 && (
+            <div className="flex justify-center items-end relative mt-0">
               <button
                 className="text-gold text-6xl hover:text-white mx-4 transform rotate-90"
                 onClick={() => handleSlideChange(-1)}
-                aria-label="Previous slide"
+                aria-label="Diapositive précédente"
               >
                 &#8249;
               </button>
               <button
                 className="text-gold text-6xl hover:text-white mx-4 -rotate-90"
                 onClick={() => handleSlideChange(1)}
-                aria-label="Next slide"
+                aria-label="Diapositive suivante"
               >
                 &#8249;
               </button>
@@ -85,9 +107,9 @@ const SliderSection = ({ slider }) => {
  * Composant Principal OurUniverse
  */
 const OurUniverse = () => {
-  const { t } = useTranslation(); // Initialisation du hook
+  const { t } = useTranslation();
 
-  // Utiliser useMemo pour mémoriser slidersData et éviter les ré-rendus infinis
+  // Utiliser useMemo pour mémoriser les données et éviter les ré-rendus infinis
   const slidersData = useMemo(() => [
     {
       id: 1,
@@ -99,8 +121,8 @@ const OurUniverse = () => {
       ],
       backgroundImage: '/assets/sections/volcanic.webp',
       buttonText: t('button_discover_more'),
-      flexClasses: 'xl:justify-start sm:justify-center xl:items-center sm:items-center', // Alignement spécifique
-      containerClass: 'xl:w-[50vw] md:max-w-[60vw] sm:w-[80vw] xl:pl-40', // Disposition spécifique
+      flexClasses: 'xl:justify-start sm:justify-center xl:items-center sm:items-center',
+      containerClass: 'xl:w-[50vw] md:max-w-[60vw] sm:w-[80vw] xl:pl-40',
     },
     {
       id: 2,
@@ -110,8 +132,8 @@ const OurUniverse = () => {
       ],
       backgroundImage: '/assets/sections/volcanicShape.webp',
       buttonText: t('button_discover_more'),
-      flexClasses: 'xl:justify-end sm:justify-center xl:items-center sm:items-center', // Alignement spécifique pour la section 2
-      containerClass: 'xl:w-[50vw] md:max-w-[50vw] sm:w-[80vw] xl:pr-40', // Disposition spécifique
+      flexClasses: 'xl:justify-end sm:justify-center xl:items-center sm:items-center',
+      containerClass: 'xl:w-[50vw] md:max-w-[50vw] sm:w-[80vw] xl:pr-40',
       whiteSpace: "pre-line",
     },
     {
@@ -124,16 +146,15 @@ const OurUniverse = () => {
       ],
       backgroundImage: '/assets/sections/territory.webp',
       buttonText: t('button_discover_more'),
-      flexClasses: 'xl:justify-start sm:justify-center xl:items-center sm:items-center', // Alignement spécifique
-      containerClass: 'xl:w-[50vw] md:max-w-[50vw] sm:w-[80vw] xl:pl-40', // Disposition spécifique
+      flexClasses: 'xl:justify-start sm:justify-center xl:items-center sm:items-center',
+      containerClass: 'xl:w-[50vw] md:max-w-[50vw] sm:w-[80vw] xl:pl-40',
     },
-    // Ajoutez plus de sliders si nécessaire
+    // Ajoutez d'autres sliders si nécessaire
   ], [t]);
 
   useEffect(() => {
-    // Nettoie les anciens triggers
+    // Nettoyage des anciens triggers
     ScrollTrigger.getAll().forEach(trigger => trigger.kill());
-    // Animation globale des éléments spécifiques hors sliders si nécessaire
     gsap.utils.toArray(".highlight-title, .highlight-description, .highlight-button").forEach((element) => {
       gsap.fromTo(
         element,
@@ -154,7 +175,6 @@ const OurUniverse = () => {
       );
     });
 
-    // Nettoie les triggers lors du démontage
     return () => {
       ScrollTrigger.getAll().forEach(trigger => trigger.kill());
     };
@@ -162,9 +182,7 @@ const OurUniverse = () => {
 
   return (
     <div className="know-how-container absolute w-full h-full whitespace-pre-line">
-      {/* Conteneur principal */}
       <div className="content-container">
-        {/* Sections : Intro, Process, Territory */}
         {slidersData.map((slider) => (
           <SliderSection key={slider.id} slider={slider} />
         ))}

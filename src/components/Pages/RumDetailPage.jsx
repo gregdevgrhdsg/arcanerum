@@ -115,17 +115,21 @@ const RumDetailPage = () => {
     <section ref={sectionRef} className="relative w-full min-h-screen flex flex-col items-center justify-center bg-gray-900 text-white" style={{ background: rum.gradient }}>
       <div className="container mx-auto flex sm:flex-col md:flex-col lg:flex-row xl:flex-row items-center justify-start px-6 py-10 gap-8 z-30">
         {/* Image de la bouteille */}
-        <div className="flex-1 relative flex justify-center " ref={imageContainerRef}>
+        <div className="flex-1 relative flex justify-center" ref={imageContainerRef}>
+          {/* Pattern à taille fixe */}
           <div
-            className="absolute inset-0 bg-no-repeat bg-contain bg-center lg:bg-bottom xl:bg-center"
-            style={{
-              backgroundImage: `url(${rum.pattern})`,
-              width: "100%",
-              height: "100%",
-            }}
+            className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 
+             bg-no-repeat bg-contain bg-center
+             w-[150px] sm:w-[350px] md:w-[350px] lg:w-[500px] xl:w-[500px] 2xl:w-[900px]
+             h-[150px] sm:h-[350px] md:h-[350px] lg:h-[500px] xl:h-[500px] 2xl:h-[900px]"
+            style={{ backgroundImage: `url(${rum.pattern})` }}
           ></div>
-          <img src={rum.image} alt={rum.title}
-            className="relative z-10 drop-shadow-lg sm:w-[150px] md:w-[150px] lg:w-[150px] xl:w-[200px] 2xl:w-[400px]"
+
+          {/* Image de la bouteille */}
+          <img
+            src={rum.image}
+            alt={rum.title}
+            className="relative z-10 drop-shadow-lg sm:w-[150px] md:w-[150px] lg:w-[200px] xl:w-[200px] 2xl:w-[400px]"
           />
         </div>
 
@@ -144,7 +148,7 @@ const RumDetailPage = () => {
                     }`}
                   onClick={() => setActiveTab("tastingNotes")}
                 >
-                  Tasting Notes
+                  {rum.tastingNotes.title}
                 </button>
               )}
               {hasWaysToEnjoy && (
@@ -165,7 +169,7 @@ const RumDetailPage = () => {
                   }`}
                 onClick={() => setActiveTab("logisticInfo")}
               >
-                Logistic Info
+                {rum.logisticInfo.title}
               </button>
             </div>
 
@@ -200,7 +204,7 @@ const RumDetailPage = () => {
             )}
           </div>
           <Link to="/Our-Rums" className="btn-animated w-1/2 mt-16 px-4 py-2 text-sm font-medium bg-gold text-black hover:bg-yellow-500 transition-all duration-300 justify-center">
-          {rum.button}
+            {rum.button}
           </Link>
         </div>
 

@@ -98,7 +98,9 @@
       "description_a": "Un assemblage de rhums pur jus de canne vieillis pendant 3 ans dans des fûts de chêne français et américain.",
       "description": "Un assemblage de rhums pur jus de canne vieillis pendant 3 ans dans des fûts de chêne français et américain, apportant chacun leur propre caractère. Arcane Extraroma révèle de délicieux et délicats arômes de vanille Bourbon, de noix de coco, de chocolat et de caramel, des notes fumées et de banane. Sa finale rafraîchissante est caractéristique des rhums mauriciens.",
       "button": "RETOUR À LA LISTE",
+      "buttonb": "ACHETER",
       "tastingNotes": {
+        "title": "Notes de Dégustation",
         "titleA": "Couleur",
         "titleB": "Palais",
         "titleC": "Nez",
@@ -107,6 +109,7 @@
         "palate": "Bien structuré, offrant à la fois de la substance et de la longueur."
       },
       "logisticInfo": {
+        "title": "Info logistique",
         "volume": "70CL",
         "alcohol": "40 % ALC./VOL."
       }
@@ -117,7 +120,9 @@
       "description_a": "Un assemblage de rhums pur jus de canne vieillis dans des fûts de chêne français et américain, ayant bénéficié d’un affinage en fûts ayant contenu du whisky français tourbé.",
       "description": "Un assemblage de rhums pur jus de canne vieillis dans des fûts de chêne français et américain, ayant bénéficié d’un affinage en fûts ayant contenu du whisky français tourbé. Cet affinage confère une belle structure et révèle des arômes de sucre confit, de noix de coco grillée et de fumée, suivis de notes fraîches et florales subtiles mais séduisantes.",
       "button": "RETOUR À LA LISTE",
+      "buttonb": "ACHETER",
       "tastingNotes": {
+        "title": "Notes de Dégustation",
         "titleA": "Couleur",
         "titleB": "Palais",
         "titleC": "Nez",
@@ -126,6 +131,7 @@
         "palate": "Les saveurs de canne à sucre et de sucre confit émergent gracieusement, suivies de notes complexes et subtilement fumées."
       },
       "logisticInfo": {
+        "title": "Info logistique",
         "volume": "70CL",
         "alcohol": "43 % ALC./VOL."
       }
@@ -136,12 +142,14 @@
       "description_a": "La gamme 'Arrangés' offre une fusion délicieuse de fraîcheur et de délicatesse, sublimant les saveurs tropicales de l’île Maurice.",
       "description": "Dégustez le séduisant 'Ananas Rôti', élaboré avec des arômes 100% naturels et découvrez la symphonie harmonieuse de l’audace de l’ananas, de la douce étreinte du caramel et de la rondeur du rhum mauricien.",
       "button": "RETOUR À LA LISTE",
+      "buttonb": "ACHETER",
       "waysToEnjoy": {
         "title": "Mode De Consommation",
         "description": "Pour une expérience gourmande ultime, nous vous encourageons à savourer votre « Ananas Rôti » accompagné d'un délicieux gâteau marbré au chocolat. Cette association divine promet un moment de pure indulgence et de bonheur gustatif.",
         "signatureShot": "ROASTED PINEAPPLE - NOTRE SHOT SIGNATURE \n\n30ml Arcane Ananas Rôti \n10ml Cocody Liqueur par Cartron \n20ml Jus d'Ananas Frais"
       },
       "logisticInfo": {
+        "title": "Info logistique",
         "volume": "70 CL",
         "alcohol": "35 % ALC./VOL."
       }
@@ -152,12 +160,14 @@
       "description_a": "La gamme 'Arrangés' offre une fusion délicieuse de fraîcheur et de délicatesse, sublimant les saveurs tropicales de l’île Maurice.",
       "description": "Découvrez la fascinante 'Vanille des Îles', une ode à l'une des spécialités emblématiques de l'île Maurice. Enrichi par la vanille Bourbon et sublimé par la puissance du rhum mauricien, cet élixir exceptionnel vous emmène dans un voyage sensoriel capturant l'essence du paradis tropical mauricien.",
       "button": "RETOUR À LA LISTE",
+      "buttonb": "ACHETER",
       "waysToEnjoy": {
         "title": "Mode De Consommation",
         "description": "Pour une expérience inoubliable, nous vous recommandons de savourer « Vanille des lles » bien frais. Pour rehausser cette expérience gourmande, associez cet élixir exotique à une délicieuse crème brûlée maison. Ajoutez quelques gouttes de « Vanille des Iles » directement dans votre recette pour une touche magique.",
         "signatureShot": "TI' VANILLA - NOTRE SHOT SIGNATURE \n\n30ml Arcane Vanille des Iles \n10ml Fruit de la passion par Cartron \n20ml Jus de citron vert frais"
       },
       "logisticInfo": {
+        "title": "Info logistique",
         "volume": "70 CL",
         "alcohol": "35 % ALC./VOL."
       }
@@ -168,12 +178,14 @@
       "description_a": "La gamme 'Arrangés' offre une fusion délicieuse de fraîcheur et de délicatesse, sublimant les saveurs tropicales de l’île Maurice.",
       "description": "Découvrez la vedette de la gamme, 'Banane Flambée', la référence emblématique de notre collection. Inspiré par le célèbre dessert, cet élixir exquis met en valeur la douceur naturelle des bananes, harmonieusement mariée à la rondeur du rhum mauricien.",
       "button": "RETOUR À LA LISTE",
+      "buttonb": "ACHETER",
       "waysToEnjoy": {
         "title": "Mode De Consommation",
         "description": "Pour une expérience inoubliable, savourez « Banane Flambée » bien fraîche, en apéritif ou comme liqueur après le dîner. Pour une dégustation encore plus gourmande, accompagnez-le d'une crêpe ou d'un pancake. Notre astuce pour une touche magique : ajoutez quelques gouttes de « Banane Flambée » à la pâte.",
         "signatureShot": "TROPICAL SMOKE - NOTRE SHOT SIGNATURE \n\n45 ml Arcane Banane Flambée \n15ml Cacao Blanc Liqueur par Cartron \nCrème fouettée sur le dessus"
       },
       "logisticInfo": {
+        "title": "Info logistique",
         "volume": "70 CL",
         "alcohol": "35 % ALC./VOL."
       }

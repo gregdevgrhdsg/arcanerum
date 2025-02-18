@@ -47,6 +47,24 @@ const Jungle = ({ isModelLoaded, position = "background" }) => {
 
   useLayoutEffect(() => {
     if (!isModelLoaded) return;
+    gsap.fromTo(
+      ".layer-fond img",
+      { y: 0 },
+      {
+        y: "50vh", // Ajustez cette valeur pour obtenir l'effet souhaité
+        ease: "none",
+        scrollTrigger: {
+          trigger: ".jungle-section",
+          start: "top top",
+          end: "bottom top",
+          scrub: true,
+        },
+      }
+    );
+  }, [isModelLoaded, position]);
+
+  useLayoutEffect(() => {
+    if (!isModelLoaded) return;
 
     const mm = gsap.matchMedia();
 
@@ -133,7 +151,7 @@ const Jungle = ({ isModelLoaded, position = "background" }) => {
 
   return (
     <section >
-      <div className={`zone-1 jungle-section w-full h-screen absolute ${position === "foreground" ? "z-30" : "z-0"}`}>
+      <div className={`zone-1 w-full h-screen absolute ${position === "foreground" ? "z-30" : "z-0"}`}>
         {position === "background" && (
           <div
             className="layer-fond relative"
@@ -149,7 +167,7 @@ const Jungle = ({ isModelLoaded, position = "background" }) => {
             <img
               src="assets/jungle/fond-Arcane.webp"
               alt="Fond"
-              className="w-full z-0 "
+              className="jungle-section w-full z-0 "
               style={{
                 overflow: "hidden",
                 objectFit: "cover", // Permet de voir l'image entière

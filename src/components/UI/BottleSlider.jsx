@@ -118,7 +118,7 @@ const BottleSlider = forwardRef(({ bottles, onBottleChange, selectedBottle, onBu
               rel="noopener noreferrer"
               className="btn-animated"
             >
-              ACHETER
+               {bottles[currentSlide].button}
             </a>
           </div>
         </div>

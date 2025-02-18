@@ -89,12 +89,14 @@
   },
   "ourRums": {
     "arcaneExtraroma": {
-      "title": "Extraroma",
+      "title": "EXTRAROMA",
       "subtitle": "Our Flag Bearer",
       "description_a": "A blend of pure cane juice rums aged for 3 years in French and American oak barrels, each contributing its own unique character.",
       "description": "A blend of pure cane juice rums aged for 3 years in French and American oak barrels, each contributing its own unique character. Arcane Extraroma reveals delicious and delicate aromas of Bourbon vanilla, coconut, chocolate, caramel, smoky notes and banana, with a refreshing finish characteristic of Mauritian rums.",
       "button": "BACK TO LIST",
+      "buttonb": "BUY",
       "tastingNotes": {
+        "title": "Tasting Notes",
         "titleA": "Color",
         "titleB": "Palatz",
         "titleC": "Nose",
@@ -103,17 +105,20 @@
         "palate": "Well-structured, offering both body and length. An explosion of spicy flavors, with the vegetal essence of fresh cane juice"
       },
       "logisticInfo": {
+        "title": "logistic Info",
         "volume": "70 CL",
         "alcohol": "40 % ALC./VOL."
       }
     },
     "arcaneFlamboyance": {
-      "title": "Flamboyance",
+      "title": "FLAMBOYANCE",
       "subtitle": "Whisky Finish",
       "description_a": "A blend of rums made from pure cane juice, aged for 2 years in French and American oak barrels.",
       "description": "A blend of rums made from pure cane juice, aged for 2 years in French and American oak barrels, with a finishing in casks that previously contained peated French whisky. This finishing gives it a beautiful structure and reveals aromas of candied sugar, toasted coconut, and smoky notes, followed by fresh and subtly seductive floral notes.",
       "button": "BACK TO LIST",
+      "buttonb": "BUY",
       "tastingNotes": {
+        "title": "Tasting Notes",
         "titleA": "Color",
         "titleB": "Palate",
         "titleC": "Nose",
@@ -122,77 +127,84 @@
         "palate": "The texture is well-structured and smooth, offering a pleasant roundness. Flavors of sugarcane and candied sugar gracefully emerge, followed by complex and subtly smoky notes."
       },
       "logisticInfo": {
+        "title": "logistic Info",
         "volume": "70 CL",
         "alcohol": "43 % ALC./VOL."
       }
     },
     "arcaneAnanasRoti": {
-      "title": "Ananas Rôtie",
+      "title": "ANANAS RÔTIE",
       "subtitle": "Arrangé - Roasted Pineapple",
       "description_a": "The 'Arrangés' range offers a delightful fusion of freshness and delicacy, enhancing the tropical flavors of Mauritius.",
       "description": "Savor the enticing 'Roasted Pineapple', crafted with 100% natural aromas and experience the harmonious symphony of bold pineapple, the gentle embrace of caramel, and the richness of Mauritian rum.",
       "button": "BACK TO LIST",
+      "buttonb": "BUY",
       "waysToEnjoy": {
         "title": "Way To Enjoy",
         "description": "For the ultimate gourmet experience, we encourage you to enjoy your 'Roasted Pineapple' alongside a delicious chocolate marble cake. This divine pairing promises a moment of pure indulgence and culinary bliss.",
         "signatureShot": "ROASTED PINEAPPLE - NOTRE SHOT SIGNATURE \n\n30ml Arcane Ananas Rôti \n10ml Cocody Liqueur by Cartron \n20ml Fresh Pineapple Juice"
       },
       "logisticInfo": {
+        "title": "logistic Info",
         "volume": "70 CL",
         "alcohol": "35 % ALC./VOL."
       }
     },
     "arcaneVanilleDesIles": {
-      "title": "Vanille des Îles",
+      "title": "VANILLE DES ÎLES",
       "subtitle": "Arrangé - Vanilla from the Islands",
       "description_a": "The 'Arrangés' range offers a delightful fusion of freshness and delicacy, enhancing the tropical flavors of Mauritius.",
       "description": "Discover the captivating 'Vanilla from the Islands', an ode to Mauritius’s iconic specialties. Enriched with Bourbon vanilla and elevated by the strength of Mauritian rum, this exceptional elixir takes you on a sensory journey that captures the essence of the tropical paradise of Mauritius.",
       "button": "BACK TO LIST",
+      "buttonb": "BUY",
       "waysToEnjoy": {
         "title": "Way To Enjoy",
         "description": "For an unforgettable experience, we recommend savouring 'Vanille des Iles' chilled. To enhance this gourmet experience, combine this exotic elixir with a delicious homemade creme brûlée. Add a few drops of 'Vanille des les' directly to your recipe for a magical touch.",
         "signatureShot": "TI' VANILLA - NOTRE SHOT SIGNATURE \n\n30ml Arcane Vanille des îles \n10ml Passion Fruit by Cartron \n20ml Fresh Lime Juice"
       },
       "logisticInfo": {
+        "title": "logistic Info",
         "volume": "70 CL",
         "alcohol": "35 % ALC./VOL."
       }
     },
     "arcaneBananeFlambee": {
-      "title": "Banana Flambée",
+      "title": "BANAE FLAMBÉE",
       "subtitle": "Arrangé - Banana Flambée",
       "description_a": "The 'Arrangés' range offers a delightful fusion of freshness and delicacy, elevating the tropical flavors of Mauritius to new heights.",
       "description": "Discover the star of the range, 'Banana Flambée', the iconic reference in our collection. Inspired by the famous dessert, this exquisite elixir showcases the natural sweetness of bananas, perfectly blended with the smoothness of Mauritian rum.",
       "button": "BACK TO LIST",
+      "buttonb": "BUY",
       "waysToEnjoy": {
         "title": "Way To Enjoy",
         "description": "For an unforgettable experience, enjoy 'Banane Flambée' chilled, either as an aperitif or as a liqueur after dinner. For an even more indulgent tasting, pair it with a crepe of pancake. Our tip for a magical touch : add a few drops of 'Banane Flambée' to the batter.",
         "signatureShot": "TROPICAL SMOKE - OUR SIGNATURE SHOT \n\n45 ml Arcane Banane Flambée \n15ml Cacao Blanc Liqueur by Cartron \nwhipped cream on the top"
       },
       "logisticInfo": {
+        "title": "logistic Info",
         "volume": "70 CL",
         "alcohol": "35 % ALC./VOL."
       }
     },
     "bottles": {
       "extraroma": {
-        "name": "Extraroma",
+        "name": "EXTRAROMA",
         "description": "Arcane Extraroma révèle de délicieux et délicats arômes de vanille Bourbon, de noix de coco, de chocolat, de caramel, de notes fumées et de banane."
       },
       "flamboyance": {
-        "name": "Flamboyance",
+        "name": "FLAMBOYANCE",
         "description": "Un assemblage de rhums de pur jus de canne à sucre vieillis pendant 3 ans dans des fûts de chêne Français et Américain ayant bénéficié d’un affinage en fût ayant contenu du whisky Français tourbé."
       },
       "ananasRotie": {
-        "name": "Ananas Rôtie",
+        "name": "ANANAS RÔTIE",
         "description": "Dégustez le séduisant 'Ananas Rôtie', élaboré avec des arômes 100% naturels, une symphonie harmonieuse de l’audace de l’ananas et du caramel doux."
       },
       "vanilleDesIles": {
-        "name": "Vanille des Îles",
+        "name": "VANILLE DES ÎLES",
         "description": "Découvrez la fascinante 'Vanille des Îles', une ode à l'une des spécialités emblématiques de l'île Maurice, enrichie par la vanille Bourbon."
       },
       "bananeFlambee": {
-        "name": "Banane Flambée",
+        "name": "BANANE FLAMBÉE",
         "description": "Découvrez la vedette de la gamme, 'Banane Flambée', la référence emblématique mettant en valeur la douceur naturelle des bananes."
       }
     }
