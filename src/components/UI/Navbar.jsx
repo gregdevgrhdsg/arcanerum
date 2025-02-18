@@ -167,7 +167,7 @@ const Navbar = () => {
               <div
                 ref={(el) => (subMenuRefs.current[index] = el)}
                 className="absolute flex flex-col top-full mt-2 font-yana 2xl:text-4xl xl:text-xl text-xl overflow-hidden opacity-0"
-                style={{ minWidth: "400px", height: 0 }}
+                style={{ minWidth: "200px", height: 0 }}
               >
                 {subMenuLinks[index]?.map((link, subIndex) => (
                   <Link

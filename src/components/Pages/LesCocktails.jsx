@@ -96,7 +96,7 @@ const LesCocktails = () => {
                 alt={cocktail.name[lang]}
                 className="h-102 object-cover mb-4"
               />
-              <h2 className="text-2xl text-gold font-semibold mb-1 text-center">
+              <h2 className="text-md leading-none text-gold font-semibold mb-1 text-center">
                 {cocktail.name[lang]}
               </h2>
               <p className="text-sm text-gold font-yana">{cocktail.category[lang]}</p>

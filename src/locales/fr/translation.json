@@ -3,19 +3,19 @@
     "zone2": {
       "title": "Île Maurice",
       "subtitle": "ESCAPE THE EXPECTED",
-      "description": "Chaque aventure commence par le désir d'explorer l'inconnu. \n Aujourd'hui, nous vous invitons à voyager au cœur de l'extraordinaire à travers les sens, les saveurs et les riches histoires contenues dans chaque goutte de rhum Arcane.",
+      "description": "Chaque aventure commence par le désir d'explorer l'inconnu. Aujourd'hui, nous vous invitons à voyager au cœur de l'extraordinaire à travers les sens, les saveurs et les riches histoires contenues dans chaque goutte de rhum Arcane.",
       "button": "DÉCOUVRIR PLUS"
     },
     "zone3": {
       "title": "Savoir-faire",
       "subtitle": "DE LA CANNE AU GOLD",
-      "description": "Chez Arcane Rum, notre savoir-faire est un hommage  \n au riche patrimoine de l'île Maurice. \n De la culture de la canne à sucre pure à la maîtrise de la distillation, chaque étape est guidée par un profond respect de la tradition et de l'innovation.",
+      "description": "Chez Arcane Rum, notre savoir-faire est un hommage au riche patrimoine de l'île Maurice. De la culture de la canne à sucre pure à la maîtrise de la distillation, chaque étape est guidée par un profond respect de la tradition et de l'innovation.",
       "button": "DÉCOUVRIR PLUS"
     },
     "zone5": {
       "title": "Cocktails avec Caractère",
       "subtitle": "NOS COCKTAILS",
-      "description": "Immergez-vous dans l'art des cocktails avec Arcane RUM. Soyez aventureux avec nos créations, audacieux avec nos shots signature, et intemporels avec des classiques revisités. De la première gorgée à la touche finale, chaque boisson est un voyage de saveurs, d'arômes et d'artisanat \n une invitation à savourer et à explorer.",
+      "description": "Immergez-vous dans l'art des cocktails avec Arcane RUM. Soyez aventureux avec nos créations, audacieux avec nos shots signature, et intemporels avec des classiques revisités. De la première gorgée à la touche finale, chaque boisson est un voyage de saveurs, d'arômes et d'artisanat une invitation à savourer et à explorer.",
       "button": "DÉVOILER NOS SECRETS"
     }
   },
@@ -131,7 +131,7 @@
       }
     },
     "arcaneAnanasRoti": {
-      "title": "ANANAS RÔTIE",
+      "title": "ANANAS RÔTI",
       "subtitle": "Arrangé - Ananas Rôti",
       "description_a": "La gamme 'Arrangés' offre une fusion délicieuse de fraîcheur et de délicatesse, sublimant les saveurs tropicales de l’île Maurice.",
       "description": "Dégustez le séduisant 'Ananas Rôti', élaboré avec des arômes 100% naturels et découvrez la symphonie harmonieuse de l’audace de l’ananas, de la douce étreinte du caramel et de la rondeur du rhum mauricien.",
@@ -188,7 +188,7 @@
         "description": "Un assemblage de rhums de pur jus de canne à sucre vieillis pendant 3 ans dans des fûts de chêne Français et Américain ayant bénéficié d’un affinage en fût ayant contenu du whisky Français tourbé."
       },
       "ananasRotie": {
-        "name": "ANANAS RÔTIE",
+        "name": "ANANAS RÔTI",
         "description": "Dégustez le séduisant 'Ananas Rôtie', élaboré avec des arômes 100% naturels, une symphonie harmonieuse de l’audace de l’ananas et du caramel doux."
       },
       "vanilleDesIles": {

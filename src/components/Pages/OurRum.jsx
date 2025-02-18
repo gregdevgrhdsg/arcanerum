@@ -146,7 +146,7 @@ const RumPage = () => {
               style={{
                 backgroundImage: `url(${rum.pattern})`,
                 backgroundRepeat: "no-repeat",
-                backgroundSize: "55%",
+                backgroundSize: "58%",
               }}
             ></div>
 
