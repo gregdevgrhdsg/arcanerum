@@ -57,7 +57,7 @@ const LesCocktails = () => {
         <h1 className=" 2xl:text-6xl xl:text-4xl lg:text-lg md:text-3xl sm:text-2xl text-center text-gold font-yana mb-4 font-bold">
           {lang === "fr" ? "LISTE COMPLÈTE DES RECETTES" : "FULL RECIPE LIST"}
         </h1>
-        <p className="2xl:text-3xl xl:text-xl lg:text-1xl md:1xl sm:text-sm font-yana text-white mb-8 max-w-3xl text-center">
+        <p className="2xl:text-3xl xl:text-xl lg:text-1xl md:1xl sm:text-sm font-yana text-white mb-8 max-w-3xl justify-center text-center">
           {lang === "fr"
             ? "Découvrez notre sélection de cocktails créés sur mesure, chacun conçu pour vous offrir une expérience gustative inoubliable. Choisissez votre catégorie et trouvez votre recette idéale."
             : "Discover our selection of curated cocktails, each one crafted to bring you an unforgettable taste experience. Choose your category and find your perfect recipe."}
@@ -65,14 +65,13 @@ const LesCocktails = () => {
       </div>
 
       <div className="filter-bar w-full flex flex-col items-center mb-8">
-        <div className="w-full max-w-5xl border-b border-gray-600 pb-4">
+      <div className="w-full max-w-5xl border-b border-gold pb-4">
           <div className="flex justify-center gap-6">
             {["Créations", "Revisités"].map((category) => (
               <button
                 key={category}
-                className={`text-lg font-yana cursor-pointer ${
-                  activeFilter === category ? "text-gold font-bold" : "text-gold-400"
-                } hover:text-gold transition`}
+                className={`text-lg font-yana cursor-pointer ${activeFilter === category ? "text-gold font-bold" : "text-gold-400"
+                  } hover:text-gold transition`}
                 onClick={() => filterCocktails(category)}
                 aria-label={`Filtrer par ${category}`}
               >
@@ -83,8 +82,8 @@ const LesCocktails = () => {
         </div>
       </div>
 
-      <div className="cocktail-list grid xl:grid-cols-4 sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-7xl px-2">
-        {filteredCocktails.map((cocktail) => (
+      <div className="cocktail-list grid xl:grid-cols-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 px-2">
+      {filteredCocktails.map((cocktail) => (
           <Link
             to={`/cocktail/${cocktail.id}`}
             key={cocktail.id}
@@ -94,9 +93,15 @@ const LesCocktails = () => {
               <img
                 src={cocktail.imageB}
                 alt={cocktail.name[lang]}
-                className="h-102 object-cover mb-4"
+                className="
+                object-cover mb-4
+                h-64        /* taille par défaut sur mobile */
+                md:h-80     /* taille sur écrans moyens */
+                lg:h-102     /* taille sur écrans larges */
+                xl:h-102 /* encore plus grand sur XL */
+              "
               />
-              <h2 className="text-md leading-none text-gold font-semibold mb-1 text-center">
+              <h2 className="text-md leading-none 2xl:text-2xl xl:text-2xl lg:text-1xl md:1xl sm:text-sm text-gold font-semibold mb-1 text-center">
                 {cocktail.name[lang]}
               </h2>
               <p className="text-sm text-gold font-yana">{cocktail.category[lang]}</p>

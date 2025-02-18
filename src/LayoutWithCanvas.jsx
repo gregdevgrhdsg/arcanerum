@@ -38,35 +38,38 @@ const LayoutWithCanvas = () => {
 
     useEffect(() => {
       if (isHome) {
-        setIsLoaded(false); // Réinitialise le loader
-        setIsAnimationDone(false); // Réinitialise l'état du rideau
-        setProgress(0); // Réinitialise la progression
-  
+        // Réinitialise et lance le loader uniquement sur la home
+        setIsLoaded(false);
+        setIsAnimationDone(false);
+        setProgress(0);
+    
         const assetsToLoad = 10;
         let loaded = 0;
-  
+    
         const interval = setInterval(() => {
           loaded++;
           setProgress((loaded / assetsToLoad) * 100);
-  
+    
           if (loaded === assetsToLoad) {
             clearInterval(interval);
             setTimeout(() => {
               setIsLoaded(true);
-  
-              // Animation de rideau
+              // Animation du rideau
               gsap.to(".loading-curtain", {
                 y: "-100%",
                 duration: 1.5,
                 ease: "power2.out",
                 onComplete: () => {
-                  setIsAnimationDone(true); // Cache le rideau après l'animation
+                  setIsAnimationDone(true);
                 },
               });
-            },);
+            });
           }
-        }, 1000);
+        }, 500);
       } else {
+        // Pour les autres pages, désactive le loader immédiatement
+        setIsLoaded(true);
+        setIsAnimationDone(true); // Ajoutez cette ligne pour masquer le rideau
         // Animation d'entrée pour les autres pages
         gsap.fromTo(
           ".page-content",
@@ -79,12 +82,10 @@ const LayoutWithCanvas = () => {
           }
         );
       }
-  
       // Scroll en haut à chaque changement de route
       window.scrollTo(0, 0);
     }, [location]);
   
-
   return (
     <div className="relative flex flex-col min-h-full">
     {/* Animation de rideau */}
