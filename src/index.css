@@ -120,7 +120,7 @@ footer {
 }
 
 .btn-animated {
-  @apply relative inline-block py-4 px-6 pt-5 font-yana text-gold 2xl:text-4xl xl:text-xl sm:text-sm text-center overflow-hidden transition-all duration-300;
+  @apply relative inline-block py-4 px-6 pt-5 font-yana text-gold 2xl:text-4xl xl:text-xl sm:text-sm text-center  transition-all duration-300;
 
   /* Ajout du gradient doré sur le texte */
   background-image: linear-gradient(to right, #B07C41, #FCCF87);

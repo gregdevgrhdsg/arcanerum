@@ -34,7 +34,7 @@ const LesCocktails = () => {
     );
 
     console.log("✅ Cocktails après filtrage initial :", initialFiltered);
-    
+
     setFilteredCocktails(initialFiltered);
   }, [lang, activeFilter]);
 
@@ -108,9 +108,8 @@ const LesCocktails = () => {
             {Object.keys(categoryMapping).map((category) => (
               <button
                 key={category}
-                className={`text-lg font-yana cursor-pointer ${
-                  activeFilter === category ? "text-gold font-bold" : "text-gold-400"
-                } hover:text-gold transition`}
+                className={`text-lg font-yana cursor-pointer ${activeFilter === category ? "text-gold font-bold" : "text-gold-400"
+                  } hover:text-gold transition`}
                 onClick={() => filterCocktails(category)}
                 aria-label={`Filtrer par ${category}`}
               >
@@ -134,14 +133,14 @@ const LesCocktails = () => {
                 <img
                   src={cocktail.imageB}
                   alt={cocktail.name?.[lang] || "Cocktail"}
-                  className="object-cover mb-4 h-64 md:h-80 lg:h-96 xl:h-[28rem]"
+                  className="object-contain mb-4 h-64 md:h-80 lg:h-96 xl:h-[28rem]"
                 />
                 <h2 className="text-md leading-none 2xl:text-2xl xl:text-2xl lg:text-xl md:text-lg sm:text-sm text-gold font-semibold mb-1 text-center">
-  {cocktail.name?.[lang] ?? "Nom inconnu"}
-</h2>
-<p className="text-sm text-gold font-yana">
-  {cocktail.category?.[lang] ?? "Catégorie inconnue"}
-</p>
+                  {cocktail.name?.[lang] ?? "Nom inconnu"}
+                </h2>
+                <p className="text-sm text-gold font-yana">
+                  {cocktail.category?.[lang] ?? "Catégorie inconnue"}
+                </p>
               </div>
             </Link>
           ))
