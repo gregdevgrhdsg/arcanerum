@@ -10,7 +10,7 @@ gsap.registerPlugin(ScrollTrigger);
 const LesCocktails = () => {
   const { i18n } = useTranslation();
   const lang = i18n.language?.split("-")[0] || "fr"; // Récupère "fr" à partir de "fr-FR"
-  
+
   const [filteredCocktails, setFilteredCocktails] = useState(
     cocktails.filter((cocktail) => cocktail.category[lang] === "Créations")
   );
@@ -19,43 +19,36 @@ const LesCocktails = () => {
   useEffect(() => {
     ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
   }, []);
-console.log("📦 Données `cocktails` importées :", cocktails);
+
   useEffect(() => {
-    if (filteredCocktails.length > 0) {
-      setTimeout(() => {
-        const cards = document.querySelectorAll(".cocktail-card");
-        console.log("🔎 Vérification des cartes GSAP :", cards);
+    console.log("🔎 Vérification des cartes GSAP :", document.querySelectorAll(".cocktail-card"));
   
-        if (cards.length > 0) {
-          console.log("✅ GSAP trouve les cartes, animation en cours...");
-          gsap.fromTo(
-            cards,
-            { opacity: 0, y: 30 },
-            {
-              opacity: 1,
-              y: 0,
-              duration: 1,
-              stagger: 0.1,
-              ease: "power2.out",
-              scrollTrigger: {
-                trigger: ".cocktail-list",
-                start: "top 80%",
-              },
-            }
-          );
-        } else {
-          console.log("⚠️ Aucune carte trouvée pour GSAP !");
-        }
-      }, 500);
-    } else {
-      console.log("🚨 `filteredCocktails` est vide, GSAP ne sera pas exécuté.");
-    }
+    setTimeout(() => {  // Ajoute un délai pour s'assurer que les cartes sont bien rendues
+      const cards = document.querySelectorAll(".cocktail-card");
+      if (cards.length > 0) {
+        gsap.fromTo(
+          cards,
+          { opacity: 0, y: 30 },
+          {
+            opacity: 1,
+            y: 0,
+            duration: 1,
+            stagger: 0.1,
+            ease: "power2.out",
+            scrollTrigger: {
+              trigger: ".cocktail-list",
+              start: "top 80%",
+            },
+          }
+        );
+      } else {
+        console.log("⚠️ Aucune carte trouvée pour GSAP !");
+      }
+    }, 500);  // Délai de 500ms
   }, [filteredCocktails]);
 
   const filterCocktails = (category) => {
-    console.log("🛠️ Changement de filtre :", category);
-    console.log("🌍 Langue actuelle :", lang);
-    console.log("📦 Cocktails disponibles :", cocktails);    setActiveFilter(category);
+    setActiveFilter(category);
     setFilteredCocktails(
       cocktails.filter((cocktail) => cocktail.category[lang] === category)
     );
