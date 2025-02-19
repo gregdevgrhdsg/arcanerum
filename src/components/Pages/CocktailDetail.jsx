@@ -84,9 +84,9 @@ const CocktailDetail = () => {
   
     return (
       <section
-        className="cocktail-page bg-cover bg-center text-white min-h-screen flex flex-col items-center justify-center relative"
+        className="bg-cover bg-center text-white min-h-screen flex flex-col items-center justify-center relative"
         style={{
-          backgroundImage: "url('/assets/jungle/fond-Arcane.webp')",
+          backgroundImage: "url('/assets/jungle/fond-ArcaneCocktails.webp')",
           backgroundAttachment: "fixed", // Fix pour Chrome
         }}
       >
@@ -97,7 +97,7 @@ const CocktailDetail = () => {
         {previousCocktail && (
           <Link
             to={`/cocktail/${previousCocktail.id}`}
-            className="lg:flex fixed left-5 sm:top-1/4 md:top-1/2 lg:top-1/2 transform -translate-y-1/2 text-gold text-5xl hover:text-black z-30"
+            className="lg:flex fixed left-5 sm:top-50 md:top-1/2 lg:top-1/2 transform -translate-y-1/2 text-gold text-5xl hover:text-black z-30"
           >
             &larr;
           </Link>
@@ -111,7 +111,7 @@ const CocktailDetail = () => {
           </Link>
         )}
   
-        <div className="cocktail-detail-container relative flex flex-col lg:flex-row lg:items-center lg:justify-center sm:justify-center w-full max-w-screen-xl z-10">
+        <div className="cocktail-detail-container relative flex flex-col lg:flex-row lg:items-center lg:justify-center sm:justify-center w-full max-w-screen-xl md:mt-24 sm:mt-24 z-10">
           {/* Image fixe */}
           <div ref={imageRef} className="flex items-center justify-center">
             <img
@@ -123,7 +123,7 @@ const CocktailDetail = () => {
   
           {/* Détails du cocktail */}
           <div
-            className="w-full lg:w-1/2 px-6 py-10 flex flex-col items-center justify-start text-center lg:overflow-y-auto lg:max-h-[80vh]"
+            className="w-full lg:w-1/2 px-16 py-16 flex flex-col items-center justify-start text-center lg:overflow-y-auto lg:max-h-[80vh]"
             ref={textRef}
           >
             <h1 className="text-4xl text-gold font-yana mb-6">
@@ -148,7 +148,7 @@ const CocktailDetail = () => {
             {/* Contenu de la section */}
             <table className="table-auto w-full text-sm mb-6">
               <thead>
-                <tr className="bg-gold text-white">
+                <tr className="bg-gold text-left text-white">
                   <th className="px-4 py-2">Ingredient</th>
                   <th className="px-4 py-2">QTY</th>
                   <th className="px-4 py-2">Unit</th>
@@ -156,7 +156,7 @@ const CocktailDetail = () => {
               </thead>
               <tbody>
                 {currentSection.ingredients.map((ingredient, index) => (
-                  <tr key={index} className="border-t text-white">
+                  <tr key={index} className="border-t text-left text-white">
                     <td className="px-4 py-2">{ingredient.name?.[currentLang] ?? "Ingrédient inconnu"}</td>
                     <td className="px-4 py-2">{ingredient.qty ?? "-"}</td>
                     <td className="px-4 py-2">{ingredient.unit ?? "-"}</td>

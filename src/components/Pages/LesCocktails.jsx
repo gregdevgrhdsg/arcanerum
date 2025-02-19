@@ -49,7 +49,7 @@ const LesCocktails = () => {
           opacity: 1,
           y: 0,
           duration: 0.8,
-          stagger: 0.3,
+          stagger: 0.2,
           ease: "power3.out",
           scrollTrigger: {
             trigger: ".cocktail-list",
@@ -80,7 +80,14 @@ const LesCocktails = () => {
   };
 
   return (
-    <section className="cocktail-page bg-fixed min-h-screen flex flex-col items-center justify-start text-white z-0">
+    <section
+      className="bg-cover bg-fixed flex flex-col items-center justify-start text-white z-0"
+      style={{
+        backgroundImage: "url('/assets/jungle/fond-ArcaneCocktails.webp')",
+        backgroundSize: "cover",
+        backgroundPosition: "top",
+      }}
+    >
       {/* 🏷️ Titre et description */}
       <div className="ml-10 mr-10 mt-40 items-center justify-center">
         <h1 className="2xl:text-6xl xl:text-4xl lg:text-lg md:text-3xl sm:text-2xl text-center text-gold font-yana mb-4 font-bold">
