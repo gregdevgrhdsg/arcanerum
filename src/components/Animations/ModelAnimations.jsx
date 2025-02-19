@@ -29,7 +29,7 @@ const zoneConfigurations = {
       mobile: {
         position: { x: -0.4, y: -0.8, duration: 2, ease: "power5.inOut" },
         rotation: { y: 0.5, z: 0, duration: 2, ease: "power5.inOut" },
-        camera: {z: 8, duration: 2, ease: "power5.inOut" },
+        camera: {z:7, duration: 2, ease: "power5.inOut" },
       },
     },
   },
@@ -67,9 +67,9 @@ const zoneConfigurations = {
         camera: {z: 5.5, duration: 2, ease: "power5.inOut" },
       },
       mobile: {
-        position: { x: 0.1, y: -0.3, z: 0, duration: 2, ease: "power5.inOut" },
+        position: { x: 0.1, y: -0.2, z: 0, duration: 2, ease: "power5.inOut" },
         rotation: { x: 0, y: 0, z: 0, duration: 2, ease: "power5.inOut" },
-        camera: {z: 8, duration: 2, ease: "power5.inOut" },
+        camera: {z: 7, duration: 2, ease: "power5.inOut" },
       },
     },
   },
