@@ -20,22 +20,25 @@ const LesCocktails = () => {
     ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
   }, []);
 
-  useEffect(() => {
-    gsap.fromTo(
-      ".cocktail-card",
-      { opacity: 0, y: 30 },
-      {
-        opacity: 1,
-        y: 0,
-        duration: 1,
-        stagger: 0.1,
-        ease: "power2.out",
-        scrollTrigger: {
-          trigger: ".cocktail-list",
-          start: "top 80%",
-        },
-      }
-    );
+  useLayoutEffect(() => {
+    const cards = document.querySelectorAll(".cocktail-card");
+    if (cards.length > 0) {
+      gsap.fromTo(
+        cards,
+        { opacity: 0, y: 30 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 1,
+          stagger: 0.1,
+          ease: "power2.out",
+          scrollTrigger: {
+            trigger: ".cocktail-list",
+            start: "top 80%",
+          },
+        }
+      );
+    }
   }, [filteredCocktails]);
 
   const filterCocktails = (category) => {

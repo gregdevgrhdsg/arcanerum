@@ -1,9 +1,11 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Link, useParams, useNavigate } from "react-router-dom";
 import gsap from "gsap";
+import ScrollTrigger from "gsap/ScrollTrigger";
 import { useTranslation } from "react-i18next";
 import cocktails from "../dataCocktails";
 
+gsap.registerPlugin(ScrollTrigger);
 const CocktailDetail = () => {
   const { i18n } = useTranslation();
   const currentLang = i18n.language; // "fr" ou "en"
