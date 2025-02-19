@@ -92,11 +92,22 @@ const BottleSlider = forwardRef(({ bottles, onBottleChange, selectedBottle, onBu
 
 
   return (
-    <div
-      className="relative w-full h-screen overflow-visible flex justify-center items-center"
-      ref={sliderContainerRef}
-      onMouseLeave={resetToDefaultBottle}
-    >
+<div
+  className="relative w-full h-screen overflow-visible flex justify-center items-center"
+  ref={sliderContainerRef}
+  onMouseLeave={(e) => {
+    // Vérifie si la souris quitte réellement la section du slider (Desktop)
+    if (!sliderContainerRef.current.contains(e.relatedTarget)) {
+      resetToDefaultBottle();
+    }
+  }}
+  onTouchEnd={(e) => {
+    // Vérifie si le toucher quitte le slider (Mobile)
+    if (!sliderContainerRef.current.contains(e.target)) {
+      resetToDefaultBottle();
+    }
+  }}
+>
       {/* Slider Principal */}
       <div className="relative z-60 pointer-events-auto flex w-full h-full 2xl:max-w-10vw xl:max-w-6xl mx-auto">
         {/* Texte et Contenu */}
