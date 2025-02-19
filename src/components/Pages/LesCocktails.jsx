@@ -21,7 +21,6 @@ const LesCocktails = () => {
   }, []);
 
   useEffect(() => {
-    console.log("filteredCocktails:", filteredCocktails);
     gsap.fromTo(
       ".cocktail-card",
       { opacity: 0, y: 30 },
