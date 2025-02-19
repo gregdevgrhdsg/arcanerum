@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useLayoutEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import gsap from "gsap";
@@ -20,25 +20,23 @@ const LesCocktails = () => {
     ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
   }, []);
 
-  useLayoutEffect(() => {
-    const cards = document.querySelectorAll(".cocktail-card");
-    if (cards.length > 0) {
-      gsap.fromTo(
-        cards,
-        { opacity: 0, y: 30 },
-        {
-          opacity: 1,
-          y: 0,
-          duration: 1,
-          stagger: 0.1,
-          ease: "power2.out",
-          scrollTrigger: {
-            trigger: ".cocktail-list",
-            start: "top 80%",
-          },
-        }
-      );
-    }
+  useEffect(() => {
+    console.log("filteredCocktails:", filteredCocktails);
+    gsap.fromTo(
+      ".cocktail-card",
+      { opacity: 0, y: 30 },
+      {
+        opacity: 1,
+        y: 0,
+        duration: 1,
+        stagger: 0.1,
+        ease: "power2.out",
+        scrollTrigger: {
+          trigger: ".cocktail-list",
+          start: "top 80%",
+        },
+      }
+    );
   }, [filteredCocktails]);
 
   const filterCocktails = (category) => {
