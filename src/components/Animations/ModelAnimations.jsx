@@ -19,17 +19,17 @@ const zoneConfigurations = {
       desktop: {
         position: { x: -0.2, y: -1, duration: 2, ease: "power5.inOut" },
         rotation: { y: 0.8, z: 0.2, duration: 2, ease: "power5.inOut" },
-        camera: { fov: 25, z: 3.6, duration: 2, ease: "power5.inOut" },
+        camera: { z: 3.6, duration: 2, ease: "power5.inOut" },
       },
       tablet: {
         position: { x: -0.2, y: -1, duration: 2, ease: "power5.inOut" },
         rotation: { y: 0.8, z: 0.2, duration: 2, ease: "power5.inOut" },
-        camera: { fov: 25, z: 4.5, duration: 2, ease: "power5.inOut" },
+        camera: { z: 4.5, duration: 2, ease: "power5.inOut" },
       },
       mobile: {
         position: { x: -0.4, y: -0.8, duration: 2, ease: "power5.inOut" },
         rotation: { y: 0.5, z: 0, duration: 2, ease: "power5.inOut" },
-        camera: {fov: 25, z: 8, duration: 2, ease: "power5.inOut" },
+        camera: {z: 8, duration: 2, ease: "power5.inOut" },
       },
     },
   },
@@ -49,7 +49,7 @@ const zoneConfigurations = {
       mobile: {
         position: { x: 0.4, y: -0.8, z: 0, duration: 2, ease: "power5.inOut" },
         rotation: { x: 0, y: 0, z: 0, duration: 2, ease: "power5.inOut" },
-        camera: {fov: 25, z: 6, duration: 2, ease: "power5.inOut" },
+        camera: { z: 6, duration: 2, ease: "power5.inOut" },
       },
     },
   },
@@ -59,12 +59,12 @@ const zoneConfigurations = {
       desktop: {
         position: { x: 0.7, y: -0.9, z:0, duration: 1.5, ease: "power2.inOut" },
         rotation: { x:0, y:0, z:0, duration: 1.5, ease: "power2.inOut" },
-        camera: {  fov: 25, z: 4.8, duration: 1.5, ease: "power2.inOut" },  
+        camera: {  z: 4.8, duration: 1.5, ease: "power2.inOut" },  
       },
       tablet: {
         position: { x: 0.6, y: -0.9, z: 0, duration: 2, ease: "power5.inOut" },
         rotation: { x: 0, y: -0.1, z: 0, duration: 2, ease: "power5.inOut" },
-        camera: { fov: 35, z: 5.5, duration: 2, ease: "power5.inOut" },
+        camera: {z: 5.5, duration: 2, ease: "power5.inOut" },
       },
       mobile: {
         position: { x: 0.1, y: -0.3, z: 0, duration: 2, ease: "power5.inOut" },
