@@ -113,7 +113,7 @@ const RumDetailPage = () => {
 
   return (
     <section ref={sectionRef} className="relative w-full min-h-screen flex flex-col items-center justify-center bg-gray-900 text-white" style={{ background: rum.gradient }}>
-      <div className="container mx-auto flex sm:flex-col md:flex-col lg:flex-row xl:flex-row items-center justify-start px-6 py-10 gap-8 z-30">
+      <div className="container mx-auto flex sm:flex-col md:flex-col lg:flex-row xl:flex-row items-center justify-start px-6 md:py-32 sm:py-10 gap-8 z-30">
         {/* Image de la bouteille */}
         <div className="flex-1 relative flex justify-center" ref={imageContainerRef}>
           {/* Pattern à taille fixe */}
@@ -203,7 +203,7 @@ const RumDetailPage = () => {
               </div>
             )}
           </div>
-          <Link to="/Our-Rums" className="btn-animated w-1/2 mt-16 px-4 py-2 text-sm font-medium bg-gold text-black hover:bg-yellow-500 transition-all duration-300 justify-center">
+          <Link to="/Our-Rums" className="btn-animated w-2/2 mt-16 px-4 py-2 text-sm font-medium bg-gold text-black hover:bg-yellow-500 transition-all duration-300 justify-center">
             {rum.button}
           </Link>
         </div>

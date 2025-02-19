@@ -203,7 +203,7 @@ const Navbar = () => {
         </div>
 
         {/* Bouton burger mobile */}
-        <div className="md:hidden z-[101] relative">
+        <div className="lg:hidden z-[101] relative">
           <button
             className="relative w-10 h-10 flex flex-col justify-center items-center"
             onClick={toggleMobileMenu}

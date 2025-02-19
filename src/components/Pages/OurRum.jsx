@@ -18,12 +18,16 @@ const RumPage = () => {
       
       if (width < 640) {
         setScreenSize("mobile");
+        setIsMobile(true);
       } else if (width < 1024) {
         setScreenSize("tablet");
+        setIsMobile(false);
       } else if (width < 1536) {
         setScreenSize("desktop");
+        setIsMobile(false);
       } else {
         setScreenSize("4k");
+        setIsMobile(false);
       }
       
       console.log("Taille d'écran détectée:", width, screenSize);
@@ -98,7 +102,7 @@ const RumPage = () => {
               style={{
                 backgroundImage: `url(${rum.pattern})`,
                 backgroundRepeat: "no-repeat",
-                backgroundSize: isMobile ? "55%" : "40%",
+                backgroundSize: isMobile ? "75%" : "40%",
               }}
             ></div>
 
@@ -146,7 +150,7 @@ const RumPage = () => {
               style={{
                 backgroundImage: `url(${rum.pattern})`,
                 backgroundRepeat: "no-repeat",
-                backgroundSize: "58%",
+                backgroundSize: isMobile ? "75%" : "58%",
               }}
             ></div>
 
