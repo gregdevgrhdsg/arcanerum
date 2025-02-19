@@ -45,23 +45,7 @@ const Jungle = ({ isModelLoaded, position = "background" }) => {
     return () => window.removeEventListener("resize", updateRockPosition);
   }, []);
 
-  useLayoutEffect(() => {
-    if (!isModelLoaded) return;
-    gsap.fromTo(
-      ".layer-fond img",
-      { y: 0 },
-      {
-        y: "50vh", // Ajustez cette valeur pour obtenir l'effet souhaité
-        ease: "none",
-        scrollTrigger: {
-          trigger: ".jungle-section",
-          start: "top top",
-          end: "bottom top",
-          scrub: true,
-        },
-      }
-    );
-  }, [isModelLoaded, position]);
+
 
   useLayoutEffect(() => {
     if (!isModelLoaded) return;
