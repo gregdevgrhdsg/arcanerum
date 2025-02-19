@@ -3,55 +3,92 @@ import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import cocktails from "../dataCocktails"; // Import des cocktails depuis un fichier
+import cocktails from "../dataCocktails"; // Import des cocktails
 
 gsap.registerPlugin(ScrollTrigger);
 
 const LesCocktails = () => {
   const { i18n } = useTranslation();
-  const lang = i18n.language?.split("-")[0] || "fr"; // Récupère "fr" à partir de "fr-FR"
-
-  const [filteredCocktails, setFilteredCocktails] = useState(
-    cocktails.filter((cocktail) => cocktail.category[lang] === "Créations")
-  );
+  const lang = i18n.language?.split("-")[0] || "fr"; // Normalisation de la langue ("fr-FR" → "fr")
+  
+  // Vérification des données
+  console.log("📦 Données `cocktails` importées :", cocktails);
+  
+  // Initialisation des états
+  const [filteredCocktails, setFilteredCocktails] = useState([]);
   const [activeFilter, setActiveFilter] = useState("Créations");
 
+  useEffect(() => {
+    console.log("🌍 Langue actuelle :", lang);
+    console.log("🔍 Catégorie sélectionnée :", activeFilter);
+  
+    // Correspondance entre les noms de catégories en français et en anglais
+    const categoryMapping = {
+      "Créations": { fr: "Créations", en: "Creations" },
+      "Revisités": { fr: "Revisités", en: "Twists" }
+    };
+  
+    // Traduire la catégorie active
+    const translatedCategory = categoryMapping[activeFilter]?.[lang] || activeFilter;
+  
+    console.log("🔁 Traduction de la catégorie :", translatedCategory);
+  
+    const initialFiltered = cocktails.filter(
+      (cocktail) => cocktail.category?.[lang] === translatedCategory
+    );
+  
+    console.log("✅ Cocktails après filtrage initial :", initialFiltered);
+  
+    setFilteredCocktails(initialFiltered);
+  }, [lang, activeFilter]);
+  // Nettoyage des animations GSAP lors du montage/démontage
   useEffect(() => {
     ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
   }, []);
 
+  // Animation GSAP des cocktails une fois affichés
   useEffect(() => {
-    console.log("🔎 Vérification des cartes GSAP :", document.querySelectorAll(".cocktail-card"));
-  
-    setTimeout(() => {  // Ajoute un délai pour s'assurer que les cartes sont bien rendues
-      const cards = document.querySelectorAll(".cocktail-card");
-      if (cards.length > 0) {
-        gsap.fromTo(
-          cards,
-          { opacity: 0, y: 30 },
-          {
-            opacity: 1,
-            y: 0,
-            duration: 1,
-            stagger: 0.1,
-            ease: "power2.out",
-            scrollTrigger: {
-              trigger: ".cocktail-list",
-              start: "top 80%",
-            },
-          }
-        );
-      } else {
-        console.log("⚠️ Aucune carte trouvée pour GSAP !");
-      }
-    }, 500);  // Délai de 500ms
+    if (filteredCocktails.length > 0) {
+      setTimeout(() => {
+        const cards = document.querySelectorAll(".cocktail-card");
+        console.log("🔎 Vérification des cartes GSAP :", cards);
+        
+        if (cards.length > 0) {
+          gsap.fromTo(
+            cards,
+            { opacity: 0, y: 30 },
+            {
+              opacity: 1,
+              y: 0,
+              duration: 1,
+              stagger: 0.1,
+              ease: "power2.out",
+              scrollTrigger: {
+                trigger: ".cocktail-list",
+                start: "top 80%",
+              },
+            }
+          );
+        }
+      }, 500);
+    } else {
+      console.log("🚨 `filteredCocktails` est vide, GSAP ne sera pas exécuté.");
+    }
   }, [filteredCocktails]);
 
+  // Fonction de filtrage des cocktails
   const filterCocktails = (category) => {
-    setActiveFilter(category);
-    setFilteredCocktails(
-      cocktails.filter((cocktail) => cocktail.category[lang] === category)
+    console.log("🛠️ Changement de filtre :", category);
+    console.log("🌍 Langue actuelle :", lang);
+    
+    const newFilteredCocktails = cocktails.filter(
+      (cocktail) => cocktail.category?.[lang] === category
     );
+
+    console.log("✅ Cocktails après filtrage :", newFilteredCocktails);
+    
+    setActiveFilter(category);
+    setFilteredCocktails(newFilteredCocktails);
   };
 
   return (
@@ -62,8 +99,9 @@ const LesCocktails = () => {
         backgroundAttachment: "fixed",
       }}
     >
+      {/* Titre et description */}
       <div className="ml-10 mr-10 mt-40 items-center justify-center">
-        <h1 className=" 2xl:text-6xl xl:text-4xl lg:text-lg md:text-3xl sm:text-2xl text-center text-gold font-yana mb-4 font-bold">
+        <h1 className="2xl:text-6xl xl:text-4xl lg:text-lg md:text-3xl sm:text-2xl text-center text-gold font-yana mb-4 font-bold">
           {lang === "fr" ? "LISTE COMPLÈTE DES RECETTES" : "FULL RECIPE LIST"}
         </h1>
         <p className="2xl:text-3xl xl:text-xl lg:text-1xl md:1xl sm:text-sm font-yana text-white mb-8 max-w-3xl justify-center text-center">
@@ -73,8 +111,9 @@ const LesCocktails = () => {
         </p>
       </div>
 
+      {/* Barre de filtre */}
       <div className="filter-bar w-full flex flex-col items-center mb-8">
-      <div className="w-full max-w-5xl border-b border-gold pb-4">
+        <div className="w-full max-w-5xl border-b border-gold pb-4">
           <div className="flex justify-center gap-6">
             {["Créations", "Revisités"].map((category) => (
               <button
@@ -91,32 +130,39 @@ const LesCocktails = () => {
         </div>
       </div>
 
+      {/* Liste des cocktails */}
       <div className="cocktail-list grid xl:grid-cols-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 px-2">
-      {filteredCocktails.map((cocktail) => (
-          <Link
-            to={`/cocktail/${cocktail.id}`}
-            key={cocktail.id}
-            aria-label={`Voir les détails de ${cocktail.name[lang]}`}
-          >
-            <div className="cocktail-card bg-transparent justify-center p-2 transition-transform">
-              <img
-                src={cocktail.imageB}
-                alt={cocktail.name[lang]}
-                className="
-                object-cover mb-4
-                h-64        /* taille par défaut sur mobile */
-                md:h-80     /* taille sur écrans moyens */
-                lg:h-102     /* taille sur écrans larges */
-                xl:h-102 /* encore plus grand sur XL */
-              "
-              />
-              <h2 className="text-md leading-none 2xl:text-2xl xl:text-2xl lg:text-1xl md:1xl sm:text-sm text-gold font-semibold mb-1 text-center">
-                {cocktail.name[lang]}
-              </h2>
-              <p className="text-sm text-gold font-yana">{cocktail.category[lang]}</p>
-            </div>
-          </Link>
-        ))}
+        {filteredCocktails.length > 0 ? (
+          filteredCocktails.map((cocktail) => (
+            <Link
+              to={`/cocktail/${cocktail.id}`}
+              key={cocktail.id}
+              aria-label={`Voir les détails de ${cocktail.name?.[lang] || cocktail.name?.["fr"]}`}
+            >
+              <div className="cocktail-card bg-transparent justify-center p-2 transition-transform">
+                <img
+                  src={cocktail.imageB}
+                  alt={cocktail.name?.[lang] || "Cocktail"}
+                  className="
+                    object-cover mb-4
+                    h-64        /* Mobile */
+                    md:h-80     /* Tablettes */
+                    lg:h-96     /* Ordinateurs */
+                    xl:h-[28rem] /* Grand écran */
+                  "
+                />
+                <h2 className="text-md leading-none 2xl:text-2xl xl:text-2xl lg:text-1xl md:1xl sm:text-sm text-gold font-semibold mb-1 text-center">
+                  {cocktail.name?.[lang] || cocktail.name?.["fr"]}
+                </h2>
+                <p className="text-sm text-gold font-yana">
+                  {cocktail.category?.[lang] || cocktail.category?.["fr"]}
+                </p>
+              </div>
+            </Link>
+          ))
+        ) : (
+          <p className="text-lg text-center text-white">Aucun cocktail trouvé.</p>
+        )}
       </div>
     </section>
   );
