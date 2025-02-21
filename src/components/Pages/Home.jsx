@@ -14,7 +14,7 @@
 
   gsap.registerPlugin(ScrollTrigger);
 
-  const Home = ({ isModelLoaded }) => {
+  const Home = ({ isModelLoaded, isAnimationDone }) => {
     // Destructure toutes les propriétés nécessaires du contexte
     const { t } = useTranslation(); // Initialisation du hook
     const { containerRef, isDetailView, setIsDetailView, selectedBottle, setSelectedBottle, setBottlePosition, setBottleScale, setScrollPosition } = useModel();

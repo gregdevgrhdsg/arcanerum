@@ -97,7 +97,7 @@ const CocktailDetail = () => {
         {previousCocktail && (
           <Link
             to={`/cocktail/${previousCocktail.id}`}
-            className="lg:flex fixed left-5 sm:top-50 md:top-1/2 lg:top-1/2 transform -translate-y-1/2 text-gold text-5xl hover:text-black z-30"
+            className="lg:flex fixed left-5 sm:top-1/4 md:top-1/2 lg:top-1/2 transform -translate-y-1/2 text-gold text-5xl hover:text-black z-30"
           >
             &larr;
           </Link>

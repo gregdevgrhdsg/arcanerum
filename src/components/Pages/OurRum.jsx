@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
-import useRumData from "../rumData"; // Assurez-vous que l'import est correct
+import useRumData from ".../"; // Assurez-vous que l'import est correct
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
@@ -115,7 +115,7 @@ const RumPage = () => {
                 style={{
                   width: screenSize === "mobile" ? "150px" :
                          screenSize === "tablet" ? "150px" :
-                         screenSize === "desktop" ? "150px" : "300px",
+                         screenSize === "desktop" ? "150px" : "150px",
                   height: "auto",
                 }}
               />

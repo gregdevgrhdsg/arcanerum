@@ -262,25 +262,33 @@ export const animateButtonsOnScroll = () => {
   });
 };
 // Animation d'entrée initiale
+let hasInitialAnimationPlayed = false;
+
 export const setupInitialAnimation = (modelRef, cameraRef) => {
   if (!modelRef?.current || !cameraRef?.current) {
     console.warn("Références manquantes pour l'animation initiale.");
     return;
   }
 
+  if (hasInitialAnimationPlayed) {
+    console.log("⏩ Animation d'entrée déjà jouée, on saute.");
+    return;
+  }
+
+  hasInitialAnimationPlayed = true; // ✅ Marque l'animation comme jouée
+
   gsap.fromTo(
     modelRef.current.position,
-    { y: -5, z: 10 },
-    { y: 0, z: 0, duration: 1.5, ease: "power3.out" }
+    { y: -5, z: 5 },
+    { y: 0, z: 0, duration: 0.5, ease: "power3.out" }
   );
 
   gsap.fromTo(
     cameraRef.current.position,
-    { z: 15 },
-    { z: 5, duration: 1.5, ease: "power3.out" }
+    { z: 5 },
+    { z: 5, duration: 0.5, ease: "power3.out" }
   );
 };
-
 // Gestion dynamique sur redimensionnement
 export const handleResize = (modelRef, cameraRef) => {
   window.addEventListener("resize", () => {

@@ -3,12 +3,16 @@ import React, { useEffect, useRef, useState } from "react";
 import * as THREE from "three";
 import { Canvas } from "@react-three/fiber";
 import { Environment } from "@react-three/drei";
+import gsap from "gsap"
 import { bottlesConfig } from "../bottleConfig";
-import { setupModelAnimations, rotateBottle } from "../Animations/ModelAnimations";
+import { setupModelAnimations, rotateBottle, setupInitialAnimation } from "../Animations/ModelAnimations";
 import { useModel } from "../Context/ModelContext";
 import { useTranslation } from "react-i18next";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 
-const CanvasContainer = ({ selectedBottle }) => {
+gsap.registerPlugin(ScrollTrigger);
+
+const CanvasContainer = ({ selectedBottle, isAnimationDone }) => {
   const {
     modelRef,
     cameraRef,
@@ -24,6 +28,8 @@ const CanvasContainer = ({ selectedBottle }) => {
   const [currentBottle, setCurrentBottle] = useState(selectedBottle || DEFAULT_BOTTLE);
   const rotationGroupRef = useRef();
   const [screenSize, setScreenSize] = useState("desktop");
+  const [isIntroPlayed, setIsIntroPlayed] = useState(false);
+  const [isReset, setIsReset] = useState(false);
 
   // Détection de la taille d'écran
   const detectScreenSize = () => {
@@ -69,47 +75,99 @@ const CanvasContainer = ({ selectedBottle }) => {
     return { ...bottleConfig, position, rotation, scale };
   };
 
-  // Appliquer les transformations initiales
-  const applyInitialTransformations = (bottleConfig) => {
-    if (!bottleConfig || !rotationGroupRef.current) return;
 
-    const { position, rotation, scale } = bottleConfig;
+ // Appliquer la transformation initiale
+ const applyInitialTransformations = (bottleConfig) => {
+  if (!bottleConfig || !rotationGroupRef.current) return;
 
-    rotationGroupRef.current.position.set(
-      position.x || 0,
-      position.y || 0,
-      position.z || 0
-    );
+  // Position de départ hors écran
+  rotationGroupRef.current.position.set(0, 10, -20);
+  rotationGroupRef.current.rotation.set(0, 0, 0);
 
-    rotationGroupRef.current.rotation.set(
-      rotation?.x || 0,
-      rotation?.y || 0,
-      rotation?.z || 0
-    );
+  if (modelRef.current) {
+    modelRef.current.scale.set(bottleConfig.scale.x, bottleConfig.scale.y, bottleConfig.scale.z);
+  }
+};
 
-    if (modelRef.current) {
-      modelRef.current.scale.set(
-        scale?.x || 1,
-        scale?.y || 1,
-        scale?.z || 1
-      );
-      console.log("Échelle appliquée :", scale); // Log de débogage
-    }
-  };
-
-  // Charger le modèle et initialiser les animations
-  const handleModelLoad = () => {
-    if (!isModelLoaded) {
-      setIsModelLoaded(true);
-
+useEffect(() => {
+    if (isAnimationDone && rotationGroupRef.current && cameraRef.current && !isIntroPlayed) {
+      setIsIntroPlayed(true);
+      setIsReset(false);
+  
       const bottleConfig = getBottleConfig();
-      if (bottleConfig) {
-        applyInitialTransformations(bottleConfig);
-        setupModelAnimations(rotationGroupRef, cameraRef);
+      if (!bottleConfig) return;
+  
+      const { position, rotation, scale } = bottleConfig;
+  
+      if (modelRef.current) {
+        gsap.set(modelRef.current.scale, {
+          x: scale.x,
+          y: scale.y,
+          z: scale.z,
+        });
       }
+  
+      // 🔥 Animation d'entrée fluide et propre
+      const timeline = gsap.timeline({
+        onComplete: () => {
+          console.log("✅ Animation du modèle terminée !");
+          setupModelAnimations(rotationGroupRef, cameraRef);
+  
+          // 🔥 ScrollTrigger ne se rafraîchit que **après** l'animation du modèle
+          setTimeout(() => {
+            ScrollTrigger.refresh();
+            console.log("🎯 ScrollTrigger rafraîchi !");
+          }, 300);
+        },
+      });
+  
+      timeline.to(rotationGroupRef.current.position, {
+        x: position.x,
+        y: position.y,
+        z: position.z,
+        duration: 2,
+        ease: "power3.out",
+      });
+  
+      timeline.to(rotationGroupRef.current.rotation, {
+        y: `+=${2 * Math.PI}`,
+        duration: 2,
+        ease: "power3.out",
+      }, "<");
+  
+      timeline.to(cameraRef.current.position, {
+        z: 5,
+        duration: 1.5,
+        ease: "power3.out",
+      }, "<");
     }
-  };
+  }, [isAnimationDone]);
 
+useEffect(() => {
+  if (!isAnimationDone && !isReset) {
+    setIsIntroPlayed(false);
+    setIsReset(true);
+  }
+}, [isAnimationDone]);
+
+const handleModelLoad = () => {
+  if (!isModelLoaded) {
+    console.log("🎯 Modèle chargé !");
+    setIsModelLoaded(true);
+    
+    const bottleConfig = getBottleConfig();
+    if (bottleConfig) {
+      applyInitialTransformations(bottleConfig);
+      setupModelAnimations(rotationGroupRef, cameraRef);
+    }
+
+    // ✅ Forcer un rafraîchissement de ScrollTrigger après 500ms
+    setTimeout(() => {
+      ScrollTrigger.refresh();
+      console.log("🔄 ScrollTrigger rafraîchi après chargement du modèle !");
+    }, 500);
+  }
+};
   // Gérer les changements de bouteille
   useEffect(() => {
     if (selectedBottle !== currentBottle) {

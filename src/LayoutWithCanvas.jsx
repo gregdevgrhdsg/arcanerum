@@ -22,77 +22,64 @@ import gsap from "gsap";
 gsap.registerPlugin(ScrollTrigger);
 
 const LayoutWithCanvas = () => {
-    const { selectedBottle, setSelectedBottle, isModelLoaded, cameraRef } = useModel();
-    const [isInitialLoad, setIsInitialLoad] = useState(true);
-  
-    const [progress, setProgress] = useState(0);
-    const [isLoaded, setIsLoaded] = useState(false);
-    const location = useLocation();
-    const [isAnimationDone, setIsAnimationDone] = useState(false); // Nouveau état pour l'animation du rideau
-    const isHome = location.pathname === "/";
-    const isKnowHow = location.pathname === "/Know-How"; // Vérifie si la page actuelle est KnowHow
-    const isOurUniverse = location.pathname === "/Our-Universe"; // Vérifie si la page actuelle est KnowHow
-    const isLesCocktails = location.pathname === "/Les-Cocktails"; // Vérifie si la page actuelle est KnowHow
-    const isLesCocktailDetail = location.pathname === "/cocktail/:id"; // Vérifie si la page actuelle est KnowHow
-    const isCanvasVisible = location.pathname === "/" || location.pathname.startsWith("/explore");
+  const { selectedBottle, setSelectedBottle, isModelLoaded, cameraRef } = useModel();
+  const [isInitialLoad, setIsInitialLoad] = useState(true);
 
-    useEffect(() => {
-      if (isHome) {
-        // Réinitialise et lance le loader uniquement sur la home
-        setIsLoaded(false);
-        setIsAnimationDone(false);
-        setProgress(0);
-    
-        const assetsToLoad = 10;
-        let loaded = 0;
-    
-        const interval = setInterval(() => {
-          loaded++;
-          setProgress((loaded / assetsToLoad) * 100);
-    
-          if (loaded === assetsToLoad) {
-            clearInterval(interval);
-            setTimeout(() => {
-              setIsLoaded(true);
-              // Animation du rideau
-              gsap.to(".loading-curtain", {
-                y: "-100%",
-                duration: 1.5,
-                ease: "power2.out",
-                onComplete: () => {
-                  setIsAnimationDone(true);
-                },
-              });
+  const [progress, setProgress] = useState(0);
+  const [isLoaded, setIsLoaded] = useState(false);
+  const location = useLocation();
+  const [isAnimationDone, setIsAnimationDone] = useState(false); // Nouveau état pour l'animation du rideau
+  const isHome = location.pathname === "/";
+  const isKnowHow = location.pathname === "/Know-How"; // Vérifie si la page actuelle est KnowHow
+  const isOurUniverse = location.pathname === "/Our-Universe"; // Vérifie si la page actuelle est KnowHow
+  const isLesCocktails = location.pathname === "/Les-Cocktails"; // Vérifie si la page actuelle est KnowHow
+  const isLesCocktailDetail = location.pathname === "/cocktail/:id"; // Vérifie si la page actuelle est KnowHow
+  const isCanvasVisible = location.pathname === "/" || location.pathname.startsWith("/explore");
+
+  useEffect(() => {
+    if (isHome) {
+      setIsLoaded(false);
+      setIsAnimationDone(false);
+      setProgress(0);
+
+      const assetsToLoad = 10;
+      let loaded = 0;
+
+      const interval = setInterval(() => {
+        loaded++;
+        setProgress((loaded / assetsToLoad) * 100);
+
+        if (loaded === assetsToLoad) {
+          clearInterval(interval);
+          setTimeout(() => {
+            setIsLoaded(true);
+            gsap.to(".loading-curtain", {
+              y: "-100%",
+              duration: 1.5,
+              ease: "power2.out",
+              onComplete: () => {
+                setIsAnimationDone(true); // ✅ Déclenche l'animation du modèle ici !
+              },
             });
-          }
-        }, 500);
-      } else {
-        // Pour les autres pages, désactive le loader immédiatement
-        setIsLoaded(true);
-        setIsAnimationDone(true); // Ajoutez cette ligne pour masquer le rideau
-        // Animation d'entrée pour les autres pages
-        gsap.fromTo(
-          ".page-content",
-          { opacity: 0, y: -50 },
-          {
-            opacity: 1,
-            y: 0,
-            duration: 0.5,
-            ease: "power2.inOut",
-          }
-        );
-      }
-      // Scroll en haut à chaque changement de route
-      window.scrollTo(0, 0);
-    }, [location]);
-  
+          });
+        }
+      }, 500);
+    } else {
+      setIsLoaded(true);
+      setIsAnimationDone(true);
+    }
+
+    window.scrollTo(0, 0);
+  }, [location]);
+
+
   return (
     <div className="relative flex flex-col min-h-full">
-    {/* Animation de rideau */}
-    {!isAnimationDone && (
-      <div className="loading-curtain fixed top-0 left-0 w-full h-full bg-black z-[60]"></div>
-    )}
-    {!isLoaded && <Loader progress={progress} />}
+      {/* Animation de rideau */}
+      {!isAnimationDone && (
+        <div className="loading-curtain fixed top-0 left-0 w-full h-full bg-black z-[60]"></div>
+      )}
+      {!isLoaded && <Loader progress={progress} />}
 
       {/* Contenu principal */}
       <div className="flex-grow min-h-full">
@@ -101,28 +88,28 @@ const LayoutWithCanvas = () => {
             <Jungle isModelLoaded={isModelLoaded} position="background" />
           </div>
         )}
-{isCanvasVisible && (
-  <div
-  id="canvas-container"
-  className={`${
-    location.pathname === "/last-section" ? "absolute" : "fixed"
-  } inset-0 z-10 pointer-events-none`}
->
-  <CanvaContainer
-    isModelLoaded={isModelLoaded}
-    selectedBottle={selectedBottle}
-  />
-</div>
-)}
-   {!isLesCocktails && !isLesCocktailDetail && isCanvasVisible && (
-        <div id="jungle-section" className="page-content absolute top-0 z-20 left-0 w-full h-screen">
-          <Jungle isModelLoaded={isModelLoaded} position="foreground" />
-        </div>
-      )}
+        {isCanvasVisible && (
+          <div
+            id="canvas-container"
+            className={`${location.pathname === "/last-section" ? "absolute" : "fixed"
+              } inset-0 z-10 pointer-events-none`}
+          >
+            <CanvaContainer
+              isModelLoaded={isModelLoaded}
+              selectedBottle={selectedBottle}
+              isAnimationDone={isAnimationDone} // 🔥 Passe l'état ici
+            />
+          </div>
+        )}
+        {!isLesCocktails && !isLesCocktailDetail && isCanvasVisible && (
+          <div id="jungle-section" className="page-content absolute top-0 z-20 left-0 w-full h-screen">
+            <Jungle isModelLoaded={isModelLoaded} position="foreground" />
+          </div>
+        )}
 
         <div className="w-full h-400vmax relative z-30 page-content">
           <Routes>
-            <Route path="/" element={<Home isModelLoaded={isModelLoaded} />} />
+            <Route path="/" element={<Home isModelLoaded={isModelLoaded}  isAnimationDone={isAnimationDone} />} />
             <Route path="/model/:id" element={<ModelDetail isModelLoaded={isModelLoaded} />} />
             <Route path="/Our-Universe" element={<OurUniverse />} />
             <Route path="/Know-How" element={<KnowHow />} />

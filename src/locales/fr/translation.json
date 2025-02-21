@@ -8,21 +8,21 @@
     },
     "zone3": {
       "title": "Savoir-faire",
-      "subtitle": "DE LA CANNE AU GOLD",
-      "description": "Chez Arcane Rum, notre savoir-faire est un hommage au riche patrimoine de l'île Maurice. De la culture de la canne à sucre pure à la maîtrise de la distillation, chaque étape est guidée par un profond respect de la tradition et de l'innovation.",
+      "subtitle": "DE LA CANNE À L'OR",
+      "description": "Chez Arcane Rum, notre savoir-faire est un hommage au riche patrimoine de l'île Maurice. De la culture de la canne à sucre pur à la maîtrise de la distillation, chaque étape est guidée par un profond respect de la tradition et de l'innovation.",
       "button": "DÉCOUVRIR PLUS"
     },
     "zone5": {
-      "title": "Cocktails avec Caractère",
+      "title": "Découvrez l’art des cocktails",
       "subtitle": "NOS COCKTAILS",
       "description": "Immergez-vous dans l'art des cocktails avec Arcane RUM. Soyez aventureux avec nos créations, audacieux avec nos shots signature, et intemporels avec des classiques revisités. De la première gorgée à la touche finale, chaque boisson est un voyage de saveurs, d'arômes et d'artisanat une invitation à savourer et à explorer.",
       "button": "DÉVOILER NOS SECRETS"
     }
   },
   "know_how": {
-    "title": "Plonger dans notre processus",
+    "title": "À LA DÉCOUVERTE DE NOTRE PROCESSUS DE CRÉATION",
     "sugarcane_harvest": {
-      "title": "Récolte de Canne à Sucre",
+      "title": "Récolte de canne à sucre",
       "description": "Depuis plus de deux siècles, l'île Maurice est connue comme l'un des meilleurs territoires au monde pour la production de canne à sucre et de rhum. L'équilibre entre le climat, le relief et la nature du sol est tout simplement idéal ! De la côte jusqu'aux montagnes, les longues pousses vertes de canne à sucre envahissent le paysage."
     },
     "sugarcane_crushing": {
@@ -50,7 +50,7 @@
       "description": "Vieillis dans des fûts de chêne français et américain, les rhums Arcane tirent profit du climat tropical de l’île Maurice. Les variations dynamiques de température accélèrent la maturation, créant des saveurs complexes et opulentes en un temps réduit."
     },
     "slide3": {
-      "title": "LES ARRANGÉS : ÉLABORES AVEC DES SAVEURS NATURELLES",
+      "title": "LES ARRANGÉS : ÉLABORÉS AVEC DES SAVEURS NATURELLES",
       "description": "Arcane sublime son rhum avec la collection Les Arrangés, en y infusant des saveurs naturelles issues de fruits et d’épices locaux frais. Qu’il s’agisse de Banane Flambée, d’Ananas Rôti ou de Vanille des Îles, chaque Arrangé est conçu pour se marier parfaitement avec le rhum, l’enrichissant de notes tropicales éclatantes de banane, d’ananas ou de vanille. La tradition du rhum arrangé trouve ses origines dans les îles, où fruits et épices sont depuis longtemps utilisés pour infuser le rhum, créant des spiritueux savoureux et aromatiques qui reflètent la richesse des produits locaux et de la culture. Arcane perpétue cet héritage, capturant l’essence de l’île Maurice dans chaque bouteille grâce à des infusions naturelles et exotiques qui célèbrent l’abondance de l’île."
     },
     "step": "Étape {{step}}"
@@ -83,13 +83,13 @@
     "slide1Content2": "Chaque gorgée de rhum Arcane ravive les sens, révélant des histoires enfouies dans le nectar sacré de la canne à sucre. Nos maîtres de chais gardent méticuleusement les secrets d'une distillation qui transforme des arômes luxuriants en un élixir singulier. Les saveurs tropicales éclatent, évoquant les fruits exotiques et les fleurs sauvages de l'île. Chaque bouteille de notre gamme est un mystère à percer, émanant de l'opulente et énigmatique terre mauricienne.",
     "slide1Content3": "Ce rhum n'est pas seulement une boisson, c'est une porte d'entrée dans un univers de légendes et de merveilles, où chaque détail organoleptique raconte une épopée de découverte et d'évasion. Embarquez dans cette aventure sensorielle qui devient un véritable voyage initiatique, où le rhum Arcane n'est pas seulement découvert mais vécu comme un éveil des sens et de l'âme, défiant tout ce que vous pensiez savoir sur le rhum.",
     "slide2Title": "UN TERROIR FAÇONNÉ \n PAR LA RICHESSE VOLCANIQUE",
-    "slide2Content1": "Au cœur d'Arcane se trouve la canne à sucre, nourrie par les sols volcaniques et le climat tropical de l'île Maurice. Les 12 variétés uniques, dont la Cane Rouge et la Cane Bourbon, sont cultivées dans le nord ensoleillé de l'île, où elles absorbent les minéraux du terroir, conférant au rhum des saveurs fraîches et vibrantes. Une culture sans pesticides garantit que chaque bouteille capture la pure essence de Maurice, profondément connectée à son terroir exceptionnel.",
+    "slide2Content1": "Au cœur d'Arcane se trouve la canne à sucre, nourrie par les sols volcaniques et le climat tropical de l'île Maurice. Les 12 variétés uniques, dont la Cane Rouge et la Cane Bourbon, sont cultivées dans le nord ensoleillé de l'île, où elles absorbent les minéraux du terroir, conférant au rhum des saveurs fraîches et vibrantes.",
     "slide2Content2": "Découvrez le mystère et la richesse de notre rhum exceptionnel.",
     "slide2Content3": "Explorez les territoires volcaniques qui façonnent nos saveurs distinctives.",
     "slide3Title": "L'ÎLE MAURICE",
-    "slide3Content1": "Une terre de beauté et de mystères Située au cœur de l'océan Indien, l'île Maurice est plus qu'une belle île, c'est l'âme d'Arcane Rum. Le mélange vibrant d'influences africaines, indiennes, européennes et chinoises de l'île crée une tapisserie culturelle unique qui inspire le sens du mystère et  \n de la découverte de la marque.",
+    "slide3Content1": "Une terre de beauté et de mystères située au cœur de l'océan Indien, l'île Maurice est plus qu'une belle île, c'est l'âme d'Arcane Rum. Le mélange vibrant d'influences africaines, indiennes, européennes et chinoises de l'île crée une tapisserie culturelle unique qui inspire le sens du mystère et  \n de la découverte de la marque.",
     "slide3Content2": "L'île Maurice est une terre de trésors cachés, de ses paysages volcaniques luxuriants à son riche folklore et à sa musique. Arcane Rum est profondément lié à cet héritage, infusant l'esprit de l'île dans chaque bouteille, célébrant ses histoires inédites et ses mystères exotiques.",
-    "slide3Content3": "Au cœur d'Arcane se trouve la canne à sucre, nourrie par les sols volcaniques et le climat tropical de l'île Maurice. Les 12 variétés uniques, dont la Canne Rouge et la Canne Bourbon, sont cultivées dans  le nord ensoleillé et absorbent les minéraux de l'île, ce qui leur confère des saveurs fraîches et vibrantes. La culture sans pesticides garantit que chaque bouteille capture l'essence pure de l'île Maurice, profondément liée à son riche terroir."
+    "slide3Content3": "Au cœur d'Arcane se trouve la canne à sucre, nourrie par les sols volcaniques et le climat tropical de l'île Maurice. Les 12 variétés uniques, dont la Canne Rouge et la Canne Bourbon, sont cultivées dans  le nord ensoleillé et absorbent les minéraux de l&#39;île, ce qui leur confère des saveurs fraîches et vibrantes. La culture sans pesticides garantit que chaque bouteille capture l'essence pure de l'île Maurice, profondément liée à son riche terroir."
   },
   "ourRums": {
     "arcaneExtraroma": {
@@ -146,7 +146,7 @@
       "waysToEnjoy": {
         "title": "Mode De Consommation",
         "description": "Pour une expérience gourmande ultime, nous vous encourageons à savourer votre « Ananas Rôti » accompagné d'un délicieux gâteau marbré au chocolat. Cette association divine promet un moment de pure indulgence et de bonheur gustatif.",
-        "signatureShot": "ROASTED PINEAPPLE - NOTRE SHOT SIGNATURE \n\n30ml Arcane Ananas Rôti \n10ml Cocody Liqueur par Cartron \n20ml Jus d'Ananas Frais"
+        "signatureShot": "ANANAS RÔTI\n\n30ml Arcane Ananas Rôti \n10ml Cocody Liqueur par Cartron \n20ml Jus d'Ananas Frais"
       },
       "logisticInfo": {
         "title": "Info logistique",
@@ -164,7 +164,7 @@
       "waysToEnjoy": {
         "title": "Mode De Consommation",
         "description": "Pour une expérience inoubliable, nous vous recommandons de savourer « Vanille des lles » bien frais. Pour rehausser cette expérience gourmande, associez cet élixir exotique à une délicieuse crème brûlée maison. Ajoutez quelques gouttes de « Vanille des Iles » directement dans votre recette pour une touche magique.",
-        "signatureShot": "TI' VANILLA - NOTRE SHOT SIGNATURE \n\n30ml Arcane Vanille des Iles \n10ml Fruit de la passion par Cartron \n20ml Jus de citron vert frais"
+        "signatureShot": "TI' VANILLA \n\n30ml Arcane Vanille des Iles \n10ml Fruit de la passion par Cartron \n20ml Jus de citron vert frais"
       },
       "logisticInfo": {
         "title": "Info logistique",
@@ -182,7 +182,7 @@
       "waysToEnjoy": {
         "title": "Mode De Consommation",
         "description": "Pour une expérience inoubliable, savourez « Banane Flambée » bien fraîche, en apéritif ou comme liqueur après le dîner. Pour une dégustation encore plus gourmande, accompagnez-le d'une crêpe ou d'un pancake. Notre astuce pour une touche magique : ajoutez quelques gouttes de « Banane Flambée » à la pâte.",
-        "signatureShot": "TROPICAL SMOKE - NOTRE SHOT SIGNATURE \n\n45 ml Arcane Banane Flambée \n15ml Cacao Blanc Liqueur par Cartron \nCrème fouettée sur le dessus"
+        "signatureShot": "TROPICAL SMOKE\n\n45 ml Arcane Banane Flambée \n15ml Cacao Blanc Liqueur par Cartron \nCrème fouettée sur le dessus"
       },
       "logisticInfo": {
         "title": "Info logistique",
@@ -201,15 +201,15 @@
       },
       "ananasRotie": {
         "name": "ANANAS RÔTI",
-        "description": "Dégustez le séduisant 'Ananas Rôtie', élaboré avec des arômes 100% naturels, une symphonie harmonieuse de l’audace de l’ananas et du caramel doux."
+        "description": "Chaque aventure commence par le désir d'explorer l&#39;inconnu. Aujourd&#39;hui, nous vous invitons à voyager au cœur de l&#39;extraordinaire à travers les sens, les saveurs et les riches histoires contenues dans chaque goutte de rhum Arcane."
       },
       "vanilleDesIles": {
         "name": "VANILLE DES ÎLES",
-        "description": "Découvrez la fascinante 'Vanille des Îles', une ode à l'une des spécialités emblématiques de l'île Maurice, enrichie par la vanille Bourbon."
+        "description": "Chaque aventure commence par le désir d&#39;explorer l&#39;inconnu. Aujourd&#39;hui, nous vous invitons à voyager au cœur de l&#39;extraordinaire à travers les sens, les saveurs et les riches histoires contenues dans chaque goutte de rhum Arcane."
       },
       "bananeFlambee": {
         "name": "BANANE FLAMBÉE",
-        "description": "Découvrez la vedette de la gamme, 'Banane Flambée', la référence emblématique mettant en valeur la douceur naturelle des bananes."
+        "description": "Chaque aventure commence par le désir d&#39;explorer l&#39;inconnu. Aujourd&#39;hui, nous vous invitons à voyager au cœur de l&#39;extraordinaire à travers les sens, les saveurs et les riches histoires contenues dans chaque goutte de rhum Arcane."
       }
     }
   }

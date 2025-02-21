@@ -229,8 +229,7 @@ footer {
 }
 
 .cocktail-card h2 {
-  margin-top: auto; /* Pousse le texte en bas */
-  margin-bottom: 10px; /* Ajoute un peu d'espace avec le texte ou les éléments suivants */
+  margin-bottom: 2px; /* Ajoute un peu d'espace avec le texte ou les éléments suivants */
 }
 
 .cocktail-card p {

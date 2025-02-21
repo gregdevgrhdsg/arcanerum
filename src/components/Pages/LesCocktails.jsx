@@ -81,19 +81,19 @@ const LesCocktails = () => {
 
   return (
     <section
-      className="bg-cover bg-fixed flex flex-col items-center justify-start text-white z-0"
-      style={{
+    className="w-full mx-auto bg-cover bg-fixed flex flex-col items-center justify-start text-white z-0"
+    style={{
         backgroundImage: "url('/assets/jungle/fond-ArcaneCocktails.webp')",
         backgroundSize: "cover",
         backgroundPosition: "top",
       }}
     >
       {/* 🏷️ Titre et description */}
-      <div className="ml-10 mr-10 mt-40 items-center justify-center">
+      <div className="ml-10 mr-10 mt-28 items-center justify-center">
         <h1 className="2xl:text-6xl xl:text-4xl lg:text-lg md:text-3xl sm:text-2xl text-center text-gold font-yana mb-4 font-bold">
-          {lang === "fr" ? "LISTE COMPLÈTE DES RECETTES" : "FULL RECIPE LIST"}
+          {lang === "fr" ? "NOTRE  SÉLECTION DE COCKTAILS" : "FULL RECIPE LIST"}
         </h1>
-        <p className="2xl:text-3xl xl:text-xl lg:text-lg md:text-lg sm:text-sm font-yana text-white mb-8 max-w-3xl text-center">
+        <p className="2xl:text-3xl xl:text-xl lg:text-lg md:text-lg sm:text-sm font-yana text-white mb-8 max-w-2xl text-center">
           {lang === "fr"
             ? "Découvrez notre sélection de cocktails créés sur mesure, chacun conçu pour vous offrir une expérience gustative inoubliable."
             : "Discover our selection of curated cocktails, each one crafted to bring you an unforgettable taste experience."}
@@ -120,19 +120,19 @@ const LesCocktails = () => {
       </div>
 
       {/* 🍹 Liste des cocktails */}
-      <div className="cocktail-list grid xl:grid-cols-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 px-2">
-        {filteredCocktails.length > 0 ? (
+      <div className="cocktail-list grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 px-6 max-w-[1100px]">       
+         {filteredCocktails.length > 0 ? (
           filteredCocktails.map((cocktail) => (
             <Link
               to={`/cocktail/${cocktail.id}`}
               key={cocktail.id}
               aria-label={`Voir les détails de ${cocktail.name?.[lang] || cocktail.name?.["fr"]}`}
             >
-              <div className={`cocktail-card bg-transparent justify-center p-2 transition-opacity ${isLoaded ? "" : "opacity-0"}`}>
+              <div className={`cocktail-card bg-transparent justify-center p-0 transition-opacity ${isLoaded ? "" : "opacity-0"}`}>
                 <img
                   src={cocktail.imageB}
                   alt={cocktail.name?.[lang] || "Cocktail"}
-                  className="object-contain mb-4 h-64 md:h-80 lg:h-96 xl:h-[28rem]"
+                  className="object-contain mb-4 h-64 md:h-80 lg:h-96"
                 />
                 <h2 className="text-md leading-none 2xl:text-2xl xl:text-2xl lg:text-xl md:text-lg sm:text-sm text-gold font-semibold mb-1 text-center">
                   {cocktail.name?.[lang] ?? "Nom inconnu"}
