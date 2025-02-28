@@ -2,7 +2,7 @@
 import React, { useEffect, useRef, useState, forwardRef, useImperativeHandle } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { useModel } from "../Context/ModelContext";
+import { FaArrowRight, FaArrowLeft, FaLongArrowAltRight, FaLongArrowAltLeft, FaChevronRight, FaChevronLeft, FaAngleRight, FaAngleLeft } from "react-icons/fa";import { useModel } from "../Context/ModelContext";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -116,17 +116,17 @@ const BottleSlider = forwardRef(({ bottles, onBottleChange, selectedBottle, onBu
       }}
     >
       {/* Slider Principal */}
-      <div className="relative z-60 pointer-events-auto flex w-full h-full 2xl:max-w-10vw xl:max-w-6xl mx-auto">
+      <div className="relative z-60 pointer-events-auto flex w-full h-full 2xl:max-w-10vw xl:max-w-8xl mx-auto">
         {/* Texte et Contenu */}
         <div
           ref={sliderContentRef}
-          className="relative flex 2xl:flex-col xl:flex-col lg:flex-col md:flex-col sm:flex-row xl:text-center sm:text-center 2xl:w-1/2 xl:w-2/5 sm:w-full 2xl:top-64 xl:top-36 lg:top-36 md:top-36 sm:top-14  2xl:justify-start xl:justify-start md:justify-start md:items-end sm:items-end 2xl:pl-0 md:pl-12 sm:m-10 md:w-1/2 text-white"
+          className="relative flex 2xl:flex-col xl:flex-col lg:flex-col md:flex-col sm:flex-row xl:text-center sm:text-center 2xl:w-1/3 xl:w-1/2 lg:w-1/2 sm:w-full 2xl:top-64 xl:top-36 lg:top-36 md:top-36 sm:top-14  2xl:justify-start xl:justify-start md:justify-start md:items-end sm:items-end 2xl:pl-80 md:pl-12 sm:m-10 md:w-1/2 text-white"
         >
           <div className="slider-content ">
             <h2 className=" 2xl:text-7xl xl:text-4xl sm:text-4xl font-yana text-gold mb-4">
               {bottles[currentSlide].name}
             </h2>
-            <p className="font-yana 2xl:text-4xl text-white lg:text-lg sm:text-md mb-2">
+            <p className="font-yana 2xl:text-3xl xl:text-3xl lg:text-xl md:1xl sm:text-sm mb-2">
               {bottles[currentSlide].description}
             </p>
             <p className="2xl:text-4xl xl:text-2xl font-bold mb-6">{bottles[currentSlide].prix}</p>
@@ -144,30 +144,25 @@ const BottleSlider = forwardRef(({ bottles, onBottleChange, selectedBottle, onBu
 
       {/* Flèches de Navigation */}
       <button
-        className="absolute sm:left-16 md:left-20 lg:left-24 top-1/2 transform -translate-y-1/2 text-gold text-5xl hover:text-white z-30 transition-transform duration-300 ease-in-out shadow-lg hover:shadow-2xl"
-        onClick={() =>
-          handleSlideChange((currentSlide - 1 + bottles.length) % bottles.length)
-        }
-        aria-label="Précédent"
-      >
-        &larr;
-      </button>
+        className="absolute sm:left-5 md:left-5 lg:left-10 top-1/2 transform-translate-y-1/2 bg-black text-gold rounded-[300px] text-5xl hover:text-white z-30 transition-transform duration-300 ease-in-out shadow-lg hover:shadow-2xl"
+        onClick={() => handleSlideChange((currentSlide - 1 + bottles.length) % bottles.length)}
+        aria-label="Précédent"><FaArrowLeft size={40} />  {/* ⬅ Flèche épaisse */}
+ {/* ⬅ Longue flèche fine */}
+ </button>
+
       <button
-        className="absolute sm:right-16 md:right-20 lg:right-24 top-1/2 transform -translate-y-1/2 text-gold text-5xl hover:text-white z-30 transition-transform duration-300 ease-in-out shadow-lg hover:shadow-2xl"
+        className="absolute sm:right-5 md:right-5 lg:right-10 top-1/2 transform-translate-y-1/2 text-gold rounded-[300px] text-5xl hover:text-white z-30 transition-transform duration-300 ease-in-out shadow-lg hover:shadow-2xl"
         onClick={() => handleSlideChange((currentSlide + 1) % bottles.length)}
-        aria-label="Suivant"
-      >
-        &rarr;
-      </button>
+        aria-label="Suivant"> <FaArrowRight size={40} /></button>
 
       {/* Miniatures des Bouteilles */}
       <div
-        className="absolute bottom-10 2xl:left-1/3 xl:left-1/2 lg:left-1/2 md:left-1/2 transform -translate-x-1/2 flex flex-wrap xl:justify-start lg:justify-start md:justify-start items-center xl:space-x-4 md:space-x-4 md:pl-10 md:pb-10 w-full max-w-6xl mx-auto hidden md:flex z-20"
+        className="absolute bottom-10 2xl:left-1/2 lg:left-1/1 lg:left-1/1 md:left-1/2 transform -translate-x-1/2 flex flex-wrap xl:justify-start lg:justify-start md:justify-start items-center 2xl:space-x-16 xl:space-x-4 md:space-x-4 md:pl-40 md:pb-0 w-full max-w-8xl mx-auto hidden md:flex z-20"
       >
         {bottles.map((bottle, index) => (
           <div
             key={bottle.id}
-            className={`relative cursor-pointer transition-transform ${currentSlide === index ? "scale-110" : "opacity-60"
+            className={`relative cursor-pointer transition-transform ${currentSlide === index ? "scale-125" : "opacity-30"
               }`}
             style={{
               width: window.innerWidth >= 2500 ? "140px" : window.innerWidth >= 1920 ? "100px" : "clamp(50px, 8vw, 100px)",
@@ -185,23 +180,7 @@ const BottleSlider = forwardRef(({ bottles, onBottleChange, selectedBottle, onBu
               }}
             />
 
-            {/* Halo ajusté */}
-            {currentSlide === index && (
-              <div
-                className="absolute inset-0 z-[-10]" // Mettre derrière la bouteille
-                style={{
-                  backgroundImage: "url(/assets/thumbnail/lueurBottle.webp)",
-                  backgroundSize: "contain",
-                  backgroundPosition: "center",
-                  backgroundRepeat: "no-repeat",
-                  width: "120%", // Ajustement dynamique pour s'aligner
-                  height: "120%", // Agrandir légèrement pour correspondre
-                  left: "-10%", // Ajuster la position selon la bouteille
-                  top: "-10%",  // Ajuster verticalement
-                  transform: `scale(${window.innerWidth >= 2560 ? 1.4 : window.innerWidth >= 1920 ? 1.2 : 1})`,
-                }}
-              />
-            )}
+      
           </div>
         ))}
       </div>

@@ -6,9 +6,25 @@ import { Environment } from "@react-three/drei";
 import { bottlesConfig } from "../bottleConfig";
 import { setupModelAnimations, rotateBottle } from "../Animations/ModelAnimations";
 import { useModel } from "../Context/ModelContext";
+import { useFrame } from "@react-three/fiber";
 import { useTranslation } from "react-i18next";
 
-const CanvasContainer = ({ selectedBottle }) => {
+const ModelUpdater = ({ modelRef, setModelTransform }) => {
+  useFrame(() => {
+    if (modelRef.current) {
+      setModelTransform({
+        position: { x: modelRef.current.position.x, y: modelRef.current.position.y },
+        scale: { x: modelRef.current.scale.x, y: modelRef.current.scale.y },
+      });
+    }
+  });
+
+  return null; // ✅ Ce composant ne rend rien, il sert juste à mettre à jour l'état
+};
+
+
+
+const CanvasContainer = ({ selectedBottle, setModelTransform }) => {
   const {
     modelRef,
     cameraRef,
@@ -23,7 +39,11 @@ const CanvasContainer = ({ selectedBottle }) => {
 
   const [currentBottle, setCurrentBottle] = useState(selectedBottle || DEFAULT_BOTTLE);
   const rotationGroupRef = useRef();
+  
   const [screenSize, setScreenSize] = useState("desktop");
+  const [imagePosition, setImagePosition] = useState({ x: 0, y: 0 });
+const [isInZone5, setIsInZone5] = useState(false); // Permet d'afficher uniquement en zone 5
+
 
   // Détection de la taille d'écran
   const detectScreenSize = () => {
@@ -32,6 +52,8 @@ const CanvasContainer = ({ selectedBottle }) => {
       setScreenSize("mobile");
     } else if (width < 1024) {
       setScreenSize("tablet");
+    } else if (width < 1400) {
+      setScreenSize("medium");
     } else {
       setScreenSize("desktop");
     }
@@ -178,6 +200,7 @@ const CanvasContainer = ({ selectedBottle }) => {
 
   // Rendu du modèle
   const renderModel = () => {
+
     const bottleConfig = getBottleConfig();
     if (!bottleConfig) return null;
 
@@ -204,6 +227,7 @@ const CanvasContainer = ({ selectedBottle }) => {
         </div>
       )}
       <Canvas
+      
         className="sticky inset-0 top-0 h-screen"
         camera={{ position: [0, 0, 5], fov: 25 }}
         onCreated={({ camera, scene, gl }) => {
@@ -229,13 +253,17 @@ const CanvasContainer = ({ selectedBottle }) => {
           });
         }}
       >
+        
         <ambientLight intensity={2} />
         <directionalLight position={[5, 8, 5]} intensity={3} />
         <Environment preset="forest" background={false} />
         <group ref={rotationGroupRef}>{renderModel()}</group>
+        <ModelUpdater modelRef={modelRef} setModelTransform={setModelTransform} />
+        
       </Canvas>
     </div>
   );
 };
 
 export default CanvasContainer;
+

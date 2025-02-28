@@ -53,11 +53,10 @@ footer {
   bottom: 0;
   width: 100%;
   background-color: black;
-  color: white;
+  color: gold;
   text-align: center;
   padding: 1rem;
   z-index: 10;
-  border-top: 1px solid #333;
 }
 
 .slick-arrow {
@@ -79,8 +78,8 @@ footer {
 }
 
 .home-container{
-  height: 400vh;
-  min-height: 400vh;
+  height: 600vh;
+  min-height: 600vh;
   overflow-y: hidden;
 }
 
@@ -367,4 +366,10 @@ footer {
   height: 100%;
   background: linear-gradient(to right, #ffd700, #ffec8b);
   transition: width 0.3s;
+}
+
+canvas {
+  opacity: 1 !important;
+  visibility: visible !important;
+  display: block !important;
 }

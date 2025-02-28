@@ -7,7 +7,7 @@ const cocktails = [
       {
         title: { fr: "COCKTAIL PRINCIPAL", en: "MAIN COCKTAIL" },
         ingredients: [
-          { name: { fr: "The Arcane Extraroma 12 ans", en: "The Arcane Extraroma 12 yo" }, qty: 45, unit: "ml" },
+          { name: { fr: "The Arcane Extraroma 3 ans", en: "The Arcane Extraroma 12 yo" }, qty: 45, unit: "ml" },
           { name: { fr: "Sirop de curry framboise", en: "Raspberry Curry Syrup" }, qty: 45, unit: "ml" },
           { name: { fr: "Liqueur Cartron Triple Sec", en: "Cartron Triple Sec Liqueur" }, qty: 15, unit: "ml" },
           { name: { fr: "Jus de citron vert frais", en: "Fresh Lime Juice" }, qty: 22.5, unit: "ml" },
@@ -20,7 +20,7 @@ const cocktails = [
         ],
       },
       {
-        title: { fr: "Sirop de curry framboise", en: "Raspberry Curry Syrup" },
+        title: { fr: "SIROP CURRY FRAMBOISE", en: "RASPBERRY CURRY SYRUP" },
         ingredients: [
           { name: { fr: "Oranges entières", en: "Whole Oranges" }, qty: 2, unit: "unités" },
           // … (ajoutez tous les autres ingrédients)
@@ -55,7 +55,7 @@ const cocktails = [
         ],
       },
       {
-        title: { fr: "Base de Day At The Peach", en: "Day At The Peach Base" },
+        title: { fr: "BASE + COCKTAIL", en: "COCKTAIL + BASE" },
         ingredients: [
           { name: { fr: "Pistaches infusées The Arcane", en: "Pistachios Infused The Arcane" }, qty: 276, unit: "g" },
           { name: { fr: "Joseph Cartron Pêche de Vigne", en: "Joseph Cartron Pêche de Vigne" }, qty: 102, unit: "g" },
@@ -69,7 +69,7 @@ const cocktails = [
         ],
       },
       {
-        title: { fr: "Sirop de pistache", en: "Pistachio Syrup" },
+        title: { fr: "SIROP DE PISTACHE", en: "PISTACHIOS SYRUP" },
         ingredients: [
           { name: { fr: "Pistaches décortiquées non salées", en: "Pistachio Kernels Unsalted" }, qty: 85, unit: "g" },
           { name: { fr: "Eau", en: "Water" }, qty: 105, unit: "g" },
@@ -84,10 +84,10 @@ const cocktails = [
         ],
       },
       {
-        title: { fr: "Rhum à la pistache", en: "Pistachio Rum" },
+        title: { fr: "RHUM PISTACHE", en: "PISTACHIOS RUM" },
         ingredients: [
           { name: { fr: "Pistaches grillées réservées", en: "Reserved Toasted Pistachios" }, qty: 50, unit: "g" },
-          { name: { fr: "The Arcane Extraroma 12 ans", en: "The Arcane Extraroma 12yo" }, qty: 300, unit: "g" },
+          { name: { fr: "The Arcane Extraroma 3 ans", en: "The Arcane Extraroma 3 yo" }, qty: 300, unit: "g" },
         ],
         method: [
           { fr: "Mélangez le rhum et les pistaches dans un récipient hermétique.", en: "Combine rum and pistachios in an airtight container." },
@@ -96,7 +96,7 @@ const cocktails = [
         ],
       },
       {
-        title: { fr: "Sirop simple", en: "Simple Syrup" },
+        title: { fr: "SIROP SIMPLE", en: "SIMPLE SYRUP" },
         ingredients: [
           { name: { fr: "Sucre", en: "Sugar" }, qty: 100, unit: "g" },
           { name: { fr: "Eau chaude", en: "Hot Water" }, qty: 100, unit: "g" },
@@ -133,7 +133,7 @@ const cocktails = [
         ],
       },
       {
-        title: { fr: "Quartiers d'ananas congelés", en: "Frozen Pineapple Wedges" },
+        title: { fr: "ANANAS CONGELÉS", en: "FROZEN PINNEAPPLE" },
         ingredients: [
           { name: { fr: "Ananas entier", en: "Whole Pineapple" }, qty: 1, unit: "unité" },
         ],
@@ -147,7 +147,7 @@ const cocktails = [
         ],
       },
       {
-        title: { fr: "Glace aux agrumes", en: "Citrus Ice" },
+        title: { fr: "GLACONS AUX AGRUMES", en: "CITRUS ICE" },
         ingredients: [
           { name: { fr: "Jus de citron vert frais", en: "Fresh Lime Juice" }, qty: 100, unit: "g" },
           { name: { fr: "Jus d'orange frais", en: "Fresh Orange Juice" }, qty: 225, unit: "g" },
@@ -212,7 +212,7 @@ const cocktails = [
         ],
       },
       {
-        title: { fr: "Sirop de mangue maison", en: "Homemade Mango Syrup" },
+        title: { fr: "SIROP DE MANGUE", en: "MANGO SYRUP" },
         ingredients: [
           { name: { fr: "Sucre", en: "Sugar" }, qty: 450, unit: "g" },
           { name: { fr: "Nectar de mangue", en: "Mango Nectar" }, qty: 450, unit: "g" },
@@ -286,7 +286,7 @@ const cocktails = [
         ],
       },
       {
-        title: { fr: "Base de Peach Rum Punch", en: "Peach Rum Punch Base Batch" },
+        title: { fr: "BASE + COCKTAIL", en: "COCKTAIL + BASE" },
         ingredients: [
           { name: { fr: "Citrons", en: "Lemons" }, qty: 2, unit: "unités" },
           { name: { fr: "Eau", en: "Water" }, qty: 500, unit: "g" },
@@ -306,7 +306,7 @@ const cocktails = [
         ],
       },
       {
-        title: { fr: "Glaçons Peach & Elderflower", en: "Peach & Elderflower Ice Cubes" },
+        title: { fr: "GLAÇONS PECHE & ELDERFLOWER", en: "Peach & Elderflower Ice Cubes" },
         ingredients: [
           { name: { fr: "Citrons", en: "Lemons" }, qty: 5, unit: "unités" },
           { name: { fr: "Oranges", en: "Oranges" }, qty: 2, unit: "unités" },
@@ -352,7 +352,7 @@ const cocktails = [
         ]
       },
       {
-        title: { fr: "Mélange de Sazerac à la banane fumée", en: "Smoked Banana Sazerac Batch" },
+        title: { fr: "BASE + COCKTAIL", en: "COCKTAIL + BASE" },
         ingredients: [
           { name: { fr: "The Arcane Extraroma 12 yo", en: "The Arcane Extraroma 12 yo" }, qty: 284, unit: "g" },
           { name: { fr: "Liqueur de piment Ancho Reyes", en: "Ancho Reyes Chile Liqueur" }, qty: 38, unit: "g" },
@@ -397,7 +397,7 @@ const cocktails = [
         ],
       },
       {
-        title: { fr: "Base tropicale", en: "Tropical Stock" },
+        title: { fr: "TROPICAL STOCK", en: "Tropical Stock" },
         ingredients: [
           { name: { fr: "Eau", en: "Water" }, qty: 800, unit: "g" },
           { name: { fr: "Sucre", en: "Sugar" }, qty: 175, unit: "g" },
@@ -419,7 +419,7 @@ const cocktails = [
         ],
       },
       {
-        title: { fr: "Glace d'ananas grillé", en: "Grilled Pineapple Ice" },
+        title: { fr: "ANANAS GRILLÉ", en: "Grilled Pineapple " },
         category: { fr: "Créations", en: "Creations" },
         ingredients: [
           { name: { fr: "Ananas entier", en: "Whole Pineapple" }, qty: 1, unit: "unité" },
@@ -445,7 +445,7 @@ const cocktails = [
       {
         title: { fr: "COCKTAIL PRINCIPAL", en: "MAIN COCKTAIL" },
         ingredients: [
-          { name: { fr: "The Arcane Extraroma 12 ans", en: "The Arcane Extraroma 12 yo" }, qty: 60, unit: "ml" },
+          { name: { fr: "The Arcane Extraroma 3 ans", en: "The Arcane Extraroma 3 yo" }, qty: 60, unit: "ml" },
           { name: { fr: "Liqueur de banane Joseph Cartron", en: "Joseph Cartron Banana Liqueur" }, qty: 15, unit: "ml" },
           { name: { fr: "Bitters miel & orange", en: "Honey & Orange Bitters" }, qty: 3, unit: "gouttes" },
         ],
@@ -457,7 +457,7 @@ const cocktails = [
         ],
       },
       {
-        title: { fr: "Bitters miel & orange", en: "Honey & Orange Bitters" },
+        title: { fr: "BITTERS MIEL & ORANGE", en: "Honey & Orange Bitters" },
         ingredients: [
           { name: { fr: "Miel", en: "Honey" }, qty: 25, unit: "g" },
           { name: { fr: "Regan's Orange Bitters", en: "Regan's Orange Bitters" }, qty: 25, unit: "g" },
@@ -480,7 +480,7 @@ const cocktails = [
     {
       title: { fr: "COCKTAIL PRINCIPAL", en: "MAIN COCKTAIL" },
       ingredients: [
-        { name: { fr: "Extraroma", en: "Extraroma" }, qty: 60, unit: "ml" },
+        { name: { fr: "Extraroma 3 ans", en: "Extraroma 3 yo" }, qty: 60, unit: "ml" },
         { name: { fr: "Vermouth Dry de Joseph Cartron", en: "Dry Vermouth by Joseph Cartron" }, qty: 15, unit: "ml" },
         { name: { fr: "Glaçons", en: "Ice Cubes" }, qty: null, unit: "" },
       ],
@@ -501,7 +501,7 @@ const cocktails = [
       {
         title: { fr: "COCKTAIL PRINCIPAL", en: "MAIN COCKTAIL" },
         ingredients: [
-          { name: { fr: "Extraroma", en: "Extraroma" }, qty: 60, unit: "ml" },
+          { name: { fr: "Extraroma 3 ans", en: "Extraroma 3 yo" }, qty: 60, unit: "ml" },
           { name: { fr: "Banane mûre", en: "Ripe Banana" }, qty: 1, unit: "unité" },
           { name: { fr: "Jus de citron vert frais", en: "Fresh Lime Juice" }, qty: 30, unit: "ml" },
           { name: { fr: "Sirop simple", en: "Simple Syrup" }, qty: 15, unit: "ml" },
@@ -524,7 +524,7 @@ const cocktails = [
     {
       title: { fr: "COCKTAIL PRINCIPAL", en: "MAIN COCKTAIL" },
       ingredients: [
-        { name: { fr: "Extraroma", en: "Extraroma" }, qty: 45, unit: "ml" },
+        { name: { fr: "Extraroma 3 ans", en: "Extraroma 3 yo" }, qty: 45, unit: "ml" },
         { name: { fr: "Champagne ou Prosecco", en: "Champagne or Prosecco" }, qty: 30, unit: "ml" },
         { name: { fr: "Sirop simple", en: "Simple Syrup" }, qty: 15, unit: "ml" },
         { name: { fr: "Feuilles de menthe fraîches", en: "Fresh Mint Leaves" }, qty: 10, unit: "unités" },
@@ -548,7 +548,7 @@ const cocktails = [
     {
       title: { fr: "COCKTAIL PRINCIPAL", en: "MAIN COCKTAIL" },
       ingredients: [
-        { name: { fr: "Extraroma", en: "Extraroma" }, qty: 45, unit: "ml" },
+        { name: { fr: "Extraroma Ans", en: "Extraroma 3 yo" }, qty: 45, unit: "ml" },
         { name: { fr: "Rhum Blanc", en: "White Rum" }, qty: 15, unit: "ml" },
         { name: { fr: "Jus de citron vert frais", en: "Fresh Lime Juice" }, qty: 30, unit: "ml" },
         { name: { fr: "Sirop d'orgeat", en: "Orgeat Syrup" }, qty: 15, unit: "ml" },
@@ -572,7 +572,7 @@ const cocktails = [
     {
       title: { fr: "COCKTAIL PRINCIPAL", en: "MAIN COCKTAIL" },
       ingredients: [
-        { name: { fr: "Extraroma", en: "Extraroma" }, qty: 60, unit: "ml" },
+        { name: { fr: "Extraroma 3 ans", en: "Extraroma 3 yo" }, qty: 60, unit: "ml" },
         { name: { fr: "Ginger Beer", en: "Ginger Beer" }, qty: 120, unit: "ml" },
         { name: { fr: "Jus de citron vert frais", en: "Fresh Lime Juice" }, qty: 15, unit: "ml" },
         { name: { fr: "Glaçons", en: "Ice Cubes" }, qty: null, unit: "" },

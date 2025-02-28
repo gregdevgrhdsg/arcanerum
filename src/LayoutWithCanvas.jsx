@@ -22,9 +22,11 @@ import gsap from "gsap";
 gsap.registerPlugin(ScrollTrigger);
 
 const LayoutWithCanvas = () => {
-  const { selectedBottle, setSelectedBottle, isModelLoaded, cameraRef } = useModel();
+  const { selectedBottle, setSelectedBottle, isModelLoaded, cameraRef, modelRef } = useModel();
   const [isInitialLoad, setIsInitialLoad] = useState(true);
-
+  const [modelPositionBeforeAbsolute, setModelPositionBeforeAbsolute] = useState(null);
+  const [modelTransform, setModelTransform] = useState({ position: { x: 0, y: 0 }, scale: { x: 1, y: 1 } });
+  const [shouldFixModel, setShouldFixModel] = useState(true);
   const [progress, setProgress] = useState(0);
   const [isLoaded, setIsLoaded] = useState(false);
   const location = useLocation();
@@ -72,9 +74,35 @@ const LayoutWithCanvas = () => {
     window.scrollTo(0, 0);
   }, [location]);
 
+  useEffect(() => {
+    const handleScroll = () => {
+      const cocktailsSection = document.getElementById("cocktails-section");
+  
+      if (cocktailsSection) {
+        const rect = cocktailsSection.getBoundingClientRect();
+  
+        if (rect.top <= 1) {
+          if (shouldFixModel) {
+            console.log("🚀 Transition vers `absolute` !");
+            setShouldFixModel(false);
+          }
+        } else {
+          if (!shouldFixModel) {
+            console.log("🔄 Reste en `fixed`");
+            setShouldFixModel(true);
+          }
+        }
+      }
+    };
+  
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [shouldFixModel]);
+
+ 
 
   return (
-    <div className="relative flex flex-col min-h-full">
+    <div className="flex flex-col min-h-screen">
       {/* Animation de rideau */}
       {!isAnimationDone && (
         <div className="loading-curtain fixed top-0 left-0 w-full h-full bg-black z-[60]"></div>
@@ -83,21 +111,38 @@ const LayoutWithCanvas = () => {
 
       {/* Contenu principal */}
       <div className="flex-grow min-h-full">
-        {isHome && (
-          <div id="jungle-section" className="relative z-0 w-full h-screen">
+        {isHome && isCanvasVisible && (
+          <div
+            id="jungle-section"
+            className="absolute top-0 left-0 w-full"
+            style={{
+              height: "600vh",
+              overflow: "hidden", // 🔥 Empêche tout débordement
+            }}
+          >
             <Jungle isModelLoaded={isModelLoaded} position="background" />
           </div>
         )}
         {isCanvasVisible && (
           <div
-            id="canvas-container"
-            className={`${location.pathname === "/last-section" ? "absolute" : "fixed"
-              } inset-0 z-10 pointer-events-none`}
-          >
+          id="canvas-container"
+          style={{
+            position: shouldFixModel ? "fixed" : "absolute",
+            top: shouldFixModel
+              ? "0"
+              : `${document.getElementById("cocktails-section")?.offsetTop || 0}px`, // 🔥 Évite un top incorrect si `cocktails-section` n'existe pas encore
+            left: "0",
+            width: "100%",
+            height: "100vh",
+            transition: "none", // 🔥 Désactive les animations inutiles ici
+            zIndex: "10",
+          }}
+        >
             <CanvaContainer
               isModelLoaded={isModelLoaded}
               selectedBottle={selectedBottle}
-              isAnimationDone={isAnimationDone} // 🔥 Passe l'état ici
+              isAnimationDone={isAnimationDone}
+              setModelTransform={setModelTransform}
             />
           </div>
         )}
@@ -109,7 +154,7 @@ const LayoutWithCanvas = () => {
 
         <div className="w-full h-400vmax relative z-30 page-content">
           <Routes>
-            <Route path="/" element={<Home isModelLoaded={isModelLoaded}  isAnimationDone={isAnimationDone} />} />
+            <Route path="/" element={<Home isModelLoaded={isModelLoaded} isAnimationDone={isAnimationDone} />} />
             <Route path="/model/:id" element={<ModelDetail isModelLoaded={isModelLoaded} />} />
             <Route path="/Our-Universe" element={<OurUniverse />} />
             <Route path="/Know-How" element={<KnowHow />} />
@@ -120,10 +165,13 @@ const LayoutWithCanvas = () => {
             <Route path="/rum/:id" element={<RumDetailPage />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="*" element={<Navigate to="/" replace />} />
-          </Routes>
+            </Routes>
           <Outlet />
         </div>
       </div>
+
+      {/* Footer toujours en bas */}
+      <Footer className="absolute w-full" />
     </div>
   );
 };

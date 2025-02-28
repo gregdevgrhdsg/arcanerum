@@ -21,6 +21,11 @@ export const ModelProvider = ({ children }) => {
     rotation: { x: 0, y: 0.46, z: 0 },
   });
 
+  const [modelTransform, setModelTransform] = useState({
+    position: { x: 0, y: 0, z: 0 },
+    scale: { x: 1, y: 1, z: 1 },
+  });
+
   const setModelRef = (ref) => {
     console.log("Model ref updated:", ref);
     modelRef.current = ref;
@@ -79,9 +84,11 @@ export const ModelProvider = ({ children }) => {
         setModelState,
         isTransitionReady,
         setIsTransitionReady,
+        setRotationGroupRef,
+        modelTransform,
+        setModelTransform,
         modelPosition,
-        setModelPosition,
-        setRotationGroupRef
+        setModelPosition // 🔥 On ajoute bien `setModelPosition`
       }}
     >
       {children}

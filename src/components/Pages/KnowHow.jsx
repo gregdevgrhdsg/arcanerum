@@ -8,29 +8,35 @@ gsap.registerPlugin(ScrollTrigger);
 const KnowHow = () => {
   const { t } = useTranslation();
   const panoramaRef = useRef(null);
-  const imageRef = useRef(null);
+  const imageRef = useRef(null); // Référence pour l'image du slider (Section 1)
   const titleRef = useRef(null);
   const textRef = useRef(null);
+  const panoramaImageRef = useRef(null); // Référence pour l'image du panorama (Section 2)
 
   // États séparés pour le slider et le panorama
   const [currentSliderStep, setCurrentSliderStep] = useState(0);
   const [currentTimelineStep, setCurrentTimelineStep] = useState(0);
 
+  // Données du slider de la Section 1 avec image, titre et description
   const sliderData = [
     {
       title: t("know_how.slide1.title"),
       description: t("know_how.slide1.description"),
+      image: "assets/sections/fondKnowHow.webp",
     },
     {
       title: t("know_how.slide2.title"),
       description: t("know_how.slide2.description"),
+      image: "assets/sections/fondKnowHow.webp",
     },
     {
       title: t("know_how.slide3.title"),
       description: t("know_how.slide3.description"),
-    }
+      image: "assets/sections/fondKnowHow.webp",
+    },
   ];
 
+  // Données du panorama (Section 2)
   const timelineSteps = [
     {
       img: "assets/sections/harvest.webp",
@@ -67,25 +73,29 @@ const KnowHow = () => {
   // Animation du texte du slider (Section 1)
   useEffect(() => {
     if (!titleRef.current || !textRef.current) return;
-
     gsap.fromTo(
       [titleRef.current, textRef.current],
       { opacity: 0, y: 20 },
-      { opacity: 1, y: 0, duration: 0.5, stagger: 0.2, ease: "power2.out" }
+      { opacity: 1, y: 0, duration: 2, stagger: 0.2, ease: "power2.out" }
     );
+    return () => gsap.killTweensOf([titleRef.current, textRef.current]);
+  }, [currentSliderStep]);
 
-    return () =>
-      gsap.killTweensOf([titleRef.current, textRef.current]);
+  // Animation de l'image du slider (Section 1)
+  useEffect(() => {
+    if (!imageRef.current) return;
+    gsap.fromTo(
+      imageRef.current,
+      { opacity: 0, x: 50 },
+      { opacity: 1, x: 0, duration: 2, ease: "power2.out" }
+    );
   }, [currentSliderStep]);
 
   // Animation des éléments du panorama (Section 2)
   useEffect(() => {
     if (!panoramaRef.current) return;
-
-    const panoramaElements =
-      panoramaRef.current.querySelectorAll(".panorama-animated");
+    const panoramaElements = panoramaRef.current.querySelectorAll(".panorama-animated");
     if (!panoramaElements.length) return;
-
     gsap.fromTo(
       panoramaElements,
       { opacity: 0, y: 50 },
@@ -105,12 +115,11 @@ const KnowHow = () => {
     );
   }, [currentTimelineStep]);
 
-  // Animation de l'image du panorama
+  // Animation de l'image du panorama (Section 2)
   useEffect(() => {
-    if (!imageRef.current) return;
-
+    if (!panoramaImageRef.current) return;
     gsap.fromTo(
-      imageRef.current,
+      panoramaImageRef.current,
       { opacity: 0, scale: 0.95 },
       { opacity: 1, scale: 1, duration: 0.8, ease: "power2.out" }
     );
@@ -118,82 +127,81 @@ const KnowHow = () => {
 
   return (
     <div className="know-how-container w-full h-full">
-    {/* Section 1 : Slider */}
-<section className="h-screen bg-black text-white relative">
-  <div
-    className="h-full w-full relative flex items-center items-start"
-    style={{
-      backgroundImage: "url('assets/sections/fondKnowHow.webp')",
-      backgroundSize: "cover",
-      backgroundPosition: "center",
-    }}
-  >
-    <div className="text-center z-10 w-full xl:pl-40 md:pl-0 xl:max-w-[50vw] md:max-w-[60vw] sm:max-w-[100vw] px-6 flex flex-col justify-start">
-      <h2
-        ref={titleRef}
-        className="slide-item font-bold text-gold font-yana leading-none 2xl:text-6xl xl:text-4xl lg:text-3xl md:text-3xl sm:text-2xl mb-6"
-      >
-        {sliderData[currentSliderStep]?.title}
-      </h2>
-      <p
-        ref={textRef}
-        className="highlight-description font-yana text-white 2xl:text-3xl xl:text-xl lg:text-lg md:text-md sm:text-sm"
-      >
-        {sliderData[currentSliderStep]?.description}
-      </p>
-
-      {/* Dots de navigation */}
-      <div className="flex justify-center items-center mt-6">
-        {sliderData.map((_, index) => (
-          <button
-            key={index}
-            onClick={() => setCurrentSliderStep(index)}
-            aria-label={`Aller à la diapositive ${index + 1}`}
-            className={`w-3 h-3 rounded-full mx-1 transition-colors duration-300 ${
-              currentSliderStep === index ? "bg-gold" : "bg-gray-200"
-            }`}
-          ></button>
-        ))}
-      </div>
-
-      {/* Boutons de navigation du slider */}
-      <div className="flex justify-center items-end relative mt-0">
-        <button
-          className="text-gold text-6xl hover:text-white mx-4 transform rotate-90"
-          onClick={() =>
-            setCurrentSliderStep((prev) =>
-              prev > 0 ? prev - 1 : sliderData.length - 1
-            )
-          }
-          aria-label="Précédent"
-        >
-          &#8249;
-        </button>
-        <button
-          className="text-gold text-6xl hover:text-white mx-4 -rotate-90"
-          onClick={() =>
-            setCurrentSliderStep((prev) =>
-              prev < sliderData.length - 1 ? prev + 1 : 0
-            )
-          }
-          aria-label="Suivant"
-        >
-          &#8249;
-        </button>
-      </div>
-    </div>
-    <div className="absolute top-0 left-0 w-full h-full bg-black/50 z-0"></div>
-  </div>
-</section>
+      {/* Section 1 : Slider */}
+      <section className="h-screen relative md:pt-40 sm:pt-24 md:pb-40 sm:pb-24 xl:h-screen lg:h-screen md:h-auto sm:h-auto flex lg:flex-row flex-col">
+        <div className="lg:w-1/2 w-full bg-black p-4 lg:p-10 flex flex-col justify-center items-center text-center">
+          <h2
+            ref={titleRef}
+            className="slide-item font-bold text-gold font-yana leading-none 2xl:text-6xl xl:text-4xl lg:text-3xl md:text-3xl sm:text-2xl mb-6"
+          >
+            {sliderData[currentSliderStep]?.title}
+          </h2>
+          <p
+            ref={textRef}
+            className="highlight-description font-yana text-white 2xl:text-3xl xl:text-xl lg:text-lg md:text-md sm:text-sm"
+          >
+            {sliderData[currentSliderStep]?.description}
+          </p>
+          {/* Pagination par numéro */}
+          <div className="flex justify-center items-center mt-6 space-x-2">
+            {sliderData.map((_, index) => (
+              <button
+                key={index}
+                onClick={() => setCurrentSliderStep(index)}
+                aria-label={`Aller à la diapositive ${index + 1}`}
+                className={`px-3 pt-1 font-yana font-bold text-2xl transition-colors duration-300 ${
+                  currentSliderStep === index
+                    ? 'border border-gold bg-gold text-black'
+                    : 'border border-gold text-gold'
+                }`}
+              >
+                {index + 1}
+              </button>
+            ))}
+          </div>
+          {/* Navigation fléchée */}
+          <div className="flex justify-center items-end relative mt-4">
+            <button
+              className="text-gold text-6xl hover:text-white mx-4 transform rotate-90"
+              onClick={() =>
+                setCurrentSliderStep((prev) =>
+                  prev > 0 ? prev - 1 : sliderData.length - 1
+                )
+              }
+              aria-label="Précédent"
+            >
+              &#8249;
+            </button>
+            <button
+              className="text-gold text-6xl hover:text-white mx-4 -rotate-90"
+              onClick={() =>
+                setCurrentSliderStep((prev) =>
+                  prev < sliderData.length - 1 ? prev + 1 : 0
+                )
+              }
+              aria-label="Suivant"
+            >
+              &#8249;
+            </button>
+          </div>
+        </div>
+        <div className="lg:w-1/2 w-full relative flex items-center justify-center">
+          <img
+            ref={imageRef}
+            src={sliderData[currentSliderStep]?.image}
+            alt={`Slide ${currentSliderStep + 1}`}
+            className="object-cover max-w-[90%] max-h-[90%] filter brightness-75"
+          />
+        </div>
+      </section>
 
       {/* Section 2 : Panorama */}
       <section
         ref={panoramaRef}
         className="h-screen flex flex-col items-center justify-center bg-black text-white relative"
       >
-        {/* Image de fond du panorama */}
         <div
-          ref={imageRef}
+          ref={panoramaImageRef}
           className="absolute inset-0 transition-transform"
           style={{
             backgroundImage: `url(${timelineSteps[currentTimelineStep].img})`,
@@ -202,10 +210,7 @@ const KnowHow = () => {
           }}
         ></div>
         <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-black opacity-80"></div>
-
-        {/* Contenu du panorama */}
         <div className="z-10 flex flex-col justify-center items-center text-center h-full xl:max-w-[50vw] md:max-w-[40vw] sm:max-w-[90vw] px-6">
-          {/* Barre de navigation des étapes */}
           <div className="w-full py-4 text-center z-10 relative flex flex-col items-center justify-center">
             <h1 className="2xl:text-6xl text-4xl text-gold font-yana mt-4 mb-2 font-bold">
               {t("know_how.title")}
@@ -226,15 +231,11 @@ const KnowHow = () => {
               ))}
             </div>
           </div>
-
-          {/* Monogramme */}
           <img
             src={timelineSteps[currentTimelineStep].monogram}
             alt={`Monogram for step ${currentTimelineStep + 1}`}
             className="panorama-animated w-20 h-20 my-6 object-contain"
           />
-
-          {/* Titre et description de l'étape du panorama */}
           <h2 className="panorama-animated mt-4 font-yana text-gold mb-5 xl:text-4xl lg:text-3xl md:text-3xl sm:text-2xl">
             {timelineSteps[currentTimelineStep].title}
           </h2>

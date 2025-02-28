@@ -34,6 +34,7 @@ function App() {
           <div className="flex-grow">
             <LayoutWithCanvas />
           </div>
+  
         </>
       )}
     </div>

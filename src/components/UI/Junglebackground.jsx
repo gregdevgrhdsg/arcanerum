@@ -9,6 +9,7 @@ gsap.registerPlugin(ScrollTrigger);
 
 const Jungle = ({ isModelLoaded, position = "background" }) => {
   const [rockBottom, setRockBottom] = useState("-10vh");
+  const [rockHeight, setRockHeight] = useState("700px");
   const [rockRight, setRockRight] = useState("0%");
   const [rockLeft, setRockLeft] = useState("2%");
 
@@ -18,22 +19,31 @@ const Jungle = ({ isModelLoaded, position = "background" }) => {
   
       if (screenHeight < 600) {
         setRockBottom("-22vh");
+        setRockHeight("45vw");
         setRockRight("5%");
         setRockLeft("auto");
       } else if (screenHeight < 800) {
-        setRockBottom("-9vh");
-        setRockRight("0%");
+        setRockBottom("-12vh");
+        setRockRight("7%");
+        setRockHeight("45vw");
         setRockLeft("auto");
       } else if (screenHeight < 1000) {
         setRockBottom("-10vh");
+        setRockHeight("700px");
         setRockRight("0%");
+        setRockLeft("auto");
+      } else if (screenHeight < 1600) {
+        setRockBottom("-13vh");
+        setRockRight("8%");
         setRockLeft("auto");
       } else if (screenHeight < 1900) {
         setRockBottom("-7vh");
+        setRockHeight("1200px");
         setRockRight("0%");
         setRockLeft("auto");
       } else {
         setRockBottom("-5vh");
+        setRockHeight("700px");
         setRockRight("0%");
         setRockLeft("auto");
       }
@@ -173,8 +183,8 @@ const Jungle = ({ isModelLoaded, position = "background" }) => {
                 objectFit: "cover", // Permet de voir l'image entière
                 objectPosition: "center", // Centre l'image
                 minWidth: "1080px",
-                height: "500vh", // Fixé pour couvrir 5 sections de 100vh
-                maxHeight: "500vh", // Ne jamais dépasser cette hauteur
+                height: "600vh", // Fixé pour couvrir 5 sections de 100vh
+                maxHeight: "600vh", // Ne jamais dépasser cette hauteur
               }}
             />
           </div>
@@ -202,11 +212,12 @@ const Jungle = ({ isModelLoaded, position = "background" }) => {
               {
                 src: "assets/jungle/layer-rock.webp",
                 alt: "rock",
-                className: "layer-rock sm:hidden md:block absolute xl:right-[0%] xl:w-[45vw] lg:w-[45vw] md:w-[70vw] sm:w-[70vw]",
+                className: "layer-rock sm:hidden md:block absolute xl:right-[0%] sm:w-[70vw]",
                 style: {
                   bottom: rockBottom, // ✅ Position verticale dynamique
                   right: rockRight,   // ✅ Position horizontale dynamique
                   left: rockLeft,     // ✅ Position horizontale dynamique
+                  width: rockHeight,
                 }
               },
               {

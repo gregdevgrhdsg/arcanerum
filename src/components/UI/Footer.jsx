@@ -3,7 +3,7 @@ import React from "react";
 
 const Footer = () => {
   return (
-    <footer className="bg-black relative text-white text-center py-4">
+    <footer className="bg-black h-[10vh] relative text-white text-center py-4">
     <p className="text-sm">
       &copy; {new Date().getFullYear()} Arcane Rum. Tous droits réservés.
     </p>
