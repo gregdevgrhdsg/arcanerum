@@ -20,25 +20,25 @@
     }
   },
   "know_how": {
-    "title": "Diving into our process",
+    "title": "DIVING INTO OUR PROCESS",
     "sugarcane_harvest": {
-      "title": "Récolte de Canne à Sucre",
+      "title": "Sugarcane harvest",
       "description": "Since more than 2 centuries, Mauritius is known as one of the best land in the world for the production of sugar cane and rum. The balance between the climate, the relief and the nature of the soil is just ideal ! From the coast to the mountains, the long green shoots of sugar cane invade the landscape."
     },
     "sugarcane_crushing": {
-      "title": "Écrasement de la Canne à Sucre",
+      "title": "Sugracane crushing",
       "description": "At the heart of Mauritius, Arcane captures the essence of fresh sugarcane through a meticulous crushing process. Harvested at peak maturity, the cane is carefully ground to extract its pure, aromatic juice. This method preserves the island’s vibrant flavors, embodying Arcane&#39;s commitment to authentic, premium rum."
     },
     "fermentation_process": {
-      "title": "Processus de Fermentation",
+      "title": "Fermentation Process",
       "description": "Arcane’s fermentation process transforms freshly extracted sugarcane juice into a rich and flavorful base for its rum. Using natural yeasts and controlled conditions, this slow fermentation enhances the vibrant aromas of the cane, revealing the full complexity of its flavors. As a key step in production, it lays the foundation for an authentic rum, distinguished by intense and refined flavors."
     },
     "distillation": {
-      "title": "Distillation et Réduction",
+      "title": "Distillation",
       "description": "During distillation, the aromas revealed during fermentation are carefully extracted in the column still. This process concentrates the flavors, capturing the essence of the sugarcane. Once the alcohol is extracted, water is gradually added to reduce the spirit, carefully balancing the flavors to achieve the perfect aromatic harmony."
     },
     "aging": {
-      "title": "Vieillissement",
+      "title": "Aging",
       "description": "Aged at least 3 years in French and American oak barrels, Arcane rums benefit from the tropical climate of Mauritius. The dynamic temperature variations accelerate the maturation process, creating gourmet and complex aromas in a shorter time frame."
     },
     "slide1": {
@@ -50,7 +50,7 @@
       "description": "Aged in French and American oak barrels, Arcane rums benefit from Mauritius’ tropical climate. Dynamic temperature variations speed up maturation, creating complex, opulent flavors in a shorter period."
     },
     "slide3": {
-      "title": "THe ARRANGÉS : CRAFTED WITH NATURAL FLAVORS",
+      "title": "THE ARRANGÉS : CRAFTED WITH NATURAL FLAVORS",
       "description": "Arcane elevates its rum with the Arrangés collection, infusing natural flavors from fresh local fruits and spices. Whether it’s Banane Flambée, Ananas Rôti, or Vanille des Îles, each Arrangé is crafted to blend perfectly with the rum, enhancing it with vibrant tropical notes of banana, pineapple, or vanilla. The tradition of rhum arrangé hails from the islands, where fruits and spices have long been used to infuse rum, creating flavorful and aromatic spirits that reflect the richness of local produce and culture. Arcane continues this heritage, capturing the essence of Mauritius in each bottle through natural, exotic infusions that celebrate the island’s bounty."
     },
     "step": "Step {{step}}"
@@ -135,7 +135,7 @@
     "arcaneAnanasRoti": {
       "title": "ANANAS RÔTIE",
       "subtitle": "Arrangé - Roasted Pineapple",
-      "description_a": "The 'Arrangés' range offers a delightful fusion of freshness and delicacy, enhancing the tropical flavors of Mauritius.",
+      "description_a": "Enjoy Ananas Rôti, a bold fusion of pineapple, caramel, and Mauritian rum with 100% natural aromas.",
       "description": "Savor the enticing 'Roasted Pineapple', crafted with 100% natural aromas and experience the harmonious symphony of bold pineapple, the gentle embrace of caramel, and the richness of Mauritian rum.",
       "button": "BACK TO LIST",
       "buttonb": "BUY",
@@ -153,7 +153,7 @@
     "arcaneVanilleDesIles": {
       "title": "VANILLE DES ÎLES",
       "subtitle": "Arrangé - Vanilla from the Islands",
-      "description_a": "The 'Arrangés' range offers a delightful fusion of freshness and delicacy, enhancing the tropical flavors of Mauritius.",
+      "description_a": "Discover the captivating 'Vanille des Îles' a tribute to one of Mauritius most iconic specialties.",
       "description": "Discover the captivating 'Vanilla from the Islands', an ode to Mauritius’s iconic specialties. Enriched with Bourbon vanilla and elevated by the strength of Mauritian rum, this exceptional elixir takes you on a sensory journey that captures the essence of the tropical paradise of Mauritius.",
       "button": "BACK TO LIST",
       "buttonb": "BUY",
@@ -171,7 +171,7 @@
     "arcaneBananeFlambee": {
       "title": "BANAE FLAMBÉE",
       "subtitle": "Arrangé - Banana Flambée",
-      "description_a": "The 'Arrangés' range offers a delightful fusion of freshness and delicacy, elevating the tropical flavors of Mauritius to new heights.",
+      "description_a": "Discover the star of the range, 'Banane Flambée' the iconic reference of our collection.",
       "description": "Discover the star of the range, 'Banana Flambée', the iconic reference in our collection. Inspired by the famous dessert, this exquisite elixir showcases the natural sweetness of bananas, perfectly blended with the smoothness of Mauritian rum.",
       "button": "BACK TO LIST",
       "buttonb": "BUY",

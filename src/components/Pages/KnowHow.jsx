@@ -212,7 +212,7 @@ const KnowHow = () => {
         <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-black opacity-80"></div>
         <div className="z-10 flex flex-col justify-center items-center text-center h-full xl:max-w-[50vw] md:max-w-[40vw] sm:max-w-[90vw] px-6">
           <div className="w-full py-4 text-center z-10 relative flex flex-col items-center justify-center">
-            <h1 className="2xl:text-6xl text-4xl text-gold font-yana mt-4 mb-2 font-bold">
+            <h1 className="2xl:text-6xl xl:text-4xl lg:text-3xl md:text-3xl sm:text-2xl text-gold font-yana mt-4 mb-2 font-bold">
               {t("know_how.title")}
             </h1>
             <div className="flex justify-center space-x-6 max-w-5xl">

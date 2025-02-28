@@ -11,15 +11,10 @@ const Footer = () => {
       <ul className="flex justify-center space-x-4">
         <li>
           <a href="/" className="hover:text-gold transition-colors duration-200">
-            Accueil
+            Politique de confidentialité
           </a>
         </li>
-        <li>
-          <a href="/about" className="hover:text-gold transition-colors duration-200">
-            À propos
-          </a>
-        </li>
-        <li>
+         <li>
           <a href="/contact" className="hover:text-gold transition-colors duration-200">
             Contact
           </a>

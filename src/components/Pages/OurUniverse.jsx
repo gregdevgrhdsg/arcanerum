@@ -98,7 +98,7 @@ const SliderSection = ({ slider }) => {
     // - Les conteneurs utilisent "p-4 lg:p-10" pour un padding plus léger sur mobile.
     const layoutClass = slider.id === 3 ? 'flex-col lg:flex-row-reverse' : 'flex-col lg:flex-row';
     return (
-      <section className={`relative md:pt-40 sm:pt-24 xl:h-screen lg:h-screen md:h-auto sm:h-screen flex ${layoutClass} p-4 lg:p-10`}>         {slider.id === 1 && (
+      <section className={`relative md:pt-40 sm:pt-24 md:pb-40 sm:pb-24 xl:h-screen lg:h-screen md:h-auto sm:h-auto flex ${layoutClass} p-4 lg:p-10`}>         {slider.id === 1 && (
           <>
             <div className="jungle-el-section absolute bottom-10 left-0 xl:w-[15vw] lg:w-[10vw] sm:w-[20vw] z-10">
               <img src="/assets/jungle/layer-feuilleGauche.webp" alt="Jungle Element Left" className="w-full h-full object-contain" />
