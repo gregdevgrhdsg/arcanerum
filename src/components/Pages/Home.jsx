@@ -13,14 +13,16 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { animateButtonsOnScroll } from "../Animations/ModelAnimations";
 import { useTranslation } from 'react-i18next';
 
+
 gsap.registerPlugin(ScrollTrigger);
 
 const Home = ({ isModelLoaded, isAnimationDone }) => {
   // Destructure toutes les propriétés nécessaires du contexte
   const { t } = useTranslation(); // Initialisation du hook
-  const { containerRef, isDetailView, setIsDetailView, selectedBottle, setSelectedBottle, setBottlePosition, setBottleScale, setScrollPosition } = useModel();
+  const { rockPos, containerRef, isDetailView, setIsDetailView, selectedBottle, setSelectedBottle, setBottlePosition, setBottleScale, setScrollPosition } = useModel();
   const navigate = useNavigate();
   const translatedBottlesConfig = bottlesConfig(t);
+
 
   const handleBuyClick = (newIndex) => {
     console.log(`Bouteille sélectionnée: ${newIndex}`);
@@ -193,21 +195,19 @@ const Home = ({ isModelLoaded, isAnimationDone }) => {
           <div className="jungle-el-section absolute xl:bottom-[0%] sm:bottom-[0%] xl:right-[0%] md:right-[0%] sm:right-[0%] xl:w-[15vw] md:w-[20vw] sm:w-[40vw] z-0">
             <img src="assets/jungle/layer-feuilledroite.webp" alt="jungle2" className="w-full h-full object-contain z-0" />
           </div>
-          <div className="jungle-el-section absolute xl:bottom-[50%] sm:bottom-[65%] xl:right-[15%] md:right-[40%] sm:right-[70%] xl:w-[10vw] md:w-[15vw] sm:w-[20vw] z-0">
+          <div className="jungle-el-section absolute xl:bottom-[50%] lg:bottom-[50%] sm:bottom-[65%] xl:right-[15%] lg:right-[15%] md:right-[40%] sm:right-[70%] xl:w-[10vw] lg :w-[10vw] md:w-[15vw] sm:w-[20vw] z-0">
             <img src="assets/jungle/layer-Bird.webp" alt="jungle3" className="w-full h-full object-contain z-0" />
           </div>
         </section>
 
         {/* Zone 4 - Slider */}
-        <section className="zone-4 slider-section relative w-full h-[100vh] flex items-center bg-transparent"
-          style={{ padding: "0 0vw" }} // Limite la largeur à 80% de la page
-        >
+        <section className="zone-4 relative w-full h-[100vh] flex flex-col items-center justify-center bg-transparent">
           <div className="w-full">
             <BottleSlider
               bottles={bottlesConfig(t)}
               onBottleChange={handleBuyClick}
               selectedBottle={selectedBottle}
-              onBuy={onclick} // Bewxzutton action
+              onBuy={onclick}
             />
           </div>
         </section>
@@ -222,7 +222,7 @@ const Home = ({ isModelLoaded, isAnimationDone }) => {
               <button className="highlight-button btn-animated">{t('home.zone5.button')}</button>
             </Link>
           </div>
-          <div className="jungle-el-section absolute xl:bottom-[8%] lg:bottom-[8%] md:bottom-[3%] sm:bottom-[14%] xl:left-[30%] lg:left-[30%] md:left-[25%] sm:left-[19%] xl:h-[18vw] lg:h-[17vw] md:w-[20vw] sm:w-[29vw] z-0">
+          <div className="jungle-el-section absolute xl:bottom-[8%] lg:bottom-[8%] md:bottom-[3%] sm:bottom-[14%] xl:left-[30%] lg:left-[30%] md:left-[25%] sm:left-[19%] xl:h-[18vw] lg:h-[17vw] md:w-[15vw] sm:w-[29vw] z-0">
             <img src="assets/cocktails/cocktailTest.webp" alt="cocktail" className="w-full h-full object-contain z-0" />
           </div>
           <div className="jungle-el-section absolute xl:bottom-[60%] sm:bottom-[80%] xl:left-[10%] md:left-[20%] sm:left-[15%] xl:w-[5vw] lg:w-[5vw] md:w-[7vw] sm:w-[10vw] z-0">
@@ -232,7 +232,7 @@ const Home = ({ isModelLoaded, isAnimationDone }) => {
 
         <section className="zone-6 slider-section relative w-full h-screen flex flex-col items-center justify-center bg-transparent">
           <div className="text-center sm:mt-0 xl:max-w-[40vw] md:max-w-[40vw] sm:max-w-[60vw] z-10">
-          <h2 className="highlight-title font-bold font-yana text-gold mb-5 2xl:text-6xl xl:text-4xl lg:text-3xl md:text-3xl sm:text-2xl">SUIVEZ-NOUS SUR INSTAGRAM</h2>
+            <h2 className="highlight-title font-bold font-yana text-gold mb-5 2xl:text-6xl xl:text-4xl lg:text-3xl md:text-3xl sm:text-2xl">SUIVEZ-NOUS SUR INSTAGRAM</h2>
           </div>
 
           {/* 📌 Intégration du feed Instagram dynamique */}

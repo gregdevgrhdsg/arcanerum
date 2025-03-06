@@ -184,12 +184,11 @@ const Navbar = () => {
         </div>
 
         {/* Logo centré */}
-    {/* Logo centré */}
-<div className="flex xl:justify-center lg:justify-center md:justify-center sm:justify-start">
-  <Link to="/" onClick={closeMobileMenu}>
-    <img src={monoGramLogo} alt="Arcane" className="2xl:w-24 xl:w-16 md:w-16 sm:w-16" />
-  </Link>
-</div>
+        <div className="flex xl:justify-center lg:justify-center md:justify-center sm:justify-start">
+          <Link to="/" onClick={closeMobileMenu}>
+            <img src={monoGramLogo} alt="Arcane" className="2xl:w-24 xl:w-16 md:w-16 sm:w-16" />
+          </Link>
+        </div>
 
         {/* Navigation droite */}
         <div className="flex-1 flex justify-end 2xl:space-x-20 xl:space-x-10 lg:space-x-4 md:space-x-4 hidden md:flex">
@@ -228,12 +227,12 @@ const Navbar = () => {
         className="mobile-menu w-full fixed inset-0 bg-black text-white flex flex-col items-center justify-center hidden"
         style={{ zIndex: 99 }}
       >
-     {/* Logo centré */}
-<div className="flex xl:justify-center lg:justify-center md:justify-center sm:justify-start">
-  <Link to="/" onClick={closeMobileMenu}>
-    <img src={logoArcane} alt="Arcane" className="2xl:w-24 xl:w-16 md:w-16 sm:w-16" />
-  </Link>
-</div>
+        {/* Logo centré */}
+        <div className="flex xl:justify-center lg:justify-center md:justify-center sm:justify-start">
+          <Link to="/" onClick={closeMobileMenu}>
+            <img src={logoArcane} alt="Arcane" className="2xl:w-24 xl:w-16 md:w-16 sm:w-36" />
+          </Link>
+        </div>
         {navLists.map((nav, index) => (
           <div key={index} className="w-full">
             {subMenuLinks[index]?.length > 0 ? (

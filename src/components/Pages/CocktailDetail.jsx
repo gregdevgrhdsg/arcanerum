@@ -117,7 +117,7 @@ const CocktailDetail = () => {
       {previousCocktail && (
         <Link
           to={`/cocktail/${previousCocktail.id}`}
-          className="lg:flex fixed left-5 sm:top-1/4 md:top-1/2 lg:top-1/2 transform -translate-y-1/2 text-gold text-5xl hover:text-black z-30"
+          className="lg:flex fixed left-5 sm:top-1/3 md:top-1/2 lg:top-1/2 transform -translate-y-1/2 text-gold text-5xl hover:text-black z-30"
         >
           &larr;
         </Link>
@@ -125,19 +125,19 @@ const CocktailDetail = () => {
       {nextCocktail && (
         <Link
           to={`/cocktail/${nextCocktail.id}`}
-          className="lg:flex fixed right-5 sm:top-1/4 md:top-1/2 lg:top-1/2 transform -translate-y-1/2 text-gold text-5xl hover:text-black z-30"
+          className="lg:flex fixed right-5 sm:top-1/3 md:top-1/2 lg:top-1/2 transform -translate-y-1/2 text-gold text-5xl hover:text-black z-30"
         >
           &rarr;
         </Link>
       )}
 
-      <div className="cocktail-detail-container relative flex flex-col lg:flex-row lg:items-center lg:justify-center sm:justify-center w-full max-w-screen-full md:mt-24 sm:mt-24 z-10">
+      <div className="cocktail-detail-container xl:pl-24 xl:pr-24 sm:pl-0 sm:pr-0 relative flex flex-col lg:flex-row lg:items-center lg:justify-center sm:justify-center w-full max-w-screen-full md:mt-24 sm:mt-24 z-10">
         {/* Image fixe */}
         <div ref={imageRef} className="flex items-center justify-center">
           <img
             src={cocktail.image}
             alt={cocktail.name?.[currentLang] ?? "Nom inconnu"}
-            className="px-8 max-w-[100%] object-contain xl:h-[60vh] lg:h-[40vh] lg:max-w-full"
+            className="xl:pl-0 xl:pr-0 md:pl-0 md:pr-0 sm:pl-16 sm:pr-16 px-8 max-w-[100%] object-contain xl:h-[60vh] lg:h-[40vh] lg:max-w-full"
           />
         </div>
 
@@ -153,13 +153,13 @@ const CocktailDetail = () => {
 
 
           {/* Sélecteur de section */}
-          <div className="flex justify-center space-x-4 mb-6">
+          <div className="flex sm:justify-center space-x-4 mb-12">
           
             {cocktail.sections.map((section, index) => (
               <button
                 key={index}
                 onClick={() => setActiveSection(index)}
-                className={`px-2 py-2 sm:text-xs md:text-base font-yana ${activeSection === index ? "text-gold border-b-2 border-gold" : "text-gray-500"
+                className={`px-2 py-2 sm:text-xs md:text-base 2xl:text-2xl font-yana leading-none  ${activeSection === index ? "text-gold border-b-2 border-gold" : "text-gray-500"
                   }`}
               >
                 {section.title?.[currentLang] ?? "Titre inconnu"}
@@ -190,7 +190,7 @@ const CocktailDetail = () => {
           <h2 className="font-yana text-white 2xl:text-4xl xl:text-xl lg:text-1xl md:1xl sm:text-sm text-gold mb-4">{translations[currentLang].method}</h2>
           <ul className="list-disc ml-4 space-y-2">
             {currentSection.method.map((step, index) => (
-              <li key={index} className="text-left font-yana text-white 2xl:text-3xl xl:text-xl lg:text-1xl md:1xl sm:text-sm">
+              <li key={index} className="text-left font-yana leading-none text-white 2xl:text-3xl xl:text-xl lg:text-1xl md:1xl sm:text-sm">
                 {step?.[currentLang] ?? "Étape inconnue"}
               </li>
             ))}
@@ -211,7 +211,7 @@ const CocktailDetail = () => {
       <div className="jungle-el-section absolute bottom-10 right-0 sm:w-[20vw] z-[1]">
         <img src="/assets/jungle/layer-feuilledroite.webp" alt="jungle3" className="w-full h-full object-contain" />
       </div>
-      <div className="jungle-el-section absolute sm:top-[10%] bottom-[60%] left-[10%] w-[10vw] z-[10]">
+      <div className="jungle-el-section absolute sm:top-[10%] left-[10%] md:w-[10vw] sm:w-[15vw] z-[10]">
         <img src="/assets/jungle/layer-Bird.webp" alt="jungle5" className="w-full h-full object-contain" />
       </div>
     </section>

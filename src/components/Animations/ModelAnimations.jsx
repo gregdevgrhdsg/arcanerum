@@ -6,9 +6,10 @@ gsap.registerPlugin(ScrollTrigger);
 // Détection de la taille d'écran
 const getScreenSize = () => {
   const width = window.innerWidth;
-  if (width < 640) return "mobile";
-  if (width < 1024) return "tablet";
-  return "desktop";
+  if (width < 1024) return "mobile";
+  if (width < 1440) return "tablet";
+  if (width < 1700) return "medium";
+    else return "desktop";
 };
 
 // Configuration centralisée pour les zones avec animations responsives
@@ -20,6 +21,11 @@ const zoneConfigurations = {
         position: { x: -0.2, y: -1, duration: 2, ease: "power5.inOut" },
         rotation: { y: 7.2, z: 0.2, duration: 2, ease: "power5.inOut" },
         camera: { z: 3.6, duration: 2, ease: "power5.inOut" },
+      },      
+      medium: {
+        position: { x: -0.2, y: -1, duration: 2, ease: "power5.inOut" },
+        rotation: { y: 7.2, z: 0.2, duration: 2, ease: "power5.inOut" },
+        camera: { z: 4.5, duration: 2, ease: "power5.inOut" },
       },
       tablet: {
         position: { x: -0.2, y: -1, duration: 2, ease: "power5.inOut" },
@@ -41,6 +47,11 @@ const zoneConfigurations = {
         rotation: { x: 0, y: -0.2, z: -0.2, duration: 2, ease: "power5.inOut" },
         camera: { z: 3.5, duration: 2, ease: "power5.inOut" },
       },
+      medium: {
+        position: { x: 0.3, y: -0.9, z: 0, duration: 2, ease: "power5.inOut" },
+        rotation: { x: 0, y: -0.2, z: -0.2, duration: 2, ease: "power5.inOut" },
+        camera: { z: 4.5, duration: 2, ease: "power5.inOut" },
+      },
       tablet: {
         position: { x: 0.3, y: -0.9, z: 0, duration: 2, ease: "power5.inOut" },
         rotation: { x: 0, y: -0.2, z: -0.2, duration: 2, ease: "power5.inOut" },
@@ -57,12 +68,17 @@ const zoneConfigurations = {
     trigger: ".zone-3",
     animations: {
       desktop: {
-        position: { x: 0.7, y: -0.9, z:0, duration: 1.5, ease: "power2.inOut" },
-        rotation: { x:0, y:0, z:0, duration: 1.5, ease: "power2.inOut" },
-        camera: {  z: 4.8, duration: 1.5, ease: "power2.inOut" },  
+        position: { x: 0.7, y: -0.8, z:0, duration: 1.5, ease: "power5.inOut" },
+        rotation: { x:0, y:0, z:0, duration: 1.5, ease: "power5.inOut" },
+        camera: {  z: 4.5, duration: 1.5, ease: "power5.inOut" },  
+      },
+      medium: {
+        position: { x: 0.5, y: -0.9, z: 0, duration: 2, ease: "power5.inOut" },
+        rotation: { x: 0, y: -0.1, z: 0, duration: 2, ease: "power5.inOut" },
+        camera: {z: 5.5, duration: 2, ease: "power5.inOut" },
       },
       tablet: {
-        position: { x: 0.6, y: -0.9, z: 0, duration: 2, ease: "power5.inOut" },
+        position: { x: 0.5, y: -0.9, z: 0, duration: 2, ease: "power5.inOut" },
         rotation: { x: 0, y: -0.1, z: 0, duration: 2, ease: "power5.inOut" },
         camera: {z: 5.5, duration: 2, ease: "power5.inOut" },
       },
@@ -80,6 +96,11 @@ const zoneConfigurations = {
         position: { x: -1, y: -0.8, z:0, duration: 1.5, ease: "power2.inOut" },
         rotation: { y: 7.2, z: 0, x:0.04, duration: 1.5, ease: "power2.inOut" },
         camera: { z: 5, duration: 1.5, ease: "power2.inOut" },
+      },
+      medium: {
+        position: { x: -0.5, y: -0.8, z: 0, duration: 2, ease: "power5.inOut" },
+        rotation: { x: 0, y: 1, z: 0, duration: 2, ease: "power5.inOut" },
+        camera: { z: 4.5, duration: 2, ease: "power5.inOut" },
       },
       tablet: {
         position: { x: -0.5, y: -0.8, z: 0, duration: 2, ease: "power5.inOut" },
@@ -164,13 +185,13 @@ const setupAnimationsForScreenSize = (modelRef, cameraRef) => {
   ScrollTrigger.refresh();
 };
 
-// Fonction principale pour configurer toutes les animations des zones
 export const setupModelAnimations = (modelRef, cameraRef) => {
   if (!modelRef?.current || !cameraRef?.current) {
-    console.warn("Références manquantes pour le modèle ou la caméra.");
+    console.warn("⛔ Annulation de setupModelAnimations : Références manquantes.");
     return;
   }
 
+  console.log("✅ Initialisation de setupModelAnimations avec un modèle et une caméra valides.");
   setupAnimationsForScreenSize(modelRef, cameraRef);
 };
 // Transition vers la vue détaillée

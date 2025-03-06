@@ -89,38 +89,40 @@ const LesCocktails = () => {
       }}
     >
       {/* 🏷️ Titre et description */}
-      <div className="ml-10 mr-10 mt-28 items-center justify-center">
-        <h1 className="2xl:text-6xl xl:text-4xl lg:text-lg md:text-3xl sm:text-2xl text-center text-gold font-yana mb-4 font-bold">
+      <div className="ml-10 mr-10 mt-28  2xl:mt-48 items-center justify-center max-w-2xl">
+        <h1 className="2xl:text-6xl xl:text-4xl lg:text-4xl md:text-3xl sm:text-2xl text-center text-gold font-yana mb-4 font-bold">
           {lang === "fr" ? "NOTRE  SÉLECTION DE COCKTAILS" : "FULL RECIPE LIST"}
         </h1>
-        <p className="2xl:text-3xl xl:text-xl lg:text-lg md:text-lg sm:text-sm font-yana text-white mb-8 max-w-2xl text-center">
+        <p className="2xl:text-3xl xl:text-xl lg:text-lg md:text-lg sm:text-sm font-yana text-white mb-8 max-w-4xl text-center">
           {lang === "fr"
-            ? "Découvrez notre sélection de cocktails créés sur mesure, chacun conçu pour vous offrir une expérience gustative inoubliable."
+            ? "Découvrez notre sélection de cocktails créés sur mesure, conçus pour vous offrir une expérience gustative inoubliable."
             : "Discover our selection of curated cocktails, each one crafted to bring you an unforgettable taste experience."}
         </p>
       </div>
 
       {/* 🔎 Barre de filtre */}
       <div className="filter-bar w-full flex flex-col items-center mb-8">
-        <div className="w-full max-w-5xl border-b border-gold pb-4">
-          <div className="flex justify-center gap-6">
-            {Object.keys(categoryMapping).map((category) => (
-              <button
-                key={category}
-                className={`text-lg font-yana cursor-pointer ${activeFilter === category ? "text-gold font-bold" : "text-gold-400"
-                  } hover:text-gold transition`}
-                onClick={() => filterCocktails(category)}
-                aria-label={`Filtrer par ${category}`}
-              >
-                {category}
-              </button>
-            ))}
-          </div>
-        </div>
-      </div>
+    <div className="flex justify-center gap-6">
+      {Object.keys(categoryMapping).map((category) => (
+        <button
+          key={category}
+          className={`px-6 py-2 text-lg 2xl:text-3xl font-yana rounded-md border-2 transition-all duration-300
+            ${
+              activeFilter === category
+                ? "bg-gold text-black border-gold shadow-lg scale-110" // Style actif
+                : "text-gold border-gold hover:bg-gold hover:text-black hover:scale-105"
+            }`}
+          onClick={() => filterCocktails(category)}
+          aria-label={`Filtrer par ${category}`}
+        >
+          {categoryMapping[category][lang] || category} {/* 🔹 Utilisation de la traduction */}
+        </button>
+      ))}
+    </div>
+</div>
 
       {/* 🍹 Liste des cocktails */}
-      <div className="cocktail-list grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 px-6 max-w-[1100px]">       
+      <div className="cocktail-list grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 2xl:gap-12 px-6 ">       
          {filteredCocktails.length > 0 ? (
           filteredCocktails.map((cocktail) => (
             <Link
@@ -132,12 +134,12 @@ const LesCocktails = () => {
                 <img
                   src={cocktail.imageB}
                   alt={cocktail.name?.[lang] || "Cocktail"}
-                  className="object-contain mb-4 h-64 md:h-80 lg:h-96"
+                  className="object-contain mb-4 2xl:h-[25vw] md:h-80 lg:h-96"
                 />
-                <h2 className="text-md leading-none 2xl:text-2xl xl:text-2xl lg:text-xl md:text-lg sm:text-sm text-gold font-semibold mb-1 text-center">
+                <h2 className="text-md leading-none 2xl:text-4xl xl:text-2xl lg:text-xl md:text-lg sm:text-sm text-gold font-semibold mb-1 text-center">
                   {cocktail.name?.[lang] ?? "Nom inconnu"}
                 </h2>
-                <p className="text-sm text-gold font-yana">
+                <p className="2xl:text-2xl xl:text-xl lg:text-xl md:text-lg sm:text-sm text-gold font-yana">
                   {cocktail.category?.[lang] ?? "Catégorie inconnue"}
                 </p>
               </div>

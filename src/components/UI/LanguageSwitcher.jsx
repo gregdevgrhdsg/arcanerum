@@ -10,6 +10,11 @@ const LanguageSwitcher = () => {
   const dropdownRef = useRef(null);
   const listRef = useRef(null);
 
+  // Forcer la langue par défaut à "fr" lors du montage du composant
+  useEffect(() => {
+    i18n.changeLanguage('fr');
+  }, [i18n]);
+
   const languages = [
     { code: 'fr', countryCode: 'FR', label: 'Français' },
     { code: 'en', countryCode: 'GB', label: 'English' },
@@ -24,10 +29,7 @@ const LanguageSwitcher = () => {
   // Fermer la liste déroulante lorsqu'on clique en dehors
   useEffect(() => {
     const handleClickOutside = (event) => {
-      if (
-        dropdownRef.current &&
-        !dropdownRef.current.contains(event.target)
-      ) {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
         setIsOpen(false);
       }
     };
@@ -38,7 +40,7 @@ const LanguageSwitcher = () => {
     };
   }, []);
 
-  // Animation avec GSAP pour l'ouverture/fermeture
+  // Animation avec GSAP pour l'ouverture/fermeture de la liste
   useEffect(() => {
     if (listRef.current) {
       if (isOpen) {
@@ -58,9 +60,8 @@ const LanguageSwitcher = () => {
     }
   }, [isOpen]);
 
-  const currentLanguage = languages.find(
-    (lang) => lang.code === i18n.language
-  ) || languages[0];
+  const currentLanguage =
+    languages.find((lang) => lang.code === i18n.language) || languages[0];
 
   return (
     <div className="relative flex items-center justify-center" ref={dropdownRef}>
@@ -76,7 +77,9 @@ const LanguageSwitcher = () => {
           className="w-6 h-6 md:w-8 md:h-8 lg:w-10 lg:h-10 2xl:w-26 2xl:h-26 mr-2"
           title={currentLanguage.label}
         />
-        <span className="font-yana">{currentLanguage.code.toUpperCase()}</span>
+        <span className="font-yana">
+          {currentLanguage.code.toUpperCase()}
+        </span>
         <svg
           className="ml-2 w-4 h-4 fill-current"
           xmlns="http://www.w3.org/2000/svg"
@@ -99,8 +102,11 @@ const LanguageSwitcher = () => {
             <button
               key={lang.code}
               onClick={() => changeLanguage(lang.code)}
-              className={`flex items-center w-full px-4 py-2 text-left hover:bg-gold hover:text-white transition-colors duration-300 ${lang.code === currentLanguage.code ? 'bg-gold text-white' : 'bg-transparent text-gold'
-                }`}
+              className={`flex items-center w-full px-4 py-2 text-left transition-colors duration-300 ${
+                lang.code === currentLanguage.code
+                  ? 'bg-gold text-white'
+                  : 'bg-transparent text-gold hover:bg-gold hover:text-white'
+              }`}
               aria-label={`Changer la langue en ${lang.label}`}
             >
               <ReactCountryFlag

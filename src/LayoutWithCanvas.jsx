@@ -120,7 +120,7 @@ const LayoutWithCanvas = () => {
               overflow: "hidden", // 🔥 Empêche tout débordement
             }}
           >
-            <Jungle isModelLoaded={isModelLoaded} position="background" />
+            <Jungle isModelLoaded={isModelLoaded} position="background" followRock={true} />
           </div>
         )}
         {isCanvasVisible && (

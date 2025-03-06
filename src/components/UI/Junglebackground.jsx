@@ -1,17 +1,62 @@
-// src/components/UI/Junglebackground.jsx
-import React, { useLayoutEffect, useEffect, useState } from "react";
+import React, { useLayoutEffect, useEffect, useRef, useState } from "react";
 import gsap from "gsap";
-import { useModel } from "../Context/ModelContext"
+import { useModel } from "../Context/ModelContext";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { object, section } from "framer-motion/client";
 
 gsap.registerPlugin(ScrollTrigger);
 
-const Jungle = ({ isModelLoaded, position = "background" }) => {
+const Jungle = ({ isModelLoaded, position = "background", followRock = false }) => {
   const [rockBottom, setRockBottom] = useState("-10vh");
   const [rockHeight, setRockHeight] = useState("700px");
   const [rockRight, setRockRight] = useState("0%");
   const [rockLeft, setRockLeft] = useState("2%");
+
+  // Récupération de rockPos depuis le contexte
+  const { rockPos } = useModel();
+
+  // Création d'une référence pour le conteneur de Jungle
+  const containerRef = useRef(null);
+  const [offsetY, setOffsetY] = useState(0);
+  const staticOffset = window.innerHeight; // par exemple, 100vh
+
+
+  // Calcul de l'offset vertical du conteneur Jungle
+  useEffect(() => {
+    const updateOffset = () => {
+      if (containerRef.current) {
+        const rect = containerRef.current.getBoundingClientRect();
+        setOffsetY(rect.top);
+        console.log("offsetY:", rect.top);
+      }
+    };
+    updateOffset();
+    window.addEventListener("resize", updateOffset);
+    return () => window.removeEventListener("resize", updateOffset);
+  }, []);
+
+  // Calcul de la position ajustée du rocher
+  const adjustedRockPos = {
+    x: rockPos.x,
+    y: rockPos.y - staticOffset,
+  };
+
+  // Style conditionnel pour le layer-rock
+  const rockLayerStyle = followRock
+    ? {
+        position: "absolute",
+        left: adjustedRockPos.x,
+        top: adjustedRockPos.y,
+        transform: "translate(-50%, -50%)",
+        width: "50vw", // ajustez la taille selon vos besoins
+        zIndex: 10, // pour s'assurer qu'il est au-dessus
+      }
+    : {
+        bottom: rockBottom,
+        right: rockRight,
+        left: rockLeft,
+        width: rockHeight,
+      };
 
   useEffect(() => {
     const updateRockPosition = () => {
@@ -24,17 +69,27 @@ const Jungle = ({ isModelLoaded, position = "background" }) => {
         setRockLeft("auto");
       } else if (screenHeight < 800) {
         setRockBottom("-12vh");
-        setRockRight("7%");
+        setRockRight("0%");
         setRockHeight("45vw");
         setRockLeft("auto");
-      } else if (screenHeight < 1000) {
+      } else if (screenHeight < 1060) {
         setRockBottom("-10vh");
         setRockHeight("700px");
         setRockRight("0%");
         setRockLeft("auto");
+      } else if (screenHeight < 1080) {
+        setRockBottom("-8vh");
+        setRockHeight("750px");
+        setRockRight("0%");
+        setRockLeft("auto");
       } else if (screenHeight < 1600) {
         setRockBottom("-13vh");
-        setRockRight("8%");
+        setRockRight("0%");
+        setRockLeft("auto");
+      } else if (screenHeight < 1650) {
+        setRockBottom("-0vh");
+        setRockHeight("1200px");
+        setRockRight("0%");
         setRockLeft("auto");
       } else if (screenHeight < 1900) {
         setRockBottom("-7vh");
@@ -51,7 +106,6 @@ const Jungle = ({ isModelLoaded, position = "background" }) => {
   
     updateRockPosition();
     window.addEventListener("resize", updateRockPosition);
-  
     return () => window.removeEventListener("resize", updateRockPosition);
   }, []);
 
@@ -61,7 +115,7 @@ const Jungle = ({ isModelLoaded, position = "background" }) => {
       ".layer-fond img",
       { y: 0 },
       {
-        y: "50vh", // Ajustez cette valeur pour obtenir l'effet souhaité
+        y: "50vh",
         ease: "none",
         scrollTrigger: {
           trigger: ".jungle-section",
@@ -75,26 +129,14 @@ const Jungle = ({ isModelLoaded, position = "background" }) => {
 
   useLayoutEffect(() => {
     if (!isModelLoaded) return;
-
     const mm = gsap.matchMedia();
-
-
-
-    const elementsToAnimate = position === "foreground"
-      ? [
-
-      ]
-      : [
-
-      ];
-
+    const elementsToAnimate = position === "foreground" ? [] : [];
     elementsToAnimate.forEach(({ selector, positions, scale }) => {
       const element = document.querySelector(selector);
       if (!element) {
         console.warn(`Élément non trouvé pour le sélecteur: ${selector}`);
         return;
       }
-
       mm.add("(max-width: 767px)", () => {
         gsap.fromTo(
           element,
@@ -114,7 +156,6 @@ const Jungle = ({ isModelLoaded, position = "background" }) => {
           }
         );
       });
-
       mm.add("(min-width: 768px) and (max-width: 1023px)", () => {
         gsap.fromTo(
           element,
@@ -134,7 +175,6 @@ const Jungle = ({ isModelLoaded, position = "background" }) => {
           }
         );
       });
-
       mm.add("(min-width: 1024px)", () => {
         gsap.fromTo(
           element,
@@ -155,114 +195,101 @@ const Jungle = ({ isModelLoaded, position = "background" }) => {
         );
       });
     });
-
-    return () => mm.revert(); // Nettoyage
+    return () => mm.revert();
   }, [isModelLoaded]);
 
   return (
-    <section >
-      <div className={`zone-1 w-full h-screen absolute ${position === "foreground" ? "z-30" : "z-0"}`}>
+    <section>
+      <div ref={containerRef} className={`zone-1 w-full h-screen absolute ${position === "foreground" ? "z-30" : "z-0"}`}>
         {position === "background" && (
           <div
             className="layer-fond relative"
             style={{
               top: "0",
               left: "0",
-
               zIndex: 0,
-              overflow: "hidden", // Empêche tout débordement
-
+              overflow: "hidden",
             }}
           >
             <img
               src="assets/jungle/fond-Arcane.webp"
               alt="Fond"
-              className="jungle-section w-full z-0 "
+              className="jungle-section w-full z-0"
               style={{
                 overflow: "hidden",
-                objectFit: "cover", // Permet de voir l'image entière
-                objectPosition: "center", // Centre l'image
+                objectFit: "cover",
+                objectPosition: "center",
                 minWidth: "1080px",
-                height: "600vh", // Fixé pour couvrir 5 sections de 100vh
-                maxHeight: "600vh", // Ne jamais dépasser cette hauteur
+                height: "600vh",
+                maxHeight: "600vh",
               }}
             />
           </div>
         )}
         {[
-          // Background ou Foreground en fonction du props
           ...(position === "foreground"
             ? [
-              {
-                src: "assets/jungle/layer-feuilleGauche2.webp",
-                alt: "feuilleGauche2",
-                className: "layer-feuilleGauche2 xl:w-[25%] md:w-[25%] sm:w-[45%] z-50",
-                style: { bottom: "0%", left: "0%" }
-              },
-              {
-                src: "assets/jungle/layer-feuilleGauche.webp",
-                alt: "feuilleGauche",
-                className: "layer-feuilleGauche xl:w-[25%] lg:w-[25%] md:w-[25%] sm:w-[45%] z-50",
-                style: { bottom: "0%", left: "0%" }
-              },
-
-            ]
+                {
+                  src: "assets/jungle/layer-feuilleGauche2.webp",
+                  alt: "feuilleGauche2",
+                  className: "layer-feuilleGauche2 xl:w-[25%] md:w-[35%] sm:w-[45%] z-50",
+                  style: { bottom: "0%", left: "0%" },
+                },
+                {
+                  src: "assets/jungle/layer-feuilleGauche.webp",
+                  alt: "feuilleGauche",
+                  className: "layer-feuilleGauche xl:w-[25%] lg:w-[35%] md:w-[25%] sm:w-[45%] z-50",
+                  style: { bottom: "0%", left: "0%" },
+                },
+              ]
             : [
-
-              {
-                src: "assets/jungle/layer-rock.webp",
-                alt: "rock",
-                className: "layer-rock sm:hidden md:block absolute xl:right-[0%] sm:w-[70vw]",
-                style: {
-                  bottom: rockBottom, // ✅ Position verticale dynamique
-                  right: rockRight,   // ✅ Position horizontale dynamique
-                  left: rockLeft,     // ✅ Position horizontale dynamique
-                  width: rockHeight,
-                }
-              },
-              {
-                src: "assets/jungle/layer-blur.webp",
-                alt: "blur",
-                className: "layer-blur sm:bottom-[0%] z-20",
-                style: {
-                  position: "absolute",
-                  top: "90%",
-                  width: "100%", // Fixer une largeur en pixels
-                  transform: "translateX(-50%)", // Ajustement centré
-                  left: "50%",
-                }
-              },
-              {
-                src: "assets/jungle/layer-plantFront.webp",
-                alt: "Plante 1",
-                className: "layer-plante1 xl:w-[30%] lg:w-[30%] md:w-[45%] sm:w-[80%] z-10",
-                style: { bottom: "0", left: "0%" }
-              },
-
-              {
-                src: "assets/jungle/layer-ciel.webp",
-                alt: "Ciel",
-                className: "layer-ciel",
-                responsiveClass: "",
-                style: { width: "100%", top: "0", left: "0%", transform: "translateY(-10%)" }
-              },
-
-              {
-                src: "assets/jungle/layer-dodo.png",
-                alt: "Dodo",
-                className: "layer-dodo absolutexl: xl:w-[25%] lg:w-[25%] md:w-[40%] sm:w-[70vw] xl:bottom-[15%] lg:bottom-[15%] md:bottom-[10%] left-0 sm:bottom-[40%] xl:w-[25%] ",
-                responsiveClass: " md:translate-y-[-5%] lg:translate-y-[-10%]",
-              },
-
-            ]),
-
+                {
+                  src: "assets/jungle/layer-rock.webp",
+                  alt: "rock",
+                  className: "layer-rock sm:hidden md:block absolute md:w-[70vw]",
+                  style: rockLayerStyle,
+                },
+                {
+                  src: "assets/jungle/layer-blur.webp",
+                  alt: "blur",
+                  className: "layer-blur sm:bottom-[0%] z-20",
+                  style: {
+                    position: "absolute",
+                    top: "90%",
+                    width: "100%",
+                    transform: "translateX(-50%)",
+                    left: "50%",
+                  },
+                },
+                {
+                  src: "assets/jungle/layer-plantFront.webp",
+                  alt: "Plante 1",
+                  className: "layer-plantFront xl:w-[30%] lg:w-[50%] md:w-[45%] sm:w-[80%] z-10",
+                  style: { bottom: "0", left: "0%" },
+                },
+                {
+                  src: "assets/jungle/layer-ciel.webp",
+                  alt: "Ciel",
+                  className: "layer-ciel",
+                  responsiveClass: "",
+                  style: { width: "100%", top: "0", left: "0%", transform: "translateY(-10%)" },
+                },
+                {
+                  src: "assets/jungle/layer-dodo.png",
+                  alt: "Dodo",
+                  className: "layer-dodo absolutexl: xl:w-[25%] lg:w-[25%] lg:min-w-[35%] md:w-[40%] sm:w-[70vw] xl:bottom-[15%] lg:bottom-[15%] md:bottom-[10%] left-0 sm:bottom-[40%] xl:w-[25%] ",
+                  responsiveClass: " md:translate-y-[-5%] lg:translate-y-[-10%]",
+                },
+              ]),
         ].map((layer, index) => (
-          <div key={index} className={`absolute ${layer.className} ${layer.responsiveClass} 
-     `}
+          <div
+            key={index}
+            className={`absolute ${layer.className} ${layer.responsiveClass || ""}`}
             style={{
               ...layer.style,
-              maxWidth: "100vw", // Limite la largeur du conteneur au viewport
-            }}>
+              maxWidth: "100vw",
+            }}
+          >
             <img src={layer.src} alt={layer.alt} className="w-full max-w-full object-cover" />
           </div>
         ))}

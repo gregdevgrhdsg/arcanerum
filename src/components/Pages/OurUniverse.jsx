@@ -28,8 +28,8 @@ const SliderSection = ({ slider }) => {
       if (!imageRef.current) return;
       gsap.fromTo(
         imageRef.current,
-        { opacity: 0, x: 50 },
-        { opacity: 1, x: 0, duration: 2, ease: 'power2.out' }
+        { opacity: 0, y: 10 },
+        { opacity: 1, y: 0, duration: 2, ease: 'power2.out' }
       );
     }, [currentIndex]);
   }
@@ -60,10 +60,9 @@ const SliderSection = ({ slider }) => {
   );
 
   if (slider.id === 2) {
-    // Pour la section 2, on conserve la mise en page et l'animation d'origine, 
-    // mais on supprime les flèches de navigation.
+    // Section 2 : on conserve la mise en page et l'animation d'origine, sans flèches
     return (
-      <section className={`h-screen flex flex-col bg-transparent slide-${slider.id}`}>
+      <section className={`relative min-h-screen h-screen flex flex-col bg-transparent slide-${slider.id}`}>
         <div
           className={`h-full w-full relative flex ${slider.flexClasses}`}
           style={{
@@ -93,72 +92,69 @@ const SliderSection = ({ slider }) => {
       </section>
     );
   } else {
-    // Pour les autres sections :
+    // Pour les autres sections (1 et 3)
     // - La section 3 est inversée en desktop grâce à "lg:flex-row-reverse"
-    // - Les conteneurs utilisent "p-4 lg:p-10" pour un padding plus léger sur mobile.
+    // - On ajoute des flèches de chaque côté en position absolue
     const layoutClass = slider.id === 3 ? 'flex-col lg:flex-row-reverse' : 'flex-col lg:flex-row';
     return (
-      <section className={`relative md:pt-40 sm:pt-24 md:pb-40 sm:pb-24 xl:h-screen lg:h-screen md:h-auto sm:h-auto flex ${layoutClass} p-4 lg:p-10`}>         {slider.id === 1 && (
+      <section className={`relative min-h-screen flex ${layoutClass}`}>
+        {slider.id === 1 && (
           <>
-            <div className="jungle-el-section absolute bottom-10 left-0 xl:w-[15vw] lg:w-[10vw] sm:w-[20vw] z-10">
-              <img src="/assets/jungle/layer-feuilleGauche.webp" alt="Jungle Element Left" className="w-full h-full object-contain" />
-            </div>
-            <div className="jungle-el-section absolute bottom-10 left-0 xl:w-[15vw] lg:w-[10vw] sm:w-[20vw] z-10">
-              <img src="/assets/jungle/layer-feuilleGauche2.webp" alt="Jungle Element Left" className="w-full h-full object-contain" />
-            </div>
+ 
           </>
         )}
 
         {slider.id === 3 && (
           <>
-            <div className="jungle-el-section absolute bottom-20 right-0 xl:w-[15vw] lg:w-[10vw] sm:w-[20vw] z-10">
-              <img src="/assets/jungle/layer-feuilledroite.webp" alt="Jungle Element Right" className="w-full h-full object-contain" />
-            </div>
-            <div className="jungle-el-section absolute bottom-20 right-0 xl:w-[15vw] lg:w-[10vw] sm:w-[20vw] z-10">
-              <img src="/assets/jungle/layer-feuilledroite2.webp" alt="Jungle Element Right" className="w-full h-full object-contain" />
-            </div>
+
           </>
         )}
 
-        <div className="lg:w-1/2 w-full bg-black p-4 lg:p-10 flex flex-col justify-center items-center text-center">
+        <div className="lg:w-1/2 bg-black lg:p-20 xl:p-30 2xl:p-40 flex flex-col justify-center items-center md:pt-40 md:pb-40 sm:pt-32 sm:pb-20 text-center md:max-w-[80vw] sm:max-w-[80vw] mx-auto lg:pt-0 ">
           <h2
             ref={titleRef}
-            className="highlight-title font-yana font-bold text-gold leading-none 2xl:text-6xl xl:text-4xl lg:text-3xl md:text-3xl sm:text-2xl mb-3"
+            className="highlight-title font-yana font-bold text-gold leading-none 2xl:text-6xl xl:text-4xl lg:text-4xl md:text-4xl sm:text-2xl mb-3"
           >
             {slider.title}
           </h2>
           <p
             ref={textRef}
-            className="highlight-description font-yana text-white 2xl:text-3xl xl:text-xl lg:text-lg md:text-md sm:text-sm"
+            className="highlight-description font-yana text-white 2xl:text-3xl xl:text-xl lg:text-lg md:text-lg sm:text-sm"
           >
             {slides[currentIndex]}
           </p>
           {pagination}
-          <div className="flex justify-center items-center mt-4">
-            <button
-              className="text-gold text-6xl hover:text-white mx-4 transform rotate-90"
-              onClick={() => handleSlideChange(-1)}
-              aria-label="Diapositive précédente"
-            >
-              &#8249;
-            </button>
-            <button
-              className="text-gold text-6xl hover:text-white mx-4 -rotate-90"
-              onClick={() => handleSlideChange(1)}
-              aria-label="Diapositive suivante"
-            >
-              &#8249;
-            </button>
-          </div>
+    
         </div>
-        <div className="lg:w-1/2 w-full relative flex items-center justify-center">
+        {/* Pour la photo : elle couvre toute la zone droite */}
+        <div className="lg:w-1/2 w-full sm:h-[50vh] lg:h-[100vh] relative flex items-center justify-center">
           <img
             ref={imageRef}
             src={slider.images ? slider.images[currentIndex] : slider.backgroundImage}
             alt={`Slide ${currentIndex + 1}`}
-            className="object-cover max-w-[90%] max-h-[90%] filter brightness-75"
+            className="object-cover w-full h-full filter bg-black/40 relative z-10"
           />
+
+          {/* Filtre similaire à la section 2 */}
+          <div             
+          className="absolute top-0 left-0 w-full h-full bg-black/40 z-10"></div>
         </div>
+
+        {/* Flèches de navigation positionnées sur les côtés */}
+        <button
+          className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gold 2xl:text-8xl text-6xl hover:text-white z-10"
+          onClick={() => handleSlideChange(-1)}
+          aria-label="Diapositive précédente"
+        >
+          &larr;
+          </button>
+        <button
+          className="absolute right-4 top-1/2 transform -translate-y-1/2 text-gold 2xl:text-8xl text-6xl hover:text-white z-10"
+          onClick={() => handleSlideChange(1)}
+          aria-label="Diapositive suivante"
+        >
+          &rarr;
+          </button>
       </section>
     );
   }
@@ -194,7 +190,7 @@ const OurUniverse = () => {
       backgroundImage: '/assets/sections/volcanicShape.webp',
       buttonText: t('button_discover_more'),
       flexClasses: 'md:justify-center sm:justify-center md:items-center sm:items-center',
-      containerClass: 'md:w-[50vw] md:max-w-[50vw] sm:w-[80vw] ',
+      containerClass: 'md:w-[50vw] md:max-w-[50vw] sm:w-[80vw]',
       whiteSpace: 'pre-line'
     },
     {
@@ -208,7 +204,7 @@ const OurUniverse = () => {
       images: [
         '/assets/sections/territory.webp',
         '/assets/sections/territory.webp',
-        '/assets/sections/territory.webp',
+        '/assets/sections/dullThepain.webp',
       ],
       buttonText: t('button_discover_more'),
       flexClasses: 'md:justify-start sm:justify-center md:items-center sm:items-center',
@@ -230,8 +226,8 @@ const OurUniverse = () => {
           stagger: 0.4,
           scrollTrigger: {
             trigger: element,
-            start: 'top 80%',
-            end: 'bottom 20%',
+            start: 'top 100%',
+            end: 'bottom 10%',
             toggleActions: 'play none none reverse'
           }
         }
@@ -240,10 +236,10 @@ const OurUniverse = () => {
     gsap.utils.toArray('.jungle-el-section').forEach((element) => {
       gsap.fromTo(
         element,
-        { opacity: 0, y: 50, scale: 1 },
+        { opacity: 0, x: 20, scale: 1 },
         {
           opacity: 1,
-          y: 0,
+          x: 0,
           scale: 1.3,
           duration: 1,
           ease: 'power2.inOut',
@@ -258,7 +254,7 @@ const OurUniverse = () => {
         }
       );
       gsap.to(element, {
-        y: -50,
+        x: -20,
         duration: 3,
         ease: 'none',
         scrollTrigger: {

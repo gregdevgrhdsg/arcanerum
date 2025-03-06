@@ -63,8 +63,8 @@ const RumDetailPage = () => {
 
     gsap.fromTo(
       sectionRef.current,
-      { opacity: 0, x: 100 },
-      { opacity: 1, x: 0, duration: 0.5, ease: "power3.out" }
+      { opacity: 0, x: 0 },
+      { opacity: 1, x: 0, duration: 0.5, stagger: 0.4, ease: "power3.out" }
     );
 
     gsap.fromTo(
@@ -75,7 +75,7 @@ const RumDetailPage = () => {
         y: 0,
         duration: 1,
         ease: "power3.out",
-        stagger: 0.2,
+        stagger: 0.4,
         scrollTrigger: {
           trigger: sectionRef.current,
           start: "top 80%",
@@ -93,6 +93,7 @@ const RumDetailPage = () => {
         scale: 1,
         duration: 1.2,
         ease: "power3.out",
+        stagger: 0.2,
         scrollTrigger: {
           trigger: sectionRef.current,
           start: "top 80%",
@@ -112,13 +113,14 @@ const RumDetailPage = () => {
   }
 
   return (
-    <section ref={sectionRef} className="relative w-full min-h-screen flex flex-col items-center justify-center bg-gray-900 text-white" style={{ background: rum.gradient }}>
-      <div className="container mx-auto flex sm:flex-col md:flex-col lg:flex-row xl:flex-row items-center justify-start px-6 md:py-32 sm:py-10 gap-8 z-30">
+    <section ref={sectionRef} className="relative w-full min-h-screen flex flex-col items-center  2xl:justify-center  xl:justify-center  lg:justify-center justify-center sm:justify-start  bg-gray-900 text-white" style={{ background: rum.gradient }}>
+      <div className="mx-auto flex lg:pr-24 sm:flex-col md:flex-col lg:flex-row xl:flex-row items-center justify-start px-6 md:py-32 sm:py-10 gap-8 z-30">
         {/* Image de la bouteille */}
         <div className="flex-1 relative flex justify-center" ref={imageContainerRef}>
           {/* Pattern à taille fixe */}
           <div
-            className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 
+            ref={sectionRef}
+            className="absolute top-1/2 opacity-50 left-1/2 transform -translate-x-1/2 -translate-y-1/2 
              bg-no-repeat bg-contain bg-center
              w-[150px] sm:w-[350px] md:w-[350px] lg:w-[500px] xl:w-[500px] 2xl:w-[900px]
              h-[150px] sm:h-[350px] md:h-[350px] lg:h-[500px] xl:h-[500px] 2xl:h-[900px]"
@@ -134,12 +136,12 @@ const RumDetailPage = () => {
         </div>
 
         {/* Informations */}
-        <div ref={textRefs} className="flex-1 flex w-full flex-col justify-start text-center items-center xl:mr-20 sm:mr-0 sm:ml-0">
-          <h1 className="text-4xl font-bold xl:text-center font-yana text-gold">{rum.title}</h1>
-          <p className="text-lg text-center font-yana text-content">{rum.description}</p>
+        <div ref={textRefs} className="flex-1 flex flex-col justify-start text-center items-center w-[80vw] xl:mr-20 sm:mr-0 sm:ml-0">
+          <h1 className="2xl:text-6xl xl:text-4xl lg:text-4xl md:text-3xl sm:text-4xl font-bold xl:text-center font-yana text-gold">{rum.title}</h1>
+          <p className="2xl:text-3xl xl:text-xl lg:text-xl md:1xl sm:text-sm text-center font-yana text-content lg:mb-12">{rum.description}</p>
 
-          <div className="mt-6">
-            <div className="flex justify-center items-center flex-wrap gap-4 mb-4">
+          <div className="mt-6 ">
+            <div className="flex justify-center items-center flex-wrap gap-4 mb-4 2xl:text-3xl xl:text-xl lg:text-xl md:1xl sm:text-sm ">
               {hasTastingNotes && (
                 <button
                   className={`px-4 py-2 transition duration-300 ${activeTab === "tastingNotes"
@@ -175,20 +177,20 @@ const RumDetailPage = () => {
 
             {/* Contenu des onglets */}
             {activeTab === "tastingNotes" && hasTastingNotes && (
-              <div className="grid text-sm text-center grid-cols-1 md:grid-cols-3 gap-6">
-                {rum.tastingNotes.color && <div><h4 className="text-lg font-semibold text-gold mb-2">{rum.tastingNotes.titleA}</h4><p className="text-content">{rum.tastingNotes.color}</p></div>}
-                {rum.tastingNotes.nose && <div><h4 className="text-lg font-semibold text-gold mb-2">{rum.tastingNotes.titleB}</h4><p className="text-content">{rum.tastingNotes.nose}</p></div>}
-                {rum.tastingNotes.palate && <div><h4 className="text-lg font-semibold text-gold mb-2">{rum.tastingNotes.titleC}</h4><p className="text-content">{rum.tastingNotes.palate}</p></div>}
+              <div className="grid text-center grid-cols-1 md:grid-cols-3 2xl:text-2xl xl:text-md lg:text-sm md:lg sm:text-sm gap-6 pl-16 pr-16">
+                {rum.tastingNotes.color && <div><h4 className="2xl:text-3xl xl:text-xl lg:text-xl md:1xl sm:text-sm  font-semibold text-gold mb-2">{rum.tastingNotes.titleA}</h4><p className="text-content">{rum.tastingNotes.color}</p></div>}
+                {rum.tastingNotes.nose && <div><h4 className="2xl:text-3xl xl:text-xl lg:text-xl md:1xl sm:text-sm  font-semibold text-gold mb-2">{rum.tastingNotes.titleB}</h4><p className="text-content">{rum.tastingNotes.nose}</p></div>}
+                {rum.tastingNotes.palate && <div><h4 className="2xl:text-3xl xl:text-xl lg:text-xl md:1xl sm:text-sm  font-semibold text-gold mb-2">{rum.tastingNotes.titleC}</h4><p className="text-content">{rum.tastingNotes.palate}</p></div>}
               </div>
             )}
 
             {activeTab === "waysToEnjoy" && hasWaysToEnjoy && (
-              <div>
-                <p className="text-content xl:mx-28 sm:mx-0 text-sm">{rum.waysToEnjoy.description}</p>
+              <div className="gap-6 ">
+                <p className="text-content 2xl:text-2xl xl:text-md lg:text-sm md:lg sm:text-sm ">{rum.waysToEnjoy.description}</p>
                 {rum.waysToEnjoy.signatureShot && (
-                  <div className="mt-4">
-                    <h4 className="text-lg font-semibold text-gold mb-2">Signature Shot</h4>
-                    <p className="text-content text-sm whitespace-pre-line">{rum.waysToEnjoy.signatureShot}</p>
+                  <div className="mt-16 mx-auto my-auto w-32 sm:w-80 md:w-62 lg:w-80 xl:w-100 xl:h-72 2xl:w-144 2xl:h-100 flex flex-col items-center justify-center border-2 border-gold p-2">
+                    <h4 className="2xl:text-3xl xl:text-xl lg:text-xl md:1xl sm:text-sm font-semibold text-gold mb-2">Signature Shot</h4>
+                    <p className="text-content 2xl:text-3xl xl:text-xl lg:text-xl md:1xl sm:text-sm text-white whitespace-pre-line">{rum.waysToEnjoy.signatureShot}</p>
                   </div>
                 )}
               </div>
@@ -196,7 +198,7 @@ const RumDetailPage = () => {
 
             {activeTab === "logisticInfo" && (
               <div>
-                <ul className="space-y-2 text-yana">
+                <ul className="space-y-2 2xl:text-2xl xl:text-md lg:text-sm text-yana">
                   <li><strong>Volume :</strong> {rum.logisticInfo.volume}</li>
                   <li><strong>Alcohol Content :</strong> {rum.logisticInfo.alcohol}</li>
                 </ul>
@@ -208,10 +210,29 @@ const RumDetailPage = () => {
           </Link>
         </div>
 
-        {/* Flèches de navigation */}
-        <button className="absolute left-4 xl:top-1/2 lg:top-1/2 sm:top-1/4 transform -translate-y-1/2 text-5xl text-gold p-3 rounded-full hover:bg-gray-700" onClick={() => handleNavigation(-1)}>&larr;</button>
-        <button className="absolute right-4 xl:top-1/2 lg:top-1/2 sm:top-1/4 transform -translate-y-1/2 text-5xl text-gold p-3 rounded-full hover:bg-gray-700" onClick={() => handleNavigation(1)}>&rarr;</button>
+        {/* Flèche gauche */}
+        {/* Flèche gauche */}
+        {/* Flèche gauche */}
+        <button
+          className="fixed left-4 2xl:text-8xl text-6xl text-gold p-3 rounded-full 
+  hover:bg-gray-700 transition-all duration-300
+  top-[50vh] -translate-y-1/2 /* ✅ Fixe la position à la moitié de l'écran */
+  z-50"
+          onClick={() => handleNavigation(-1)}
+        >
+          &larr;
+        </button>
 
+        {/* Flèche droite */}
+        <button
+          className="fixed right-4 2xl:text-8xl text-6xl text-gold p-3 rounded-full 
+  hover:bg-gray-700 transition-all duration-300
+  top-[50vh] -translate-y-1/2 /* ✅ Fixe la position à la moitié de l'écran */
+  z-50"
+          onClick={() => handleNavigation(1)}
+        >
+          &rarr;
+        </button>
       </div>
     </section>
   );

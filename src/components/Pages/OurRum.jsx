@@ -114,7 +114,7 @@ const RumPage = () => {
             ></div>
 
             {/* Contenu principal */}
-            <div className="relative z-10 flex flex-col items-center text-center 2xl:px-32 xl:px-32 sm:px-12 sm:space-y-4">
+            <div className="relative z-10  flex flex-col items-center text-center 2xl:px-32 xl:px-32 sm:px-12 sm:space-y-4">
               <img
                 src={rum.image}
                 alt={rum.title}
@@ -130,7 +130,7 @@ const RumPage = () => {
               <h2 className="text-gold 2xl:text-6xl xl:text-4xl font-bold mb-2 text-content sm:text-2xl">
                 {rum.title}
               </h2>
-              <p className="text-white font-yana 2xl:text-3xl xl:text-1xl text-content sm:text-sm">
+              <p className="text-white font-yana 2xl:text-3xl xl:text-2xl text-content sm:text-sm ">
                 {rum.description_a}
               </p>
               <Link to={`/rum/${rum.id}`}>
@@ -184,7 +184,7 @@ const RumPage = () => {
               <h2 className="text-gold font-yana 2xl:text-6xl xl:text-3xl font-bold mb-2 text-content sm:text-xl">
                 {rum.title}
               </h2>
-              <p className="text-white 2xl:text-3xl font-yana text-md text-content sm:text-sm">
+              <p className="text-white 2xl:text-3xl  xl:text-2xl font-yana text-md text-content sm:text-sm mx-2">
                 {rum.description_a}
               </p>
               <Link to={`/rum/${rum.id}`}>

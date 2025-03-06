@@ -14,6 +14,7 @@ export const ModelProvider = ({ children }) => {
   const [isModelLoaded, setIsModelLoaded] = useState(false);
   const [isTransitionReady, setIsTransitionReady] = useState(false);
   const [modelPosition, setModelPosition] = useState({ x: 0, y: 0, z: 0 });
+  const [rockPos, setRockPos] = useState({ x: 0, y: 0 });
 
 
   const [modelState, setModelState] = useState({
@@ -88,7 +89,9 @@ export const ModelProvider = ({ children }) => {
         modelTransform,
         setModelTransform,
         modelPosition,
-        setModelPosition // 🔥 On ajoute bien `setModelPosition`
+        setModelPosition,
+        rockPos,
+        setRockPos,
       }}
     >
       {children}

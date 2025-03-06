@@ -2,12 +2,14 @@
 import React, { useEffect, useRef, useState } from "react";
 import * as THREE from "three";
 import { Canvas } from "@react-three/fiber";
+import { useFrame } from "@react-three/fiber";
 import { Environment } from "@react-three/drei";
 import { bottlesConfig } from "../bottleConfig";
 import { setupModelAnimations, rotateBottle } from "../Animations/ModelAnimations";
 import { useModel } from "../Context/ModelContext";
-import { useFrame } from "@react-three/fiber";
 import { useTranslation } from "react-i18next";
+import { OrthographicCamera, OrbitControls } from '@react-three/drei';
+
 
 const ModelUpdater = ({ modelRef, setModelTransform }) => {
   useFrame(() => {
@@ -21,7 +23,32 @@ const ModelUpdater = ({ modelRef, setModelTransform }) => {
 
   return null; // ✅ Ce composant ne rend rien, il sert juste à mettre à jour l'état
 };
+// Fonction pour suivre la position du modèle et la projeter en coordonnées écran
+function TrackModelPosition() {
+  const { modelRef, cameraRef, setRockPos } = useModel();
 
+  useFrame(({ gl, camera }) => {
+    if (!modelRef.current) return;
+    const { width, height } = gl.domElement;
+    
+    // Copiez la position actuelle du modèle
+    const pos = modelRef.current.position.clone();
+    // Soustrayez un offset pour atteindre la base de la bouteille
+    const offsety = 1.03; // Essayez avec 2.8, puis ajustez
+    const offsetx = 0.45; // Essayez avec 2.8, puis ajustez
+    pos.y -= offsety;
+    pos.x -= offsetx;
+    
+    // Projection en coordonnées écran
+    pos.project(camera);
+    const x = (pos.x * 0.5 + 0.5) * width;
+    const y = (pos.y * -0.5 + 0.5) * height;
+    setRockPos({ x, y });
+    console.log("rockPos ajusté:", { x, y });
+  });
+
+  return null;
+}
 
 
 const CanvasContainer = ({ selectedBottle, setModelTransform }) => {
@@ -48,11 +75,11 @@ const [isInZone5, setIsInZone5] = useState(false); // Permet d'afficher uniqueme
   // Détection de la taille d'écran
   const detectScreenSize = () => {
     const width = window.innerWidth;
-    if (width < 640) {
+    if (width < 760) {
       setScreenSize("mobile");
     } else if (width < 1024) {
       setScreenSize("tablet");
-    } else if (width < 1400) {
+    } else if (width < 1440) {
       setScreenSize("medium");
     } else {
       setScreenSize("desktop");
@@ -230,6 +257,7 @@ const [isInZone5, setIsInZone5] = useState(false); // Permet d'afficher uniqueme
       
         className="sticky inset-0 top-0 h-screen"
         camera={{ position: [0, 0, 5], fov: 25 }}
+        style={{ aspectRatio: "3/9" }} // ou un wrapper .someClass { aspect-ratio: 16/9; }
         onCreated={({ camera, scene, gl }) => {
           cameraRef.current = camera;
 
@@ -259,7 +287,7 @@ const [isInZone5, setIsInZone5] = useState(false); // Permet d'afficher uniqueme
         <Environment preset="forest" background={false} />
         <group ref={rotationGroupRef}>{renderModel()}</group>
         <ModelUpdater modelRef={modelRef} setModelTransform={setModelTransform} />
-        
+        <TrackModelPosition />
       </Canvas>
     </div>
   );

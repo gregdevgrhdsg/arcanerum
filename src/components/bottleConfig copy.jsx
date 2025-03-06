@@ -1,6 +1,7 @@
 import { RumA, Flamboyance, RumB, RumC, RumD } from './Canvas/GenericBottle';
 
-export const bottlesConfig = (t) => [
+export const bottlesConfig = (t) => {
+  return [
   {
     id: 0,
     name: t("ourRums.arcaneExtraroma.title"),
@@ -10,10 +11,10 @@ export const bottlesConfig = (t) => [
     externalLink: "https://www.example.com/extraroma",
     component: RumA,
     responsivePositions: {
-      mobile: { x: 0, y: -0.8, z: 0.3 },
-      tablet: { x: 0.5, y: -0.8, z: 0 },
-      medium: { x: 1, y: -0.8, z: 0 },
-      desktop: { x: 1.1, y: -0.8, z: 0 },
+      mobile: { x: 0, y: -0.8 * ratio, z: 0 },
+      tablet: { x: 0.4, y: -0.8 * ratio, z: 0 },
+      medium: { x: 0.8, y: -0.8 * ratio, z: 0 },
+      desktop: { x: 1, y: -0.8 * ratio, z: 0 },
     },
     responsiveRotations: {
       mobile: { x: 0.2, y: -0.2, z: -0.2 },
@@ -38,9 +39,9 @@ export const bottlesConfig = (t) => [
     component: Flamboyance,
     responsivePositions: {
       mobile: { x: 0, y: -0.8, z: 0.3 },
-      tablet: { x: 1.2, y: -0.8, z: 0 },
-      medium: { x: 1.3, y: -0.8, z: 0 },
-      desktop: { x: 1.1, y: -0.8, z: 0 },
+      tablet: { x: 0.8, y: -0.8, z: 0 },
+      medium: { x: 1.4, y: -0.9, z: 0 },
+      desktop: { x: 1.2, y: -0.8, z: 0 },
     },
     responsiveRotations: {
       mobile: { x: 0.2, y: -0.2, z: -0.2 },
@@ -65,9 +66,9 @@ export const bottlesConfig = (t) => [
     component: RumB,
     responsivePositions: {
       mobile: { x: 0, y: -0.8, z: 0.3 },
-      tablet: { x: 1.2, y: -0.8, z: 0 },
-      medium: { x: 1.3, y: -0.8, z: 0 },
-      desktop: { x: 1.1, y: -0.8, z: 0 },
+      tablet: { x: 0.8, y: -0.8, z: 0 },
+      medium: { x: 1.4, y: -0.9, z: 0 },
+      desktop: { x: 1.2, y: -0.8, z: 0 },
     },
     responsiveRotations: {
       mobile: { x: 0.2, y: -0.2, z: -0.2 },
@@ -92,9 +93,9 @@ export const bottlesConfig = (t) => [
     component: RumC,
     responsivePositions: {
       mobile: { x: 0, y: -0.8, z: 0.3 },
-      tablet: { x: 1.2, y: -0.8, z: 0 },
-      medium: { x: 1.3, y: -0.8, z: 0 },
-      desktop: { x: 1.1, y: -0.8, z: 0 },
+      tablet: { x: 0.8, y: -0.8, z: 0 },
+      medium: { x: 1.4, y: -0.9, z: 0 },
+      desktop: { x: 1.2, y: -0.8, z: 0 },
     },
     responsiveRotations: {
       mobile: { x: 0.2, y: -0.2, z: -0.2 },
@@ -119,9 +120,9 @@ export const bottlesConfig = (t) => [
     component: RumD,
     responsivePositions: {
       mobile: { x: 0, y: -0.8, z: 0.3 },
-      tablet: { x: 1.2, y: -0.8, z: 0 },
-      medium: { x: 1.3, y: -0.8, z: 0 },
-      desktop: { x: 1.1, y: -0.8, z: 0 },
+      tablet: { x: 0.8, y: -0.8, z: 0 },
+      medium: { x: 1.4, y: -0.9, z: 0 },
+      desktop: { x: 1.2, y: -0.8, z: 0 },
     },
     responsiveRotations: {
       mobile: { x: 0.2, y: -0.2, z: -0.2 },
@@ -137,4 +138,5 @@ export const bottlesConfig = (t) => [
     },
   },
 ];
+};
 export default bottlesConfig;
