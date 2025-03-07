@@ -375,8 +375,8 @@ const cocktails = [
       }
     ],
     garnish: { fr: "Zeste d'orange frais et briquet ou allumette", en: "Fresh Orange Peel & Lighter or Match" },
-    image: "/assets/cocktails/SmokedBanana.webp",
-    imageB: "/assets/cocktails/vignettes/smokedBanana copy.webp"
+    image: "/assets/cocktails/smokedBanana copy.webp",
+    imageB: "/assets/cocktails/vignettes/smokedBanana.webp"
   },
   {
     id: 8,
