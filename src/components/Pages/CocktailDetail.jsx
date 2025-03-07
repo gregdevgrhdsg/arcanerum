@@ -137,7 +137,7 @@ const CocktailDetail = () => {
           <img
             src={cocktail.image}
             alt={cocktail.name?.[currentLang] ?? "Nom inconnu"}
-            className="xl:pl-0 xl:pr-0 md:pl-0 md:pr-0 sm:pl-16 sm:pr-16 px-8 max-w-[100%] object-contain xl:h-[60vh] lg:h-[60vh] lg:max-w-full"
+            className="xl:pl-0 xl:pr-0 md:pl-0 md:pr-0 sm:pl-16 sm:pr-16 px-8 max-w-[100%] object-contain xl:h-[60vh] lg:h-[50vh] lg:max-w-full"
           />
         </div>
 

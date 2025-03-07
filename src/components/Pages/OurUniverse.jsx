@@ -110,7 +110,7 @@ const SliderSection = ({ slider }) => {
           </>
         )}
 
-        <div className="lg:w-1/2 bg-black lg:p-20 xl:p-30 2xl:p-40 flex flex-col justify-center items-center md:pt-40 md:pb-40 sm:pt-32 sm:pb-20 text-center md:max-w-[80vw] sm:max-w-[80vw] mx-auto lg:pt-0 ">
+        <div className="lg:w-1/2 bg-black lg:p-20 xl:p-30 2xl:p-40 flex flex-col justify-center items-center md:pt-40 md:pb-40 sm:pt-32 sm:pb-20 text-center md:max-w-[80vw] sm:max-w-[80vw] mx-auto  ">
           <h2
             ref={titleRef}
             className="highlight-title font-yana font-bold text-gold leading-none 2xl:text-6xl xl:text-4xl lg:text-4xl md:text-4xl sm:text-2xl mb-3"
