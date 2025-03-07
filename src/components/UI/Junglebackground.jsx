@@ -31,7 +31,6 @@ const Jungle = ({ isModelLoaded, position = "background", followRock = false }) 
     window.addEventListener("resize", updateScreenSize);
     return () => window.removeEventListener("resize", updateScreenSize);
   }, []);
-  
   // Calcul de l'offset vertical du conteneur Jungle
   useEffect(() => {
     const updateRock = () => {
@@ -52,56 +51,7 @@ const Jungle = ({ isModelLoaded, position = "background", followRock = false }) 
     zIndex: 10, // S'assurer qu'il est bien derrière la bouteille
   };
 
-  useEffect(() => {
-    const updateRockPosition = () => {
-      const screenHeight = window.innerHeight;
-  
-      if (screenHeight < 600) {
-        setRockBottom("-22vh");
-        setRockHeight("45vw");
-        setRockRight("5%");
-        setRockLeft("auto");
-      } else if (screenHeight < 800) {
-        setRockBottom("-12vh");
-        setRockRight("0%");
-        setRockHeight("45vw");
-        setRockLeft("auto");
-      } else if (screenHeight < 1060) {
-        setRockBottom("-10vh");
-        setRockHeight("700px");
-        setRockRight("0%");
-        setRockLeft("auto");
-      } else if (screenHeight < 1080) {
-        setRockBottom("-8vh");
-        setRockHeight("750px");
-        setRockRight("0%");
-        setRockLeft("auto");
-      } else if (screenHeight < 1600) {
-        setRockBottom("-13vh");
-        setRockRight("0%");
-        setRockLeft("auto");
-      } else if (screenHeight < 1650) {
-        setRockBottom("-0vh");
-        setRockHeight("1200px");
-        setRockRight("0%");
-        setRockLeft("auto");
-      } else if (screenHeight < 1900) {
-        setRockBottom("-7vh");
-        setRockHeight("1200px");
-        setRockRight("0%");
-        setRockLeft("auto");
-      } else {
-        setRockBottom("-5vh");
-        setRockHeight("700px");
-        setRockRight("0%");
-        setRockLeft("auto");
-      }
-    };
-  
-    updateRockPosition();
-    window.addEventListener("resize", updateRockPosition);
-    return () => window.removeEventListener("resize", updateRockPosition);
-  }, []);
+ 
 
   useLayoutEffect(() => {
     if (!isModelLoaded) return;
