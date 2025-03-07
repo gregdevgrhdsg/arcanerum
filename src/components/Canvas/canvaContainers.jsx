@@ -34,8 +34,8 @@ function TrackModelPosition() {
     // Copiez la position actuelle du modèle
     const pos = modelRef.current.position.clone();
     // Soustrayez un offset pour atteindre la base de la bouteille
-    const offsety = 1.03; // Essayez avec 2.8, puis ajustez
-    const offsetx = 0.45; // Essayez avec 2.8, puis ajustez
+    const offsety = -0.08; // Essayez avec 2.8, puis ajustez
+    const offsetx = 0.5; // Essayez avec 2.8, puis ajustez
     pos.y -= offsety;
     pos.x -= offsetx;
     
@@ -280,8 +280,7 @@ const [isInZone5, setIsInZone5] = useState(false); // Permet d'afficher uniqueme
             }
           });
         }}
-      >
-        
+      >       
         <ambientLight intensity={2} />
         <directionalLight position={[5, 8, 5]} intensity={3} />
         <Environment preset="forest" background={false} />

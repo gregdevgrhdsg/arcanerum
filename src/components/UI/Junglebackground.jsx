@@ -38,7 +38,7 @@ const Jungle = ({ isModelLoaded, position = "background", followRock = false }) 
   // Calcul de la position ajustée du rocher
   const adjustedRockPos = {
     x: rockPos.x,
-    y: rockPos.y - staticOffset,
+    y: rockPos.y,
   };
 
   // Style conditionnel pour le layer-rock

@@ -489,7 +489,7 @@ const cocktails = [
       title: { fr: "COCKTAIL", en: "COCKTAIL" },
       ingredients: [
         { name: { fr: "Arcane Extraroma", en: "Arcane Extraroma" }, qty: 60, unit: "ml" },
-        { name: { fr: "Vermouth Rouge de Joseph Cartron ", en: "Dry Vermouth by Joseph Cartron" }, qty: 15, unit: "ml" },
+        { name: { fr: "Vermouth Rouge de Joseph Cartron", en: "Dry Vermouth by Joseph Cartron" }, qty: 15, unit: "ml" },
         { name: { fr: "Glaçons", en: "Ice Cubes" }, qty: null, unit: "" },
       ],
       method: [
