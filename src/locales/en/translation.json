@@ -95,10 +95,11 @@
       "description": "A blend of pure cane juice rums aged for 3 years in French and American oak barrels, each contributing its own unique character. Arcane Extraroma reveals delicious and delicate aromas of Bourbon vanilla, coconut, chocolate, caramel, smoky notes and banana, with a refreshing finish characteristic of Mauritian rums.",
       "button": "BACK TO LIST",
       "buttonb": "BUY",
+      "buttonc": "DISCOVER MORE",
       "tastingNotes": {
         "title": "Tasting Notes",
         "titleA": "Color",
-        "titleB": "Palatz",
+        "titleB": "Palate",
         "titleC": "Nose",
         "color": "A beautiful aged gold robe with shimmering mahogany highlights.",
         "nose": "Rich notes of brown sugar and vanilla, with hints of fresh cane juice and a subtle peppery touch. As it evolves, aromas of caramel and gingerbread emerge",
@@ -117,6 +118,7 @@
       "description": "A blend of rums made from pure cane juice, aged for 2 years in French and American oak barrels, with a finishing in casks that previously contained peated French whisky. This finishing gives it a beautiful structure and reveals aromas of candied sugar, toasted coconut, and smoky notes, followed by fresh and subtly seductive floral notes.",
       "button": "BACK TO LIST",
       "buttonb": "BUY",
+      "buttonc": "DISCOVER MORE",
       "tastingNotes": {
         "title": "Tasting Notes",
         "titleA": "Color",
@@ -139,10 +141,11 @@
       "description": "Savor the enticing 'Roasted Pineapple', crafted with 100% natural aromas and experience the harmonious symphony of bold pineapple, the gentle embrace of caramel, and the richness of Mauritian rum.",
       "button": "BACK TO LIST",
       "buttonb": "BUY",
+      "buttonc": "DISCOVER MORE",
       "waysToEnjoy": {
         "title": "Way To Enjoy",
         "description": "For the ultimate gourmet experience, we encourage you to enjoy your 'Roasted Pineapple' alongside a delicious chocolate marble cake. This divine pairing promises a moment of pure indulgence and culinary bliss.",
-        "signatureShot": "ROASTED PINEAPPLE - NOTRE SHOT SIGNATURE \n\n30ml Arcane Ananas Rôti \n10ml Cocody Liqueur by Cartron \n20ml Fresh Pineapple Juice"
+        "signatureShot": "ROASTED PINEAPPLE\n\n30ml Arcane Ananas Rôti \n10ml Cocody Liqueur by Cartron \n20ml Fresh Pineapple Juice"
       },
       "logisticInfo": {
         "title": "logistic Info",
@@ -157,10 +160,11 @@
       "description": "Discover the captivating 'Vanilla from the Islands', an ode to Mauritius’s iconic specialties. Enriched with Bourbon vanilla and elevated by the strength of Mauritian rum, this exceptional elixir takes you on a sensory journey that captures the essence of the tropical paradise of Mauritius.",
       "button": "BACK TO LIST",
       "buttonb": "BUY",
+      "buttonc": "DISCOVER MORE",
       "waysToEnjoy": {
         "title": "Way To Enjoy",
         "description": "For an unforgettable experience, we recommend savouring 'Vanille des Iles' chilled. To enhance this gourmet experience, combine this exotic elixir with a delicious homemade creme brûlée. Add a few drops of 'Vanille des les' directly to your recipe for a magical touch.",
-        "signatureShot": "TI' VANILLA - NOTRE SHOT SIGNATURE \n\n30ml Arcane Vanille des îles \n10ml Passion Fruit by Cartron \n20ml Fresh Lime Juice"
+        "signatureShot": "TI' VANILLA\n\n30ml Arcane Vanille des îles \n10ml Passion Fruit by Cartron \n20ml Fresh Lime Juice"
       },
       "logisticInfo": {
         "title": "logistic Info",
@@ -175,10 +179,11 @@
       "description": "Discover the star of the range, 'Banana Flambée', the iconic reference in our collection. Inspired by the famous dessert, this exquisite elixir showcases the natural sweetness of bananas, perfectly blended with the smoothness of Mauritian rum.",
       "button": "BACK TO LIST",
       "buttonb": "BUY",
+      "buttonc": "DISCOVER MORE",
       "waysToEnjoy": {
         "title": "Way To Enjoy",
         "description": "For an unforgettable experience, enjoy 'Banane Flambée' chilled, either as an aperitif or as a liqueur after dinner. For an even more indulgent tasting, pair it with a crepe of pancake. Our tip for a magical touch : add a few drops of 'Banane Flambée' to the batter.",
-        "signatureShot": "TROPICAL SMOKE - OUR SIGNATURE SHOT \n\n45 ml Arcane Banane Flambée \n15ml Cacao Blanc Liqueur by Cartron \nwhipped cream on the top"
+        "signatureShot": "TROPICAL SMOKE\n\n45 ml Arcane Banane Flambée \n15ml Cacao Blanc Liqueur by Cartron \nwhipped cream on the top"
       },
       "logisticInfo": {
         "title": "logistic Info",
@@ -208,5 +213,21 @@
         "description": "Découvrez la vedette de la gamme, 'Banane Flambée', la référence emblématique mettant en valeur la douceur naturelle des bananes."
       }
     }
+  },
+  "contact": {
+    "title": "Contact Us",
+    "description": "A question? A comment? Fill in the form below, we will reply as soon as possible.",
+    "fields": {
+      "name": "Name",
+      "email": "Email",
+      "subject": "Subject",
+      "message": "Message",
+      "name_placeholder": "Your name",
+      "email_placeholder": "Your email address",
+      "subject_placeholder": "Subject of your message",
+      "message_placeholder": "Your message"
+    },
+    "button": "Send",
+    "success_message": "Your message has been sent successfully!"
   }
 }

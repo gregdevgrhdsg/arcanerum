@@ -99,14 +99,16 @@
       "description": "Un assemblage de rhums pur jus de canne vieillis pendant 3 ans dans des fûts de chêne français et américain, apportant chacun leur propre caractère. Arcane Extraroma révèle de délicieux et délicats arômes de vanille Bourbon, de noix de coco, de chocolat et de caramel, des notes fumées et de banane. Sa finale rafraîchissante est caractéristique des rhums mauriciens.",
       "button": "RETOUR À LA LISTE",
       "buttonb": "ACHETER",
+      "buttonc": "EN SAVOIR PLUS",
       "tastingNotes": {
         "title": "Notes de Dégustation",
         "titleA": "Couleur",
         "titleB": "Palais",
         "titleC": "Nez",
         "color": "Une belle teinte d'or vieilli avec des reflets acajou scintillants.",
-        "nose": "Le nez offre une finale aromatique complexe avec des notes élégantes et fruitées qui persistent longuement.",
-        "palate": "Bien structuré, offrant à la fois de la substance et de la longueur."
+        "palate": "Le nez offre une finale aromatique complexe avec des notes élégantes et fruitées qui persistent longuement.",
+        "nose": "Bien structuré, offrant à la fois de la substance et de la longueur."
+
       },
       "logisticInfo": {
         "title": "Info logistique",
@@ -121,6 +123,7 @@
       "description": "Un assemblage de rhums pur jus de canne vieillis dans des fûts de chêne français et américain, ayant bénéficié d’un affinage en fûts ayant contenu du whisky français tourbé. Cet affinage confère une belle structure et révèle des arômes de sucre confit, de noix de coco grillée et de fumée, suivis de notes fraîches et florales subtiles mais séduisantes.",
       "button": "RETOUR À LA LISTE",
       "buttonb": "ACHETER",
+      "buttonc": "EN SAVOIR PLUS",
       "tastingNotes": {
         "title": "Notes de Dégustation",
         "titleA": "Couleur",
@@ -143,6 +146,7 @@
       "description": "Dégustez le séduisant 'Ananas Rôti', élaboré avec des arômes 100% naturels et découvrez la symphonie harmonieuse de l’audace de l’ananas, de la douce étreinte du caramel et de la rondeur du rhum mauricien.",
       "button": "RETOUR À LA LISTE",
       "buttonb": "ACHETER",
+      "buttonc": "EN SAVOIR PLUS",
       "waysToEnjoy": {
         "title": "Mode De Consommation",
         "description": "Pour une expérience gourmande ultime, nous vous encourageons à savourer votre « Ananas Rôti » accompagné d'un délicieux gâteau marbré au chocolat. Cette association divine promet un moment de pure indulgence et de bonheur gustatif.",
@@ -161,6 +165,7 @@
       "description": "Découvrez la fascinante 'Vanille des Îles', une ode à l'une des spécialités emblématiques de l'île Maurice. Enrichi par la vanille Bourbon et sublimé par la puissance du rhum mauricien, cet élixir exceptionnel vous emmène dans un voyage sensoriel capturant l'essence du paradis tropical mauricien.",
       "button": "RETOUR À LA LISTE",
       "buttonb": "ACHETER",
+      "buttonc": "EN SAVOIR PLUS",
       "waysToEnjoy": {
         "title": "Mode De Consommation",
         "description": "Pour une expérience inoubliable, nous vous recommandons de savourer « Vanille des lles » bien frais. Pour rehausser cette expérience gourmande, associez cet élixir exotique à une délicieuse crème brûlée maison. Ajoutez quelques gouttes de « Vanille des Iles » directement dans votre recette pour une touche magique.",
@@ -179,6 +184,7 @@
       "description": "Découvrez la vedette de la gamme, 'Banane Flambée', la référence emblématique de notre collection. Inspiré par le célèbre dessert, cet élixir exquis met en valeur la douceur naturelle des bananes, harmonieusement mariée à la rondeur du rhum mauricien.",
       "button": "RETOUR À LA LISTE",
       "buttonb": "ACHETER",
+      "buttonc": "EN SAVOIR PLUS",
       "waysToEnjoy": {
         "title": "Mode De Consommation",
         "description": "Pour une expérience inoubliable, savourez « Banane Flambée » bien fraîche, en apéritif ou comme liqueur après le dîner. Pour une dégustation encore plus gourmande, accompagnez-le d'une crêpe ou d'un pancake. Notre astuce pour une touche magique : ajoutez quelques gouttes de « Banane Flambée » à la pâte.",
@@ -212,5 +218,22 @@
         "description": "Chaque aventure commence par le désir d&#39;explorer l&#39;inconnu. Aujourd&#39;hui, nous vous invitons à voyager au cœur de l&#39;extraordinaire à travers les sens, les saveurs et les riches histoires contenues dans chaque goutte de rhum Arcane."
       }
     }
-  }
-}
+    },   
+      "contact": {
+        "title": "Contactez-nous",
+        "description": "Une question ? Un commentaire ? Remplissez le formulaire ci-dessous, nous vous répondrons dès que possible.",
+        "fields": {
+          "name": "Nom",
+          "email": "Email",
+          "subject": "Sujet",
+          "message": "Message",
+          "name_placeholder": "Votre nom",
+          "email_placeholder": "Votre adresse email",
+          "subject_placeholder": "Sujet de votre message",
+          "message_placeholder": "Votre message"
+        },
+        "button": "Envoyer",
+        "success_message": "Votre message a été envoyé avec succès !"
+      }
+    }
+  

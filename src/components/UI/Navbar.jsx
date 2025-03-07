@@ -166,15 +166,15 @@ const Navbar = () => {
               {/* Sous-menu desktop */}
               <div
                 ref={(el) => (subMenuRefs.current[index] = el)}
-                className="absolute flex flex-col top-full mt-2 font-yana 2xl:text-4xl xl:text-xl text-xl overflow-hidden opacity-0"
-                style={{ minWidth: "200px", height: 0 }}
+                className="absolute flex flex-col top-full mt-2 font-yana 2xl:text-4xl xl:text-xl text-xl overflow-hidden opacity-80"
+                style={{ maxWidth: "300px", minWidth: "200px", height: 0 }}
               >
                 {subMenuLinks[index]?.map((link, subIndex) => (
                   <Link
                     key={subIndex}
                     to={link.path}
-                    className="block py-2 px-4 text-gold-hover-bg-black transition-all"
-                  >
+                    className="block py-3 px-4 text-goldy hover:bg-gold-linear hover:text-white bg-black bg-opacity-80 transition-all duration-300 "
+                    >
                     {t(link.name)}
                   </Link>
                 ))}
@@ -238,7 +238,7 @@ const Navbar = () => {
             {subMenuLinks[index]?.length > 0 ? (
               // Si l'élément possède un sous-menu, on affiche un bouton qui gère l'ouverture du sous-menu
               <button
-                className="text-2xl md:text-3xl lg:text-4xl font-yana my-4 cursor-pointer hover:text-gold flex items-center justify-left w-full pl-20"
+                className="text-2xl md:text-3xl lg:text-4xl font-yana my-4 cursor-pointer text-gold hover:text-gold flex items-center justify-left w-full pl-20"
                 onClick={() => toggleMobileSubMenu(index)}
               >
                 {t(nav.name)}
@@ -250,7 +250,7 @@ const Navbar = () => {
               // Sinon, on affiche directement un Link qui navigue vers nav.path
               <Link
                 to={nav.path}
-                className="text-2xl md:text-3xl lg:text-4xl font-yana my-4 cursor-pointer hover:text-gold flex items-center justify-left w-full pl-20"
+                className="text-2xl md:text-3xl lg:text-4xl font-yana my-4 cursor-pointer text-gold flex items-center justify-left w-full pl-20"
                 onClick={closeMobileMenu}
               >
                 {t(nav.name)}

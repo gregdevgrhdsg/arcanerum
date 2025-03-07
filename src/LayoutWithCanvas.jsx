@@ -12,6 +12,7 @@ import CocktailDetail from "./components/Pages/CocktailDetail.jsx";
 import RedirectToCocktails from "./components/Pages/RedirectToCocktails.jsx";
 import OurRums from "./components/Pages/OurRum.jsx";
 import RumDetailPage from "./components/Pages/RumDetailPage.jsx";
+import PrivacyPolicy from "./components/Pages/PrivacyPolicy.jsx";
 import Contact from "./components/Pages/Contact.jsx";
 import { useModel } from "./components/Context/ModelContext";
 import Loader from "./components/UI/Loader.jsx";
@@ -157,6 +158,7 @@ const LayoutWithCanvas = () => {
             <Route path="/" element={<Home isModelLoaded={isModelLoaded} isAnimationDone={isAnimationDone} />} />
             <Route path="/model/:id" element={<ModelDetail isModelLoaded={isModelLoaded} />} />
             <Route path="/Our-Universe" element={<OurUniverse />} />
+            <Route path="/Privacy-Policy" element={<PrivacyPolicy />} />
             <Route path="/Know-How" element={<KnowHow />} />
             <Route path="/Les-Cocktails" element={<LesCocktails />} />
             <Route path="/cocktail/:id" element={<CocktailDetail />} />

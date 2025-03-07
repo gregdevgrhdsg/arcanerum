@@ -312,6 +312,9 @@ footer {
 .hover\:text-gold:hover {
   color: #d4af37;
 }
+.text-goldy{
+  color:  #B07C41;
+}
 
 .text-gold-hover-bg-black {
   position: relative;

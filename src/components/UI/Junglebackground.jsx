@@ -48,7 +48,7 @@ const Jungle = ({ isModelLoaded, position = "background", followRock = false }) 
         left: adjustedRockPos.x,
         top: adjustedRockPos.y,
         transform: "translate(-50%, -50%)",
-        width: "50vw", // ajustez la taille selon vos besoins
+        width: "40vw", // ajustez la taille selon vos besoins
         zIndex: 10, // pour s'assurer qu'il est au-dessus
       }
     : {
@@ -232,13 +232,13 @@ const Jungle = ({ isModelLoaded, position = "background", followRock = false }) 
                 {
                   src: "assets/jungle/layer-feuilleGauche2.webp",
                   alt: "feuilleGauche2",
-                  className: "layer-feuilleGauche2 xl:w-[25%] md:w-[35%] sm:w-[45%] z-50",
+                  className: "layer-feuilleGauche2 xl:w-[25%] lg:w-[25%] md:w-[35%] sm:w-[55%] z-50",
                   style: { bottom: "0%", left: "0%" },
                 },
                 {
                   src: "assets/jungle/layer-feuilleGauche.webp",
                   alt: "feuilleGauche",
-                  className: "layer-feuilleGauche xl:w-[25%] lg:w-[35%] md:w-[25%] sm:w-[45%] z-50",
+                  className: "layer-feuilleGauche xl:w-[25%] lg:w-[25%] md:w-[25%] sm:w-[55%] z-50",
                   style: { bottom: "0%", left: "0%" },
                 },
               ]
@@ -246,7 +246,7 @@ const Jungle = ({ isModelLoaded, position = "background", followRock = false }) 
                 {
                   src: "assets/jungle/layer-rock.webp",
                   alt: "rock",
-                  className: "layer-rock sm:hidden md:block absolute md:w-[70vw]",
+                  className: "absolute block sm:hidden md:hidden lg:block",               
                   style: rockLayerStyle,
                 },
                 {
@@ -264,7 +264,7 @@ const Jungle = ({ isModelLoaded, position = "background", followRock = false }) 
                 {
                   src: "assets/jungle/layer-plantFront.webp",
                   alt: "Plante 1",
-                  className: "layer-plantFront xl:w-[30%] lg:w-[50%] md:w-[45%] sm:w-[80%] z-10",
+                  className: "layer-plantFront xl:w-[30%] lg:w-[30%] md:w-[65%] sm:w-[100%] z-10",
                   style: { bottom: "0", left: "0%" },
                 },
                 {
@@ -277,8 +277,7 @@ const Jungle = ({ isModelLoaded, position = "background", followRock = false }) 
                 {
                   src: "assets/jungle/layer-dodo.png",
                   alt: "Dodo",
-                  className: "layer-dodo absolutexl: xl:w-[25%] lg:w-[25%] lg:min-w-[35%] md:w-[40%] sm:w-[70vw] xl:bottom-[15%] lg:bottom-[15%] md:bottom-[10%] left-0 sm:bottom-[40%] xl:w-[25%] ",
-                  responsiveClass: " md:translate-y-[-5%] lg:translate-y-[-10%]",
+                  className: "layer-dodo absolute 2xl:w-[25%] xl:w-[25%] lg:w-[25%] lg:min-w-[15%] md:w-[50%] sm:w-[70vw] xl:bottom-[15%] lg:bottom-[15%] md:bottom-[10%] left-0 sm:bottom-[35%] ",
                 },
               ]),
         ].map((layer, index) => (

@@ -130,12 +130,12 @@ const RumPage = () => {
               <h2 className="text-gold 2xl:text-6xl xl:text-4xl font-bold mb-2 text-content sm:text-2xl">
                 {rum.title}
               </h2>
-              <p className="text-white font-yana 2xl:text-3xl xl:text-2xl text-content sm:text-sm ">
+              <p className="text-white font-yana 2xl:text-3xl xl:text-xl lg:text-xl md:1xl sm:text-sm text-content sm:text-sm ">
                 {rum.description_a}
               </p>
               <Link to={`/rum/${rum.id}`}>
                 <button className="highlight-button btn-animated cursor-pointer">
-                  EN SAVOIR PLUS
+                {rum.buttonb}                
                 </button>
               </Link>
             </div>
@@ -181,15 +181,15 @@ const RumPage = () => {
                   width: "auto",
                 }}
               />
-              <h2 className="text-gold font-yana 2xl:text-6xl xl:text-3xl font-bold mb-2 text-content sm:text-xl">
+              <h2 className="text-gold font-yana 2xl:text-6xl xl:text-4xl font-bold mb-2 text-content sm:text-xl">
                 {rum.title}
               </h2>
-              <p className="text-white 2xl:text-3xl  xl:text-2xl font-yana text-md text-content sm:text-sm mx-2">
+              <p className="text-white 2xl:text-3xl xl:text-xl lg:text-xl md:1xl sm:text-sm font-yana text-content mx-2">
                 {rum.description_a}
               </p>
               <Link to={`/rum/${rum.id}`}>
                 <button className="highlight-button btn-animated cursor-pointer">
-                  EN SAVOIR PLUS
+                {rum.buttonb}                
                 </button>
               </Link>
             </div>

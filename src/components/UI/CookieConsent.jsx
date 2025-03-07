@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import gsap from "gsap";
+import { Link } from "react-router-dom";
 
 const CookieConsent = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -20,7 +21,7 @@ const CookieConsent = () => {
 
   const handleConsent = (choice) => {
     localStorage.setItem("cookieConsent", choice);
-    
+
     gsap.to(consentRef.current, {
       opacity: 0,
       y: 20,
@@ -40,13 +41,13 @@ const CookieConsent = () => {
       <p className="text-xs text-center">
         Nous utilisons des cookies pour améliorer votre expérience.
         <br />
-        Consultez notre{" "}
-        <a
-          href="/politique-de-confidentialite"
+        Consultez notre {" "}
+        <Link
+          to="/privacy-policy"
           className="text-gold underline hover:text-yellow-500 transition"
         >
           politique de confidentialité
-        </a>
+        </Link>
         .
       </p>
       <div className="flex space-x-4">
