@@ -13,50 +13,44 @@ const Jungle = ({ isModelLoaded, position = "background", followRock = false }) 
   const [rockLeft, setRockLeft] = useState("2%");
 
   // Récupération de rockPos depuis le contexte
-  const { rockPos } = useModel();
+  const { rockPos, setRockPos } = useModel();
 
   // Création d'une référence pour le conteneur de Jungle
   const containerRef = useRef(null);
   const [offsetY, setOffsetY] = useState(0);
   const staticOffset = window.innerHeight; // par exemple, 100vh
+  const [screenWidth, setScreenWidth] = useState(window.innerWidth);
+  const [screenHeight, setScreenHeight] = useState(window.innerHeight);
 
-
+  useEffect(() => {
+    const updateScreenSize = () => {
+      setScreenWidth(window.innerWidth);
+      setScreenHeight(window.innerHeight);
+    };
+  
+    window.addEventListener("resize", updateScreenSize);
+    return () => window.removeEventListener("resize", updateScreenSize);
+  }, []);
+  
   // Calcul de l'offset vertical du conteneur Jungle
   useEffect(() => {
-    const updateOffset = () => {
-      if (containerRef.current) {
-        const rect = containerRef.current.getBoundingClientRect();
-        setOffsetY(rect.top);
-        console.log("offsetY:", rect.top);
-      }
+    const updateRock = () => {
+      setRockPos({ ...rockPos }); // Force la mise à jour
     };
-    updateOffset();
-    window.addEventListener("resize", updateOffset);
-    return () => window.removeEventListener("resize", updateOffset);
-  }, []);
+  
+    window.addEventListener("resize", updateRock);
+    return () => window.removeEventListener("resize", updateRock);
+  }, [rockPos]);
 
-  // Calcul de la position ajustée du rocher
-  const adjustedRockPos = {
-    x: rockPos.x,
-    y: rockPos.y,
+  const rockLayerStyle = {
+    position: "absolute",
+    left: `${rockPos.x}px`,
+    top: `${rockPos.y}px`,
+    transform: "translate(-50%, -50%)",
+    width: screenWidth < 760 ? "35vw" : screenWidth < 1024 ? "30vw" : "35vw", // Taille adaptative
+    height: screenHeight < 800 ? "30vh" : screenHeight < 1000 ? "35vh" : "40vh", // Ajustement en fonction de la hauteur
+    zIndex: 10, // S'assurer qu'il est bien derrière la bouteille
   };
-
-  // Style conditionnel pour le layer-rock
-  const rockLayerStyle = followRock
-    ? {
-        position: "absolute",
-        left: adjustedRockPos.x,
-        top: adjustedRockPos.y,
-        transform: "translate(-50%, -50%)",
-        width: "40vw", // ajustez la taille selon vos besoins
-        zIndex: 10, // pour s'assurer qu'il est au-dessus
-      }
-    : {
-        bottom: rockBottom,
-        right: rockRight,
-        left: rockLeft,
-        width: rockHeight,
-      };
 
   useEffect(() => {
     const updateRockPosition = () => {

@@ -31,20 +31,34 @@ function TrackModelPosition() {
     if (!modelRef.current) return;
     const { width, height } = gl.domElement;
     
-    // Copiez la position actuelle du modèle
     const pos = modelRef.current.position.clone();
-    // Soustrayez un offset pour atteindre la base de la bouteille
-    const offsety = -0.08; // Essayez avec 2.8, puis ajustez
-    const offsetx = 0.5; // Essayez avec 2.8, puis ajustez
-    pos.y -= offsety;
-    pos.x -= offsetx;
+
+    // Détection de la hauteur de l'écran pour ajuster la position du rocher
+    const screenHeight = window.innerHeight;
+    const screenWidth = window.innerWidth;
     
-    // Projection en coordonnées écran
+    let offsetY, offsetX;
+
+    if (screenWidth < 760) { // Mobile
+      offsetY = -0.03;
+      offsetX = 0.1;
+    } else if (screenWidth < 1021) { // Tablette
+      offsetY = -0.5;
+      offsetX = 0.8;
+      
+    } else { // Desktop
+      offsetY = screenHeight < 400 ? -0.5 : -0.06; // Ajustement selon la hauteur de l'écran
+      offsetX = 0.8;
+    }
+
+    pos.y -= offsetY;
+    pos.x -= offsetX;
+    
     pos.project(camera);
     const x = (pos.x * 0.5 + 0.5) * width;
     const y = (pos.y * -0.5 + 0.5) * height;
+    
     setRockPos({ x, y });
-    console.log("rockPos ajusté:", { x, y });
   });
 
   return null;
