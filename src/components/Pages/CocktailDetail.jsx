@@ -137,7 +137,7 @@ const CocktailDetail = () => {
           <img
             src={cocktail.image}
             alt={cocktail.name?.[currentLang] ?? "Nom inconnu"}
-            className="xl:pl-0 xl:pr-0 md:pl-0 md:pr-0 sm:pl-16 sm:pr-16 px-8 max-w-[100%] object-contain xl:h-[60vh] lg:h-[40vh] lg:max-w-full"
+            className="xl:pl-0 xl:pr-0 md:pl-0 md:pr-0 sm:pl-16 sm:pr-16 px-8 max-w-[100%] object-contain xl:h-[60vh] lg:h-[60vh] lg:max-w-full"
           />
         </div>
 
@@ -146,7 +146,7 @@ const CocktailDetail = () => {
           className="w-full lg:w-1/2 px-8 py-12 flex flex-col items-center justify-start text-center lg:overflow-y-auto lg:max-h-[80vh]"
           ref={textRef}
         >
-          <h1 className="2xl:text-6xl xl:text-4xl lg:text-lg md:text-3xl sm:text-2xl text-gold font-yana mb-6">
+          <h1 className="2xl:text-6xl xl:text-4xl lg:text-1xl md:text-3xl sm:text-2xl text-gold font-yana mb-6">
             {cocktail.name?.[currentLang] ?? "Nom inconnu"}
           </h1>
           <h2 className="font-yana text-white 2xl:text-4xl xl:text-xl lg:text-1xl md:1xl sm:text-sm text-gold mb-4">{translations[currentLang].recette}</h2>
