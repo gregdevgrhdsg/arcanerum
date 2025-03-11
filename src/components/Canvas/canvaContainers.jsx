@@ -44,22 +44,25 @@ if (screenWidth < 480) { // Très petit mobile
   offsetX = 0.05;
 } else if (screenWidth < 768) { // Mobile standard
   offsetY = -0.06;
-  offsetX = 0.1;
-} else if (screenWidth < 1024) { // Tablette portrait
-  offsetY = -0.07;
-  offsetX = 0.4;
-} else if (screenWidth < 1280) { // Tablette paysage et petits laptops
-  offsetY = -0.09;
   offsetX = 0.6;
+} else if (screenWidth < 1440) { // Tablette portrait
+  offsetY = screenHeight < 900 ? -0.07 : -0.09;
+  offsetX = 0.5;
+} else if (screenWidth < 1060) { // Tablette portrait
+  offsetY = screenHeight < 650 ? -0.04 : -0.09;
+  offsetX = 0.1;
+} else if (screenWidth < 1280) { // Tablette paysage et petits laptops
+  offsetY = -0.03;
+  offsetX = 0.5;
 } else if (screenWidth < 1440) { // Laptop standard 15 pouces
-  offsetY = screenHeight < 900 ? -0.05 : -0.19;
+  offsetY = screenHeight < 900 ? -0.06 : -0.06;
   offsetX = 0.5;
 } else if (screenWidth < 1600) { // Laptop standard 15 pouces
-  offsetY = screenHeight < 900 ? -0.04 : 0.04;
-  offsetX = 0.4;
+  offsetY = screenHeight < 900 ? -0.04 : -0.04;
+  offsetX = 0.8;
 } else if (screenWidth < 1920) { // Écran Full HD (1080p)
   offsetY = screenHeight < 900 ? -0.04 : -0.03;
-  offsetX = 0.02;
+  offsetX = 0.5;
 } else if (screenWidth < 2560) { // Écran 2K
   offsetY = screenHeight < 1200 ? -0.03 : -0.02;
   offsetX = 1.2;

@@ -46,8 +46,8 @@ const Jungle = ({ isModelLoaded, position = "background", followRock = false }) 
     left: `${rockPos.x}px`,
     top: `${rockPos.y}px`,
     transform: "translate(-50%, -50%)",
-    width: screenWidth < 760 ? "35vw" : screenWidth < 1024 ? "30vw" : "35vw", // Taille adaptative
-    height: screenHeight < 800 ? "30vh" : screenHeight < 1000 ? "35vh" : "40vh", // Ajustement en fonction de la hauteur
+    width: screenWidth < 760 ? "35vw" : screenWidth < 1024 ? "35vw" : "40vw", // Taille adaptative
+    height: screenHeight < 900 ? "35vh" : screenHeight < 1000 ? "35vh" : "40vh", // Ajustement en fonction de la hauteur
     zIndex: 10, // S'assurer qu'il est bien derrière la bouteille
   };
 
