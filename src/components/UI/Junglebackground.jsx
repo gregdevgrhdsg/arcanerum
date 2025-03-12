@@ -176,13 +176,13 @@ const Jungle = ({ isModelLoaded, position = "background", followRock = false }) 
                 {
                   src: "assets/jungle/layer-feuilleGauche2.webp",
                   alt: "feuilleGauche2",
-                  className: "layer-feuilleGauche2 xl:w-[25%] lg:w-[25%] md:w-[35%] sm:w-[55%] z-50",
+                  className: "layer-feuilleGauche2 xl:w-[25%] lg:w-[35%] md:w-[35%] sm:w-[55%] z-50",
                   style: { bottom: "0%", left: "0%" },
                 },
                 {
                   src: "assets/jungle/layer-feuilleGauche.webp",
                   alt: "feuilleGauche",
-                  className: "layer-feuilleGauche xl:w-[25%] lg:w-[25%] md:w-[25%] sm:w-[55%] z-50",
+                  className: "layer-feuilleGauche xl:w-[25%] lg:w-[35%] md:w-[25%] sm:w-[55%] z-50",
                   style: { bottom: "0%", left: "0%" },
                 },
               ]
@@ -208,7 +208,7 @@ const Jungle = ({ isModelLoaded, position = "background", followRock = false }) 
                 {
                   src: "assets/jungle/layer-plantFront.webp",
                   alt: "Plante 1",
-                  className: "layer-plantFront xl:w-[30%] lg:w-[30%] md:w-[65%] sm:w-[100%] z-10",
+                  className: "layer-plantFront xl:w-[30%] lg:w-[50%] md:w-[65%] sm:w-[100%] z-10",
                   style: { bottom: "0", left: "0%" },
                 },
                 {
@@ -221,7 +221,7 @@ const Jungle = ({ isModelLoaded, position = "background", followRock = false }) 
                 {
                   src: "assets/jungle/layer-dodo.png",
                   alt: "Dodo",
-                  className: "layer-dodo absolute 2xl:w-[25%] xl:w-[25%] lg:w-[25%] lg:min-w-[15%] md:w-[50%] sm:w-[70vw] xl:bottom-[15%] lg:bottom-[15%] md:bottom-[10%] left-0 sm:bottom-[35%] ",
+                  className: "layer-dodo absolute 2xl:w-[25%] xl:w-[25%] lg:w-[35%] lg:min-w-[30%] md:w-[50%] sm:w-[70vw] xl:bottom-[15%] lg:bottom-[15%] md:bottom-[10%] left-0 sm:bottom-[35%] ",
                 },
               ]),
         ].map((layer, index) => (
