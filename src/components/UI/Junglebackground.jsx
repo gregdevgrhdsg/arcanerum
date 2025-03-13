@@ -144,7 +144,7 @@ const Jungle = ({ isModelLoaded, position = "background", followRock = false }) 
 
   return (
     <section>
-      <div ref={containerRef} className={`zone-1 w-full h-screen absolute ${position === "foreground" ? "z-30" : "z-0"}`}>
+      <div ref={containerRef} className={`zone-1 w-full h-screen absolute ${position === "foreground" ? "z-30" : "z-5"}`}>
         {position === "background" && (
           <div
             className="layer-fond relative"
@@ -185,18 +185,13 @@ const Jungle = ({ isModelLoaded, position = "background", followRock = false }) 
                   className: "layer-feuilleGauche xl:w-[25%] lg:w-[35%] md:w-[25%] sm:w-[55%] z-50",
                   style: { bottom: "0%", left: "0%" },
                 },
+                
               ]
             : [
                 {
-                  src: "assets/jungle/layer-rock.webp",
-                  alt: "rock",
-                  className: "absolute block sm:hidden md:hidden lg:block",               
-                  style: rockLayerStyle,
-                },
-                {
                   src: "assets/jungle/layer-blur.webp",
                   alt: "blur",
-                  className: "layer-blur sm:bottom-[0%] z-20",
+                  className: "layer-blur sm:bottom-[0%] z-10",
                   style: {
                     position: "absolute",
                     top: "90%",

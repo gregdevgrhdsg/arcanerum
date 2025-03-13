@@ -3,6 +3,7 @@ import React, { useEffect, useRef, useState } from "react";
 import * as THREE from "three";
 import { Canvas } from "@react-three/fiber";
 import { useFrame } from "@react-three/fiber";
+import { useLoader } from "@react-three/fiber";
 import { Environment } from "@react-three/drei";
 import { bottlesConfig } from "../bottleConfig";
 import { setupModelAnimations, rotateBottle } from "../Animations/ModelAnimations";
@@ -30,60 +31,80 @@ function TrackModelPosition() {
   useFrame(({ gl, camera }) => {
     if (!modelRef.current) return;
     const { width, height } = gl.domElement;
-    
+
     const pos = modelRef.current.position.clone();
 
     // Détection de la hauteur de l'écran pour ajuster la position du rocher
     const screenHeight = window.innerHeight;
     const screenWidth = window.innerWidth;
-    
+
     let offsetY, offsetX;
 
-if (screenWidth < 480) { // Très petit mobile
-  offsetY = -0.08;
-  offsetX = 0.05;
-} else if (screenWidth < 768) { // Mobile standard
-  offsetY = -0.06;
-  offsetX = 0.6;
-} else if (screenWidth < 1440) { // Tablette portrait
-  offsetY = screenHeight < 900 ? -0.07 : -0.09;
-  offsetX = 0.5;
-} else if (screenWidth < 1060) { // Tablette portrait
-  offsetY = screenHeight < 650 ? -0.04 : -0.09;
-  offsetX = 0.1;
-} else if (screenWidth < 1280) { // Tablette paysage et petits laptops
-  offsetY = -0.03;
-  offsetX = 0.6;
-} else if (screenWidth < 1440) { // Laptop standard 15 pouces
-  offsetY = screenHeight < 900 ? -0.06 : -0.06;
-  offsetX = 0.4;
-} else if (screenWidth < 1600) { // Laptop standard 15 pouces
-  offsetY = screenHeight < 800 ? -0.05 : -0.08;
-  offsetX = 0.5;
-} else if (screenWidth < 1920) { // Écran Full HD (1080p)
-  offsetY = screenHeight < 1000 ? -0.04 : -0.02;
-  offsetX = 0.5;
-} else if (screenWidth < 2560) { // Écran 2K
-  offsetY = screenHeight < 1200 ? -0.03 : -0.02;
-  offsetX = 1.2;
-} else { // Ultra-wide et 4K
-  offsetY = screenHeight < 1400 ? -0.02 : -0.01;
-  offsetX = 1.5;
-}
+    if (screenWidth < 480) { // Très petit mobile
+      offsetY = -0.08;
+      offsetX = 0.05;
+    } else if (screenWidth < 768) { // Mobile standard
+      offsetY = -0.06;
+      offsetX = 0.6;
+    } else if (screenWidth < 1440) { // Tablette portrait
+      offsetY = screenHeight < 900 ? -0.07 : -0.09;
+      offsetX = 0.5;
+    } else if (screenWidth < 1060) { // Tablette portrait
+      offsetY = screenHeight < 650 ? -0.04 : -0.09;
+      offsetX = 0.1;
+    } else if (screenWidth < 1280) { // Tablette paysage et petits laptops
+      offsetY = -0.03;
+      offsetX = 0.6;
+    } else if (screenWidth < 1440) { // Laptop standard 15 pouces
+      offsetY = screenHeight < 900 ? -0.06 : -0.06;
+      offsetX = 0.4;
+    } else if (screenWidth < 1600) { // Laptop standard 15 pouces
+      offsetY = screenHeight < 800 ? -0.05 : -0.08;
+      offsetX = 0.5;
+    } else if (screenWidth < 1920) { // Écran Full HD (1080p)
+      offsetY = screenHeight < 1000 ? -0.04 : -0.02;
+      offsetX = 0.5;
+    } else if (screenWidth < 2560) { // Écran 2K
+      offsetY = screenHeight < 1200 ? -0.03 : -0.02;
+      offsetX = 1.2;
+    } else { // Ultra-wide et 4K
+      offsetY = screenHeight < 1400 ? -0.02 : -0.01;
+      offsetX = 1.5;
+    }
 
     pos.y -= offsetY;
     pos.x -= offsetX;
-    
+
     pos.project(camera);
     const x = (pos.x * 0.5 + 0.5) * width;
     const y = (pos.y * -0.5 + 0.5) * height;
-    
+
     setRockPos({ x, y });
   });
 
   return null;
 }
 
+const Rock3D = ({ visible }) => {
+  const texture = useLoader(THREE.TextureLoader, "/assets/jungle/layer-rock.webp");
+  const rockRef = useRef();
+
+  useEffect(() => {
+    if (rockRef.current) {
+      rockRef.current.position.set(2, -2.2, -7); // 🔥 BIEN DERRIÈRE
+      rockRef.current.renderOrder = -2; // 🔹 Doit être dessiné AVANT la bouteille
+
+    }
+  }, []);
+
+  if (!visible) return null;
+
+  return (
+    <sprite ref={rockRef}  scale={[3, 1.3, 3]}>
+      <spriteMaterial map={texture}  />
+      </sprite>
+  );
+};
 
 const CanvasContainer = ({ selectedBottle, setModelTransform }) => {
   const {
@@ -100,10 +121,10 @@ const CanvasContainer = ({ selectedBottle, setModelTransform }) => {
 
   const [currentBottle, setCurrentBottle] = useState(selectedBottle || DEFAULT_BOTTLE);
   const rotationGroupRef = useRef();
-  
+
   const [screenSize, setScreenSize] = useState("desktop");
   const [imagePosition, setImagePosition] = useState({ x: 0, y: 0 });
-const [isInZone5, setIsInZone5] = useState(false); // Permet d'afficher uniquement en zone 5
+  const [isInZone5, setIsInZone5] = useState(true); // 🔥 TESTER AVEC TRUE
 
 
   // Détection de la taille d'écran
@@ -151,6 +172,7 @@ const [isInZone5, setIsInZone5] = useState(false); // Permet d'afficher uniqueme
 
     return { ...bottleConfig, position, rotation, scale };
   };
+
 
   // Appliquer les transformations initiales
   const applyInitialTransformations = (bottleConfig) => {
@@ -276,6 +298,9 @@ const [isInZone5, setIsInZone5] = useState(false); // Permet d'afficher uniqueme
           bottleConfig.scale?.z || 1,
         ]}
         onLoad={handleModelLoad}
+        renderOrder={10} // 🔥 Toujours dessiné après le rocher
+        material-depthTest={true} // 🔹 Assure que la bouteille est visible
+        material-depthWrite={true} // ✅ Garde la profondeur pour éviter d'être cachée
       />
     );
   };
@@ -288,9 +313,10 @@ const [isInZone5, setIsInZone5] = useState(false); // Permet d'afficher uniqueme
         </div>
       )}
       <Canvas
-      
+
         className="sticky inset-0 top-0 h-screen"
         camera={{ position: [0, 0, 5], fov: 25 }}
+        gl={{ logarithmicDepthBuffer: true }} // 🔥 Évite les bugs d'ordre d'affichage
         style={{ aspectRatio: "3/9" }} // ou un wrapper .someClass { aspect-ratio: 16/9; }
         onCreated={({ camera, scene, gl }) => {
           cameraRef.current = camera;
@@ -314,11 +340,13 @@ const [isInZone5, setIsInZone5] = useState(false); // Permet d'afficher uniqueme
             }
           });
         }}
-      >       
+      >
         <ambientLight intensity={2} />
         <directionalLight position={[5, 8, 5]} intensity={3} />
         <Environment preset="forest" background={false} />
-        <group ref={rotationGroupRef}>{renderModel()}</group>
+        <group renderOrder={2}>
+          <group ref={rotationGroupRef}>{renderModel()}</group>
+        </group>
         <ModelUpdater modelRef={modelRef} setModelTransform={setModelTransform} />
         <TrackModelPosition />
       </Canvas>

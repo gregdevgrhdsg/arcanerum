@@ -17,6 +17,7 @@ import Contact from "./components/Pages/Contact.jsx";
 import { useModel } from "./components/Context/ModelContext";
 import Loader from "./components/UI/Loader.jsx";
 import Footer from "./components/UI/Footer.jsx";
+import RockCanvas from "./components/Canvas/Rockcanav.jsx";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import gsap from "gsap";
 
@@ -78,10 +79,10 @@ const LayoutWithCanvas = () => {
   useEffect(() => {
     const handleScroll = () => {
       const cocktailsSection = document.getElementById("cocktails-section");
-  
+
       if (cocktailsSection) {
         const rect = cocktailsSection.getBoundingClientRect();
-  
+
         if (rect.top <= 1) {
           if (shouldFixModel) {
             console.log("🚀 Transition vers `absolute` !");
@@ -95,12 +96,12 @@ const LayoutWithCanvas = () => {
         }
       }
     };
-  
+
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, [shouldFixModel]);
 
- 
+
 
   return (
     <div className="flex flex-col min-h-screen">
@@ -126,19 +127,19 @@ const LayoutWithCanvas = () => {
         )}
         {isCanvasVisible && (
           <div
-          id="canvas-container"
-          style={{
-            position: shouldFixModel ? "fixed" : "absolute",
-            top: shouldFixModel
-              ? "0"
-              : `${document.getElementById("cocktails-section")?.offsetTop || 0}px`, // 🔥 Évite un top incorrect si `cocktails-section` n'existe pas encore
-            left: "0",
-            width: "100%",
-            height: "100vh",
-            transition: "none", // 🔥 Désactive les animations inutiles ici
-            zIndex: "10",
-          }}
-        >
+            id="canvas-container"
+            style={{
+              position: shouldFixModel ? "fixed" : "absolute",
+              top: shouldFixModel
+                ? "0"
+                : `${document.getElementById("cocktails-section")?.offsetTop || 0}px`, // 🔥 Évite un top incorrect si `cocktails-section` n'existe pas encore
+              left: "0",
+              width: "100%",
+              height: "100vh",
+              transition: "none", // 🔥 Désactive les animations inutiles ici
+              zIndex: "10",
+            }}
+          >
             <CanvaContainer
               isModelLoaded={isModelLoaded}
               selectedBottle={selectedBottle}
@@ -147,8 +148,13 @@ const LayoutWithCanvas = () => {
             />
           </div>
         )}
+
+        <div className="relative top-0 left-0 z-1">
+          <RockCanvas />
+        </div>
+
         {!isLesCocktails && !isLesCocktailDetail && isCanvasVisible && (
-          <div id="jungle-section" className="page-content absolute top-0 z-20 left-0 w-full h-screen">
+          <div id="jungle-section" className="page-content absolute top-0 z-50 left-0 w-full h-screen">
             <Jungle isModelLoaded={isModelLoaded} position="foreground" />
           </div>
         )}
@@ -167,7 +173,7 @@ const LayoutWithCanvas = () => {
             <Route path="/rum/:id" element={<RumDetailPage />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="*" element={<Navigate to="/" replace />} />
-            </Routes>
+          </Routes>
           <Outlet />
         </div>
       </div>

@@ -38,8 +38,8 @@ export const bottlesConfig = (t) => [
     component: Flamboyance,
     responsivePositions: {
       mobile: { x: 0, y: -0.8, z: 0.3 },
-      tablet: { x: 1.2, y: -0.8, z: 0 },
-      medium: { x: 1.3, y: -0.8, z: 0 },
+      tablet: { x: 0.5, y: -0.8, z: 0 },
+      medium: { x: 1, y: -0.8, z: 0 },
       desktop: { x: 1.1, y: -0.8, z: 0 },
     },
     responsiveRotations: {
@@ -65,8 +65,8 @@ export const bottlesConfig = (t) => [
     component: RumB,
     responsivePositions: {
       mobile: { x: 0, y: -0.8, z: 0.3 },
-      tablet: { x: 1.2, y: -0.8, z: 0 },
-      medium: { x: 1.3, y: -0.8, z: 0 },
+      tablet: { x: 0.5, y: -0.8, z: 0 },
+      medium: { x: 1, y: -0.8, z: 0 },
       desktop: { x: 1.1, y: -0.8, z: 0 },
     },
     responsiveRotations: {
@@ -92,8 +92,8 @@ export const bottlesConfig = (t) => [
     component: RumC,
     responsivePositions: {
       mobile: { x: 0, y: -0.8, z: 0.3 },
-      tablet: { x: 1.2, y: -0.8, z: 0 },
-      medium: { x: 1.3, y: -0.8, z: 0 },
+      tablet: { x: 0.5, y: -0.8, z: 0 },
+      medium: { x: 1, y: -0.8, z: 0 },
       desktop: { x: 1.1, y: -0.8, z: 0 },
     },
     responsiveRotations: {
@@ -119,8 +119,8 @@ export const bottlesConfig = (t) => [
     component: RumD,
     responsivePositions: {
       mobile: { x: 0, y: -0.8, z: 0.3 },
-      tablet: { x: 1.2, y: -0.8, z: 0 },
-      medium: { x: 1.3, y: -0.8, z: 0 },
+      tablet: { x: 0.5, y: -0.8, z: 0 },
+      medium: { x: 1, y: -0.8, z: 0 },
       desktop: { x: 1.1, y: -0.8, z: 0 },
     },
     responsiveRotations: {
