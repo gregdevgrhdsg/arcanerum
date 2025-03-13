@@ -120,7 +120,7 @@ const BottleSlider = forwardRef(({ bottles, onBottleChange, selectedBottle, onBu
         {/* Texte et Contenu */}
         <div
           ref={sliderContentRef}
-          className="relative flex 2xl:flex-col xl:flex-col lg:flex-col md:flex-col sm:flex-row xl:text-center sm:text-center sm:w-full sm:top-14 md:top-0 xl:top-0 lg:top-0  2xl:top-0 2xl:justify-center xl:justify-center md:justify-center   md:items-center sm:items-end 2xl:pl-44 md:pl-12 2xl:m-0 sm:m-10 md:w-1/2 text-white"
+          className="relative flex 2xl:flex-col xl:flex-col lg:flex-col md:flex-col sm:flex-row xl:text-center sm:text-center sm:w-full sm:top-14 md:top-0 xl:top-0 lg:top-0 2xl:top-0 2xl:justify-center xl:justify-center md:justify-center md:items-center sm:items-end 2xl:pl-44 md:pl-24 2xl:m-0 sm:m-10 md:w-1/2 text-white"
         >
           <div className="slider-content ">
             <h2 className=" 2xl:text-7xl xl:text-4xl sm:text-4xl font-yana text-gold mb-4">
@@ -160,7 +160,7 @@ const BottleSlider = forwardRef(({ bottles, onBottleChange, selectedBottle, onBu
       {/* Miniatures des Bouteilles */}
       <div
   className="relative top-0 right-0 h-full flex flex-col justify-center pr-20 space-y-8 z-20 hidden md:flex"
-  style={{ width: "auto" }}
+  style={{ width: "auto", height:"auto"}}
 >
   {bottles.map((bottle, index) => (
     <div

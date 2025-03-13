@@ -30,7 +30,9 @@ function App() {
           <div className="relative z-[9999]"> {/* S'assure que CookieConsent est au-dessus */}
             <CookieConsent />
           </div>
+          <div className="relative z-[100]"> {/* S'assure que CookieConsent est au-dessus */}
           <Navbar />
+          </div>
           <div className="flex-grow">
             <LayoutWithCanvas />
           </div>

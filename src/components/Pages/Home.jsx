@@ -54,7 +54,7 @@ const Home = ({ isModelLoaded, isAnimationDone }) => {
             scrollTo: {
               y: section,
               autoKill: false,
-              ease: "power3.inOut",
+              ease: "power2.inOut",
               scrub: true,
             },
             duration: 0.9,
@@ -67,9 +67,10 @@ const Home = ({ isModelLoaded, isAnimationDone }) => {
     gsap.utils.toArray(".highlight-title, .highlight-description, .highlight-button").forEach((element) => {
       gsap.fromTo(
         element,
-        { opacity: 0, x: 10, },
+        { opacity: 0, x: 10, skewX:0, },
         {
           opacity: 1,
+          skewX:3,
           x: 0,
           duration: 1,
           ease: "power2.out",

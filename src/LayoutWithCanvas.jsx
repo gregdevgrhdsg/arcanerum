@@ -148,10 +148,12 @@ const LayoutWithCanvas = () => {
             />
           </div>
         )}
-
-        <div className="relative top-0 left-0 z-1">
+        {isCanvasVisible && (
+        <div className="  inset-0 left-0 z-5">
           <RockCanvas />
         </div>
+        )}
+
 
         {!isLesCocktails && !isLesCocktailDetail && isCanvasVisible && (
           <div id="jungle-section" className="page-content absolute top-0 z-50 left-0 w-full h-screen">

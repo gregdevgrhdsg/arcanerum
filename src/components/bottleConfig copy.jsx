@@ -1,6 +1,8 @@
 import { RumA, Flamboyance, RumB, RumC, RumD } from './Canvas/GenericBottle';
 
 export const bottlesConfig = (t) => {
+  const refHeight = 900;
+  const ratio = window.innerHeight / refHeight;
   return [
   {
     id: 0,

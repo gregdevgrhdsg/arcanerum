@@ -203,7 +203,7 @@ const Jungle = ({ isModelLoaded, position = "background", followRock = false }) 
                 {
                   src: "assets/jungle/layer-plantFront.webp",
                   alt: "Plante 1",
-                  className: "layer-plantFront xl:w-[30%] lg:w-[50%] md:w-[65%] sm:w-[100%] z-10",
+                  className: "layer-plantFront xl:w-[30%] lg:w-[50%] md:w-[65%] sm:w-[100%] z-5",
                   style: { bottom: "0", left: "0%" },
                 },
                 {
