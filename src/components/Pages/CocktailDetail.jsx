@@ -90,6 +90,7 @@ const CocktailDetail = () => {
   }, [cocktail, activeSection, navigate, imageLoaded]);
 
   useEffect(() => {
+    setImageLoaded(false);
     if (!cocktail?.image) return;
     const img = new Image();
     img.src = cocktail.image;
