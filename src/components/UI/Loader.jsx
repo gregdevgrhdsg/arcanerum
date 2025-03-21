@@ -1,37 +1,19 @@
 import React, { useEffect } from "react";
 import gsap from "gsap";
-import i18n from "i18next";
-import { useTranslation, initReactI18next } from "react-i18next";
-
-// Configuration inline d'i18next avec les ressources de traduction
-if (!i18n.isInitialized) {
-  i18n.use(initReactI18next).init({
-    resources: {
-      fr: {
-        translation: {
-          loader: {
-            loading: "Chargement..."
-          }
-        }
-      },
-      en: {
-        translation: {
-          loader: {
-            loading: "Loading..."
-          }
-        }
-      }
-    },
-    lang: "fr", // Langue par défaut (peut être changée dynamiquement)
-    fallbackLng: "en",
-    interpolation: {
-      escapeValue: false
-    }
-  });
-}
+import { useTranslation } from "react-i18next";
 
 const Loader = ({ progress }) => {
-  const { t } = useTranslation();
+  const { i18n } = useTranslation();
+  const currentLang = i18n.language?.split("-")[0] || "fr";
+
+  const translations = {
+    fr: {
+      loading: "Chargement...",
+    },
+    en: {
+      loading: "Loading...",
+    },
+  };
 
   useEffect(() => {
     if (progress === 100) {
@@ -58,7 +40,7 @@ const Loader = ({ progress }) => {
       />
 
       {/* Texte traduit */}
-      <div className="text-white mb-4">{t("loader.loading")}</div>
+      <div className="text-white mb-4">{translations[currentLang].loading}</div>
 
       <div className="w-3/4 md:w-1/2 lg:w-1/3 h-3 bg-gray-700 rounded">
         <div

@@ -97,7 +97,7 @@ const LesCocktails = () => {
 
   return (
     <section
-    className="w-full mx-auto bg-cover bg-fixed flex flex-col items-center justify-start   text-white z-0"
+    className="w-full mx-auto bg-cover bg-fixed flex flex-col items-center justify-start text-white z-0 pb-32"
     style={{
         backgroundImage: "url('/assets/jungle/fond-ArcaneCocktails.webp')",
         backgroundSize: "cover",
