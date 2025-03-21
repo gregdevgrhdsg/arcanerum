@@ -127,6 +127,12 @@ const KnowHow = () => {
 
   }, [currentTimelineStep]);
 
+  useEffect(() => {
+    const img = new Image();
+    img.src = sliderData[currentSliderStep].image;
+    img.onload = () => setImageLoaded(true);
+  }, [currentSliderStep]);
+
   return (
     <div className="know-how-container w-full h-full">
       {/* Section 1 : Slider */}
@@ -172,7 +178,6 @@ const KnowHow = () => {
               src={sliderData[currentSliderStep]?.image}
               alt={`Slide ${currentSliderStep + 1}`}
               className="object-cover w-full h-full"
-              onLoad={() => setImageLoaded(true)}
             />
             <div className="absolute top-0 left-0 w-full h-full bg-black/40 z-10"></div>
           </div>

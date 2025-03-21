@@ -89,6 +89,13 @@ const CocktailDetail = () => {
     }
   }, [cocktail, activeSection, navigate, imageLoaded]);
 
+  useEffect(() => {
+    if (!cocktail?.image) return;
+    const img = new Image();
+    img.src = cocktail.image;
+    img.onload = () => setImageLoaded(true);
+  }, [cocktail]);
+
   if (!cocktail) {
     return (
       <div className="text-center text-gold text-4xl font-yana">
@@ -101,7 +108,6 @@ const CocktailDetail = () => {
   }
 
   const currentSection = cocktail.sections?.[activeSection] || { ingredients: [], method: [] };
-
 
   return (
     <section
@@ -139,7 +145,6 @@ const CocktailDetail = () => {
             src={cocktail.image}
             alt={cocktail.name?.[currentLang] ?? "Nom inconnu"}
             className="xl:pl-0 xl:pr-0 md:pl-0 md:pr-0 sm:pl-16 sm:pr-16 px-8 max-w-[100%] object-contain xl:h-[60vh] lg:h-[50vh] lg:max-w-full"
-            onLoad={() => setImageLoaded(true)}
           />
         </div>
 
@@ -153,10 +158,8 @@ const CocktailDetail = () => {
           </h1>
           <h2 className="font-yana text-white 2xl:text-4xl xl:text-xl lg:text-1xl md:1xl sm:text-sm text-gold mb-4">{translations[currentLang].recette}</h2>
 
-
           {/* Sélecteur de section */}
           <div className="flex sm:justify-center space-x-4 mb-12">
-          
             {cocktail.sections.map((section, index) => (
               <button
                 key={index}

@@ -41,7 +41,6 @@ const LesCocktails = () => {
   // ✨ Animation GSAP des cartes cocktails
   useEffect(() => {
     if (filteredCocktails.length > 0) {
-      setIsLoaded(true);
       gsap.fromTo(
         ".cocktail-card",
         { opacity: 0, y: 30 },
@@ -78,6 +77,23 @@ const LesCocktails = () => {
     setActiveFilter(category);
     setFilteredCocktails(newFilteredCocktails);
   };
+
+  useEffect(() => {
+    if (filteredCocktails.length === 0) return;
+
+    let loadedCount = 0;
+
+    filteredCocktails.forEach((cocktail) => {
+      const img = new Image();
+      img.src = cocktail.imageB;
+      img.onload = () => {
+        loadedCount++;
+        if (loadedCount === filteredCocktails.length) {
+          setIsLoaded(true);
+        }
+      };
+    });
+  }, [filteredCocktails]);
 
   return (
     <section
@@ -135,7 +151,6 @@ const LesCocktails = () => {
                   src={cocktail.imageB}
                   alt={cocktail.name?.[lang] || "Cocktail"}
                   className="object-contain mb-4 2xl:w-[25vw]  xl:w-[20vw] md:w-80 lg:w-96"
-                  onLoad={() => handleImageLoad(cocktail.id)}
                 />
                 <h2 className="text-md leading-none 2xl:text-4xl xl:text-2xl lg:text-xl md:text-lg sm:text-sm text-gold font-semibold mb-1 text-center">
                   {cocktail.name?.[lang] ?? "Nom inconnu"}
