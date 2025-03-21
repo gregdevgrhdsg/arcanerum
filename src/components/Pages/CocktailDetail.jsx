@@ -73,21 +73,7 @@ const CocktailDetail = () => {
         );
       });
     }
-
-    if (imageLoaded) {
-      gsap.fromTo(
-        textRef.current,
-        { opacity: 0, y: -20 },
-        { opacity: 1, y: 0, duration: 0.8, ease: "power2.out" }
-      );
-
-      gsap.fromTo(
-        imageRef.current,
-        { opacity: 0, scale: 0.95 },
-        { opacity: 1, scale: 1, duration: 0.8, ease: "power2.out" }
-      );
-    }
-  }, [cocktail, activeSection, navigate, imageLoaded]);
+  }, [cocktail, activeSection, navigate]);
 
   useEffect(() => {
     setImageLoaded(false);
@@ -96,6 +82,22 @@ const CocktailDetail = () => {
     img.src = cocktail.image;
     img.onload = () => setImageLoaded(true);
   }, [cocktail]);
+
+  useEffect(() => {
+    if (!imageLoaded) return;
+
+    gsap.fromTo(
+      textRef.current,
+      { opacity: 0, y: -20 },
+      { opacity: 1, y: 0, duration: 0.8, ease: "power2.out" }
+    );
+
+    gsap.fromTo(
+      imageRef.current,
+      { opacity: 0, scale: 0.95 },
+      { opacity: 1, scale: 1, duration: 0.8, ease: "power2.out" }
+    );
+  }, [imageLoaded]);
 
   if (!cocktail) {
     return (
