@@ -41,7 +41,6 @@ const CocktailDetail = () => {
   const imageRef = useRef(null);
 
   const [activeSection, setActiveSection] = useState(0);
-  const [imageLoaded, setImageLoaded] = useState(false);
 
   useEffect(() => {
     if (!cocktail) {
@@ -49,6 +48,7 @@ const CocktailDetail = () => {
       return;
     }
 
+    // Animation GSAP pour les éléments de la jungle
     const jungleElements = document.querySelectorAll(".jungle-el-section");
     if (jungleElements.length > 0) {
       jungleElements.forEach((element) => {
@@ -73,19 +73,8 @@ const CocktailDetail = () => {
         );
       });
     }
-  }, [cocktail, activeSection, navigate]);
 
-  useEffect(() => {
-    setImageLoaded(false);
-    if (!cocktail?.image) return;
-    const img = new Image();
-    img.src = cocktail.image;
-    img.onload = () => setImageLoaded(true);
-  }, [cocktail]);
-
-  useEffect(() => {
-    if (!imageLoaded) return;
-
+    // Animation pour le texte et l'image
     gsap.fromTo(
       textRef.current,
       { opacity: 0, y: -20 },
@@ -97,7 +86,7 @@ const CocktailDetail = () => {
       { opacity: 0, scale: 0.95 },
       { opacity: 1, scale: 1, duration: 0.8, ease: "power2.out" }
     );
-  }, [imageLoaded]);
+  }, [cocktail, activeSection, navigate]);
 
   if (!cocktail) {
     return (
@@ -111,6 +100,7 @@ const CocktailDetail = () => {
   }
 
   const currentSection = cocktail.sections?.[activeSection] || { ingredients: [], method: [] };
+
 
   return (
     <section
@@ -161,8 +151,10 @@ const CocktailDetail = () => {
           </h1>
           <h2 className="font-yana text-white 2xl:text-4xl xl:text-xl lg:text-1xl md:1xl sm:text-sm text-gold mb-4">{translations[currentLang].recette}</h2>
 
+
           {/* Sélecteur de section */}
           <div className="flex sm:justify-center space-x-4 mb-12">
+          
             {cocktail.sections.map((section, index) => (
               <button
                 key={index}

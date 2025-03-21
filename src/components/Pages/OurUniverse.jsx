@@ -9,7 +9,6 @@ const SliderSection = ({ slider }) => {
   const titleRef = useRef(null);
   const textRef = useRef(null);
   const imageRef = useRef(null);
-  const [imageLoaded, setImageLoaded] = useState(false);
   const [currentIndex, setCurrentIndex] = useState(0);
   const slides = slider.slides;
 
@@ -26,17 +25,16 @@ const SliderSection = ({ slider }) => {
   // Animation du changement d'image pour les sections autres que la section 2
   if (slider.id !== 2 && slider.images) {
     useEffect(() => {
-      if (!imageRef.current || !imageLoaded) return;
+      if (!imageRef.current) return;
       gsap.fromTo(
         imageRef.current,
         { opacity: 0, y: 10 },
         { opacity: 1, y: 0, duration: 2, ease: 'power2.out' }
       );
-    }, [currentIndex, imageLoaded]);
+    }, [currentIndex]);
   }
 
   const handleSlideChange = (direction) => {
-    setImageLoaded(false);
     const newIndex = (currentIndex + direction + slides.length) % slides.length;
     setCurrentIndex(newIndex);
   };
@@ -134,7 +132,6 @@ const SliderSection = ({ slider }) => {
             ref={imageRef}
             src={slider.images ? slider.images[currentIndex] : slider.backgroundImage}
             alt={`Slide ${currentIndex + 1}`}
-            onLoad={() => setImageLoaded(true)}
             className="object-cover w-full h-full filter bg-black/40 relative z-10"
           />
 

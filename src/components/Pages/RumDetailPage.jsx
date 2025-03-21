@@ -102,13 +102,6 @@ const RumDetailPage = () => {
     };
   }, [id, imageLoaded]);
 
-  useEffect(() => {
-    if (!rum?.image) return;
-    const img = new Image();
-    img.src = rum.image;
-    img.onload = () => setImageLoaded(true);
-  }, [rum]);
-
   if (!rum) {
     return <p>Bouteille non trouvée.</p>;
   }
@@ -133,6 +126,7 @@ const RumDetailPage = () => {
             src={rum.image}
             alt={rum.title}
             className="relative z-10 drop-shadow-lg sm:w-[150px] md:w-[150px] lg:w-[200px] xl:w-[200px] 2xl:w-[400px]"
+            onLoad={() => setImageLoaded(true)}
           />
         </div>
 
