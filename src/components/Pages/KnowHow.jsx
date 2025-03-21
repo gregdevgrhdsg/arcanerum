@@ -9,7 +9,8 @@ gsap.registerPlugin(ScrollTrigger);
 const KnowHow = () => {
   const { t } = useTranslation();
   const panoramaRef = useRef(null);
-  const imageRef = useRef(null);      
+  const mobileImageRef = useRef(null);
+  const imageRef = useRef(null);
   const titleRef = useRef(null);
   const textRef = useRef(null);
   const panoramaImageRef = useRef(null);
@@ -75,7 +76,8 @@ const KnowHow = () => {
     gsap.fromTo(
       [titleRef.current, textRef.current],
       { opacity: 0, y: 20 },
-      { opacity: 1, y: 0, duration: 2, stagger: 0.2, ease: "power2.out",
+      {
+        opacity: 1, y: 0, duration: 2, stagger: 0.2, ease: "power2.out",
       }
     );
     return () => gsap.killTweensOf([titleRef.current, textRef.current]);
@@ -86,6 +88,16 @@ const KnowHow = () => {
     if (!imageRef.current) return;
     gsap.fromTo(
       imageRef.current,
+      { opacity: 0, y: 10 },
+      { opacity: 1, y: 0, duration: 2, ease: 'power2.out' }
+    );
+  }, [currentSliderStep]);
+
+  // Animation de l'image du slider (Section 1)
+  useEffect(() => {
+    if (!mobileImageRef.current) return;
+    gsap.fromTo(
+      mobileImageRef.current,
       { opacity: 0, y: 10 },
       { opacity: 1, y: 0, duration: 2, ease: 'power2.out' }
     );
@@ -130,8 +142,17 @@ const KnowHow = () => {
     <div className="know-how-container w-full h-full">
       {/* Section 1 : Slider */}
       <section className="min-h-screen relative flex flex-col lg:flex-row">
-      <div className="lg:w-1/2 bg-black lg:p-20 xl:pl-40 2xl:p-40 flex flex-col justify-center items-center md:pt-40 md:pb-40 sm:pb-40 sm:pt-32 text-center md:max-w-[80vw] sm:max-w-[80vw] mx-auto lg:pt-50 ">
-      <h2
+        <div className="absolute inset-0 w-full h-full z-0 opacity-50 pointer-events-none lg:hidden">
+          <img
+            ref={mobileImageRef}
+            src={sliderData[currentSliderStep]?.image}
+            alt={`Slide ${currentSliderStep + 1}`}
+            className="object-cover w-full h-full"
+          />
+          <div className="absolute inset-0 bg-black/40"></div>
+        </div>
+        <div className="lg:w-1/2 lg:bg-black lg:p-20 sm:min-h-screen flex flex-col justify-center sm:justify-center sm:items-center sm:text-center xl:pl-40 2xl:p-40 md:pt-40 md:pb-40 sm:pb-40 sm:pt-32 text-center md:max-w-[80vw] sm:max-w-[80vw] mx-auto lg:pt-50 ">
+          <h2
             ref={titleRef}
             className="slide-item font-bold text-gold font-yana leading-none 2xl:text-6xl xl:text-4xl lg:text-3xl md:text-3xl sm:text-2xl mb-6"
           >
@@ -143,31 +164,67 @@ const KnowHow = () => {
           >
             {sliderData[currentSliderStep]?.description}
           </p>
-          {/* Pagination par numéro */}
-          <div className="flex justify-center items-center mt-6 space-x-2">
+          {/* Mobile pagination + arrows */}
+          <div className="flex justify-center items-center gap-4 mt-6 px-4 lg:hidden min-h-[64px] z-30">
+            <button
+              className="text-gold text-4xl hover:text-white"
+              onClick={() =>
+                setCurrentSliderStep(prev => (prev > 0 ? prev - 1 : sliderData.length - 1))
+              }
+              aria-label="Précédent"
+            >
+              &larr;
+            </button>
+            <div className="flex justify-center items-center space-x-2">
+              {sliderData.map((_, index) => (
+                <button
+                  key={index}
+                  onClick={() => setCurrentSliderStep(index)}
+                  aria-label={`Aller à la diapositive ${index + 1}`}
+                  className={`px-3 pt-1 font-yana font-bold text-2xl transition-colors duration-300 ${currentSliderStep === index
+                      ? 'border border-gold bg-gold text-black'
+                      : 'border border-gold text-gold'
+                    }`}
+                >
+                  {index + 1}
+                </button>
+              ))}
+            </div>
+            <button
+              className="text-gold text-4xl hover:text-white"
+              onClick={() =>
+                setCurrentSliderStep(prev => (prev < sliderData.length - 1 ? prev + 1 : 0))
+              }
+              aria-label="Suivant"
+            >
+              &rarr;
+            </button>
+          </div>
+
+          {/* Desktop pagination only */}
+          <div className="hidden lg:flex justify-center items-center mt-6 space-x-2">
             {sliderData.map((_, index) => (
               <button
                 key={index}
                 onClick={() => setCurrentSliderStep(index)}
                 aria-label={`Aller à la diapositive ${index + 1}`}
-                className={`px-3 pt-1 font-yana font-bold text-2xl transition-colors duration-300 ${
-                  currentSliderStep === index
+                className={`px-3 pt-1 font-yana font-bold text-2xl transition-colors duration-300 ${currentSliderStep === index
                     ? 'border border-gold bg-gold text-black'
                     : 'border border-gold text-gold'
-                }`}
+                  }`}
               >
                 {index + 1}
               </button>
             ))}
           </div>
         </div>
-        <div className="lg:w-1/2 w-full sm:h-[50vh] lg:h-[100vh] relative flex items-center justify-center">
+        <div className="hidden lg:flex lg:w-1/2 lg:h-[100vh] relative items-center justify-center">
           <div
+            className="hidden lg:block absolute w-full h-full z-0"
             key={currentSliderStep}
-            ref={imageRef}
-            className="absolute w-full h-full z-0"
           >
             <img
+              ref={imageRef}
               src={sliderData[currentSliderStep]?.image}
               alt={`Slide ${currentSliderStep + 1}`}
               className="object-cover w-full h-full"
@@ -178,23 +235,23 @@ const KnowHow = () => {
 
         {/* Flèches de navigation sur chaque côté */}
         <button
-          className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gold 2xl:text-8xl text-6xl hover:text-white z-10"
+          className="hidden lg:block absolute left-4 top-1/2 transform -translate-y-1/2 text-gold 2xl:text-8xl text-6xl hover:text-white z-10"
           onClick={() =>
             setCurrentSliderStep(prev => (prev > 0 ? prev - 1 : sliderData.length - 1))
           }
           aria-label="Précédent"
         >
           &larr;
-          </button>
+        </button>
         <button
-          className="absolute right-4 top-1/2 transform -translate-y-1/2 text-gold 2xl:text-8xl text-6xl hover:text-white z-10"
+          className="hidden lg:block absolute right-4 top-1/2 transform -translate-y-1/2 text-gold 2xl:text-8xl text-6xl hover:text-white z-10"
           onClick={() =>
             setCurrentSliderStep(prev => (prev < sliderData.length - 1 ? prev + 1 : 0))
           }
           aria-label="Suivant"
         >
           &rarr;
-          </button>
+        </button>
       </section>
 
       {/* Section 2 : Panorama */}
@@ -221,11 +278,10 @@ const KnowHow = () => {
               {timelineSteps.map((_, index) => (
                 <button
                   key={index}
-                  className={`px-2 py-2 xl:text-lg sm:text-xs transition-all duration-300 ${
-                    currentTimelineStep === index
+                  className={`px-2 py-2 xl:text-lg sm:text-xs transition-all duration-300 ${currentTimelineStep === index
                       ? "bg-gold-linear text-black rounded-xl"
                       : "text-white hover:bg-gold-linear hover:text-black rounded-xl"
-                  }`}
+                    }`}
                   onClick={() => setCurrentTimelineStep(index)}
                 >
                   {t("know_how.step", { step: index + 1 })}

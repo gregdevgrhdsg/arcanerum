@@ -71,7 +71,7 @@ const SliderSection = ({ slider }) => {
             backgroundPosition: 'center'
           }}
         >
-          <div className={`text-center z-10 ${slider.containerClass} px-4`}>
+          <div className={`text-center z-30 ${slider.containerClass} px-4`}>
             <h2
               ref={titleRef}
               className="highlight-title font-yana font-bold text-gold leading-none 2xl:text-6xl xl:text-4xl lg:text-3xl md:text-3xl sm:text-2xl mb-3"
@@ -87,7 +87,7 @@ const SliderSection = ({ slider }) => {
             {pagination}
             {/* Flèches supprimées pour la section du milieu */}
           </div>
-          <div className="absolute top-0 left-0 w-full h-full bg-black/50 z-0"></div>
+          <div className="absolute top-0 left-0 w-full h-full bg-black/50 "></div>
         </div>
       </section>
     );
@@ -98,6 +98,17 @@ const SliderSection = ({ slider }) => {
     const layoutClass = slider.id === 3 ? 'flex-col lg:flex-row-reverse' : 'flex-col lg:flex-row';
     return (
       <section className={`relative min-h-screen flex ${layoutClass}`}>
+        {(slider.id !== 2 && slider.images) && (
+          <div className="absolute inset-0 w-full h-full z-0 pointer-events-none lg:hidden">
+            <img
+              ref={imageRef}
+              src={slider.images[currentIndex]}
+              alt={`Slide ${currentIndex + 1}`}
+              className="object-cover opacity-50  w-full h-full"
+            />
+            <div className="absolute inset-0  bg-black/60"></div>
+          </div>
+        )}
         {slider.id === 1 && (
           <>
  
@@ -110,7 +121,7 @@ const SliderSection = ({ slider }) => {
           </>
         )}
 
-        <div className="lg:w-1/2 bg-black lg:p-20 xl:pl-40 2xl:p-40 flex flex-col justify-center items-center md:pt-40 md:pb-40 sm:pt-32 sm:pb-20 text-center md:max-w-[80vw] sm:max-w-[80vw] mx-auto  ">
+        <div className="lg:w-1/2 lg:bg-black lg:p-20 xl:pl-40 2xl:p-40 flex flex-col justify-center sm:justify-center sm:min-h-screen sm:items-center sm:text-center md:pt-40 md:pb-40 sm:pt-32 sm:pb-20 text-left md:max-w-[80vw] sm:max-w-[80vw] mx-auto z-30">
           <h2
             ref={titleRef}
             className="highlight-title font-yana font-bold text-gold leading-none 2xl:text-6xl xl:text-4xl lg:text-4xl md:text-4xl sm:text-2xl mb-3"
@@ -124,10 +135,25 @@ const SliderSection = ({ slider }) => {
             {slides[currentIndex]}
           </p>
           {pagination}
-    
+          <div className="flex justify-center items-center w-full gap-4 mt-6 px-4 lg:hidden min-h-[64px]">
+            <button
+              className="text-gold text-5xl hover:text-white "
+              onClick={() => handleSlideChange(-1)}
+              aria-label="Diapositive précédente"
+            >
+              &larr;
+            </button>
+            <button
+              className="text-gold text-5xl hover:text-white "
+              onClick={() => handleSlideChange(1)}
+              aria-label="Diapositive suivante"
+            >
+              &rarr;
+            </button>
+          </div>
         </div>
         {/* Pour la photo : elle couvre toute la zone droite */}
-        <div className="lg:w-1/2 w-full sm:h-[50vh] lg:h-[100vh] relative flex items-center justify-center">
+        <div className="lg:w-1/2 w-full sm:h-[50vh] lg:h-[100vh] hidden lg:flex items-center justify-center">
           <img
             ref={imageRef}
             src={slider.images ? slider.images[currentIndex] : slider.backgroundImage}
@@ -142,19 +168,19 @@ const SliderSection = ({ slider }) => {
 
         {/* Flèches de navigation positionnées sur les côtés */}
         <button
-          className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gold 2xl:text-8xl text-6xl hover:text-white z-10"
+          className="hidden lg:block absolute left-4 top-1/2 transform -translate-y-1/2 text-gold 2xl:text-8xl text-6xl hover:text-white z-30"
           onClick={() => handleSlideChange(-1)}
           aria-label="Diapositive précédente"
         >
           &larr;
-          </button>
+        </button>
         <button
-          className="absolute right-4 top-1/2 transform -translate-y-1/2 text-gold 2xl:text-8xl text-6xl hover:text-white z-10"
+          className="hidden lg:block absolute right-4 top-1/2 transform -translate-y-1/2 text-gold 2xl:text-8xl text-6xl hover:text-white z-30"
           onClick={() => handleSlideChange(1)}
           aria-label="Diapositive suivante"
         >
           &rarr;
-          </button>
+        </button>
       </section>
     );
   }
@@ -208,7 +234,7 @@ const OurUniverse = () => {
       ],
       buttonText: t('button_discover_more'),
       flexClasses: 'md:justify-start sm:justify-center md:items-center sm:items-center',
-      containerClass: 'md:w-[50vw] md:max-w-[50vw] sm:w-[80vw] xl:pr-40',
+      containerClass: 'md:w-[50vw] md:max-w-[50vw] sm:w-[80vw] :pr-40',
     },
   ], [t]);
 
