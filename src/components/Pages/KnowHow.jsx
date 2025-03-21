@@ -15,6 +15,7 @@ const KnowHow = () => {
   const panoramaImageRef = useRef(null);
   const [currentSliderStep, setCurrentSliderStep] = useState(0);
   const [currentTimelineStep, setCurrentTimelineStep] = useState(0);
+  const [imageLoaded, setImageLoaded] = useState(false);
 
   // Données du slider (Section 1)
   const sliderData = [
@@ -83,13 +84,13 @@ const KnowHow = () => {
 
   // Animation de l'image du slider (Section 1)
   useEffect(() => {
-    if (!imageRef.current) return;
+    if (!imageRef.current || !imageLoaded) return;
     gsap.fromTo(
       imageRef.current,
       { opacity: 0, y: 10 },
       { opacity: 1, y: 0, duration: 2, ease: 'power2.out' }
     );
-  }, [currentSliderStep]);
+  }, [currentSliderStep, imageLoaded]);
 
   // Animation des éléments du panorama (Section 2)
   useEffect(() => {
@@ -171,6 +172,7 @@ const KnowHow = () => {
               src={sliderData[currentSliderStep]?.image}
               alt={`Slide ${currentSliderStep + 1}`}
               className="object-cover w-full h-full"
+              onLoad={() => setImageLoaded(true)}
             />
             <div className="absolute top-0 left-0 w-full h-full bg-black/40 z-10"></div>
           </div>
@@ -179,18 +181,20 @@ const KnowHow = () => {
         {/* Flèches de navigation sur chaque côté */}
         <button
           className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gold 2xl:text-8xl text-6xl hover:text-white z-10"
-          onClick={() =>
-            setCurrentSliderStep(prev => (prev > 0 ? prev - 1 : sliderData.length - 1))
-          }
+          onClick={() => {
+            setImageLoaded(false);
+            setCurrentSliderStep(prev => (prev > 0 ? prev - 1 : sliderData.length - 1));
+          }}
           aria-label="Précédent"
         >
           &larr;
           </button>
         <button
           className="absolute right-4 top-1/2 transform -translate-y-1/2 text-gold 2xl:text-8xl text-6xl hover:text-white z-10"
-          onClick={() =>
-            setCurrentSliderStep(prev => (prev < sliderData.length - 1 ? prev + 1 : 0))
-          }
+          onClick={() => {
+            setImageLoaded(false);
+            setCurrentSliderStep(prev => (prev < sliderData.length - 1 ? prev + 1 : 0));
+          }}
           aria-label="Suivant"
         >
           &rarr;
