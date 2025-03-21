@@ -135,6 +135,7 @@ const LesCocktails = () => {
                   src={cocktail.imageB}
                   alt={cocktail.name?.[lang] || "Cocktail"}
                   className="object-contain mb-4 2xl:w-[25vw]  xl:w-[20vw] md:w-80 lg:w-96"
+                  onLoad={() => handleImageLoad(cocktail.id)}
                 />
                 <h2 className="text-md leading-none 2xl:text-4xl xl:text-2xl lg:text-xl md:text-lg sm:text-sm text-gold font-semibold mb-1 text-center">
                   {cocktail.name?.[lang] ?? "Nom inconnu"}

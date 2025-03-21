@@ -1,9 +1,8 @@
-import React, { useRef, useEffect } from "react";
+import React, { useRef, useEffect, useState } from "react";
 import { useParams, Link, useNavigate } from "react-router-dom";
 import useRumData from "../rumData"; // Assure-toi d'importer correctement
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { useState } from "react";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -15,6 +14,7 @@ const RumDetailPage = () => {
   const sectionRef = useRef();
   const textRefs = useRef([]);
   const imageContainerRef = useRef();
+  const [imageLoaded, setImageLoaded] = useState(false);
 
   // Vérifier s'il s'agit d'un rhum classique ou d'un arrangé
   const hasTastingNotes = rum?.tastingNotes?.color || rum?.tastingNotes?.nose || rum?.tastingNotes?.palate;
@@ -44,6 +44,7 @@ const RumDetailPage = () => {
 
   // Fonction pour naviguer entre les rhums avec animation GSAP
   const handleNavigation = (direction) => {
+    setImageLoaded(false);
     const currentIndex = rumData.findIndex((item) => item.id === parseInt(id));
     const nextIndex = (currentIndex + direction + rumData.length) % rumData.length;
     const nextId = rumData[nextIndex].id;
@@ -59,7 +60,7 @@ const RumDetailPage = () => {
   };
 
   useEffect(() => {
-    if (!sectionRef.current) return;
+    if (!sectionRef.current || !imageLoaded) return;
 
     gsap.fromTo(
       sectionRef.current,
@@ -92,21 +93,14 @@ const RumDetailPage = () => {
         opacity: 1,
         scale: 1,
         duration: 1.2,
-        ease: "power3.out",
-        stagger: 0.2,
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          start: "top 80%",
-          end: "bottom 20%",
-          toggleActions: "play none none reverse",
-        },
+        ease: "power3.out"
       }
     );
 
     return () => {
       ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
     };
-  }, [id]);
+  }, [id, imageLoaded]);
 
   if (!rum) {
     return <p>Bouteille non trouvée.</p>;
@@ -132,6 +126,7 @@ const RumDetailPage = () => {
             src={rum.image}
             alt={rum.title}
             className="relative z-10 drop-shadow-lg sm:w-[150px] md:w-[150px] lg:w-[200px] xl:w-[200px] 2xl:w-[400px]"
+            onLoad={() => setImageLoaded(true)}
           />
         </div>
 

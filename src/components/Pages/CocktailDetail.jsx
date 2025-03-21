@@ -41,6 +41,7 @@ const CocktailDetail = () => {
   const imageRef = useRef(null);
 
   const [activeSection, setActiveSection] = useState(0);
+  const [imageLoaded, setImageLoaded] = useState(false);
 
   useEffect(() => {
     if (!cocktail) {
@@ -48,7 +49,6 @@ const CocktailDetail = () => {
       return;
     }
 
-    // Animation GSAP pour les éléments de la jungle
     const jungleElements = document.querySelectorAll(".jungle-el-section");
     if (jungleElements.length > 0) {
       jungleElements.forEach((element) => {
@@ -74,19 +74,20 @@ const CocktailDetail = () => {
       });
     }
 
-    // Animation pour le texte et l'image
-    gsap.fromTo(
-      textRef.current,
-      { opacity: 0, y: -20 },
-      { opacity: 1, y: 0, duration: 0.8, ease: "power2.out" }
-    );
+    if (imageLoaded) {
+      gsap.fromTo(
+        textRef.current,
+        { opacity: 0, y: -20 },
+        { opacity: 1, y: 0, duration: 0.8, ease: "power2.out" }
+      );
 
-    gsap.fromTo(
-      imageRef.current,
-      { opacity: 0, scale: 0.95 },
-      { opacity: 1, scale: 1, duration: 0.8, ease: "power2.out" }
-    );
-  }, [cocktail, activeSection, navigate]);
+      gsap.fromTo(
+        imageRef.current,
+        { opacity: 0, scale: 0.95 },
+        { opacity: 1, scale: 1, duration: 0.8, ease: "power2.out" }
+      );
+    }
+  }, [cocktail, activeSection, navigate, imageLoaded]);
 
   if (!cocktail) {
     return (
@@ -138,6 +139,7 @@ const CocktailDetail = () => {
             src={cocktail.image}
             alt={cocktail.name?.[currentLang] ?? "Nom inconnu"}
             className="xl:pl-0 xl:pr-0 md:pl-0 md:pr-0 sm:pl-16 sm:pr-16 px-8 max-w-[100%] object-contain xl:h-[60vh] lg:h-[50vh] lg:max-w-full"
+            onLoad={() => setImageLoaded(true)}
           />
         </div>
 
