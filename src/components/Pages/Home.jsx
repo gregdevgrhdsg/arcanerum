@@ -230,15 +230,6 @@ const Home = ({ isModelLoaded, isAnimationDone }) => {
             <img src="assets/jungle/layer-papillon1.webp" alt="cocktail" className="w-full h-full object-contain z-0" />
           </div>
         </section>
-
-        <section className="zone-6 slider-section relative w-full h-screen flex flex-col items-center justify-center bg-transparent">
-          <div className="text-center sm:mt-0 xl:max-w-[40vw] md:max-w-[40vw] sm:max-w-[60vw] z-10">
-            <h2 className="highlight-title font-bold font-yana text-gold mb-5 2xl:text-6xl xl:text-4xl lg:text-3xl md:text-3xl sm:text-2xl">SUIVEZ-NOUS SUR INSTAGRAM</h2>
-          </div>
-
-          {/* 📌 Intégration du feed Instagram dynamique */}
-          <InstagramFeed />
-        </section>
         <div>{isDetailView && <ModelDetail />}
         </div>
       </div>

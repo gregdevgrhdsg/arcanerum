@@ -31,7 +31,7 @@ const KnowHow = () => {
     {
       title: t("know_how.slide3.title"),
       description: t("know_how.slide3.description"),
-      image: "assets/sections/fondKnowHow.webp"
+      image: "assets/sections/lesArrangees.jpg"
     }
   ];
 
@@ -86,8 +86,8 @@ const KnowHow = () => {
     if (!imageRef.current) return;
     gsap.fromTo(
       imageRef.current,
-      { opacity: 0, x: 10 },
-      { opacity: 1, x: 0, duration: 2, ease: 'power2.out' }
+      { opacity: 0, y: 10 },
+      { opacity: 1, y: 0, duration: 2, ease: 'power2.out' }
     );
   }, [currentSliderStep]);
 
@@ -130,7 +130,7 @@ const KnowHow = () => {
     <div className="know-how-container w-full h-full">
       {/* Section 1 : Slider */}
       <section className="min-h-screen relative flex flex-col lg:flex-row">
-      <div className="lg:w-1/2 bg-black lg:p-20 xl:p-30 2xl:p-40 flex flex-col justify-center items-center md:pt-40 md:pb-40 sm:pb-40 sm:pt-32 text-center md:max-w-[80vw] sm:max-w-[80vw] mx-auto lg:pt-0 ">
+      <div className="lg:w-1/2 bg-black lg:p-20 xl:pl-40 2xl:p-40 flex flex-col justify-center items-center md:pt-40 md:pb-40 sm:pb-40 sm:pt-32 text-center md:max-w-[80vw] sm:max-w-[80vw] mx-auto lg:pt-50 ">
       <h2
             ref={titleRef}
             className="slide-item font-bold text-gold font-yana leading-none 2xl:text-6xl xl:text-4xl lg:text-3xl md:text-3xl sm:text-2xl mb-6"
@@ -139,7 +139,7 @@ const KnowHow = () => {
           </h2>
           <p
             ref={textRef}
-            className="highlight-description font-yana text-white 2xl:text-3xl xl:text-xl lg:text-lg md:text-md sm:text-sm"
+            className="highlight-description font-yana text-white 2xl:text-3xl xl:text-xl lg:text-lg md:text-md sm:text-sm mb-6"
           >
             {sliderData[currentSliderStep]?.description}
           </p>
@@ -161,17 +161,20 @@ const KnowHow = () => {
             ))}
           </div>
         </div>
-        <div className="lg:w-1/2 w-full relative flex items-center justify-center">
-          <img
+        <div className="lg:w-1/2 w-full sm:h-[50vh] lg:h-[100vh] relative flex items-center justify-center">
+          <div
+            key={currentSliderStep}
             ref={imageRef}
-            src={sliderData[currentSliderStep]?.image}
-            alt={`Slide ${currentSliderStep + 1}`}
-            className="object-cover w-full h-full filter bg-black/40 relative z-10"
-          />
-          <div             
-          ref={imageRef}
-          className="absolute top-0 left-0 w-full h-full bg-black/40 z-10"></div>
-         </div>
+            className="absolute w-full h-full z-0"
+          >
+            <img
+              src={sliderData[currentSliderStep]?.image}
+              alt={`Slide ${currentSliderStep + 1}`}
+              className="object-cover w-full h-full"
+            />
+            <div className="absolute top-0 left-0 w-full h-full bg-black/40 z-10"></div>
+          </div>
+        </div>
 
         {/* Flèches de navigation sur chaque côté */}
         <button

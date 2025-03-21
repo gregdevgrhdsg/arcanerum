@@ -118,7 +118,7 @@ const LayoutWithCanvas = () => {
             id="jungle-section"
             className="absolute top-0 left-0 w-full"
             style={{
-              height: "600vh",
+              height: "500vh",
               overflow: "hidden", // 🔥 Empêche tout débordement
             }}
           >

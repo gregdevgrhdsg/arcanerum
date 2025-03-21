@@ -22,7 +22,7 @@ function App() {
   return (
     <div className="relative z-0"> {/* Conteneur principal */}
       {!isVerified ? (
-        <div className="absolute inset-0 z-[10000]"> {/* Z-index élevé */}
+        <div className="absolute inset-0 z-[50]"> {/* Z-index élevé */}
           <AgeVerification onConfirm={() => setIsVerified(true)} />
         </div>
       ) : (
@@ -30,7 +30,7 @@ function App() {
           <div className="relative z-[9999]"> {/* S'assure que CookieConsent est au-dessus */}
             <CookieConsent />
           </div>
-          <div className="relative z-[100]"> {/* S'assure que CookieConsent est au-dessus */}
+          <div className="relative z-[60]"> {/* S'assure que CookieConsent est au-dessus */}
           <Navbar />
           </div>
           <div className="flex-grow">

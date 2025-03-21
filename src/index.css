@@ -45,7 +45,6 @@ body {
   border-color: #3b3b3b;
   display: flex;
   flex-direction: column;
-  max-height: 400vh;
 }
 
 footer {
@@ -78,8 +77,8 @@ footer {
 }
 
 .home-container{
-  height: 600vh;
-  min-height: 600vh;
+  height: 500vh;
+  min-height: 500vh;
   overflow-y: hidden;
 }
 

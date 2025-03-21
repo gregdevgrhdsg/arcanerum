@@ -110,7 +110,7 @@ const SliderSection = ({ slider }) => {
           </>
         )}
 
-        <div className="lg:w-1/2 bg-black lg:p-20 xl:p-30 2xl:p-40 flex flex-col justify-center items-center md:pt-40 md:pb-40 sm:pt-32 sm:pb-20 text-center md:max-w-[80vw] sm:max-w-[80vw] mx-auto  ">
+        <div className="lg:w-1/2 bg-black lg:p-20 xl:pl-40 2xl:p-40 flex flex-col justify-center items-center md:pt-40 md:pb-40 sm:pt-32 sm:pb-20 text-center md:max-w-[80vw] sm:max-w-[80vw] mx-auto  ">
           <h2
             ref={titleRef}
             className="highlight-title font-yana font-bold text-gold leading-none 2xl:text-6xl xl:text-4xl lg:text-4xl md:text-4xl sm:text-2xl mb-3"
@@ -174,7 +174,7 @@ const OurUniverse = () => {
       ],
       images: [
         '/assets/sections/volcanic.webp',
-        '/assets/sections/volcanic.webp',
+        '/assets/sections/arcaneShooting.jpg',
         '/assets/sections/volcanic.webp',
       ],
       buttonText: t('button_discover_more'),
@@ -203,12 +203,12 @@ const OurUniverse = () => {
       ],
       images: [
         '/assets/sections/territory.webp',
-        '/assets/sections/territory.webp',
-        '/assets/sections/dullThepain.webp',
+        '/assets/sections/teritory2.jpg',
+        '/assets/sections/territory3.jpg',
       ],
       buttonText: t('button_discover_more'),
       flexClasses: 'md:justify-start sm:justify-center md:items-center sm:items-center',
-      containerClass: 'md:w-[50vw] md:max-w-[50vw] sm:w-[80vw] md:pl-40',
+      containerClass: 'md:w-[50vw] md:max-w-[50vw] sm:w-[80vw] xl:pr-40',
     },
   ], [t]);
 

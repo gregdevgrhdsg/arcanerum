@@ -164,8 +164,8 @@ const Jungle = ({ isModelLoaded, position = "background", followRock = false }) 
                 objectFit: "cover",
                 objectPosition: "center",
                 minWidth: "1080px",
-                height: "600vh",
-                maxHeight: "600vh",
+                height: "500vh",
+                maxHeight: "500vh",
               }}
             />
           </div>
