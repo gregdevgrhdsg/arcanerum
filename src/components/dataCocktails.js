@@ -92,7 +92,7 @@ const cocktails = [
         method: [
           { fr: "Mélangez le rhum et les pistaches dans un récipient hermétique.", en: "Combine rum and pistachios in an airtight container." },
           { fr: "Laissez macérer pendant au moins 24 heures en secouant fréquemment le récipient.", en: "Steep for at least 24 hours, shaking the container frequently." },
-          { fr: "Filtrez le mélange et réservez le liquide dans un récipient hermétique.", en: "Strain the mixture and reserve the liquid in an airtight container." },
+          { fr: "Filtrez le mélange et réservez dans un récipient hermétique.", en: "Strain the mixture and reserve the liquid in an airtight container." },
         ],
       },
       {
@@ -124,23 +124,20 @@ const cocktails = [
           { name: { fr: "Liqueur d'ananas Cartron", en: "Cartron Pineapple Liqueur" }, qty: 50, unit: "ml" },
           { name: { fr: "Liqueur Cartron Cocody", en: "Cartron Cocody Liqueur" }, qty: 15, unit: "ml" },
           { name: { fr: "Coco Lopez", en: "Coco Lopez" }, qty: 400, unit: "ml" },
+          { name: { fr: "Sucre glace", en: "Arcane Extraroma" }, qty: 38, unit: "g" },
+          { name: { fr: " Sel casher", en: "Arcane Extraroma" }, qty: 1.5, unit: "g" },
+          { name: { fr: " Noix de muscade fraîchement râpée", en: "Arcane Extraroma" }, qty: 1.5, unit: "g" },
           { name: { fr: "Quartiers d'ananas congelés", en: "Frozen Pineapple Wedges" }, qty: 600, unit: "g" },
-          { name: { fr: "Glace aux agrumes", en: "Citrus Ice" }, qty: 325, unit: "g" },
+          { name: { fr: "Glaçons aux agrumes", en: "Citrus Ice" }, qty: 325, unit: "g" },
         ],
         method: [
-          { fr: "Mixez tous les ingrédients jusqu'à obtenir une exture fluide.", en: "Blend all ingredients until smooth." },
+          { fr: "Mixez tous les ingrédients jusqu'à obtenir une texture lisse.", en: "Blend all ingredients until smooth." },
           { fr: "Servez dans un verre Pineapple Gold garni de noix de muscade râpée.", en: "Serve in a Pineapple Gold Glass with a grated nutmeg garnish." },
         ],
       },
       {
         title: { fr: "ANANAS CONGELÉS", en: "FROZEN PINNEAPPLE" },
         ingredients: [
-          { name: { fr: "Arcane Extraroma", en: "Arcane Extraroma" }, qty: 125, unit: "ml" },
-          { name: { fr: "Liqueur d'ananas Cartron", en: "Cartron Pineapple Liqueur" }, qty: 50, unit: "ml" },
-          { name: { fr: "Liqueur Cartron Cocody", en: "Cartron Cocody Liqueur" }, qty: 15, unit: "ml" },
-          { name: { fr: "Coco Lopez", en: "Coco Lopez" }, qty: 400, unit: "ml" },
-          { name: { fr: "Quartiers d'ananas congelés", en: "Frozen Pineapple Wedges" }, qty: 600, unit: "g" },
-          { name: { fr: "Glace aux agrumes", en: "Citrus Ice" }, qty: 325, unit: "g" },
           { name: { fr: "Ananas entier", en: "Whole Pineapple" }, qty: 1, unit: "unité" },
         ],
         method: [
@@ -153,7 +150,7 @@ const cocktails = [
         ],
       },
       {
-        title: { fr: "GLACONS AUX AGRUMES", en: "CITRUS ICE" },
+        title: { fr: "GLAÇONS AUX AGRUMES", en: "CITRUS ICE" },
         ingredients: [
           { name: { fr: "Jus de citron vert frais", en: "Fresh Lime Juice" }, qty: 100, unit: "ml" },
           { name: { fr: "Jus d'orange frais", en: "Fresh Orange Juice" }, qty: 225, unit: "ml" },

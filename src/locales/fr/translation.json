@@ -39,7 +39,7 @@
     },
     "aging": {
       "title": "Vieillissement",
-      "description": "Vieillis au moins 3 ans dans des fûts de chêne français et américain, les rhums Arcanes bénéficient du climat tropical de l'île Maurice. Les variations dynamiques de température accélèrent le processus de maturation, créant des arômes gourmands et complexes en un temps réduit."
+      "description": "Vieillis au moins 3 ans dans des fûts de chêne français et américain, les rhums Arcane bénéficient du climat tropical de l'île Maurice. Les variations dynamiques de température accélèrent le processus de maturation, créant des arômes gourmands et complexes en un temps réduit."
     },
     "slide1": {
       "title": "L’ALCHIMIE DE LA DISTILLATION",
@@ -65,7 +65,7 @@
     "home": "Accueil",
     "ourUniverse": "Notre Univers",
     "knowHow": "Savoir-faire",
-    "rumsCollection": "Collection de Rums",
+    "rumsCollection": "Collection de Rhums",
     "arcaneExtraroma": "Arcane Extraroma",
     "arcaneFlamboyance": "Arcane Flamboyance",
     "arcaneAnanasRoti": "Ananas Roti",
@@ -89,7 +89,7 @@
     "slide3Title": "L'ÎLE MAURICE",
     "slide3Content1": "Une terre de beauté et de mystères située au cœur de l'océan Indien, l'Île Maurice est plus qu’une île paradisiaque, c'est l'âme d'Arcane Rum. Le mélange vibrant d'influences africaines, indiennes, européennes et chinoises de l'Île crée une tapisserie culturelle unique qui inspire le sens du mystère et de la découverte de la marque.",
     "slide3Content2": "L'île Maurice est une terre de trésors cachés, de ses paysages volcaniques luxuriants à son riche folklore et à sa musique. Arcane Rum est profondément lié à cet héritage, infusant l'esprit de l'île dans chaque bouteille, célébrant ses histoires et ses mystères exotiques.",
-    "slide3Content3": ""
+    "slide3Content3": "Au cœur d'Arcane se trouve la canne à sucre, nourrie par les sols volcaniques et le climat tropical de l'île Maurice. Les 12 variétés uniques, dont la Canne Rouge et la Cane Bourbon, sont cultivées dans le nord ensoleillé de l&#39;île, où elles absorbent les minéraux du terroir, conférant au rum des saveurs fraîches et vibrantes. Une culture raisonnée garantit que chaque bouteille capture l’essence de Maurice, profondément connectée à son terroir exceptionnel."
   },
   "ourRums": {
     "arcaneExtraroma": {
@@ -161,8 +161,8 @@
     "arcaneVanilleDesIles": {
       "title": "VANILLE DES ÎLES",
       "subtitle": "Arrangé - Vanille des Îles",
-      "description_a": "Découvrez la fascinante « Vanille des Îles », une ode àl'une des spécialités emblématiques de l'île Maurice",
-      "description": "Découvrez la fascinante 'Vanille des Îles', une ode à l'une des spécialités emblématiques de l'île Maurice. Enrichi par la vanille Bourbon et sublimé par la puissance du rhum mauricien, cet élixir exceptionnel vous emmène dans un voyage sensoriel capturant l'essence du paradis tropical mauricien.",
+      "description_a": "Découvrez la fascinante « Vanille des Îles », une ode à l'une des spécialités emblématiques de l'île Maurice",
+      "description": "Découvrez la fascinante 'Vanille des Îles', une ode à l'une des spécialités emblématiques de l'île Maurice. Enrichie par la vanille Bourbon et sublimé par la puissance du rhum mauricien, cet élixir exceptionnel vous emmène dans un voyage sensoriel capturant l'essence du paradis tropical mauricien.",
       "button": "RETOUR À LA LISTE",
       "buttonb": "ACHETER",
       "buttonc": "EN SAVOIR PLUS",

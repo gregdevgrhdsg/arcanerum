@@ -111,7 +111,7 @@ const LesCocktails = () => {
         </h1>
         <p className="2xl:text-3xl xl:text-xl lg:text-lg md:text-lg sm:text-sm font-yana text-white mb-8 max-w-4xl text-center">
           {lang === "fr"
-            ? "Découvrez notre sélection de cocktails créés sur mesure, conçu pour vous offrir une expérience gustative inoubliable."
+            ? "Découvrez notre sélection de cocktails créés sur mesure, conçus pour vous offrir une expérience gustative inoubliable."
             : "Discover our selection of curated cocktails, each one crafted to bring you an unforgettable taste experience."}
         </p>
       </div>

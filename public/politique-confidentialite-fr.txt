@@ -327,6 +327,7 @@ Notre déléguée à la protection des données personnelles (DPO) est disponibl
 « Collecter », s’entend du fait de recueillir des données à caractère personnel. Cette collecte peut s’effectuer, notamment, à l’aide de questionnaires ou de formulaires en ligne ;
 « Consentement », votre consentement s’entend de toute manifestation de volonté, libre, spécifique, éclairée et univoque par laquelle vous acceptez, par une déclaration ou par un acte positif clair, que des données à caractère personnel vous concernant fassent l’objet d’un traitement ;
 « Données à caractère personnel » ou « données personnelles », désignent toute information se rapportant à une personne physique identifiée ou identifiable; qui peut être identifiée, directement ou indirectement, notamment par référence à un identifiant, tel qu’un nom, un numéro d’identification, des données de localisation, un identifiant en ligne, ou à un ou plusieurs éléments spécifiques propres à son identité physique, physiologique, génétique, psychique, économique, culturelle ou sociale ;
+
 « Droits protégeant vous données personnelles » : désigne l’ensemble des droits fondamentaux tels que décrit dans la réglementation européenne 1 , portant sur :
 – le droit à l’information ;
 – le droit d’accès ;
